@@ -1,0 +1,119 @@
+---
+import {
+	type Locale,
+	DEFAULT_LOCALE,
+	use7cTranslation,
+} from "../../i18n/utils";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const { t } = use7cTranslation(locale);
+const currentYear = new Date().getFullYear();
+const prefix = locale === "en" ? "/en" : "";
+---
+
+<footer class="c7-site-footer">
+	<div class="c7-footer-inner">
+		<div class="c7-footer-col c7-footer-brand">
+			<h4>TUJUHCAHAYA</h4>
+			<p class="c7-footer-tagline">
+				{t.footer.tagline}
+			</p>
+		</div>
+
+		<div class="c7-footer-col">
+			<h4>{t.footer.pillars_title}</h4>
+			<ul class="c7-footer-links">
+				<li><a href={`${prefix}/category/berita`}>{locale === "en" ? "News & Investigation" : "Berita & Investigasi"}</a></li>
+				<li><a href={`${prefix}/category/tech`}>{locale === "en" ? "Tech & Science" : "Teknologi & Sains"}</a></li>
+				<li><a href={`${prefix}/category/game`}>{locale === "en" ? "Gaming & Esports" : "Esports & Gaming"}</a></li>
+				<li><a href={`${prefix}/category/musik`}>{locale === "en" ? "Music & Sound" : "Musik & Audio"}</a></li>
+				<li><a href={`${prefix}/category/budaya`}>{locale === "en" ? "Art & Pop Culture" : "Seni & Budaya Pop"}</a></li>
+				<li><a href={`${prefix}/category/kesehatan`}>{locale === "en" ? "Health & Life" : "Kesehatan & Hidup"}</a></li>
+			</ul>
+		</div>
+
+		<div class="c7-footer-col">
+			<h4>{t.footer.company_title}</h4>
+			<ul class="c7-footer-links">
+				<li><a href={`${prefix}/about-us`}>{t.footer.about}</a></li>
+				<li><a href={`${prefix}/redaksi`}>{t.footer.editorial_team}</a></li>
+				<li><a href={`${prefix}/pedoman-media-siber`}>{t.footer.cyber_guidelines}</a></li>
+				<li><a href={`${prefix}/privacy-policy`}>{t.footer.privacy}</a></li>
+				<li><a href={`${prefix}/kontak`}>{t.footer.contact}</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="c7-footer-bottom">
+		<p>&copy; {currentYear} {t.footer.copyright}</p>
+	</div>
+</footer>
+
+<style>
+	.c7-site-footer {
+		background-color: var(--7c-sys-surface-container-lowest);
+		border-top: 1px solid var(--7c-sys-outline-variant);
+		color: var(--7c-sys-on-surface-variant);
+		margin-top: auto;
+	}
+
+	.c7-footer-inner {
+		padding: 3rem 1.5rem 2rem;
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		gap: 3rem;
+	}
+
+	@media (max-width: 768px) {
+		.c7-footer-inner {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+
+	.c7-footer-col h4 {
+		color: var(--7c-sys-on-surface);
+		font-family: var(--7c-font-display);
+		font-size: 0.95rem;
+		font-weight: 800;
+		margin-bottom: 1.15rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.c7-footer-tagline {
+		font-size: 0.875rem;
+		line-height: 1.6;
+		max-width: 420px;
+	}
+
+	.c7-footer-links {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: 0;
+	}
+
+	.c7-footer-links a {
+		font-size: 0.875rem;
+		color: var(--7c-sys-on-surface-variant);
+		transition: color 0.15s ease;
+	}
+
+	.c7-footer-links a:hover {
+		color: var(--7c-sys-primary);
+	}
+
+	.c7-footer-bottom {
+		border-top: 1px solid var(--7c-sys-outline-variant);
+		padding: 1.25rem 1.5rem;
+		text-align: center;
+		font-size: 0.8125rem;
+		color: var(--7c-sys-on-surface-variant);
+	}
+</style>

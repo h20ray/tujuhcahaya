@@ -1,0 +1,137 @@
+---
+import C7Badge from "../ui/C7Badge.astro";
+import { format7cCompactDate, C7_DEFAULT_FEATURED_IMAGE } from "../../lib/7c-cms";
+
+interface Props {
+	title: string;
+	slug: string;
+	excerpt?: string | null;
+	thumbnail?: string | null;
+	category?: string | null;
+	publishedAt?: string | null;
+	class?: string;
+}
+
+const {
+	title,
+	slug,
+	excerpt,
+	thumbnail,
+	category = "Berita",
+	publishedAt,
+	class: className = "",
+} = Astro.props;
+
+const dateFormatted = format7cCompactDate(publishedAt || undefined);
+const effectiveThumbnail = thumbnail || C7_DEFAULT_FEATURED_IMAGE;
+---
+
+<article class={`c7-card ${className}`}>
+	<a href={`/${slug}`} class="c7-card-media" tabindex="-1" aria-hidden="true">
+		<img src={effectiveThumbnail} alt={title} loading="lazy" />
+	</a>
+
+	<div class="c7-card-body">
+		<div class="c7-card-meta">
+			{category && <C7Badge label={category} pillar={category} href={`/category/${category.toLowerCase()}`} />}
+			{dateFormatted && <time datetime={publishedAt || undefined} class="c7-card-date">{dateFormatted}</time>}
+		</div>
+
+		<h3 class="c7-card-title">
+			<a href={`/${slug}`}>{title}</a>
+		</h3>
+
+		{excerpt && <p class="c7-card-excerpt">{excerpt}</p>}
+	</div>
+</article>
+
+<style>
+	.c7-card {
+		background: var(--7c-sys-surface-container);
+		border: 1px solid var(--7c-sys-outline-variant);
+		border-radius: var(--7c-radius-md);
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		transition: transform 0.2s ease, border-color 0.2s ease;
+	}
+
+	.c7-card:hover {
+		transform: translateY(-3px);
+		border-color: var(--7c-sys-primary);
+		background-color: var(--7c-sys-surface-container-high);
+	}
+
+	.c7-card-media {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		background-color: var(--7c-sys-surface-container-low);
+		overflow: hidden;
+	}
+
+	.c7-card-media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+
+	.c7-card:hover .c7-card-media img {
+		transform: scale(1.04);
+	}
+
+	.c7-card-body {
+		padding: 1.15rem;
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+
+	.c7-card-meta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.65rem;
+		gap: 0.5rem;
+	}
+
+	.c7-card-date {
+		font-size: 0.75rem;
+		color: var(--7c-sys-on-surface-variant);
+	}
+
+	.c7-card-title {
+		font-family: var(--7c-font-display);
+		font-size: 1.05rem;
+		font-weight: 700;
+		line-height: 1.35;
+		margin-bottom: 0.5rem;
+		color: var(--7c-sys-on-surface);
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.c7-card-title a {
+		color: inherit;
+		text-decoration: none;
+		transition: color 0.15s ease;
+	}
+
+	.c7-card-title a:hover {
+		color: var(--7c-sys-primary);
+	}
+
+	.c7-card-excerpt {
+		font-size: 0.875rem;
+		color: var(--7c-sys-on-surface-variant);
+		line-height: 1.5;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		margin-top: auto;
+	}
+</style>

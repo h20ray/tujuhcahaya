@@ -1,0 +1,86 @@
+/*
+ * 7C Hairline Grid System (7C Bespoke 1px Architectural Framing)
+ */
+
+.c7-hairline-container,
+.hairline-container {
+  max-width: var(--7c-max-width, 1280px);
+  margin: 0 auto;
+  width: 100%;
+  border-left: 1px solid var(--7c-sys-outline-variant);
+  border-right: 1px solid var(--7c-sys-outline-variant);
+}
+
+.c7-hairline-box,
+.hairline-box {
+  border: 1px solid var(--7c-sys-outline-variant);
+  background-color: var(--7c-sys-surface-container);
+}
+
+.c7-hairline-border-b,
+.hairline-border-b {
+  border-bottom: 1px solid var(--7c-sys-outline-variant);
+}
+
+.c7-hairline-border-t,
+.hairline-border-t {
+  border-top: 1px solid var(--7c-sys-outline-variant);
+}
+
+.c7-hairline-border-l,
+.hairline-border-l {
+  border-left: 1px solid var(--7c-sys-outline-variant);
+}
+
+.c7-hairline-border-r,
+.hairline-border-r {
+  border-right: 1px solid var(--7c-sys-outline-variant);
+}
+
+/* Primary and Outline Button Utilities */
+.c7-btn-primary,
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--7c-sys-primary);
+  color: var(--7c-sys-on-primary) !important;
+  border: 1px solid transparent;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--7c-radius-sm);
+  font-weight: 700;
+  font-size: 0.875rem;
+  min-height: 42px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.c7-btn-primary:hover,
+.btn-primary:hover {
+  background-color: var(--7c-sys-primary-hover);
+}
+
+.c7-btn-outline,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--7c-sys-on-surface);
+  border: 1px solid var(--7c-sys-outline-variant);
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--7c-radius-sm);
+  font-weight: 600;
+  font-size: 0.875rem;
+  min-height: 42px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.c7-btn-outline:hover,
+.btn-outline:hover {
+  background-color: var(--7c-sys-surface-container-high);
+  border-color: var(--7c-sys-on-surface);
+}

@@ -1,0 +1,215 @@
+---
+import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from "emdash";
+import { EmDashHead, EmDashBodyStart, EmDashBodyEnd } from "emdash/ui";
+import { createPublicPageContext } from "emdash/page";
+import C7Masthead from "../components/navigation/C7Masthead.astro";
+import C7Footer from "../components/navigation/C7Footer.astro";
+import { resolveStarterSiteIdentity } from "../utils/site-identity";
+import "../styles/global.css";
+
+interface Props {
+	title: string;
+	pageTitle?: string | null;
+	description?: string | null;
+	image?: string | null;
+	canonical?: string | null;
+	/** Pass content reference for plugin page contributions on content pages */
+	content?: { collection: string; id: string; slug?: string | null };
+}
+
+const { title, pageTitle, description, image, canonical, content } =
+	Astro.props;
+const [settingsResult, menuResult] = await Promise.all([
+	getSiteSettingsWithCacheHint(),
+	getMenuWithCacheHint("primary"),
+]);
+if (Astro.cache?.enabled) {
+	Astro.cache.set(settingsResult.cacheHint);
+	Astro.cache.set(menuResult.cacheHint);
+}
+
+const { siteTitle, siteTagline } = resolveStarterSiteIdentity(
+	settingsResult.data,
+);
+const titleIncludesSiteName =
+	title === siteTitle ||
+	title.endsWith(` | ${siteTitle}`) ||
+	title.endsWith(` — ${siteTitle}`);
+const fullTitle = titleIncludesSiteName ? title : `${title} — ${siteTitle}`;
+const pageDescription = description ?? siteTagline;
+const menu = menuResult.data;
+
+import { get7cLocaleFromUrl } from "../i18n/utils";
+
+const currentPath = Astro.url.pathname;
+const locale = get7cLocaleFromUrl(Astro.url);
+
+const currentDateStr = new Date().toLocaleDateString(locale === "en" ? "en-US" : "id-ID", {
+	weekday: "long",
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+});
+
+const pageCtx = createPublicPageContext({
+	Astro,
+	kind: content ? "content" : "custom",
+	pageType: "website",
+	title: fullTitle,
+	pageTitle: pageTitle ?? title,
+	description: pageDescription,
+	canonical,
+	image,
+	content,
+	siteName: siteTitle,
+});
+---
+
+<!doctype html>
+<html lang={locale}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{fullTitle}</title>
+		
+		<!-- 7C Bespoke Engine Signature -->
+		<meta name="generator" content="7C Digital Engine (Astro + EmDash)" />
+		<meta name="author" content="PT Tujuh Cahaya Media House" />
+
+		<!-- Google Fonts: Plus Jakarta Sans & Inter (Google Blog Typography) -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="preconnect" href="https://media.xlocal.id" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<EmDashHead page={pageCtx} />
+
+		<script is:inline>
+			// Instant theme initialization to prevent flash
+			const savedTheme = localStorage.getItem("theme");
+			const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+			if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+				document.documentElement.setAttribute("data-theme", "dark");
+			} else {
+				document.documentElement.removeAttribute("data-theme");
+			}
+		</script>
+	</head>
+	<body>
+		<EmDashBodyStart page={pageCtx} />
+
+		<!-- WCAG 2.4.1 Skip to Main Content Link -->
+		<a href="#main-content" class="c7-skip-link skip-link">
+			{locale === "en" ? "Skip to main content" : "Lewati ke konten utama"}
+		</a>
+
+		<!-- Full-Width Minimalist Masthead (Edge-to-Edge) -->
+		<C7Masthead currentPath={currentPath} currentDateStr={currentDateStr} locale={locale} menu={menu} />
+
+		<div class="c7-hairline-container hairline-container">
+			<!-- Main Body Content Slot (WCAG Landmark) -->
+			<main id="main-content" tabindex="-1">
+				<slot />
+			</main>
+
+			<!-- Company Profile Footer -->
+			<C7Footer locale={locale} />
+		</div>
+
+		<script>
+			// Global Theme Toggle Handler with WCAG aria-pressed state
+			const toggleBtns = document.querySelectorAll(".c7-theme-toggle");
+			function syncThemeAccessibility() {
+				const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+				toggleBtns.forEach((btn) => {
+					btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+					btn.setAttribute("aria-label", isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap");
+				});
+			}
+			syncThemeAccessibility();
+
+			toggleBtns.forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const current = document.documentElement.getAttribute("data-theme");
+					const next = current === "dark" ? "light" : "dark";
+					if (next === "dark") {
+						document.documentElement.setAttribute("data-theme", "dark");
+						localStorage.setItem("theme", "dark");
+					} else {
+						document.documentElement.removeAttribute("data-theme");
+						localStorage.setItem("theme", "light");
+					}
+					syncThemeAccessibility();
+				});
+			});
+
+			// Global Cmd+K / Ctrl+K search shortcut handler (Vengeance-style)
+			window.addEventListener("keydown", (e) => {
+				if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+					e.preventDefault();
+					const searchInput = document.querySelector(".c7-search-input") as HTMLInputElement | null;
+					if (searchInput) {
+						searchInput.focus();
+						searchInput.select();
+					}
+				}
+			});
+
+			// Mobile Menu Drawer Handler
+			const mobileMenuToggle = document.getElementById("c7-mobile-menu-toggle");
+			const mobileDrawer = document.getElementById("c7-mobile-drawer");
+			const openIcon = mobileMenuToggle?.querySelector(".c7-menu-open-icon") as HTMLElement | null;
+			const closeIcon = mobileMenuToggle?.querySelector(".c7-menu-close-icon") as HTMLElement | null;
+
+			function toggleMobileDrawer(open?: boolean) {
+				if (!mobileDrawer || !mobileMenuToggle) return;
+				const shouldOpen = open !== undefined ? open : mobileDrawer.hidden;
+				mobileDrawer.hidden = !shouldOpen;
+				mobileMenuToggle.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
+				if (openIcon && closeIcon) {
+					openIcon.style.display = shouldOpen ? "none" : "block";
+					closeIcon.style.display = shouldOpen ? "block" : "none";
+				}
+			}
+
+			mobileMenuToggle?.addEventListener("click", () => {
+				toggleMobileDrawer();
+			});
+
+			// Close mobile drawer on escape
+			window.addEventListener("keydown", (e) => {
+				if (e.key === "Escape" && mobileDrawer && !mobileDrawer.hidden) {
+					toggleMobileDrawer(false);
+				}
+			});
+
+			// Close mobile drawer when clicking a mobile nav link
+			document.querySelectorAll(".c7-mobile-nav-item").forEach((link) => {
+				link.addEventListener("click", () => {
+					toggleMobileDrawer(false);
+				});
+			});
+
+			// Ensure search input has an accessible label for screen readers
+			function checkSearchInputLabel() {
+				const searchInputs = document.querySelectorAll(".emdash-live-search-input");
+				searchInputs.forEach((input) => {
+					if (!input.getAttribute("aria-label")) {
+						input.setAttribute("aria-label", "Cari artikel atau liputan");
+					}
+				});
+			}
+			checkSearchInputLabel();
+			if ("MutationObserver" in window) {
+				const observer = new MutationObserver(checkSearchInputLabel);
+				observer.observe(document.body, { childList: true, subtree: true });
+			}
+		</script>
+
+		<EmDashBodyEnd page={pageCtx} />
+	</body>
+</html>

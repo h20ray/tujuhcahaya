@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "archive": "Arsip Liputan",
+    "about": "Tentang Kami",
+    "search_placeholder": "Cari 16.700+ artikel...",
+    "mode": "Mode",
+    "mode_dark": "Ganti ke mode gelap",
+    "mode_light": "Ganti ke mode terang"
+  },
+  "topbar": {
+    "brand_tagline": "TUJUHCAHAYA MEDIA HOUSE",
+    "dispatch_live": "DISPATCH REDAKSI",
+    "switch_lang": "Ganti bahasa"
+  },
+  "editorial": {
+    "read_time": "menit baca",
+    "published_on": "Diterbitkan pada",
+    "by": "Oleh",
+    "all": "Semua",
+    "articles_count": "16.745 Artikel",
+    "trending": "Liputan Populer",
+    "latest": "Liputan Terkini",
+    "empty_state": "Belum ada artikel pada pilar ini.",
+    "back_to_home": "Kembali ke Beranda",
+    "page_not_found": "Halaman Tidak Ditemukan"
+  },
+  "footer": {
+    "tagline": "Media house digital independen yang mengeksplorasi jurnalisme investigatif, teknologi, kultur urban, musik, dan dinamika sosial masyarakat modern.",
+    "pillars_title": "Pilar Liputan",
+    "company_title": "Redaksi & Legal",
+    "about": "Tentang Kami",
+    "editorial_team": "Susunan Redaksi",
+    "cyber_guidelines": "Pedoman Media Siber",
+    "privacy": "Kebijakan Privasi",
+    "contact": "Hubungi Redaksi",
+    "copyright": "PT Tujuh Cahaya Media House. Hak Cipta Dilindungi Undang-Undang."
+  }
+}

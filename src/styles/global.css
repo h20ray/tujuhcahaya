@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/*
+ * Tujuhcahaya 7C — Modular CSS Dispatcher
+ * Architecture: MD3 Expressive (MD3X) + 7C Hairline Grid
+ *
+ * Rules:
+ * 1. Do NOT add component-specific styles to this file.
+ * 2. Keep this dispatcher file under 20 lines.
+ * 3. Component-specific CSS belongs in scoped <style> tags within .astro files.
+ */
+
+@import "./7c-tokens.css";
+@import "./7c-base.css";
+@import "./7c-hairline.css";
+@import "./7c-prose.css";
+@import "./7c-components.css";

@@ -1,0 +1,150 @@
+---
+import { getEmDashCollection, getTermsForEntries } from "emdash";
+import Base from "../../../layouts/Base.astro";
+import { use7cTranslation } from "../../../i18n/utils";
+import { format7cCompactDate } from "../../../lib/7c-cms";
+
+const locale = "en";
+const { t } = use7cTranslation(locale);
+const cursor = Astro.url.searchParams.get("cursor") || undefined;
+
+const {
+	entries: posts,
+	cacheHint,
+	nextCursor,
+} = await getEmDashCollection("posts", {
+	orderBy: { published_at: "desc" },
+	limit: 25,
+	cursor,
+});
+
+if (Astro.cache?.enabled && cacheHint) {
+	Astro.cache.set(cacheHint);
+}
+
+// Single batched query for categories across every post
+const categoriesByEntry = await getTermsForEntries(
+	"posts",
+	posts.map((p) => p.data.id),
+	"category",
+);
+
+const formattedPosts = posts.map((post) => {
+	const cats = categoriesByEntry.get(post.data.id) ?? [];
+	const firstCategory = cats[0] ?? { label: "News", slug: "berita" };
+	const formattedDate = format7cCompactDate(post.data.publishedAt, locale);
+	return {
+		post,
+		category: firstCategory,
+		formattedDate,
+		slug: post.data?.slug || post.id,
+	};
+});
+---
+
+<Base
+	title={`All Stories — ${t.topbar.dispatch_live}`}
+	description="Complete archive of news, investigative features, and cultural observations from Tujuhcahaya Media House."
+>
+	<div class="dispatch-archive-page">
+		<!-- Header of Archive Dispatch Table -->
+		<div class="dispatch-header">
+			<div class="dispatch-header-left">
+				<span class="dispatch-pulse-dot" aria-hidden="true"></span>
+				<h1 class="dispatch-header-title">{t.topbar.dispatch_live} — COMPLETE ARCHIVE</h1>
+				<span class="dispatch-count-badge">{t.editorial.articles_count}</span>
+			</div>
+
+			<!-- Quick Category Filter Pills -->
+			<div class="dispatch-category-filters" role="navigation" aria-label="Category Filters">
+				<a href="/en/posts" class="dispatch-filter-tab active" aria-current="page">{t.editorial.all}</a>
+				<a href="/en/category/tech" class="dispatch-filter-tab">Tech</a>
+				<a href="/en/category/game" class="dispatch-filter-tab">Gaming</a>
+				<a href="/en/category/berita" class="dispatch-filter-tab">News</a>
+				<a href="/en/category/musik" class="dispatch-filter-tab">Music</a>
+				<a href="/en/category/budaya" class="dispatch-filter-tab">Culture</a>
+				<a href="/en/category/kesehatan" class="dispatch-filter-tab">Health</a>
+			</div>
+		</div>
+
+		<!-- Dispatch Table Rows -->
+		<div class="dispatch-table" role="feed" aria-label="Latest Editorial Stories">
+			{formattedPosts.length === 0 ? (
+				<div class="dispatch-empty-state">
+					<p>{t.editorial.empty_state}</p>
+				</div>
+			) : (
+				formattedPosts.map((item, idx) => (
+					<a href={`/en/${item.slug}`} class="dispatch-row">
+						<!-- Status Circle -->
+						<div class="dispatch-bullet-wrapper">
+							{idx === 0 && !cursor ? (
+								<span class="dispatch-bullet checked" aria-hidden="true">
+									<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
+										<polyline points="20 6 9 17 4 12"></polyline>
+									</svg>
+								</span>
+							) : (
+								<span class="dispatch-bullet" aria-hidden="true"></span>
+							)}
+						</div>
+
+						<!-- Article Title (Truncated) -->
+						<span class="dispatch-title" {...item.post.edit?.title}>
+							{item.post.data.title}
+						</span>
+
+						<!-- Category Pill -->
+						<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
+							<span class="cat-dot" aria-hidden="true"></span>
+							<span>{item.category.label}</span>
+						</span>
+
+						<!-- Assignee / Author Pill -->
+						<span class="dispatch-assignee">
+							<span class="assignee-avatar" aria-hidden="true">
+								<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+									<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+									<circle cx="12" cy="7" r="4"></circle>
+								</svg>
+							</span>
+							<span class="assignee-name">Editorial</span>
+							<span class="assignee-x" aria-hidden="true">&times;</span>
+						</span>
+
+						<!-- Date Field (Right-aligned) -->
+						<time class="dispatch-date" datetime={item.post.data.publishedAt ? new Date(item.post.data.publishedAt).toISOString() : ""}>
+							{item.formattedDate}
+						</time>
+					</a>
+				))
+			)}
+		</div>
+
+		<!-- Dispatch Bottom Bar with Linear-Style Pagination -->
+		<div class="dispatch-footer">
+			<div class="dispatch-footer-meta">
+				<span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background-color: var(--7c-sys-primary);" aria-hidden="true"></span>
+				<span>{cursor ? "Archive Page" : "Latest Archive Page"}</span>
+			</div>
+
+			<div class="dispatch-pagination" aria-label="Archive Pagination">
+				{cursor && (
+					<a href="/en/posts" class="dispatch-page-btn">
+						<span aria-hidden="true">&larr;</span>
+						<span>First Page</span>
+					</a>
+				)}
+				{nextCursor && (
+					<a
+						href={`/en/posts?cursor=${encodeURIComponent(nextCursor)}`}
+						class="dispatch-page-btn"
+					>
+						<span>Next Page</span>
+						<span aria-hidden="true">&rarr;</span>
+					</a>
+				)}
+			</div>
+		</div>
+	</div>
+</Base>

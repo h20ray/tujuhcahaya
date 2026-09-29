@@ -1,0 +1,150 @@
+---
+import { getEmDashCollection, getTermsForEntries } from "emdash";
+import Base from "../../layouts/Base.astro";
+
+const cursor = Astro.url.searchParams.get("cursor") || undefined;
+const {
+	entries: posts,
+	cacheHint,
+	nextCursor,
+} = await getEmDashCollection("posts", {
+	orderBy: { published_at: "desc" },
+	limit: 25,
+	cursor,
+});
+
+if (Astro.cache?.enabled && cacheHint) {
+	Astro.cache.set(cacheHint);
+}
+
+// Single batched query for categories across every post
+const categoriesByEntry = await getTermsForEntries(
+	"posts",
+	posts.map((p) => p.data.id),
+	"category",
+);
+
+const formattedPosts = posts.map((post) => {
+	const cats = categoriesByEntry.get(post.data.id) ?? [];
+	const firstCategory = cats[0] ?? { label: "Berita", slug: "berita" };
+	const formattedDate = post.data.publishedAt
+		? new Date(post.data.publishedAt).toLocaleDateString("id-ID", {
+				day: "numeric",
+				month: "short",
+		  })
+		: "";
+	return {
+		post,
+		category: firstCategory,
+		formattedDate,
+		slug: post.data?.slug || post.id,
+	};
+});
+---
+
+<Base
+	title="Semua Artikel — Dispatch Redaksi"
+	description="Arsip seluruh artikel, liputan, dan berita terkini dari Tujuhcahaya Media House."
+>
+	<div class="dispatch-archive-page">
+		<!-- Header of Archive Dispatch Table -->
+		<div class="dispatch-header">
+			<div class="dispatch-header-left">
+				<span class="dispatch-pulse-dot" aria-hidden="true"></span>
+				<h1 class="dispatch-header-title">DISPATCH REDAKSI — ARSIP LENGKAP</h1>
+				<span class="dispatch-count-badge">16.745 Artikel</span>
+			</div>
+
+			<!-- Quick Category Filter Pills -->
+			<div class="dispatch-category-filters" role="navigation" aria-label="Filter Kategori">
+				<a href="/posts" class="dispatch-filter-tab active" aria-current="page">Semua</a>
+				<a href="/category/game" class="dispatch-filter-tab">Game</a>
+				<a href="/category/tech" class="dispatch-filter-tab">Tech</a>
+				<a href="/category/berita" class="dispatch-filter-tab">Berita</a>
+				<a href="/category/musik" class="dispatch-filter-tab">Musik</a>
+				<a href="/category/budaya" class="dispatch-filter-tab">Budaya</a>
+				<a href="/category/kesehatan" class="dispatch-filter-tab">Kesehatan</a>
+			</div>
+		</div>
+
+		<!-- Dispatch Table Rows -->
+		<div class="dispatch-table" role="feed" aria-label="Daftar Liputan Terkini">
+			{formattedPosts.length === 0 ? (
+				<div class="dispatch-empty-state">
+					<p>Belum ada artikel yang diterbitkan.</p>
+				</div>
+			) : (
+				formattedPosts.map((item, idx) => (
+					<a href={`/${item.slug}`} class="dispatch-row">
+						<!-- Status Circle (Row 0 on page 1 is checked lead story, rest are hollow circles) -->
+						<div class="dispatch-bullet-wrapper">
+							{idx === 0 && !cursor ? (
+								<span class="dispatch-bullet checked" aria-hidden="true">
+									<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
+										<polyline points="20 6 9 17 4 12"></polyline>
+									</svg>
+								</span>
+							) : (
+								<span class="dispatch-bullet" aria-hidden="true"></span>
+							)}
+						</div>
+
+						<!-- Article Title (Truncated) -->
+						<span class="dispatch-title" {...item.post.edit.title}>
+							{item.post.data.title}
+						</span>
+
+						<!-- Category Pill -->
+						<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
+							<span class="cat-dot" aria-hidden="true"></span>
+							<span>{item.category.label}</span>
+						</span>
+
+						<!-- Assignee / Author Pill (Linear [👤 Redaksi ×] replica) -->
+						<span class="dispatch-assignee">
+							<span class="assignee-avatar" aria-hidden="true">
+								<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+									<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+									<circle cx="12" cy="7" r="4"></circle>
+								</svg>
+							</span>
+							<span class="assignee-name">Redaksi</span>
+							<span class="assignee-x" aria-hidden="true">&times;</span>
+						</span>
+
+						<!-- Date Field (Right-aligned) -->
+						<time class="dispatch-date" datetime={item.post.data.publishedAt?.toISOString() || ""}>
+							{item.formattedDate}
+						</time>
+					</a>
+				))
+			)}
+		</div>
+
+		<!-- Dispatch Bottom Bar with Linear-Style Pagination -->
+		<div class="dispatch-footer">
+			<div class="dispatch-footer-meta">
+				<span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background-color: var(--color-primary);" aria-hidden="true"></span>
+				<span>{cursor ? "Arsip Lanjutan" : "Halaman Utama Arsip"}</span>
+			</div>
+
+			<div class="dispatch-pagination" aria-label="Navigasi Halaman Arsip">
+				{cursor && (
+					<a href="/posts" class="dispatch-page-btn">
+						<span aria-hidden="true">&larr;</span>
+						<span>Halaman Pertama</span>
+					</a>
+				)}
+				{nextCursor && (
+					<a
+						href={`/posts?cursor=${encodeURIComponent(nextCursor)}`}
+						class="dispatch-page-btn"
+					>
+						<span>Halaman Berikutnya</span>
+						<span aria-hidden="true">&rarr;</span>
+					</a>
+				)}
+			</div>
+		</div>
+	</div>
+</Base>

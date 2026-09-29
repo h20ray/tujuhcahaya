@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "Home",
+    "archive": "Dispatch Archive",
+    "about": "About Us",
+    "search_placeholder": "Search 16,700+ stories...",
+    "mode": "Mode",
+    "mode_dark": "Switch to dark mode",
+    "mode_light": "Switch to light mode"
+  },
+  "topbar": {
+    "brand_tagline": "TUJUHCAHAYA MEDIA HOUSE",
+    "dispatch_live": "EDITORIAL DISPATCH",
+    "switch_lang": "Switch language"
+  },
+  "editorial": {
+    "read_time": "min read",
+    "published_on": "Published on",
+    "by": "By",
+    "all": "All",
+    "articles_count": "16,745 Stories",
+    "trending": "Trending Stories",
+    "latest": "Latest Stories",
+    "empty_state": "No stories found under this pillar.",
+    "back_to_home": "Back to Home",
+    "page_not_found": "Page Not Found"
+  },
+  "footer": {
+    "tagline": "Independent digital media house exploring investigative journalism, emerging tech, urban culture, music, and contemporary Southeast Asian society.",
+    "pillars_title": "Editorial Pillars",
+    "company_title": "Masthead & Legal",
+    "about": "About Us",
+    "editorial_team": "Editorial Board",
+    "cyber_guidelines": "Cyber Media Guidelines",
+    "privacy": "Privacy Policy",
+    "contact": "Contact Desk",
+    "copyright": "PT Tujuh Cahaya Media House. All rights reserved."
+  }
+}

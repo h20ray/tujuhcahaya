@@ -1,0 +1,608 @@
+---
+/**
+ * C7PostSidebar — Tujuhcahaya Editorial Sidebar
+ * MD3X Tonal Surfaces + 7C 1px Hairline Architecture
+ */
+import C7Badge from "../ui/C7Badge.astro";
+import { get7cSidebarPosts, format7cCompactDate } from "../../lib/7c-cms";
+import type { Locale } from "../../i18n/utils";
+
+interface Props {
+	currentSlug?: string;
+	categorySlug?: string;
+	tags?: Array<{ id?: string; label: string; slug: string }>;
+	locale?: Locale;
+	class?: string;
+}
+
+const {
+	currentSlug,
+	categorySlug,
+	tags = [],
+	locale = "id",
+	class: className = "",
+} = Astro.props;
+
+// Fetch top 5 recent posts for the ranked trending list
+const { posts: sidebarPosts } = await get7cSidebarPosts(currentSlug, 5, locale);
+
+// 7 Pillars of Tujuhcahaya
+const pillars = [
+	{ slug: "berita", label: "Berita & Investigasi", pillar: "berita" },
+	{ slug: "tech", label: "Teknologi & Sains", pillar: "tech" },
+	{ slug: "game", label: "Esports & Gaming", pillar: "game" },
+	{ slug: "musik", label: "Musik & Nada", pillar: "musik" },
+	{ slug: "budaya", label: "Seni & Kultur Pop", pillar: "budaya" },
+	{ slug: "kesehatan", label: "Kesehatan & Hidup", pillar: "kesehatan" },
+	{ slug: "lab", label: "Lab & Eksperimen", pillar: "lab" },
+];
+
+const isEn = locale === "en";
+
+// Fallback trending topics if article has no specific tags
+const defaultTopics = isEn
+	? [
+			{ label: "Gadget", slug: "tech" },
+			{ label: "Smartphone", slug: "tech" },
+			{ label: "Esports", slug: "game" },
+			{ label: "Pop Culture", slug: "budaya" },
+			{ label: "Investigation", slug: "berita" },
+			{ label: "AI & Future", slug: "tech" },
+			{ label: "Wellness", slug: "kesehatan" },
+	  ]
+	: [
+			{ label: "Gadget", slug: "tech" },
+			{ label: "Smartphone", slug: "tech" },
+			{ label: "Esports", slug: "game" },
+			{ label: "Kultur Pop", slug: "budaya" },
+			{ label: "Investigasi", slug: "berita" },
+			{ label: "AI & Inovasi", slug: "tech" },
+			{ label: "Kesehatan", slug: "kesehatan" },
+	  ];
+
+const displayTags = tags.length > 0 ? tags : defaultTopics;
+---
+
+<aside class={`c7-sidebar ${className}`} aria-label={isEn ? "Article Sidebar" : "Bilah Sisi Artikel"}>
+	<!-- 1. Pencarian Cepat (Quick Search Widget) -->
+	<section class="c7-sidebar-card c7-sidebar-search-card" aria-label={isEn ? "Search" : "Pencarian"}>
+		<form method="get" action={isEn ? "/en/search" : "/search"} class="c7-search-form" role="search">
+			<label for="c7-sidebar-search-input" class="sr-only">
+				{isEn ? "Search Tujuhcahaya" : "Cari di Tujuhcahaya"}
+			</label>
+			<div class="c7-search-input-wrapper">
+				<svg class="c7-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+					<circle cx="11" cy="11" r="8"></circle>
+					<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+				</svg>
+				<input
+					type="search"
+					id="c7-sidebar-search-input"
+					name="q"
+					placeholder={isEn ? "Search articles, topics..." : "Cari liputan, topik, pilar..."}
+					class="c7-search-input"
+					autocomplete="off"
+				/>
+				<kbd class="c7-search-kbd" title="Tekan Ctrl+K atau Cmd+K untuk cari cepat">⌘K</kbd>
+			</div>
+		</form>
+	</section>
+
+	<!-- 2. Liputan Terkini / Ranked Trending (Top 5) -->
+	{sidebarPosts.length > 0 && (
+		<section class="c7-sidebar-card" aria-label={isEn ? "Trending Dispatches" : "Liputan Terkini"}>
+			<div class="c7-sidebar-header">
+				<div class="c7-sidebar-header-left">
+					<span class="c7-pulse-indicator" aria-hidden="true"></span>
+					<h3 class="c7-sidebar-title">{isEn ? "TRENDING DISPATCH" : "LIPUTAN TERKINI"}</h3>
+				</div>
+				<span class="c7-sidebar-badge">TOP 5</span>
+			</div>
+
+			<ol class="c7-ranked-list">
+				{sidebarPosts.map((entry, idx) => {
+					const postSlug = entry.data?.slug || entry.id;
+					const postTitle = entry.data?.title || "Liputan Terkini";
+					const postCat = entry.data?.terms?.category?.[0]?.label || "Berita";
+					const postCatSlug = entry.data?.terms?.category?.[0]?.slug || "berita";
+					const dateStr = format7cCompactDate(entry.data?.publishedAt, locale);
+					const rankStr = String(idx + 1).padStart(2, "0");
+
+					return (
+						<li class="c7-ranked-item">
+							<span class="c7-rank-number" aria-hidden="true">{rankStr}</span>
+							<div class="c7-rank-body">
+								<div class="c7-rank-meta">
+									<C7Badge
+										label={postCat}
+										pillar={postCatSlug}
+										href={isEn ? `/en/category/${postCatSlug}` : `/category/${postCatSlug}`}
+									/>
+									{dateStr && <time class="c7-rank-date">{dateStr}</time>}
+								</div>
+								<h4 class="c7-rank-title">
+									<a href={isEn ? `/en/${postSlug}` : `/${postSlug}`}>
+										{postTitle}
+									</a>
+								</h4>
+							</div>
+						</li>
+					);
+				})}
+			</ol>
+		</section>
+	)}
+
+	<!-- 3. Eksplorasi 7 Pilar Editorial -->
+	<section class="c7-sidebar-card" aria-label={isEn ? "Editorial Pillars" : "Pilar Liputan"}>
+		<div class="c7-sidebar-header">
+			<div class="c7-sidebar-header-left">
+				<span class="c7-header-dot" aria-hidden="true"></span>
+				<h3 class="c7-sidebar-title">{isEn ? "7 EDITORIAL PILLARS" : "7 PILAR EDITORIAL"}</h3>
+			</div>
+		</div>
+
+		<nav class="c7-pillars-nav" aria-label="Daftar Pilar Liputan">
+			<ul class="c7-pillars-list">
+				{pillars.map((p) => {
+					const isActive = categorySlug === p.slug;
+					return (
+						<li class="c7-pillar-item">
+							<a
+								href={isEn ? `/en/category/${p.slug}` : `/category/${p.slug}`}
+								class={`c7-pillar-link c7-pillar-${p.pillar} ${isActive ? "active" : ""}`}
+								aria-current={isActive ? "page" : undefined}
+							>
+								<span class="c7-pillar-indicator" aria-hidden="true"></span>
+								<span class="c7-pillar-label">{p.label}</span>
+								<span class="c7-pillar-arrow" aria-hidden="true">&rarr;</span>
+							</a>
+						</li>
+					);
+				})}
+			</ul>
+		</nav>
+	</section>
+
+	<!-- 4. Dispatch 7C / Buletin Callout -->
+	<section class="c7-sidebar-card c7-sidebar-newsletter" aria-label={isEn ? "Newsletter" : "Buletin Redaksi"}>
+		<div class="c7-newsletter-badge">DISPATCH 7C</div>
+		<h3 class="c7-newsletter-title">
+			{isEn ? "Weekly Curated Journalism" : "Jurnalisme Terkurasi Setiap Pekan"}
+		</h3>
+		<p class="c7-newsletter-desc">
+			{isEn
+				? "Independent investigations, tech deep-dives, and modern culture directly in your inbox."
+				: "Investigasi independen, analisis mendalam teknologi, dan kultur pop langsung ke surel Anda."}
+		</p>
+		<form class="c7-newsletter-form" action="#">
+			<input
+				type="email"
+				required
+				placeholder={isEn ? "name@email.com" : "nama@email.com"}
+				class="c7-newsletter-input"
+				aria-label={isEn ? "Email address" : "Alamat email"}
+			/>
+			<button type="submit" class="c7-newsletter-btn">
+				{isEn ? "Subscribe" : "Langganan"}
+			</button>
+		</form>
+	</section>
+
+	<!-- 5. Topik Populer / Trending Tags -->
+	<section class="c7-sidebar-card" aria-label={isEn ? "Hot Topics" : "Topik Populer"}>
+		<div class="c7-sidebar-header">
+			<div class="c7-sidebar-header-left">
+				<span class="c7-header-dot" aria-hidden="true"></span>
+				<h3 class="c7-sidebar-title">{isEn ? (tags.length > 0 ? "ARTICLE TOPICS" : "TRENDING TOPICS") : (tags.length > 0 ? "TOPIK ARTIKEL" : "TREN TOPIK")}</h3>
+			</div>
+		</div>
+		<div class="c7-tags-cloud">
+			{displayTags.map((t) => (
+				<a
+					href={isEn ? `/en/tag/${t.slug}` : `/tag/${t.slug}`}
+					class="c7-topic-chip"
+				>
+					#{t.label}
+				</a>
+			))}
+		</div>
+	</section>
+
+	<!-- Optional Slot for dynamic plugins/widgets -->
+	<slot />
+</aside>
+
+<style>
+	.c7-sidebar {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		position: sticky;
+		top: 5.5rem;
+		align-self: start;
+	}
+
+	.c7-sidebar-card {
+		background: var(--7c-sys-surface-container);
+		border: 1px solid var(--7c-sys-outline-variant);
+		border-radius: var(--7c-radius-md);
+		padding: 1.25rem;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.c7-sidebar-card:hover {
+		border-color: var(--7c-sys-outline);
+	}
+
+	/* Search Input */
+	.c7-sidebar-search-card {
+		padding: 0.85rem;
+	}
+
+	.c7-search-input-wrapper {
+		position: relative;
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+
+	.c7-search-icon {
+		position: absolute;
+		left: 0.85rem;
+		color: var(--7c-sys-on-surface-variant);
+		pointer-events: none;
+	}
+
+	.c7-search-input {
+		width: 100%;
+		padding: 0.65rem 2.75rem 0.65rem 2.35rem;
+		font-family: var(--7c-font-sans);
+		font-size: 0.875rem;
+		background: var(--7c-sys-surface-container-high);
+		border: 1px solid var(--7c-sys-outline-variant);
+		border-radius: var(--7c-radius-sm);
+		color: var(--7c-sys-on-surface);
+		transition: all 0.2s ease;
+	}
+
+	.c7-search-input:focus {
+		outline: none;
+		border-color: var(--7c-sys-primary);
+		background: var(--7c-sys-surface-container-lowest);
+		box-shadow: 0 0 0 3px rgba(213, 0, 0, 0.12);
+	}
+
+	.c7-search-kbd {
+		position: absolute;
+		right: 0.65rem;
+		font-family: var(--7c-font-mono);
+		font-size: 0.7rem;
+		padding: 0.15rem 0.4rem;
+		background: var(--7c-sys-surface-container);
+		border: 1px solid var(--7c-sys-outline-variant);
+		border-radius: 3px;
+		color: var(--7c-sys-on-surface-variant);
+		pointer-events: none;
+	}
+
+	/* Sidebar Section Headers */
+	.c7-sidebar-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-bottom: 0.75rem;
+		margin-bottom: 1rem;
+		border-bottom: 1px solid var(--7c-sys-outline-variant);
+	}
+
+	.c7-sidebar-header-left {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.c7-pulse-indicator {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background-color: var(--7c-sys-primary);
+		box-shadow: 0 0 0 0 rgba(213, 0, 0, 0.7);
+		animation: c7-pulse 2s infinite;
+	}
+
+	@keyframes c7-pulse {
+		0% {
+			transform: scale(0.95);
+			box-shadow: 0 0 0 0 rgba(213, 0, 0, 0.7);
+		}
+		70% {
+			transform: scale(1);
+			box-shadow: 0 0 0 6px rgba(213, 0, 0, 0);
+		}
+		100% {
+			transform: scale(0.95);
+			box-shadow: 0 0 0 0 rgba(213, 0, 0, 0);
+		}
+	}
+
+	.c7-header-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background-color: var(--7c-sys-primary);
+	}
+
+	.c7-sidebar-title {
+		font-family: var(--7c-font-display);
+		font-size: 0.82rem;
+		font-weight: 800;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--7c-sys-on-surface);
+		margin: 0;
+	}
+
+	.c7-sidebar-badge {
+		font-family: var(--7c-font-mono);
+		font-size: 0.68rem;
+		font-weight: 700;
+		color: var(--7c-sys-primary);
+		background: rgba(213, 0, 0, 0.08);
+		border: 1px solid rgba(213, 0, 0, 0.25);
+		padding: 0.15rem 0.45rem;
+		border-radius: 9999px;
+		letter-spacing: 0.04em;
+	}
+
+	/* Ranked Trending List */
+	.c7-ranked-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.c7-ranked-item {
+		display: flex;
+		gap: 0.85rem;
+		padding: 0.85rem 0;
+		border-bottom: 1px dashed var(--7c-sys-outline-variant);
+		align-items: flex-start;
+	}
+
+	.c7-ranked-item:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+
+	.c7-ranked-item:first-child {
+		padding-top: 0;
+	}
+
+	.c7-rank-number {
+		font-family: var(--7c-font-display);
+		font-size: 1.35rem;
+		font-weight: 800;
+		color: var(--7c-sys-primary);
+		line-height: 1;
+		min-width: 26px;
+		padding-top: 0.1rem;
+		user-select: none;
+	}
+
+	.c7-rank-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		flex: 1;
+		min-width: 0;
+	}
+
+	.c7-rank-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.c7-rank-date {
+		font-size: 0.72rem;
+		color: var(--7c-sys-on-surface-variant);
+	}
+
+	.c7-rank-title {
+		font-size: 0.9rem;
+		font-weight: 700;
+		line-height: 1.35;
+		margin: 0;
+	}
+
+	.c7-rank-title a {
+		color: var(--7c-sys-on-surface);
+		text-decoration: none;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		transition: color 0.15s ease;
+	}
+
+	.c7-rank-title a:hover {
+		color: var(--7c-sys-primary);
+	}
+
+	/* 7 Pillars List */
+	.c7-pillars-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.c7-pillar-link {
+		display: flex;
+		align-items: center;
+		padding: 0.55rem 0.75rem;
+		border-radius: var(--7c-radius-sm);
+		border: 1px solid transparent;
+		text-decoration: none;
+		color: var(--7c-sys-on-surface);
+		font-size: 0.85rem;
+		font-weight: 600;
+		transition: all 0.15s ease;
+	}
+
+	.c7-pillar-link:hover {
+		background: var(--7c-sys-surface-container-high);
+		border-color: var(--7c-sys-outline-variant);
+		transform: translateX(2px);
+	}
+
+	.c7-pillar-link.active {
+		background: var(--7c-sys-surface-container-high);
+		border-color: var(--7c-sys-primary);
+		font-weight: 700;
+	}
+
+	.c7-pillar-indicator {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		margin-right: 0.65rem;
+		flex-shrink: 0;
+	}
+
+	.c7-pillar-berita .c7-pillar-indicator { background-color: var(--7c-pillar-berita); }
+	.c7-pillar-tech .c7-pillar-indicator { background-color: var(--7c-pillar-tech); }
+	.c7-pillar-game .c7-pillar-indicator { background-color: var(--7c-pillar-game); }
+	.c7-pillar-musik .c7-pillar-indicator { background-color: var(--7c-pillar-musik); }
+	.c7-pillar-budaya .c7-pillar-indicator { background-color: var(--7c-pillar-budaya); }
+	.c7-pillar-kesehatan .c7-pillar-indicator { background-color: var(--7c-pillar-kesehatan); }
+	.c7-pillar-lab .c7-pillar-indicator { background-color: var(--7c-pillar-lab); }
+
+	.c7-pillar-label {
+		flex: 1;
+	}
+
+	.c7-pillar-arrow {
+		font-size: 0.85rem;
+		color: var(--7c-sys-on-surface-variant);
+		opacity: 0;
+		transform: translateX(-4px);
+		transition: all 0.15s ease;
+	}
+
+	.c7-pillar-link:hover .c7-pillar-arrow {
+		opacity: 1;
+		transform: translateX(0);
+		color: var(--7c-sys-primary);
+	}
+
+	/* Dispatch 7C Newsletter Callout */
+	.c7-sidebar-newsletter {
+		border-top: 3px solid var(--7c-sys-primary);
+		background: var(--7c-sys-surface-container-low);
+	}
+
+	.c7-newsletter-badge {
+		font-family: var(--7c-font-mono);
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		color: var(--7c-sys-primary);
+		margin-bottom: 0.4rem;
+	}
+
+	.c7-newsletter-title {
+		font-family: var(--7c-font-display);
+		font-size: 1.05rem;
+		font-weight: 800;
+		line-height: 1.3;
+		color: var(--7c-sys-on-surface);
+		margin-bottom: 0.4rem;
+	}
+
+	.c7-newsletter-desc {
+		font-size: 0.8125rem;
+		line-height: 1.5;
+		color: var(--7c-sys-on-surface-variant);
+		margin-bottom: 0.85rem;
+	}
+
+	.c7-newsletter-form {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.c7-newsletter-input {
+		width: 100%;
+		padding: 0.6rem 0.75rem;
+		font-size: 0.82rem;
+		background: var(--7c-sys-surface-container);
+		border: 1px solid var(--7c-sys-outline-variant);
+		border-radius: var(--7c-radius-sm);
+		color: var(--7c-sys-on-surface);
+	}
+
+	.c7-newsletter-input:focus {
+		outline: 2px solid var(--7c-sys-primary);
+		outline-offset: 1px;
+	}
+
+	.c7-newsletter-btn {
+		width: 100%;
+		padding: 0.6rem;
+		font-size: 0.82rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--7c-sys-on-primary);
+		background: var(--7c-sys-primary);
+		border: none;
+		border-radius: var(--7c-radius-sm);
+		cursor: pointer;
+		transition: background-color 0.15s ease;
+	}
+
+	.c7-newsletter-btn:hover {
+		background: var(--7c-sys-primary-hover);
+	}
+
+	/* Topic Chips */
+	.c7-tags-cloud {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+	}
+
+	.c7-topic-chip {
+		font-size: 0.75rem;
+		font-weight: 600;
+		padding: 0.25rem 0.55rem;
+		border-radius: 9999px;
+		background: var(--7c-sys-surface-container-high);
+		border: 1px solid var(--7c-sys-outline-variant);
+		color: var(--7c-sys-on-surface-variant);
+		text-decoration: none;
+		transition: all 0.15s ease;
+	}
+
+	.c7-topic-chip:hover {
+		color: var(--7c-sys-primary);
+		border-color: var(--7c-sys-primary);
+		background: var(--7c-sys-surface-container-lowest);
+		transform: translateY(-1px);
+	}
+
+	@media (max-width: 992px) {
+		.c7-sidebar {
+			position: static;
+			margin-top: 2rem;
+		}
+	}
+</style>

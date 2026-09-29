@@ -1,0 +1,190 @@
+/*
+ * 7C Design Tokens — Material Design 3 Expressive (MD3X)
+ * Official Design Tokens for Tujuhcahaya Media House
+ */
+
+:root {
+  /* MD3X Core Brand Roles */
+  --7c-sys-primary: #d50000; /* Official Tujuhcahaya Crimson */
+  --7c-sys-primary-hover: #b70000;
+  --7c-sys-on-primary: #ffffff;
+  --7c-sys-primary-container: #ffdad6;
+  --7c-sys-on-primary-container: #410002;
+
+  --7c-sys-secondary: #d97706; /* Golden Amber */
+  --7c-sys-secondary-hover: #b45309;
+  --7c-sys-on-secondary: #ffffff;
+  --7c-sys-secondary-container: #ffdf9e;
+  --7c-sys-on-secondary-container: #291800;
+
+  --7c-sys-tertiary: #7c3aed; /* Expressive Violet */
+  --7c-sys-tertiary-hover: #6d28d9;
+  --7c-sys-on-tertiary: #ffffff;
+  --7c-sys-tertiary-container: #eddcff;
+  --7c-sys-on-tertiary-container: #280057;
+
+  /* MD3X Surface Containers (5-Tier Tonal Elevation - Light Mode) */
+  --7c-sys-surface-container-lowest: #ffffff;
+  --7c-sys-surface-container-low: #f8fafc;
+  --7c-sys-surface-container: #ffffff;
+  --7c-sys-surface-container-high: #f1f5f9;
+  --7c-sys-surface-container-highest: #e2e8f0;
+
+  /* MD3X Outlines & Text (Light Mode) */
+  --7c-sys-outline: #94a3b8;
+  --7c-sys-outline-variant: #cbd5e1; /* 1px 7C Hairline Border */
+  --7c-sys-outline-faint: #f1f5f9;
+  --7c-sys-on-surface: #090d16; /* 18.5:1 on white (WCAG AAA) */
+  --7c-sys-on-surface-variant: #475569; /* Slate 600 (WCAG AA) */
+  --7c-sys-surface: #ffffff;
+
+  /* The 7-Pillar Editorial Spectrum (Light Mode) */
+  --7c-pillar-berita: #d50000;
+  --7c-pillar-game: #059669;
+  --7c-pillar-tech: #0284c7;
+  --7c-pillar-musik: #7c3aed;
+  --7c-pillar-budaya: #d97706;
+  --7c-pillar-kesehatan: #0d9488;
+  --7c-pillar-lab: #475569;
+
+  /* Typography Scales */
+  --7c-font-sans: "Plus Jakarta Sans", "Google Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --7c-font-display: "Plus Jakarta Sans", "Google Sans", system-ui, -apple-system, sans-serif;
+  --7c-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Shape & Container Radii */
+  --7c-radius-sm: 4px;
+  --7c-radius-md: 8px;
+  --7c-radius-lg: 12px;
+  --7c-max-width: 1280px;
+
+  /* Backward Compatibility Aliases */
+  --color-primary: var(--7c-sys-primary);
+  --color-primary-hover: var(--7c-sys-primary-hover);
+  --btn-primary-bg: var(--7c-sys-primary);
+  --btn-primary-text: var(--7c-sys-on-primary);
+  --btn-primary-hover: var(--7c-sys-primary-hover);
+  --skip-link-bg: var(--7c-sys-primary);
+  --skip-link-text: var(--7c-sys-on-primary);
+  --color-secondary: var(--7c-sys-secondary);
+  --color-bg: var(--7c-sys-surface-container-lowest);
+  --color-bg-subtle: var(--7c-sys-surface-container-low);
+  --color-card: var(--7c-sys-surface-container);
+  --color-card-subtle: var(--7c-sys-surface-container-high);
+  --color-text: var(--7c-sys-on-surface);
+  --color-text-muted: var(--7c-sys-on-surface-variant);
+  --color-border: var(--7c-sys-outline-variant);
+  --color-border-subtle: var(--7c-sys-outline-faint);
+  --header-bg: var(--7c-sys-surface-container);
+  --header-text: var(--7c-sys-on-surface);
+  --nav-bg: var(--7c-sys-surface-container-low);
+  --nav-text: #334155;
+  --nav-active: var(--7c-sys-on-surface);
+  --font-sans: var(--7c-font-sans);
+  --font-display: var(--7c-font-display);
+  --font-mono: var(--7c-font-mono);
+  --radius-sm: var(--7c-radius-sm);
+  --radius-md: var(--7c-radius-md);
+  --radius-lg: var(--7c-radius-lg);
+  --max-width: var(--7c-max-width);
+
+  --pillar-berita: var(--7c-pillar-berita);
+  --pillar-game: var(--7c-pillar-game);
+  --pillar-tech: var(--7c-pillar-tech);
+  --pillar-musik: var(--7c-pillar-musik);
+  --pillar-budaya: var(--7c-pillar-budaya);
+  --pillar-kesehatan: var(--7c-pillar-kesehatan);
+  --pillar-lab: var(--7c-pillar-lab);
+
+  --emdash-search-bg: var(--7c-sys-surface-container);
+  --emdash-search-text: var(--7c-sys-on-surface);
+  --emdash-search-muted: var(--7c-sys-on-surface-variant);
+  --emdash-search-border: var(--7c-sys-outline-variant);
+  --emdash-search-border-focus: var(--7c-sys-primary);
+  --emdash-search-hover: var(--7c-sys-surface-container-high);
+  --emdash-search-highlight: var(--7c-sys-primary);
+}
+
+[data-theme="dark"] {
+  /* MD3X Core Brand Roles (Dark OLED Mode) */
+  --7c-sys-primary: #ff5252; /* Vivid Coral Crimson */
+  --7c-sys-primary-hover: #ff758f;
+  --7c-sys-on-primary: #050608;
+  --7c-sys-primary-container: #93000a;
+  --7c-sys-on-primary-container: #ffdad6;
+
+  --7c-sys-secondary: #fbbf24; /* Bright Amber */
+  --7c-sys-secondary-hover: #f59e0b;
+  --7c-sys-on-secondary: #1f1300;
+  --7c-sys-secondary-container: #633b00;
+  --7c-sys-on-secondary-container: #ffdf9e;
+
+  --7c-sys-tertiary: #a78bfa; /* Light Violet */
+  --7c-sys-tertiary-hover: #c4b5fd;
+  --7c-sys-on-tertiary: #21005d;
+  --7c-sys-tertiary-container: #4f13a0;
+  --7c-sys-on-tertiary-container: #eddcff;
+
+  /* MD3X Surface Containers (5-Tier Tonal Elevation - Dark OLED Mode) */
+  --7c-sys-surface-container-lowest: #050608; /* Deep OLED Obsidian */
+  --7c-sys-surface-container-low: #080a0f;
+  --7c-sys-surface-container: #0c0e14;
+  --7c-sys-surface-container-high: #111420;
+  --7c-sys-surface-container-highest: #181d2a;
+
+  /* MD3X Outlines & Text (Dark OLED Mode) */
+  --7c-sys-outline: #64748b;
+  --7c-sys-outline-variant: rgba(255, 255, 255, 0.18); /* High contrast hairline */
+  --7c-sys-outline-faint: rgba(255, 255, 255, 0.08);
+  --7c-sys-on-surface: #f8fafc; /* 18.5:1 on dark (WCAG AAA) */
+  --7c-sys-on-surface-variant: #94a3b8; /* Slate 400 (WCAG AAA) */
+  --7c-sys-surface: #050608;
+
+  /* The 7-Pillar Editorial Spectrum (Dark Mode) */
+  --7c-pillar-berita: #ff5252;
+  --7c-pillar-game: #34d399;
+  --7c-pillar-tech: #38bdf8;
+  --7c-pillar-musik: #a78bfa;
+  --7c-pillar-budaya: #fbbf24;
+  --7c-pillar-kesehatan: #2dd4bf;
+  --7c-pillar-lab: #94a3b8;
+
+  /* Backward Compatibility Aliases */
+  --color-primary: var(--7c-sys-primary);
+  --color-primary-hover: var(--7c-sys-primary-hover);
+  --btn-primary-bg: var(--7c-sys-primary);
+  --btn-primary-text: var(--7c-sys-on-primary);
+  --btn-primary-hover: var(--7c-sys-primary-hover);
+  --skip-link-bg: var(--7c-sys-primary);
+  --skip-link-text: var(--7c-sys-on-primary);
+  --color-secondary: var(--7c-sys-secondary);
+  --color-bg: var(--7c-sys-surface-container-lowest);
+  --color-bg-subtle: var(--7c-sys-surface-container-low);
+  --color-card: var(--7c-sys-surface-container);
+  --color-card-subtle: var(--7c-sys-surface-container-high);
+  --color-text: var(--7c-sys-on-surface);
+  --color-text-muted: var(--7c-sys-on-surface-variant);
+  --color-border: var(--7c-sys-outline-variant);
+  --color-border-subtle: var(--7c-sys-outline-faint);
+  --header-bg: var(--7c-sys-surface-container-lowest);
+  --header-text: var(--7c-sys-on-surface);
+  --nav-bg: var(--7c-sys-surface-container-low);
+  --nav-text: var(--7c-sys-on-surface-variant);
+  --nav-active: #ffffff;
+
+  --pillar-berita: var(--7c-pillar-berita);
+  --pillar-game: var(--7c-pillar-game);
+  --pillar-tech: var(--7c-pillar-tech);
+  --pillar-musik: var(--7c-pillar-musik);
+  --pillar-budaya: var(--7c-pillar-budaya);
+  --pillar-kesehatan: var(--7c-pillar-kesehatan);
+  --pillar-lab: var(--7c-pillar-lab);
+
+  --emdash-search-bg: var(--7c-sys-surface-container);
+  --emdash-search-text: var(--7c-sys-on-surface);
+  --emdash-search-muted: var(--7c-sys-on-surface-variant);
+  --emdash-search-border: var(--7c-sys-outline-variant);
+  --emdash-search-border-focus: var(--7c-sys-primary);
+  --emdash-search-hover: var(--7c-sys-surface-container-highest);
+  --emdash-search-highlight: var(--7c-sys-primary);
+}

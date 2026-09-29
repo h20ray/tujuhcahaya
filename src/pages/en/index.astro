@@ -1,0 +1,134 @@
+---
+import Base from "../../layouts/Base.astro";
+import C7IsometricStack from "../../components/ui/C7IsometricStack.astro";
+import { get7cPublishedPosts, get7cSiteIdentity } from "../../lib/7c-cms";
+import { use7cTranslation } from "../../i18n/utils";
+
+const locale = "en";
+const { t } = use7cTranslation(locale);
+
+// Fetch recent posts via 7C CMS adapter
+const { posts, cacheHint } = await get7cPublishedPosts({
+	limit: 11,
+	locale: "en",
+});
+
+if (Astro.cache?.enabled && cacheHint) {
+	Astro.cache.set(cacheHint);
+}
+
+const { siteTitle } = await get7cSiteIdentity();
+const heroNewsList = posts.map((post) => ({
+	post,
+	slug: post.data?.slug || post.id,
+}));
+---
+
+<Base
+	title={`${t.topbar.dispatch_live} — ${siteTitle}`}
+	description={t.footer.tagline}
+>
+	<!-- HERO SECTION: English Curated Dispatch -->
+	<section class="hero-split" aria-label="Tujuhcahaya Profile & Highlights">
+		<!-- Left Column: Linear-Style Editorial Dispatch Table -->
+		<div class="hero-left-pane">
+			<h1 class="sr-only">Tujuhcahaya — Media House &amp; Creative Studio</h1>
+
+			<!-- Header Bar of Dispatch Table -->
+			<div class="dispatch-header">
+				<div class="dispatch-header-left">
+					<span class="dispatch-pulse-dot" aria-hidden="true"></span>
+					<span class="dispatch-header-title">{t.topbar.dispatch_live}</span>
+					<span class="dispatch-count-badge">{t.editorial.articles_count}</span>
+				</div>
+				<a href="/en/posts" class="dispatch-all-link">
+					<span>{t.editorial.all}</span>
+					<span aria-hidden="true">&rarr;</span>
+				</a>
+			</div>
+
+			<!-- Dispatch Table Rows (Compact: Bullet + Title + Hover Arrow) -->
+			<div class="dispatch-table" role="feed" aria-label="Latest Editorial Dispatches">
+				{heroNewsList.length === 0 ? (
+					<div class="dispatch-empty-state">
+						<p>{t.editorial.empty_state}</p>
+					</div>
+				) : (
+					heroNewsList.map((item, idx) => (
+						<a href={`/en/${item.slug}`} class="dispatch-row dispatch-row-compact">
+							<!-- Status Circle -->
+							<div class="dispatch-bullet-wrapper">
+								{idx === 0 ? (
+									<span class="dispatch-bullet checked" aria-hidden="true">
+										<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
+											<polyline points="20 6 9 17 4 12"></polyline>
+										</svg>
+									</span>
+								) : (
+									<span class="dispatch-bullet" aria-hidden="true"></span>
+								)}
+							</div>
+
+							<!-- Article Title -->
+							<span class="dispatch-title" {...item.post.edit?.title}>
+								{item.post.data.title}
+							</span>
+
+							<!-- Hover Action Arrow -->
+							<span class="dispatch-arrow" aria-hidden="true">&rarr;</span>
+						</a>
+					))
+				)}
+			</div>
+
+			<!-- Dispatch Bottom Bar -->
+			<div class="dispatch-footer">
+				<div class="dispatch-footer-meta">
+					<span>Media House &amp; Creative Studio</span>
+				</div>
+				<a href="/en/posts" class="dispatch-footer-cta">
+					<span>{t.nav.archive}</span>
+					<span aria-hidden="true">&rarr;</span>
+				</a>
+			</div>
+		</div>
+
+		<!-- Right Column: Isometric 3D Layered Stack -->
+		<div class="hero-right-pane">
+			<div class="hero-right-glow" aria-hidden="true"></div>
+			<div class="hero-iso-grid-bg" aria-hidden="true">
+				<svg viewBox="0 0 1000 500" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-iso-grid-svg">
+					<path
+						d="M36 232L536 482M71 214L571 464M107 196L607 446M143 179L643 429M179 161L679 411M214 143L714 393M250 125L750 375M286 107L786 357M321 89L821 339M357 71L857 321M393 54L893 304M429 36L929 286M464 18L964 268M536 18L36 268M571 36L71 286M607 54L107 304M643 71L143 321M679 89L179 339M714 107L214 357M750 125L250 375M786 143L286 393M821 161L321 411M857 179L357 429M893 196L393 446M929 214L429 464M964 232L464 482M500 0L1000 250L500 500L0 250Z"
+						stroke="currentColor"
+						stroke-width="0.75"
+						class="iso-grid-path"
+					></path>
+				</svg>
+			</div>
+			<div class="hero-right-foreground">
+				<C7IsometricStack />
+			</div>
+		</div>
+	</section>
+
+	<!-- Hairline Metrics Bar -->
+	<section class="metrics-bar" aria-label="Tujuhcahaya Key Metrics">
+		<div class="metric-item">
+			<span class="metric-value">16,745+</span>
+			<span class="metric-label">Published Stories</span>
+		</div>
+		<div class="metric-item">
+			<span class="metric-value">7 Pillars</span>
+			<span class="metric-label">Editorial Focus</span>
+		</div>
+		<div class="metric-item">
+			<span class="metric-value">Independent</span>
+			<span class="metric-label">Media &amp; Studio</span>
+		</div>
+		<div class="metric-item">
+			<span class="metric-value">Pop Culture</span>
+			<span class="metric-label">Sharp Perspective</span>
+		</div>
+	</section>
+</Base>

@@ -1,0 +1,12 @@
+---
+import { decodeSlug } from "emdash";
+
+const slug = decodeSlug(Astro.params.slug);
+
+if (!slug) {
+	return Astro.redirect("/404");
+}
+
+// 301 Permanent Redirect to canonical /%postname%/ structure
+return Astro.redirect(`/${slug}`, 301);
+---

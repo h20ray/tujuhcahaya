@@ -1,0 +1,15 @@
+---
+import C7Logo from "./C7Logo.astro";
+
+interface Props {
+	class?: string;
+	width?: number | string;
+	height?: number | string;
+	color?: string;
+	ariaHidden?: boolean;
+}
+
+const props = Astro.props;
+---
+
+<C7Logo {...props} />

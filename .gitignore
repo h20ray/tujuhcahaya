@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Production build & cache
+dist/
+.astro/
+.cache/
+
+# EmDash & Database storage
+data.db
+data.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-wal
+*.db
+*.db-*
+*.db-shm
+*.db-wal
+.emdash/migrations.json
+uploads/
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# IDE & Editor artifacts
+.cursor/
+.vscode/
+.mcp.json
+.DS_Store
+Thumbs.db

@@ -1,0 +1,129 @@
+---
+import { getEmDashCollection, getSiteSettings } from "emdash";
+import Base from "../layouts/Base.astro";
+import IsometricStack from "../components/ui/IsometricStack.astro";
+import { resolveStarterSiteIdentity } from "../utils/site-identity";
+
+// Fetch recent 11 posts for the compact hero dispatch list
+const { entries: posts, cacheHint } = await getEmDashCollection("posts", {
+	orderBy: { published_at: "desc" },
+	limit: 11,
+});
+
+if (Astro.cache?.enabled && cacheHint) {
+	Astro.cache.set(cacheHint);
+}
+
+const { siteTitle, siteTagline } = resolveStarterSiteIdentity(
+	await getSiteSettings(),
+);
+
+const heroNewsList = posts.map((post) => ({
+	post,
+	slug: post.data?.slug || post.id,
+}));
+---
+
+<Base title={siteTitle} description={siteTagline}>
+	<!-- HERO SECTION: Option B Hybrid (Left: Linear-Style Dispatch Table | Right: Isometric 3D Stack) -->
+	<section class="hero-split" aria-label="Profil & Sorotan Tujuhcahaya">
+		<!-- Left Column: Linear-Style Editorial Dispatch Table -->
+		<div class="hero-left-pane">
+			<h1 class="sr-only">Tujuhcahaya — Media House &amp; Creative Studio</h1>
+
+			<!-- Header Bar of Dispatch Table -->
+			<div class="dispatch-header">
+				<div class="dispatch-header-left">
+					<span class="dispatch-header-title">DISPATCH REDAKSI</span>
+					<span class="dispatch-count-badge">16.745 Artikel</span>
+				</div>
+				<a href="/posts" class="dispatch-all-link">
+					<span>Semua</span>
+					<span aria-hidden="true">&rarr;</span>
+				</a>
+			</div>
+
+			<!-- Dispatch Table Rows (Compact: Bullet + Title + Hover Arrow) -->
+			<div class="dispatch-table" role="feed" aria-label="Daftar Liputan Terkini">
+				{heroNewsList.map((item, idx) => (
+					<a href={`/${item.slug}`} class="dispatch-row dispatch-row-compact">
+						<!-- Status Circle (Row 0 is checked lead story, rest are hollow circles) -->
+						<div class="dispatch-bullet-wrapper">
+							{idx === 0 ? (
+								<span class="dispatch-bullet checked" aria-hidden="true">
+									<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
+										<polyline points="20 6 9 17 4 12"></polyline>
+									</svg>
+								</span>
+							) : (
+								<span class="dispatch-bullet" aria-hidden="true"></span>
+							)}
+						</div>
+
+						<!-- Article Title -->
+						<span class="dispatch-title" {...item.post.edit.title}>
+							{item.post.data.title}
+						</span>
+
+						<!-- Hover Action Arrow -->
+						<span class="dispatch-arrow" aria-hidden="true">&rarr;</span>
+					</a>
+				))}
+			</div>
+
+			<!-- Dispatch Bottom Bar -->
+			<div class="dispatch-footer">
+				<div class="dispatch-footer-meta">
+					<span>Media House &amp; Creative Studio</span>
+				</div>
+				<a href="/posts" class="dispatch-footer-cta">
+					<span>Arsip Lengkap</span>
+					<span aria-hidden="true">&rarr;</span>
+				</a>
+			</div>
+		</div>
+
+		<!-- Right Column: Isometric 3D Layered Stack of the 7 Pillars with 7C Perspective Grid Background -->
+		<div class="hero-right-pane">
+			<!-- Ambient Radial Glow -->
+			<div class="hero-right-glow" aria-hidden="true"></div>
+
+			<!-- Animated 2:1 Dimetric Perspective Wireframe Grid Floor -->
+			<div class="hero-iso-grid-bg" aria-hidden="true">
+				<svg viewBox="0 0 1000 500" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-iso-grid-svg">
+					<path
+						d="M36 232L536 482M71 214L571 464M107 196L607 446M143 179L643 429M179 161L679 411M214 143L714 393M250 125L750 375M286 107L786 357M321 89L821 339M357 71L857 321M393 54L893 304M429 36L929 286M464 18L964 268M536 18L36 268M571 36L71 286M607 54L107 304M643 71L143 321M679 89L179 339M714 107L214 357M750 125L250 375M786 143L286 393M821 161L321 411M857 179L357 429M893 196L393 446M929 214L429 464M964 232L464 482M500 0L1000 250L500 500L0 250Z"
+						stroke="currentColor"
+						stroke-width="0.75"
+						class="iso-grid-path"
+					></path>
+				</svg>
+			</div>
+
+			<!-- 3D Isometric Stack Foreground -->
+			<div class="hero-right-foreground">
+				<IsometricStack />
+			</div>
+		</div>
+	</section>
+
+	<!-- Hairline Metrics Bar (7C Bespoke Hairline Architecture) -->
+	<section class="metrics-bar" aria-label="Statistik Tujuhcahaya">
+		<div class="metric-item">
+			<span class="metric-value">16.745+</span>
+			<span class="metric-label">Artikel Terbit</span>
+		</div>
+		<div class="metric-item">
+			<span class="metric-value">7 Pilar</span>
+			<span class="metric-label">Fokus Liputan</span>
+		</div>
+		<div class="metric-item">
+			<span class="metric-value">Independen</span>
+			<span class="metric-label">Media &amp; Studio</span>
+		</div>
+		<div class="metric-item">
+			<span class="metric-value">Kultur Pop</span>
+			<span class="metric-label">Perspektif Segar</span>
+		</div>
+	</section>
+</Base>
