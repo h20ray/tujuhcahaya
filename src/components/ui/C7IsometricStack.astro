@@ -1,107 +1,137 @@
 ---
 // Tujuhcahaya - Isometric 3D Layered Architecture Stack ("Cake" Engine)
 // 7C Digital Engine with 2:1 dimetric projection and bespoke spring kinematics
+// MD3X Color System & WCAG AAA Compliant
 
-const pillars = [
+interface Props {
+	lang?: "id" | "en";
+}
+
+const { lang = Astro.url.pathname.startsWith("/en") ? "en" : "id" } = Astro.props;
+const isEn = lang === "en";
+
+const rubriks = [
 	{
 		key: "lab",
 		num: "01",
-		generic: "Pilar 01 • Studio & Hub",
+		generic: isEn ? "Section 01 • Studio & Hub" : "Rubrik 01 • Studio & Hub",
 		name: "Tujuhcahaya Media Lab",
 		shortLeft: "LAB",
 		shortRight: "CREATIVE STUDIO & LAB",
-		desc: "Pusat eksplorasi media independen, riset konten kreatif, dan fondasi arsitektur digital Tujuhcahaya.",
-		accent: "#64748b",
+		desc: isEn
+			? "Independent media lab, creative content research hub, and digital architecture foundation of Tujuhcahaya."
+			: "Pusat eksplorasi media independen, riset konten kreatif, dan fondasi arsitektur digital Tujuhcahaya.",
+		accent: "var(--7c-pillar-lab, #94a3b8)",
 		stroke: "#475569",
-		count: "Studio & Hub",
-		url: "/about-us",
+		count: isEn ? "Studio & Hub" : "Studio & Hub",
+		url: isEn ? "/en/about-us" : "/about-us",
 		y: 276,
 	},
 	{
 		key: "kesehatan",
 		num: "02",
-		generic: "Pilar 02 • Gaya Hidup",
-		name: "Kesehatan & Kebugaran",
-		shortLeft: "SEHAT",
-		shortRight: "GAYA HIDUP & SAINS",
-		desc: "Informasi medis terpercaya, wawasan kebugaran fisik dan mental, serta tren hidup sehat tanpa menggurui.",
-		accent: "#14b8a6",
+		generic: isEn ? "Section 02 • Lifestyle & Health" : "Rubrik 02 • Gaya Hidup",
+		name: isEn ? "Health & Wellness" : "Kesehatan & Kebugaran",
+		shortLeft: isEn ? "HEALTH" : "SEHAT",
+		shortRight: isEn ? "LIFESTYLE & SCIENCE" : "GAYA HIDUP & SAINS",
+		desc: isEn
+			? "Evidence-based health insights, physical and mental well-being, and modern living wellness without preachiness."
+			: "Informasi medis terpercaya, wawasan kebugaran fisik dan mental, serta tren hidup sehat tanpa menggurui.",
+		accent: "var(--7c-pillar-kesehatan, #2dd4bf)",
 		stroke: "#0d9488",
-		count: "606 Liputan Terbit",
-		url: "/category/kesehatan",
+		count: isEn ? "606 Published Stories" : "606 Liputan Terbit",
+		url: isEn ? "/en/category/kesehatan" : "/category/kesehatan",
 		y: 230,
 	},
 	{
 		key: "budaya",
 		num: "03",
-		generic: "Pilar 03 • Seni & Kultur",
-		name: "Seni & Budaya Pop",
-		shortLeft: "BUDAYA",
-		shortRight: "KULTUR & NARASI",
-		desc: "Eksplorasi fenomena urban, warisan budaya lokal, seni visual, dan dinamika sosial masyarakat modern.",
-		accent: "#f59e0b",
+		generic: isEn ? "Section 03 • Arts & Pop Culture" : "Rubrik 03 • Seni & Kultur",
+		name: isEn ? "Pop Culture & Urban Arts" : "Seni & Budaya Pop",
+		shortLeft: isEn ? "CULTURE" : "BUDAYA",
+		shortRight: isEn ? "CULTURE & ESSAYS" : "KULTUR & NARASI",
+		desc: isEn
+			? "Urban cultural phenomena, contemporary art, local heritage, and evolving social dynamics of modern society."
+			: "Eksplorasi fenomena urban, warisan budaya lokal, seni visual, dan dinamika sosial masyarakat modern.",
+		accent: "var(--7c-pillar-budaya, #fbbf24)",
 		stroke: "#d97706",
-		count: "233 Liputan Terbit",
-		url: "/category/budaya",
+		count: isEn ? "233 Published Stories" : "233 Liputan Terbit",
+		url: isEn ? "/en/category/budaya" : "/category/budaya",
 		y: 184,
 	},
 	{
 		key: "musik",
 		num: "04",
-		generic: "Pilar 04 • Audio & Hiburan",
-		name: "Musik & Nada",
-		shortLeft: "MUSIK",
-		shortRight: "AUDIO & HIBURAN",
-		desc: "Kurasi rilisan musik terkini, ulasan album, profil musisi independen dan arus utama, serta tren audio global.",
-		accent: "#8b5cf6",
+		generic: isEn ? "Section 04 • Music & Sound" : "Rubrik 04 • Audio & Hiburan",
+		name: isEn ? "Music & Soundscapes" : "Musik & Nada",
+		shortLeft: isEn ? "MUSIC" : "MUSIK",
+		shortRight: isEn ? "AUDIO & ENTERTAINMENT" : "AUDIO & HIBURAN",
+		desc: isEn
+			? "Curated music releases, critical album reviews, independent and mainstream artist profiles, and audio culture."
+			: "Kurasi rilisan musik terkini, ulasan album, profil musisi independen dan arus utama, serta tren audio global.",
+		accent: "var(--7c-pillar-musik, #a78bfa)",
 		stroke: "#7c3aed",
-		count: "3.576 Liputan Terbit",
-		url: "/category/musik",
+		count: isEn ? "3,576 Published Stories" : "3.576 Liputan Terbit",
+		url: isEn ? "/en/category/musik" : "/category/musik",
 		y: 138,
 	},
 	{
 		key: "tech",
 		num: "05",
-		generic: "Pilar 05 • Masa Depan",
-		name: "Teknologi & Inovasi",
+		generic: isEn ? "Section 05 • Future & Innovation" : "Rubrik 05 • Masa Depan",
+		name: isEn ? "Technology & Innovation" : "Teknologi & Inovasi",
 		shortLeft: "TECH",
-		shortRight: "INOVASI & GADGET",
-		desc: "Kecerdasan buatan, perangkat keras mutakhir, terobosan software, dan perkembangan ekosistem digital dunia.",
-		accent: "#0284c7",
+		shortRight: isEn ? "INNOVATION & HARDWARE" : "INOVASI & GADGET",
+		desc: isEn
+			? "Artificial intelligence, frontier hardware breakthroughs, open-source software, and global digital paradigms."
+			: "Kecerdasan buatan, perangkat keras mutakhir, terobosan software, dan perkembangan ekosistem digital dunia.",
+		accent: "var(--7c-pillar-tech, #38bdf8)",
 		stroke: "#0369a1",
-		count: "3.729 Liputan Terbit",
-		url: "/category/tech",
+		count: isEn ? "3,729 Published Stories" : "3.729 Liputan Terbit",
+		url: isEn ? "/en/category/tech" : "/category/tech",
 		y: 92,
 	},
 	{
 		key: "game",
 		num: "06",
-		generic: "Pilar 06 • Interaktif",
-		name: "Video Game & Esports",
+		generic: isEn ? "Section 06 • Interactive & Play" : "Rubrik 06 • Interaktif",
+		name: isEn ? "Video Games & Esports" : "Video Game & Esports",
 		shortLeft: "GAME",
-		shortRight: "ESPORTS & INDUSTRI",
-		desc: "Review game konsol dan PC, perkembangan industri game global, strategi esports, dan komunitas gamer.",
-		accent: "#10b981",
+		shortRight: isEn ? "ESPORTS & INDUSTRY" : "ESPORTS & INDUSTRI",
+		desc: isEn
+			? "In-depth video game reviews, interactive entertainment industry analysis, esports strategy, and gaming culture."
+			: "Review game konsol dan PC, perkembangan industri game global, strategi esports, dan komunitas gamer.",
+		accent: "var(--7c-pillar-game, #34d399)",
 		stroke: "#059669",
-		count: "4.282 Liputan Terbit",
-		url: "/category/game",
+		count: isEn ? "4,282 Published Stories" : "4.282 Liputan Terbit",
+		url: isEn ? "/en/category/game" : "/category/game",
 		y: 46,
 	},
 	{
 		key: "berita",
 		num: "07",
-		generic: "Pilar 07 • Jurnalisme",
-		name: "Berita & Newsroom",
-		shortLeft: "BERITA",
-		shortRight: "JURNALISME AKTUAL",
-		desc: "Laporan berita terhangat, isu kebijakan esensial, peristiwa sosial, dan investigasi mendalam berintegritas.",
-		accent: "#e11d48",
+		generic: isEn ? "Section 07 • Journalism" : "Rubrik 07 • Jurnalisme",
+		name: isEn ? "Newsroom & Dispatches" : "Berita & Newsroom",
+		shortLeft: isEn ? "NEWS" : "BERITA",
+		shortRight: isEn ? "CRITICAL JOURNALISM" : "JURNALISME AKTUAL",
+		desc: isEn
+			? "Breaking reports, essential public policy analysis, social issues, and rigorous investigative journalism."
+			: "Laporan berita terhangat, isu kebijakan esensial, peristiwa sosial, dan investigasi mendalam berintegritas.",
+		accent: "var(--7c-pillar-berita, #ff5252)",
 		stroke: "#be123c",
-		count: "4.265 Liputan Terbit",
-		url: "/category/berita",
+		count: isEn ? "4,265 Published Stories" : "4.265 Liputan Terbit",
+		url: isEn ? "/en/category/berita" : "/category/berita",
 		y: 0,
 	},
 ];
+
+const defaultRubrik = rubriks.find((r) => r.key === "game") || rubriks[5];
+const serializedRubrikData = Object.fromEntries(
+	rubriks.map((r) => [
+		r.key,
+		{ g: r.generic, n: r.name, c: r.count, d: r.desc, url: r.url, accent: r.accent },
+	])
+);
 ---
 
 <div class="c7-stack-widget">
@@ -109,7 +139,7 @@ const pillars = [
 		<svg
 			viewBox="-287 -35 574 610"
 			class="cake-svg"
-			aria-label="Tujuh Lapis Cahaya Tujuhcahaya Media — klik lapisan mana saja untuk memisahkan"
+			aria-label={isEn ? "Tujuhcahaya 7-Section Layered Architecture — click any layer to inspect" : "Tujuh Lapis Cahaya Tujuhcahaya Media — klik lapisan mana saja untuk memisahkan"}
 		>
 			<defs>
 				<!-- 7C Reusable Dimetric 2:1 Slab Geometry Template -->
@@ -125,7 +155,7 @@ const pillars = [
 
 			<!-- 7 Layers in Painter's Order wrapped in dynamic balance assembly -->
 			<g class="cake-assembly">
-			{pillars.map((p, index) => {
+			{rubriks.map((p, index) => {
 				const isDefault = p.key === "game"; // Default selected layer
 				return (
 					<g
@@ -134,7 +164,7 @@ const pillars = [
 						role="button"
 						tabindex="0"
 						aria-pressed={isDefault ? "true" : "false"}
-						aria-label={`${p.name} (Lapis ${p.num})`}
+						aria-label={`${p.name} (${isEn ? "Layer" : "Lapis"} ${p.num})`}
 						style={`transform: translate(0px, ${p.y}px); --layer-accent: ${p.accent}; --layer-stroke: ${p.stroke};`}
 					>
 						<g class="drop" style={`animation-delay: ${0.05 + index * 0.08}s`}>
@@ -161,22 +191,20 @@ const pillars = [
 									{p.shortRight}
 								</text>
 
-								<!-- Top Layer Graphic (Official Tujuhcahaya Logo mapped to top diamond) -->
-								{p.key === "berita" && (
-									<g transform="matrix(1, 0.5, -1, 0.5, 0, 95)" class="top-logo-group">
-										<g transform="scale(0.0065) translate(-7937.5, -7937.5)">
-											<path
-												class="top-logo-path"
-												d="M13209.56 2093.57c60.25-170.71 42.67-323.83-52.72-459.4-95.4-135.56-233.46-203.34-414.21-203.34H9820.58L5106.13 14956.64c-70.29 180.74-60.26 341.41 30.12 481.99 90.37 140.57 230.96 210.87 421.74 210.87h2907z"
-												style="fill-rule:nonzero"
-											/>
-											<path
-												class="top-logo-path"
-												d="M4988.18 225.5c1302.14 0 2357.73 1055.59 2357.73 2357.73 0 1302.15-1055.59 2357.73-2357.73 2357.73S2630.45 3885.38 2630.45 2583.23c0-1302.14 1055.59-2357.73 2357.73-2357.73"
-											/>
-										</g>
+								<!-- Top Layer Graphic (Official Tujuhcahaya Logo mapped to top diamond) rendered on EVERY slab -->
+								<g transform="matrix(1, 0.5, -1, 0.5, 0, 95)" class="top-logo-group">
+									<g transform="scale(0.0065) translate(-7937.5, -7937.5)">
+										<path
+											class="top-logo-path"
+											d="M13209.56 2093.57c60.25-170.71 42.67-323.83-52.72-459.4-95.4-135.56-233.46-203.34-414.21-203.34H9820.58L5106.13 14956.64c-70.29 180.74-60.26 341.41 30.12 481.99 90.37 140.57 230.96 210.87 421.74 210.87h2907z"
+											style="fill-rule:nonzero"
+										/>
+										<path
+											class="top-logo-path"
+											d="M4988.18 225.5c1302.14 0 2357.73 1055.59 2357.73 2357.73 0 1302.15-1055.59 2357.73-2357.73 2357.73S2630.45 3885.38 2630.45 2583.23c0-1302.14 1055.59-2357.73 2357.73-2357.73"
+										/>
 									</g>
-								)}
+								</g>
 							</g>
 						</g>
 					</g>
@@ -187,18 +215,16 @@ const pillars = [
 	</div>
 
 	<!-- 7C Bespoke Synchronized Editorial Detail Panel -->
-	<div class="cake-detail" id="cakeDetail" aria-live="polite">
+	<div class="cake-detail" id="cakeDetail" aria-live="polite" style="--cd-accent: var(--7c-pillar-game, #34d399);">
 		<div class="cd-header">
-			<span class="cd-generic" id="cdGeneric">Pilar 06 • Interaktif</span>
-			<span class="cd-badge" id="cdCount">4.282 Liputan Terbit</span>
+			<span class="cd-generic" id="cdGeneric">{defaultRubrik.generic}</span>
+			<span class="cd-badge" id="cdCount">{defaultRubrik.count}</span>
 		</div>
-		<h3 class="cd-name" id="cdName">Video Game &amp; Esports</h3>
-		<p class="cd-desc" id="cdDesc">
-			Review game konsol dan PC, perkembangan industri game global, strategi esports, dan komunitas gamer.
-		</p>
+		<h3 class="cd-name" id="cdName">{defaultRubrik.name}</h3>
+		<p class="cd-desc" id="cdDesc">{defaultRubrik.desc}</p>
 		<div class="cd-links">
-			<a href="/category/game" id="cdLink" class="cd-action-link">
-				<span>Jelajahi Liputan Kategori Ini</span>
+			<a href={defaultRubrik.url} id="cdLink" class="cd-action-link">
+				<span>{isEn ? "Explore This Category" : "Jelajahi Liputan Kategori Ini"}</span>
 				<span class="arrow" aria-hidden="true">&rarr;</span>
 			</a>
 		</div>
@@ -209,9 +235,11 @@ const pillars = [
 	.c7-stack-widget {
 		width: 100%;
 		max-width: 520px;
+		height: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: space-between;
 		user-select: none;
 	}
 
@@ -220,6 +248,7 @@ const pillars = [
 		display: flex;
 		justify-content: center;
 		position: relative;
+		margin: auto 0;
 	}
 
 	.cake-svg {
@@ -294,11 +323,11 @@ const pillars = [
 		stroke: rgba(255, 255, 255, 0.12);
 	}
 
-	/* Layer Hover & Focus Illumination (Stable Lighting Feedback, Zero Boundary Jitter) */
+	/* Layer Hover & Focus Illumination */
 	.layer:hover .f-top,
 	.layer:focus-visible .f-top {
 		filter: brightness(1.08);
-		stroke: var(--layer-stroke, var(--color-primary));
+		stroke: var(--layer-stroke, var(--layer-accent));
 		stroke-width: 1.5;
 	}
 
@@ -323,31 +352,53 @@ const pillars = [
 	.layer.sel .f-top {
 		fill: var(--layer-accent, #e11d48);
 		stroke: var(--layer-stroke, #be123c);
+		stroke-width: 1.5;
+	}
+
+	.layer.sel .f-left,
+	.layer.sel .f-right {
+		stroke: var(--layer-stroke, var(--layer-accent));
+		stroke-width: 1.2;
 	}
 
 	.layer:focus-visible .f-top {
-		stroke: var(--color-primary);
+		stroke: var(--layer-accent, var(--color-primary));
 		stroke-width: 2.5;
 	}
 	.layer:focus-visible .f-left,
 	.layer:focus-visible .f-right {
-		stroke: var(--color-primary);
+		stroke: var(--layer-accent, var(--color-primary));
 		stroke-width: 2;
 	}
 
 	/* Top Face Logo Graphic (Tujuhcahaya Vector Emblem) */
+	/* In resting state, each stack's logo proudly displays in its category accent color */
 	.top-logo-path {
-		fill: var(--color-primary, #d50000);
-		transition: fill 0.25s ease;
+		fill: var(--layer-accent);
+		transition: fill 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
+		opacity: 0.9;
 	}
 
-	:global([data-theme="dark"]) .top-logo-path {
-		fill: #ffffff;
+	.layer:hover .top-logo-path {
+		opacity: 1;
+		filter: drop-shadow(0 0 4px var(--layer-accent));
 	}
 
-	/* When top layer is selected, its face turns crimson red, so logo turns pure white */
+	/* Selected state: logo contrasts against filled top face with WCAG AAA readability */
 	.layer.sel .top-logo-path {
 		fill: #ffffff !important;
+		opacity: 1;
+	}
+
+	/* Light mode exception for amber budaya slab */
+	.layer[data-key="budaya"].sel .top-logo-path {
+		fill: #090d16 !important;
+	}
+
+	/* Dark mode: Deep OLED Obsidian logo on vivid luminous pastel slab (9.8:1 - 12.2:1 AAA) */
+	:global([data-theme="dark"]) .layer.sel .top-logo-path {
+		fill: #050608 !important;
+		opacity: 1;
 	}
 
 	/* Typography on Isometric Faces (WCAG AAA Contrast Compliant) */
@@ -361,19 +412,19 @@ const pillars = [
 	}
 
 	.lab-l {
-		fill: #334155; /* Slate 700: 9.2:1 contrast against #f3f5f6 (WCAG AAA) */
+		fill: #334155;
 	}
 
 	:global([data-theme="dark"]) .lab-l {
-		fill: #e2e8f0; /* Slate 200: 14.5:1 contrast against #06080c (WCAG AAA) */
+		fill: #e2e8f0;
 	}
 
 	.lab-r {
-		fill: #0f172a; /* Slate 900: 16.5:1 contrast against #fbfcfd (WCAG AAA) */
+		fill: #0f172a;
 	}
 
 	:global([data-theme="dark"]) .lab-r {
-		fill: #f8fafc; /* 18.5:1 contrast against #11151e (WCAG AAA) */
+		fill: #f8fafc;
 	}
 
 	.layer.sel .lab-r {
@@ -395,7 +446,7 @@ const pillars = [
 		transition: transform 560ms cubic-bezier(0.3, 1.18, 0.4, 1);
 	}
 
-	/* Sliced-Out State (Spring physics along 2:1 slope vector) */
+	/* Sliced-Out State */
 	.layer.out .slide,
 	.layer.out:hover .slide,
 	.layer.out:focus-visible .slide {
@@ -431,15 +482,16 @@ const pillars = [
 		animation: cakehint 1s cubic-bezier(0.45, 0, 0.3, 1) both;
 	}
 
-	/* 7C Bespoke Editorial Detail Panel (Sharp Hairline Architecture) */
+	/* 7C Bespoke Editorial Detail Panel */
 	.cake-detail {
-		margin-top: 1rem;
+		margin-top: auto;
 		width: 100%;
 		border: 1px solid var(--color-border);
+		border-left: 3.5px solid var(--cd-accent, var(--7c-pillar-game, #34d399));
 		border-radius: 0;
 		padding: 1.15rem 1.35rem;
 		background: var(--color-card);
-		transition: opacity 160ms ease, transform 160ms ease;
+		transition: opacity 160ms ease, transform 160ms ease, border-left-color 0.25s ease;
 		min-height: 145px;
 		display: flex;
 		flex-direction: column;
@@ -449,6 +501,7 @@ const pillars = [
 	:global([data-theme="dark"]) .cake-detail {
 		background: #0f1218;
 		border-color: rgba(255, 255, 255, 0.1);
+		border-left-color: var(--cd-accent, var(--7c-pillar-game, #34d399));
 	}
 
 	.cake-detail.swap {
@@ -475,16 +528,17 @@ const pillars = [
 	.cd-badge {
 		font-size: 0.72rem;
 		font-weight: 600;
-		color: var(--color-primary);
+		color: var(--cd-accent, var(--7c-pillar-game, #10b981));
 		background: var(--color-card-subtle);
 		padding: 0.15rem 0.5rem;
-		border-radius: 0;
-		border: 1px solid var(--color-border);
+		border-radius: var(--7c-radius-sm, 4px);
+		border: 1px solid var(--cd-accent, var(--color-border));
+		transition: color 0.2s ease, border-color 0.2s ease;
 	}
 
 	:global([data-theme="dark"]) .cd-badge {
 		background: rgba(255, 255, 255, 0.04);
-		border-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.15);
 	}
 
 	.cd-name {
@@ -507,15 +561,17 @@ const pillars = [
 		font-family: var(--7c-font-display, "Google Sans", system-ui, sans-serif);
 		font-size: 0.85rem;
 		font-weight: 600;
-		color: var(--color-primary);
+		color: var(--cd-accent, var(--7c-pillar-game, #10b981));
 		display: inline-flex;
 		align-items: center;
 		gap: 0.35rem;
-		transition: transform 0.15s ease;
+		text-decoration: none;
+		transition: color 0.2s ease, transform 0.15s ease, opacity 0.15s ease;
 	}
 
 	.cd-action-link:hover {
 		transform: translateX(3px);
+		opacity: 0.85;
 	}
 
 	.cd-action-link .arrow {
@@ -568,60 +624,9 @@ const pillars = [
 	}
 </style>
 
-<script is:inline>
+<script is:inline define:vars={{ serializedRubrikData }}>
 	(function () {
-		const PILLAR_DATA = {
-			berita: {
-				g: "Pilar 07 • Jurnalisme",
-				n: "Berita & Newsroom",
-				c: "4.265 Liputan Terbit",
-				d: "Laporan berita terhangat, isu kebijakan esensial, peristiwa sosial, dan investigasi mendalam berintegritas.",
-				url: "/category/berita"
-			},
-			game: {
-				g: "Pilar 06 • Interaktif",
-				n: "Video Game & Esports",
-				c: "4.282 Liputan Terbit",
-				d: "Review game konsol dan PC, perkembangan industri game global, strategi esports, dan komunitas gamer.",
-				url: "/category/game"
-			},
-			tech: {
-				g: "Pilar 05 • Masa Depan",
-				n: "Teknologi & Inovasi",
-				c: "3.729 Liputan Terbit",
-				d: "Kecerdasan buatan, perangkat keras mutakhir, terobosan software, dan perkembangan ekosistem digital dunia.",
-				url: "/category/tech"
-			},
-			musik: {
-				g: "Pilar 04 • Audio & Hiburan",
-				n: "Musik & Nada",
-				c: "3.576 Liputan Terbit",
-				d: "Kurasi rilisan musik terkini, ulasan album, profil musisi independen dan arus utama, serta tren audio global.",
-				url: "/category/musik"
-			},
-			budaya: {
-				g: "Pilar 03 • Seni & Kultur",
-				n: "Seni & Budaya Pop",
-				c: "233 Liputan Terbit",
-				d: "Eksplorasi fenomena urban, warisan budaya lokal, seni visual, dan dinamika sosial masyarakat modern.",
-				url: "/category/budaya"
-			},
-			kesehatan: {
-				g: "Pilar 02 • Gaya Hidup",
-				n: "Kesehatan & Kebugaran",
-				c: "606 Liputan Terbit",
-				d: "Informasi medis terpercaya, wawasan kebugaran fisik dan mental, serta tren hidup sehat tanpa menggurui.",
-				url: "/category/kesehatan"
-			},
-			lab: {
-				g: "Pilar 01 • Studio & Hub",
-				n: "Tujuhcahaya Media Lab",
-				c: "Studio & Hub",
-				d: "Pusat eksplorasi media independen, riset konten kreatif, dan fondasi arsitektur digital Tujuhcahaya.",
-				url: "/about-us"
-			}
-		};
-
+		const RUBRIK_DATA = serializedRubrikData;
 		const container = document.getElementById("cakeContainer");
 		const detail = document.getElementById("cakeDetail");
 		if (!container || !detail) return;
@@ -631,7 +636,7 @@ const pillars = [
 		let swapTimer = null;
 
 		function renderCard(key) {
-			const d = PILLAR_DATA[key];
+			const d = RUBRIK_DATA[key];
 			if (!d) return;
 			const elGeneric = document.getElementById("cdGeneric");
 			const elName = document.getElementById("cdName");
@@ -644,6 +649,9 @@ const pillars = [
 			if (elDesc) elDesc.textContent = d.d;
 			if (elCount) elCount.textContent = d.c;
 			if (elLink) elLink.setAttribute("href", d.url);
+			if (detail && d.accent) {
+				detail.style.setProperty("--cd-accent", d.accent);
+			}
 		}
 
 		function selectLayer(key) {

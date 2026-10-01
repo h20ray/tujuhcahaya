@@ -1,7 +1,7 @@
 ---
 import { getEmDashCollection, getSiteSettings, getTermsForEntries } from "emdash";
 import Base from "../layouts/Base.astro";
-import IsometricStack from "../components/ui/IsometricStack.astro";
+import C7IsometricStack from "../components/ui/C7IsometricStack.astro";
 import { resolveStarterSiteIdentity } from "../utils/site-identity";
 import { build7cDispatchPreview, resolve7cArticleSource } from "../lib/7c-dispatch";
 
@@ -69,7 +69,7 @@ const heroNewsList = posts.map((post) => {
 				data-hero-tab="stack"
 			>
 				<span class="c7-tab-icon" aria-hidden="true">⬡</span>
-				<span class="c7-tab-label">7 Pilar Studio</span>
+				<span class="c7-tab-label">7 Rubrik Studio</span>
 			</button>
 		</div>
 
@@ -132,7 +132,7 @@ const heroNewsList = posts.map((post) => {
 			</div>
 		</div>
 
-		<!-- Right Column: Isometric 3D Layered Stack of the 7 Pillars with 7C Perspective Grid Background -->
+		<!-- Right Column: Isometric 3D Layered Stack of the 7 Rubrik with 7C Perspective Grid Background -->
 		<div class="hero-right-pane" id="hero-right-pane" role="tabpanel" aria-labelledby="hero-tab-stack">
 			<!-- Ambient Radial Glow -->
 			<div class="hero-right-glow" aria-hidden="true"></div>
@@ -151,7 +151,7 @@ const heroNewsList = posts.map((post) => {
 
 			<!-- 3D Isometric Stack Foreground -->
 			<div class="hero-right-foreground">
-				<IsometricStack />
+				<C7IsometricStack />
 			</div>
 		</div>
 	</section>
@@ -163,7 +163,7 @@ const heroNewsList = posts.map((post) => {
 			<span class="metric-label">Artikel Terbit</span>
 		</div>
 		<div class="metric-item">
-			<span class="metric-value">7 Pilar</span>
+			<span class="metric-value">7 Rubrik</span>
 			<span class="metric-label">Fokus Liputan</span>
 		</div>
 		<div class="metric-item">
