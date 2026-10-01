@@ -191,16 +191,22 @@ const authorName = authorProfile.name;
 					</div>
 				</div>
 
-				<!-- Featured Image Hero (with 7C Branded Fallback) -->
-				<figure class="article-featured-image" {...(entry.data.featured_image ? entry.edit.featured_image : {})}>
+				<!-- Featured Image Hero (with 7C Branded Fallback - 1024x576 Uniform Ratio) -->
+				<figure class="article-featured-image" {...(entry.data.featured_image ? entry.edit?.featured_image : {})}>
 					{entry.data.featured_image ? (
-						<Image image={entry.data.featured_image} />
+						<Image
+							image={entry.data.featured_image}
+							width={1024}
+							height={576}
+							priority
+							class="c7-article-featured-hero"
+						/>
 					) : (
 						<img
 							src={heroImage.url}
 							alt={heroImage.alt}
-							width="1200"
-							height="675"
+							width="1024"
+							height="576"
 							loading="eager"
 							decoding="async"
 							class="c7-featured-fallback-img"
