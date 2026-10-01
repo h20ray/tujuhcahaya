@@ -14,7 +14,7 @@ export function createPlugin(_options: Record<string, unknown> = {}) {
 	return definePlugin({
 		id: "c7-editorial-guard",
 		version: "1.0.0",
-		capabilities: ["content:read"],
+		capabilities: ["content:read", "content:write"],
 		hooks: {
 			"content:beforeSave": async (event, ctx) => {
 				const content = event.content as Record<string, unknown>;
