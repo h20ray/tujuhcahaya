@@ -352,11 +352,13 @@
   font-weight: 600;
 }
 
-/* Dispatch Archive Page & Pagination */
+/* Dispatch Archive Page & Pagination (1px 7C Hairline Side Framing) */
 .dispatch-archive-page {
   background-color: var(--color-bg);
   min-height: 70vh;
-  border-bottom: 1px solid var(--color-border);
+  border-left: 1px solid var(--7c-sys-outline-variant);
+  border-right: 1px solid var(--7c-sys-outline-variant);
+  border-bottom: none;
 }
 
 .dispatch-pagination {
