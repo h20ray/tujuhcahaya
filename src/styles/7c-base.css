@@ -16,6 +16,7 @@ html {
   color: var(--7c-sys-on-surface);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Smooth scrolling for in-page anchor jumps; never conflict with router navigation */

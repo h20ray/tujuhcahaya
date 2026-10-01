@@ -24,26 +24,49 @@
 .article-body h2,
 .single-article .article-content h2 {
   font-family: var(--7c-font-display);
-  font-size: 1.9rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: var(--7c-sys-on-surface);
-  margin-top: 3.25rem;
-  margin-bottom: 1.25rem;
-  line-height: 1.28;
+  margin-top: 3rem;
+  margin-bottom: 1.15rem;
+  line-height: 1.3;
 }
 
 .c7-prose h3,
 .article-body h3,
 .single-article .article-content h3 {
   font-family: var(--7c-font-display);
-  font-size: 1.45rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
   color: var(--7c-sys-on-surface);
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
+  margin-top: 2.25rem;
+  margin-bottom: 0.85rem;
   line-height: 1.35;
+}
+
+.c7-prose h4,
+.article-body h4,
+.single-article .article-content h4 {
+  font-family: var(--7c-font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--7c-sys-on-surface);
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.c7-prose strong,
+.c7-prose b,
+.article-body strong,
+.article-body b,
+.single-article .article-content strong,
+.single-article .article-content b {
+  font-weight: 600;
+  color: var(--7c-sys-on-surface);
 }
 
 .c7-prose blockquote,
