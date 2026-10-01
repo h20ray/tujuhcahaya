@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Home",
-    "archive": "Dispatch Archive",
+    "archive": "Story Archive",
     "about": "About Us",
     "search_placeholder": "Search 16,700+ stories...",
     "mode": "Mode",
@@ -10,7 +10,7 @@
   },
   "topbar": {
     "brand_tagline": "TUJUHCAHAYA MEDIA HOUSE",
-    "dispatch_live": "EDITORIAL DISPATCH",
+    "dispatch_live": "LATEST STORIES",
     "switch_lang": "Switch language"
   },
   "editorial": {
@@ -21,13 +21,13 @@
     "articles_count": "16,745 Stories",
     "trending": "Trending Stories",
     "latest": "Latest Stories",
-    "empty_state": "No stories found under this pillar.",
+    "empty_state": "No stories found in this section.",
     "back_to_home": "Back to Home",
     "page_not_found": "Page Not Found"
   },
   "footer": {
     "tagline": "Independent digital media house exploring investigative journalism, emerging tech, urban culture, music, and contemporary Southeast Asian society.",
-    "pillars_title": "Editorial Pillars",
+    "pillars_title": "Editorial Sections",
     "company_title": "Masthead & Legal",
     "about": "About Us",
     "editorial_team": "Editorial Board",

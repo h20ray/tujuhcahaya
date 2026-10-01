@@ -35,9 +35,30 @@ export interface Post {
   terms?: Record<string, TaxonomyTerm[]>;
 }
 
+export interface Submission {
+  id: string;
+  slug: string | null;
+  status: string;
+  title: string;
+  author_name: string;
+  author_email: string;
+  author_phone?: string;
+  category: string;
+  content: string;
+  curation_status?: string;
+  notes?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  byline?: BylineSummary | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
 declare module "emdash" {
   interface EmDashCollections {
     pages: Page;
     posts: Post;
+    submissions: Submission;
   }
 }

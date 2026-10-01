@@ -1,0 +1,293 @@
+---
+/**
+ * C7DispatchDrawer — 7C MD3X Right-Side Article Preview Dialog
+ *
+ * Provides a slide-over preview pane for dispatch lists with full post navigation,
+ * real-time read-state tracking, and localStorage persistence.
+ */
+---
+
+<!-- Backdrop overlay -->
+<div id="c7-dispatch-backdrop" class="c7-drawer-backdrop" hidden aria-hidden="true"></div>
+
+<!-- Slide-over Dialog Pane (Right-side) -->
+<aside
+	id="c7-dispatch-drawer"
+	class="c7-dispatch-drawer"
+	role="dialog"
+	aria-modal="true"
+	aria-labelledby="c7-drawer-title"
+	aria-describedby="c7-drawer-excerpt"
+	hidden
+>
+	<!-- Header Bar -->
+	<div class="c7-drawer-header">
+		<div class="c7-drawer-header-left">
+			<span id="c7-drawer-category" class="c7-drawer-badge">Berita</span>
+		</div>
+
+		<div class="c7-drawer-header-right">
+			<!-- Read Status Quick Toggle -->
+			<button
+				type="button"
+				id="c7-drawer-read-toggle"
+				class="c7-drawer-status-pill"
+				aria-label="Status baca"
+				title="Ubah status baca"
+			>
+				<span class="c7-status-bullet checked" aria-hidden="true">
+					<svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
+						<polyline points="20 6 9 17 4 12"></polyline>
+					</svg>
+				</span>
+				<span id="c7-drawer-status-text">Sudah Dibaca</span>
+			</button>
+
+			<!-- Close Button -->
+			<button
+				type="button"
+				id="c7-drawer-close"
+				class="c7-drawer-close-btn"
+				aria-label="Tutup pratinjau artikel (Esc)"
+				title="Tutup (Esc)"
+			>
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+					<line x1="18" y1="6" x2="6" y2="18"></line>
+					<line x1="6" y1="6" x2="18" y2="18"></line>
+				</svg>
+			</button>
+		</div>
+	</div>
+
+	<!-- Scrollable Content Body -->
+	<div class="c7-drawer-body">
+		<!-- Article Headline -->
+		<h2 id="c7-drawer-title" class="c7-drawer-title"></h2>
+
+		<!-- Featured Image Container -->
+		<div id="c7-drawer-image-wrap" class="c7-drawer-image-wrap" hidden>
+			<img id="c7-drawer-image" class="c7-drawer-image" src="" alt="" loading="lazy" />
+		</div>
+
+		<!-- Editorial Excerpt / Summary -->
+		<div id="c7-drawer-excerpt" class="c7-drawer-excerpt"></div>
+
+		<!-- Lead Preview Paragraphs -->
+		<div id="c7-drawer-paragraphs" class="c7-drawer-paragraphs"></div>
+	</div>
+
+	<!-- Sticky Action Bar / Read Full Post CTA -->
+	<div class="c7-drawer-footer">
+		<a href="#" id="c7-drawer-full-post" class="c7-drawer-cta-btn">
+			<span id="c7-drawer-cta-text">Baca Selengkapnya</span>
+			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+				<line x1="5" y1="12" x2="19" y2="12"></line>
+				<polyline points="12 5 19 12 12 19"></polyline>
+			</svg>
+		</a>
+	</div>
+</aside>
+
+<style>
+	/* MD3X Right-side Slide-over Drawer & Backdrop */
+	.c7-drawer-backdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: var(--c7-radio-dock-height, 64px);
+		background-color: rgba(5, 6, 8, 0.55);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		z-index: 9998;
+		opacity: 0;
+		transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+		pointer-events: none;
+	}
+	.c7-drawer-backdrop.is-visible { opacity: 1; pointer-events: auto; }
+
+	.c7-dispatch-drawer {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: var(--c7-radio-dock-height, 64px);
+		width: min(540px, 94vw);
+		background-color: var(--7c-sys-surface-container, #ffffff);
+		border-left: 1px solid var(--7c-sys-outline-variant, #cbd5e1);
+		box-shadow: -10px 0 40px rgba(0, 0, 0, 0.28);
+		z-index: 9999;
+		display: flex;
+		flex-direction: column;
+		transform: translateX(100%);
+		transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+		will-change: transform;
+	}
+	.c7-dispatch-drawer.is-open { transform: translateX(0); }
+
+	/* Header */
+	.c7-drawer-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding: 0.85rem 1.25rem;
+		border-bottom: 1px solid var(--7c-sys-outline-variant, #cbd5e1);
+		background-color: var(--7c-sys-surface-container-high, #f8fafc);
+		flex-shrink: 0;
+	}
+	.c7-drawer-header-left {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.75rem;
+		color: var(--7c-sys-on-surface-variant, #64748b);
+		font-family: var(--font-mono, "JetBrains Mono", monospace);
+	}
+	.c7-drawer-badge {
+		font-size: 0.7rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		padding: 0.2rem 0.6rem;
+		border-radius: 9999px;
+		background-color: var(--7c-sys-primary-container, #ffdad6);
+		color: var(--7c-sys-on-primary-container, #410002);
+		border: 1px solid rgba(213, 0, 0, 0.2);
+	}
+	.c7-drawer-header-right { display: flex; align-items: center; gap: 0.6rem; }
+	.c7-drawer-status-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.72rem;
+		font-weight: 600;
+		padding: 0.25rem 0.65rem;
+		border-radius: 9999px;
+		background-color: var(--7c-sys-surface-container-highest, #e2e8f0);
+		color: var(--7c-sys-on-surface, #090d16);
+		border: 1px solid var(--7c-sys-outline-variant, #cbd5e1);
+		cursor: pointer;
+		transition: all 0.15s ease;
+	}
+	.c7-drawer-status-pill:hover { border-color: var(--7c-sys-primary, #d50000); }
+	.c7-status-bullet {
+		width: 13px;
+		height: 13px;
+		border-radius: 50%;
+		border: 1.5px solid var(--7c-sys-outline, #94a3b8);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+	.c7-status-bullet.checked {
+		background-color: var(--7c-sys-primary, #d50000);
+		border-color: var(--7c-sys-primary, #d50000);
+		color: #ffffff;
+	}
+	.c7-drawer-close-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		border-radius: 8px;
+		border: 1px solid var(--7c-sys-outline-variant, #cbd5e1);
+		background-color: var(--7c-sys-surface-container, #ffffff);
+		color: var(--7c-sys-on-surface, #090d16);
+		cursor: pointer;
+		transition: all 0.15s ease;
+	}
+	.c7-drawer-close-btn:hover {
+		background-color: var(--7c-sys-primary, #d50000);
+		border-color: var(--7c-sys-primary, #d50000);
+		color: #ffffff;
+	}
+
+	/* Body */
+	.c7-drawer-body {
+		flex: 1;
+		overflow-y: auto;
+		overscroll-behavior-y: contain;
+		padding: 1.25rem 1.4rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.15rem;
+		-webkit-overflow-scrolling: touch;
+	}
+	.c7-drawer-title {
+		font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+		font-size: 1.3rem;
+		font-weight: 800;
+		line-height: 1.3;
+		letter-spacing: -0.02em;
+		color: var(--7c-sys-on-surface, #090d16);
+		margin: 0;
+	}
+
+	/* Image & Excerpt */
+	.c7-drawer-image-wrap {
+		border-radius: 14px;
+		overflow: hidden;
+		box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+	}
+	.c7-drawer-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+	.c7-drawer-excerpt {
+		padding: 0.9rem 1.1rem;
+		background-color: var(--7c-sys-surface-container-high, #f1f5f9);
+		border-left: 3px solid var(--7c-sys-primary, #d50000);
+		border-radius: 0 10px 10px 0;
+		font-size: 0.9rem;
+		font-weight: 500;
+		line-height: 1.6;
+		color: var(--7c-sys-on-surface, #090d16);
+	}
+	.c7-drawer-paragraphs {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		font-size: 0.875rem;
+		line-height: 1.7;
+		color: var(--7c-sys-on-surface-variant, #475569);
+	}
+
+	/* Footer CTA */
+	.c7-drawer-footer {
+		padding: 1rem 1.4rem;
+		border-top: 1px solid var(--7c-sys-outline-variant, #cbd5e1);
+		background-color: var(--7c-sys-surface-container-high, #f8fafc);
+		flex-shrink: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+	}
+	.c7-drawer-cta-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 0.8rem 1.25rem;
+		background-color: var(--7c-sys-primary, #d50000);
+		color: #ffffff;
+		font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+		font-size: 0.95rem;
+		font-weight: 700;
+		text-decoration: none;
+		border-radius: 12px;
+		box-shadow: 0 4px 14px rgba(213, 0, 0, 0.28);
+		transition: all 0.15s ease;
+	}
+	.c7-drawer-cta-btn:hover {
+		background-color: #b70000;
+		transform: translateY(-1px);
+		box-shadow: 0 6px 18px rgba(213, 0, 0, 0.38);
+		color: #ffffff;
+	}
+
+	@media (max-width: 640px) {
+		.c7-dispatch-drawer { width: 100vw; }
+		.c7-drawer-title { font-size: 1.15rem; }
+	}
+</style>
+
+<script src="../../scripts/7c-dispatch-drawer.ts"></script>

@@ -47,19 +47,20 @@ const effectiveThumbnail = thumbnail || C7_DEFAULT_FEATURED_IMAGE;
 
 <style>
 	.c7-card {
-		background: var(--7c-sys-surface-container);
-		border: 1px solid var(--7c-sys-outline-variant);
-		border-radius: var(--7c-radius-md);
+		background: var(--7c-sys-surface-container-low);
+		border: none;
+		border-radius: 18px;
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
-		transition: transform 0.2s ease, border-color 0.2s ease;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+		transition: transform 0.25s cubic-bezier(0.34, 0.8, 0.34, 1), background-color 0.2s ease, box-shadow 0.25s ease;
 	}
 
 	.c7-card:hover {
-		transform: translateY(-3px);
-		border-color: var(--7c-sys-primary);
-		background-color: var(--7c-sys-surface-container-high);
+		transform: translateY(-4px);
+		background-color: var(--7c-sys-surface-container);
+		box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
 	}
 
 	.c7-card-media {

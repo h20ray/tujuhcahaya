@@ -1,15 +1,17 @@
 ---
+import { getTermsForEntries } from "emdash";
 import Base from "../../layouts/Base.astro";
 import C7IsometricStack from "../../components/ui/C7IsometricStack.astro";
 import { get7cPublishedPosts, get7cSiteIdentity } from "../../lib/7c-cms";
+import { build7cDispatchPreview, resolve7cArticleSource } from "../../lib/7c-dispatch";
 import { use7cTranslation } from "../../i18n/utils";
 
 const locale = "en";
 const { t } = use7cTranslation(locale);
 
-// Fetch recent posts via 7C CMS adapter
+// Fetch recent posts via 7C CMS adapter (auto-fits via smart fill)
 const { posts, cacheHint } = await get7cPublishedPosts({
-	limit: 11,
+	limit: 25,
 	locale: "en",
 });
 
@@ -18,10 +20,26 @@ if (Astro.cache?.enabled && cacheHint) {
 }
 
 const { siteTitle } = await get7cSiteIdentity();
-const heroNewsList = posts.map((post) => ({
-	post,
-	slug: post.data?.slug || post.id,
-}));
+
+const categoriesByEntry = await getTermsForEntries(
+	"posts",
+	posts.map((p) => p.data.id),
+	"category",
+);
+
+const heroNewsList = posts.map((post) => {
+	const cats = categoriesByEntry.get(post.data.id) ?? [];
+	const firstCategory = cats[0] ?? { label: "News", slug: "berita" };
+	const slug = post.data?.slug || post.id;
+	const source = resolve7cArticleSource(post);
+	return {
+		post,
+		slug,
+		category: firstCategory,
+		source,
+		preview: build7cDispatchPreview(post, firstCategory, "en"),
+	};
+});
 ---
 
 <Base
@@ -54,19 +72,17 @@ const heroNewsList = posts.map((post) => ({
 						<p>{t.editorial.empty_state}</p>
 					</div>
 				) : (
-					heroNewsList.map((item, idx) => (
-						<a href={`/en/${item.slug}`} class="dispatch-row dispatch-row-compact">
-							<!-- Status Circle -->
-							<div class="dispatch-bullet-wrapper">
-								{idx === 0 ? (
-									<span class="dispatch-bullet checked" aria-hidden="true">
-										<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
-											<polyline points="20 6 9 17 4 12"></polyline>
-										</svg>
-									</span>
-								) : (
-									<span class="dispatch-bullet" aria-hidden="true"></span>
-								)}
+					heroNewsList.map((item) => (
+						<a
+							href={`/en/${item.slug}`}
+							class="dispatch-row dispatch-row-compact"
+							data-post-slug={item.slug}
+							data-astro-reload
+							data-dispatch-preview={JSON.stringify(item.preview)}
+						>
+							<!-- Status Circle (Hollow circle, transforms to check mark when read and persisted in localStorage) -->
+							<div class="dispatch-bullet-wrapper" title="Toggle read status">
+								<span class="dispatch-bullet" aria-hidden="true"></span>
 							</div>
 
 							<!-- Article Title -->
@@ -74,8 +90,13 @@ const heroNewsList = posts.map((post) => ({
 								{item.post.data.title}
 							</span>
 
-							<!-- Hover Action Arrow -->
-							<span class="dispatch-arrow" aria-hidden="true">&rarr;</span>
+							<!-- Source Pill (7C Red for Tujuhcahaya, or external source) -->
+							<span
+								class={`c7-source-pill ${item.source.is7c ? "c7-source-pill-7c" : "c7-source-pill-external"}`}
+								title={`Source: ${item.source.name}`}
+							>
+								{item.source.label}
+							</span>
 						</a>
 					))
 				)}
@@ -131,4 +152,5 @@ const heroNewsList = posts.map((post) => ({
 			<span class="metric-label">Sharp Perspective</span>
 		</div>
 	</section>
+	<script src="../../scripts/7c-dispatch-smart-fill.ts"></script>
 </Base>

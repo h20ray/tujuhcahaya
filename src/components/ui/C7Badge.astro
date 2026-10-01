@@ -40,14 +40,14 @@ const normalizedPillar = pillar.toLowerCase().trim();
 		display: inline-flex;
 		align-items: center;
 		gap: 0.35rem;
-		padding: 0.2rem 0.6rem;
+		padding: 0.25rem 0.65rem;
 		border-radius: 9999px;
 		font-size: 0.72rem;
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		line-height: 1;
-		border: 1px solid var(--7c-sys-outline-variant);
+		border: none;
 		background-color: var(--7c-sys-surface-container-high);
 		color: var(--7c-sys-on-surface);
 		transition: all 0.15s ease;
@@ -65,50 +65,43 @@ const normalizedPillar = pillar.toLowerCase().trim();
 
 	/* MD3X Pillar Spectrum Color Alignments */
 	.c7-badge-berita {
-		border-color: rgba(213, 0, 0, 0.35);
-		background-color: rgba(213, 0, 0, 0.08);
+		background-color: rgba(213, 0, 0, 0.1);
 		color: var(--7c-pillar-berita);
 	}
 	.c7-badge-berita .c7-badge-dot { background-color: var(--7c-pillar-berita); }
 
 	.c7-badge-game {
-		border-color: rgba(5, 150, 105, 0.35);
-		background-color: rgba(5, 150, 105, 0.08);
+		background-color: rgba(5, 150, 105, 0.1);
 		color: var(--7c-pillar-game);
 	}
 	.c7-badge-game .c7-badge-dot { background-color: var(--7c-pillar-game); }
 
 	.c7-badge-tech {
-		border-color: rgba(2, 132, 199, 0.35);
-		background-color: rgba(2, 132, 199, 0.08);
+		background-color: rgba(2, 132, 199, 0.1);
 		color: var(--7c-pillar-tech);
 	}
 	.c7-badge-tech .c7-badge-dot { background-color: var(--7c-pillar-tech); }
 
 	.c7-badge-musik {
-		border-color: rgba(124, 58, 237, 0.35);
-		background-color: rgba(124, 58, 237, 0.08);
+		background-color: rgba(124, 58, 237, 0.1);
 		color: var(--7c-pillar-musik);
 	}
 	.c7-badge-musik .c7-badge-dot { background-color: var(--7c-pillar-musik); }
 
 	.c7-badge-budaya {
-		border-color: rgba(217, 119, 6, 0.35);
-		background-color: rgba(217, 119, 6, 0.08);
+		background-color: rgba(217, 119, 6, 0.1);
 		color: var(--7c-pillar-budaya);
 	}
 	.c7-badge-budaya .c7-badge-dot { background-color: var(--7c-pillar-budaya); }
 
 	.c7-badge-kesehatan {
-		border-color: rgba(13, 148, 136, 0.35);
-		background-color: rgba(13, 148, 136, 0.08);
+		background-color: rgba(13, 148, 136, 0.1);
 		color: var(--7c-pillar-kesehatan);
 	}
 	.c7-badge-kesehatan .c7-badge-dot { background-color: var(--7c-pillar-kesehatan); }
 
 	.c7-badge-lab {
-		border-color: rgba(71, 85, 105, 0.35);
-		background-color: rgba(71, 85, 105, 0.08);
+		background-color: rgba(71, 85, 105, 0.12);
 		color: var(--7c-pillar-lab);
 	}
 	.c7-badge-lab .c7-badge-dot { background-color: var(--7c-pillar-lab); }
@@ -116,6 +109,6 @@ const normalizedPillar = pillar.toLowerCase().trim();
 	/* Hover interaction */
 	a.c7-badge:hover {
 		transform: translateY(-1px);
-		border-color: var(--7c-sys-primary);
+		filter: brightness(0.92);
 	}
 </style>

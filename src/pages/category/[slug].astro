@@ -5,6 +5,7 @@ import {
 	decodeSlug,
 } from "emdash";
 import Base from "../../layouts/Base.astro";
+import { build7cDispatchPreview } from "../../lib/7c-dispatch";
 
 const slug = decodeSlug(Astro.params.slug);
 const termsResult = await getTaxonomyTermsWithCacheHint("category", {
@@ -40,17 +41,19 @@ const formattedPosts = posts.map((post) => {
 				month: "short",
 		  })
 		: "";
+	const cat = { label: term.label, slug: term.slug };
 	return {
 		post,
-		category: { label: term.label, slug: term.slug },
+		category: cat,
 		formattedDate,
 		slug: post.data?.slug || post.id,
+		preview: build7cDispatchPreview(post, cat, "id"),
 	};
 });
 ---
 
 <Base
-	title={`Kategori: ${term.label} — Dispatch Redaksi`}
+	title={`Kategori: ${term.label} — Arsip Liputan`}
 	description={`Kumpulan liputan, artikel, dan berita seputar ${term.label} di Tujuhcahaya.`}
 >
 	<div class="dispatch-archive-page">
@@ -58,7 +61,7 @@ const formattedPosts = posts.map((post) => {
 		<div class="dispatch-header">
 			<div class="dispatch-header-left">
 				<span class="dispatch-pulse-dot" aria-hidden="true"></span>
-				<h1 class="dispatch-header-title">DISPATCH REDAKSI — {term.label.toUpperCase()}</h1>
+				<h1 class="dispatch-header-title">ARSIP LIPUTAN — {term.label.toUpperCase()}</h1>
 				<span class="dispatch-count-badge">Kategori</span>
 			</div>
 
@@ -81,19 +84,17 @@ const formattedPosts = posts.map((post) => {
 					<p>Belum ada artikel dalam kategori ini.</p>
 				</div>
 			) : (
-				formattedPosts.map((item, idx) => (
-					<a href={`/${item.slug}`} class="dispatch-row">
-						<!-- Status Circle -->
-						<div class="dispatch-bullet-wrapper">
-							{idx === 0 && !cursor ? (
-								<span class="dispatch-bullet checked" aria-hidden="true">
-									<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
-										<polyline points="20 6 9 17 4 12"></polyline>
-									</svg>
-								</span>
-							) : (
-								<span class="dispatch-bullet" aria-hidden="true"></span>
-							)}
+				formattedPosts.map((item) => (
+					<a
+						href={`/${item.slug}`}
+						class="dispatch-row"
+						data-post-slug={item.slug}
+						data-astro-reload
+						data-dispatch-preview={JSON.stringify(item.preview)}
+					>
+						<!-- Status Circle (Hollow circle, transforms to check mark when read and persisted in localStorage) -->
+						<div class="dispatch-bullet-wrapper" title="Tandai status baca (Klik untuk ubah)">
+							<span class="dispatch-bullet" aria-hidden="true"></span>
 						</div>
 
 						<!-- Article Title (Truncated) -->

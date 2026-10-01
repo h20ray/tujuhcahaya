@@ -5,16 +5,19 @@ import {
 	decodeSlug,
 	getSiteSettings,
 } from "emdash";
-import { Image, PortableText } from "emdash/ui";
+import { Image } from "emdash/ui";
+import C7PortableText from "../components/editorial/C7PortableText.astro";
 import Base from "../layouts/Base.astro";
 import C7Badge from "../components/ui/C7Badge.astro";
 import C7PostCard from "../components/editorial/C7PostCard.astro";
 import C7PostSidebar from "../components/editorial/C7PostSidebar.astro";
+import C7AuthorCard from "../components/editorial/C7AuthorCard.astro";
 import {
 	calc7cReadingTime,
 	format7cDate,
 	get7cRelatedPosts,
 	resolve7cFeaturedImage,
+	resolve7cAuthor,
 } from "../lib/7c-cms";
 import { resolveStarterSiteIdentity } from "../utils/site-identity";
 
@@ -64,6 +67,8 @@ const { posts: relatedPosts } = isPost
 
 const heroImage = resolve7cFeaturedImage(entry.data.featured_image, entry.data.title);
 const ogImage = seo.ogImage || heroImage.url;
+const authorProfile = resolve7cAuthor((entry.data as any)?.byline, "id");
+const authorName = authorProfile.name;
 ---
 
 <Base
@@ -79,7 +84,7 @@ const ogImage = seo.ogImage || heroImage.url;
 
 	<div class="article-container">
 		{isPost ? (
-			<article class="single-article">
+			<article class="single-article" data-single-post-slug={slug}>
 				<!-- Semantic Breadcrumbs -->
 				<nav class="c7-breadcrumb" aria-label="Navigasi Jejak Halaman">
 					<a href="/" class="c7-breadcrumb-link">Beranda</a>
@@ -145,7 +150,7 @@ const ogImage = seo.ogImage || heroImage.url;
 						</div>
 						<div class="c7-meta-item c7-meta-author">
 							<span class="c7-author-dot" aria-hidden="true"></span>
-							<span>Redaksi Tujuhcahaya</span>
+							<a href={authorProfile.archiveUrl} class="c7-meta-author-link">{authorName}</a>
 						</div>
 					</div>
 
@@ -208,7 +213,7 @@ const ogImage = seo.ogImage || heroImage.url;
 
 				<!-- Article Body Content (7C Editorial Prose Typography) -->
 				<div class="article-content c7-prose prose" {...entry.edit.content}>
-					<PortableText value={entry.data.content} />
+					<C7PortableText value={entry.data.content} />
 				</div>
 
 				<!-- Topic Tags Cloud -->
@@ -225,23 +230,8 @@ const ogImage = seo.ogImage || heroImage.url;
 					</div>
 				)}
 
-				<!-- Official Redaksi Card -->
-				<div class="c7-redaksi-card">
-					<div class="c7-redaksi-avatar" aria-hidden="true">7C</div>
-					<div class="c7-redaksi-content">
-						<div class="c7-redaksi-title">Redaksi Tujuhcahaya</div>
-						<p class="c7-redaksi-desc">
-							Media house digital independen yang mengeksplorasi jurnalisme investigatif, teknologi, kultur urban, musik, dan dinamika sosial masyarakat modern berpedoman pada standar jurnalisme berkualitas.
-						</p>
-						<div class="c7-redaksi-meta-links">
-							<a href="/redaksi">Susunan Redaksi</a>
-							<span class="sep" aria-hidden="true">&bull;</span>
-							<a href="/pedoman-media-siber">Pedoman Media Siber</a>
-							<span class="sep" aria-hidden="true">&bull;</span>
-							<a href="/about-us">Tentang Kami</a>
-						</div>
-					</div>
-				</div>
+				<!-- Author Profile Card (7C Editorial Byline) -->
+				<C7AuthorCard author={authorProfile} locale="id" />
 
 				<!-- Related Posts Section (Liputan Terkait) -->
 				{relatedPosts.length > 0 && (
@@ -275,7 +265,7 @@ const ogImage = seo.ogImage || heroImage.url;
 					{entry.data.title}
 				</h1>
 				<div class="article-content c7-prose prose" {...entry.edit.content}>
-					<PortableText value={entry.data.content} />
+					<C7PortableText value={entry.data.content} />
 				</div>
 			</article>
 		)}
@@ -292,13 +282,16 @@ const ogImage = seo.ogImage || heroImage.url;
 	<!-- Scroll-driven Reading Progress Bar & Social Copy Script -->
 	<script is:inline>
 		// Reading progress handler
-		window.addEventListener("scroll", () => {
-			const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-			const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+		function updateReadingProgress() {
+			const scrollEl = document.body.scrollHeight > document.body.clientHeight ? document.body : document.documentElement;
+			const winScroll = scrollEl.scrollTop;
+			const height = scrollEl.scrollHeight - scrollEl.clientHeight;
 			const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
 			const bar = document.getElementById("reading-progress-bar");
 			if (bar) bar.style.width = scrolled + "%";
-		});
+		}
+		window.addEventListener("scroll", updateReadingProgress, { passive: true });
+		document.body?.addEventListener("scroll", updateReadingProgress, { passive: true });
 
 		// Copy link button handler
 		const copyBtn = document.getElementById("c7-copy-link-btn");
@@ -319,6 +312,20 @@ const ogImage = seo.ogImage || heroImage.url;
 				}
 			});
 		}
+
+		// Automatically register this post as read in localStorage
+		try {
+			const slug = window.location.pathname.replace(/^\/|\/$/g, "");
+			if (slug) {
+				const raw = localStorage.getItem("c7_read_articles");
+				const list = raw ? JSON.parse(raw) : [];
+				const set = new Set(Array.isArray(list) ? list : []);
+				if (!set.has(slug)) {
+					set.add(slug);
+					localStorage.setItem("c7_read_articles", JSON.stringify(Array.from(set)));
+				}
+			}
+		} catch (e) {}
 	</script>
 </Base>
 
@@ -329,10 +336,9 @@ const ogImage = seo.ogImage || heroImage.url;
 		color: var(--7c-sys-on-surface-variant);
 		display: flex;
 		align-items: center;
+		flex-wrap: wrap;
 		gap: 0.45rem;
 		margin-bottom: 1.25rem;
-		overflow-x: auto;
-		white-space: nowrap;
 	}
 
 	.c7-breadcrumb-link {
@@ -372,10 +378,10 @@ const ogImage = seo.ogImage || heroImage.url;
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
-		gap: 1rem;
+		gap: 1.25rem;
 		padding-bottom: 1.25rem;
-		margin-bottom: 1.75rem;
-		border-bottom: 1px solid var(--7c-sys-outline-variant);
+		margin-bottom: 2rem;
+		border-bottom: 1px solid var(--7c-sys-surface-container-highest, rgba(0, 0, 0, 0.06));
 		font-size: 0.875rem;
 		color: var(--7c-sys-on-surface-variant);
 	}
@@ -424,13 +430,13 @@ const ogImage = seo.ogImage || heroImage.url;
 	.c7-share-btn {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.35rem;
-		padding: 0.35rem 0.55rem;
+		gap: 0.4rem;
+		padding: 0.4rem 0.75rem;
 		font-family: var(--7c-font-sans);
-		font-size: 0.75rem;
+		font-size: 0.78rem;
 		font-weight: 600;
-		border-radius: var(--7c-radius-sm);
-		border: 1px solid var(--7c-sys-outline-variant);
+		border-radius: 9999px;
+		border: none;
 		background: var(--7c-sys-surface-container-high);
 		color: var(--7c-sys-on-surface);
 		cursor: pointer;
@@ -440,20 +446,19 @@ const ogImage = seo.ogImage || heroImage.url;
 
 	.c7-share-btn:hover {
 		background: var(--7c-sys-surface-container-highest);
-		border-color: var(--7c-sys-primary);
 		color: var(--7c-sys-primary);
 		transform: translateY(-1px);
 	}
 
 	/* Topic Tags */
 	.c7-article-tags {
-		margin-top: 2.5rem;
-		padding-top: 1.5rem;
-		border-top: 1px dashed var(--7c-sys-outline-variant);
+		margin-top: 3.25rem;
+		padding-top: 1.75rem;
+		border-top: 1px solid var(--7c-sys-surface-container-highest, rgba(0, 0, 0, 0.06));
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 0.65rem;
+		gap: 0.75rem;
 	}
 
 	.c7-tags-label {
@@ -467,16 +472,16 @@ const ogImage = seo.ogImage || heroImage.url;
 	.c7-tags-list {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.45rem;
+		gap: 0.5rem;
 	}
 
 	.c7-tag-pill {
 		font-size: 0.78rem;
 		font-weight: 600;
-		padding: 0.25rem 0.6rem;
+		padding: 0.35rem 0.75rem;
 		border-radius: 9999px;
 		background: var(--7c-sys-surface-container-high);
-		border: 1px solid var(--7c-sys-outline-variant);
+		border: none;
 		color: var(--7c-sys-on-surface);
 		text-decoration: none;
 		transition: all 0.15s ease;
@@ -484,100 +489,40 @@ const ogImage = seo.ogImage || heroImage.url;
 
 	.c7-tag-pill:hover {
 		color: var(--7c-sys-primary);
-		border-color: var(--7c-sys-primary);
-		background: var(--7c-sys-surface-container-lowest);
+		background: var(--7c-sys-surface-container-highest);
+		transform: translateY(-1px);
 	}
 
-	/* Redaksi Card */
-	.c7-redaksi-card {
-		margin-top: 2.5rem;
-		padding: 1.5rem;
-		background: var(--7c-sys-surface-container-high);
-		border: 1px solid var(--7c-sys-outline-variant);
-		border-left: 4px solid var(--7c-sys-primary);
-		border-radius: var(--7c-radius-md);
-		display: flex;
-		gap: 1.25rem;
-		align-items: flex-start;
-	}
-
-	.c7-redaksi-avatar {
-		width: 44px;
-		height: 44px;
-		border-radius: 50%;
-		background: var(--7c-sys-primary);
-		color: var(--7c-sys-on-primary);
-		font-family: var(--7c-font-display);
-		font-weight: 800;
-		font-size: 1.05rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-	}
-
-	.c7-redaksi-content {
-		display: flex;
-		flex-direction: column;
-		gap: 0.35rem;
-	}
-
-	.c7-redaksi-title {
-		font-family: var(--7c-font-display);
-		font-size: 1rem;
-		font-weight: 800;
-		color: var(--7c-sys-on-surface);
-	}
-
-	.c7-redaksi-desc {
-		font-size: 0.85rem;
-		line-height: 1.55;
-		color: var(--7c-sys-on-surface-variant);
-		margin: 0;
-	}
-
-	.c7-redaksi-meta-links {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.78rem;
-		margin-top: 0.35rem;
-		flex-wrap: wrap;
-	}
-
-	.c7-redaksi-meta-links a {
-		color: var(--7c-sys-primary);
+	.c7-author-header-link {
+		color: inherit;
 		text-decoration: none;
-		font-weight: 600;
+		transition: color 0.15s ease;
 	}
 
-	.c7-redaksi-meta-links a:hover {
+	.c7-author-header-link:hover {
+		color: var(--7c-sys-primary);
 		text-decoration: underline;
-	}
-
-	.c7-redaksi-meta-links .sep {
-		color: var(--7c-sys-outline);
 	}
 
 	/* Related Posts Section */
 	.c7-related-section {
-		margin-top: 3rem;
-		padding-top: 2rem;
-		border-top: 1px solid var(--7c-sys-outline-variant);
+		margin-top: 4rem;
+		padding-top: 2.5rem;
+		border-top: 1px solid var(--7c-sys-surface-container-highest, rgba(0, 0, 0, 0.06));
 	}
 
 	.c7-related-header {
 		display: flex;
 		align-items: center;
 		gap: 0.6rem;
-		margin-bottom: 1.5rem;
+		margin-bottom: 1.75rem;
 	}
 
 	.c7-related-title {
 		font-family: var(--7c-font-display);
-		font-size: 1.15rem;
+		font-size: 1.25rem;
 		font-weight: 800;
-		letter-spacing: -0.015em;
+		letter-spacing: -0.02em;
 		color: var(--7c-sys-on-surface);
 		margin: 0;
 	}
@@ -592,7 +537,7 @@ const ogImage = seo.ogImage || heroImage.url;
 	.c7-related-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 1.25rem;
+		gap: 1.5rem;
 	}
 
 	@media (max-width: 900px) {

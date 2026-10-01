@@ -247,4 +247,230 @@ export function resolve7cFeaturedImage(image: unknown, fallbackAlt: string = "Tu
 	};
 }
 
+export interface C7AuthorProfile {
+	id?: string;
+	slug: string;
+	name: string;
+	role: string;
+	bio: string;
+	avatarUrl: string | null;
+	archiveUrl: string;
+	websiteUrl?: string | null;
+	isEditorialFallback: boolean;
+}
+
+/**
+ * Verified author registry derived from WordPress legacy users and Cloudflare R2 CDN assets
+ */
+export const C7_AUTHORS: Record<
+	string,
+	{
+		name: string;
+		roleId: string;
+		roleEn: string;
+		avatarUrl: string;
+		bioId: string;
+		bioEn: string;
+	}
+> = {
+	h20ray: {
+		name: "Andoru Ray",
+		roleId: "Founder & Pemimpin Umum",
+		roleEn: "Founder & Publisher",
+		avatarUrl: "https://media.xlocal.id/tujuhcahaya/uploads/2025/09/cropped-IMG_20250331_000108_788.avif",
+		bioId: "CEO, influencer, public figure, engineer, scientist, adalah contoh nama-nama pekerjaan orang.",
+		bioEn: "CEO, influencer, public figure, engineer, scientist, adalah contoh nama-nama pekerjaan orang.",
+	},
+	elangelano: {
+		name: "Elang Elano",
+		roleId: "Redaktur Senior & Teknologi",
+		roleEn: "Senior & Tech Editor",
+		avatarUrl: "https://media.xlocal.id/tujuhcahaya/uploads/2025/01/tj_pp-1-png.avif",
+		bioId: "Jurnalis dan redaktur Tujuhcahaya, meliput lanskap teknologi, kecerdasan buatan, budaya digital, dan inovasi masa depan.",
+		bioEn: "Journalist and editor at Tujuhcahaya, covering technology, artificial intelligence, digital culture, and future innovations.",
+	},
+	margarethanina: {
+		name: "Margaretha Nina",
+		roleId: "Redaktur Musik & Budaya Urban",
+		roleEn: "Music & Urban Culture Editor",
+		avatarUrl: "https://media.xlocal.id/tujuhcahaya/uploads/2025/01/photo_2025-01-13_05-21-07.avif",
+		bioId: "Kurator musik dan budaya urban kontemporer, mengulas dinamika kreatif, seni arus bawah, dan gaya hidup modern.",
+		bioEn: "Curator of music and contemporary urban culture, reviewing creative scenes, underground art, and modern lifestyle.",
+	},
+	wodemahendra: {
+		name: "Hendra Tujuhcahaya",
+		roleId: "Pemimpin Redaksi",
+		roleEn: "Editor-in-Chief",
+		avatarUrl: "https://media.xlocal.id/tujuhcahaya/uploads/2025/01/tj_pp-4-png.avif",
+		bioId: "Pemimpin Redaksi Tujuhcahaya, mengawal standar jurnalisme berkualitas, investigasi mendalam, etika redaksi, dan keterbukaan informasi publik.",
+		bioEn: "Editor-in-Chief at Tujuhcahaya, guiding quality journalism standards, in-depth investigations, editorial ethics, and public transparency.",
+	},
+	rachelpatricia: {
+		name: "Rachel Patricia",
+		roleId: "Jurnalis & Dinamika Sosial",
+		roleEn: "Journalist & Social Dynamics",
+		avatarUrl: "https://media.xlocal.id/tujuhcahaya/uploads/2025/01/tj_pp-2-png.avif",
+		bioId: "Jurnalis lapangan yang aktif merekam dinamika sosial masyarakat, tren perkotaan, industri kreatif, dan isu generasi muda.",
+		bioEn: "Field reporter capturing social dynamics, urban trends, creative movements, and youth culture.",
+	},
+	sarahdilla: {
+		name: "Sarah Dilla",
+		roleId: "Jurnalis Riset & Opini",
+		roleEn: "Research & Opinion Journalist",
+		avatarUrl: "https://media.xlocal.id/tujuhcahaya/uploads/2025/01/tj_pp-3-png.avif",
+		bioId: "Penulis riset dan jurnalis investigatif yang mengeksplorasi isu sosial-kultural, kebijakan publik, dan narasi kritis kontemporer.",
+		bioEn: "Research writer and investigative journalist exploring sociocultural developments, public policy, and critical narratives.",
+	},
+};
+
+/**
+ * Resolve an author/byline into an authentic C7AuthorProfile with fallback to Redaksi
+ */
+export function resolve7cAuthor(byline: any, locale: Locale = "id"): C7AuthorProfile {
+	const slug = typeof byline?.slug === "string" ? byline.slug.toLowerCase().trim() : "";
+	const knownAuthor = C7_AUTHORS[slug];
+	const isEn = locale === "en";
+
+	if (knownAuthor) {
+		const name = byline?.displayName || knownAuthor.name;
+		const role = isEn ? knownAuthor.roleEn : knownAuthor.roleId;
+		const bio =
+			typeof byline?.bio === "string" && byline.bio.trim().length > 0
+				? byline.bio.trim()
+				: isEn
+				? knownAuthor.bioEn
+				: knownAuthor.bioId;
+		const avatarUrl = knownAuthor.avatarUrl;
+		const archiveUrl = isEn ? `/en/author/${slug}` : `/author/${slug}`;
+
+		return {
+			id: byline?.id,
+			slug,
+			name,
+			role,
+			bio,
+			avatarUrl,
+			archiveUrl,
+			websiteUrl: byline?.websiteUrl ?? null,
+			isEditorialFallback: false,
+		};
+	}
+
+	// If byline is provided with non-empty displayName but not in static registry
+	if (byline?.displayName && typeof byline.displayName === "string") {
+		const name = byline.displayName.trim();
+		const bylineSlug = slug || name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+		const archiveUrl = isEn ? `/en/author/${bylineSlug}` : `/author/${bylineSlug}`;
+		return {
+			id: byline?.id,
+			slug: bylineSlug,
+			name,
+			role: isEn ? "Editorial Contributor" : "Kontributor Redaksi",
+			bio:
+				typeof byline?.bio === "string" && byline.bio.trim().length > 0
+					? byline.bio.trim()
+					: isEn
+					? "Editorial contributor for Tujuhcahaya."
+					: "Kontributor editorial media digital Tujuhcahaya.",
+			avatarUrl: null,
+			archiveUrl,
+			websiteUrl: byline?.websiteUrl ?? null,
+			isEditorialFallback: false,
+		};
+	}
+
+	// Institutional fallback to Redaksi Tujuhcahaya
+	return {
+		id: byline?.id,
+		slug: "redaksi",
+		name: isEn ? "Tujuhcahaya Editorial" : "Redaksi Tujuhcahaya",
+		role: isEn ? "Editorial Board" : "Dewan Redaksi",
+		bio: isEn
+			? "Independent digital media house exploring investigative journalism, technology, urban culture, music, and modern social dynamics adhering to high journalistic standards."
+			: "Media house digital independen yang mengeksplorasi jurnalisme investigatif, teknologi, kultur urban, musik, dan dinamika sosial masyarakat modern berpedoman pada standar jurnalisme berkualitas.",
+		avatarUrl: null,
+		archiveUrl: isEn ? "/en/redaksi" : "/redaksi",
+		websiteUrl: "https://tujuhcahaya.com",
+		isEditorialFallback: true,
+	};
+}
+
+/**
+ * Fetch paginated articles by author slug
+ */
+export async function get7cPostsByAuthor(
+	authorSlug: string,
+	page: number = 1,
+	limit: number = 25,
+	locale: Locale = "id"
+) {
+	const sqlite3 = await import("node:sqlite");
+	const db = new sqlite3.DatabaseSync("data.db");
+
+	try {
+		const byline = db
+			.prepare("SELECT * FROM _emdash_bylines WHERE slug = ? AND locale = ? LIMIT 1")
+			.get(authorSlug, locale) as any;
+
+		if (!byline) {
+			return {
+				byline: null,
+				author: resolve7cAuthor({ slug: authorSlug }, locale),
+				posts: [],
+				total: 0,
+				page,
+				totalPages: 0,
+				hasMore: false,
+			};
+		}
+
+		const offset = Math.max(0, (page - 1) * limit);
+		const countRow = db
+			.prepare("SELECT count(DISTINCT p.id) as total FROM ec_posts p WHERE p.primary_byline_id = ? AND p.status = 'published'")
+			.get(byline.translation_group) as { total: number };
+
+		const total = countRow?.total || 0;
+		const totalPages = Math.ceil(total / limit);
+
+		const posts = db
+			.prepare(`
+				SELECT p.id, p.slug, p.title, p.excerpt, p.published_at, p.featured_image,
+				       t.label as category_label, t.slug as category_slug
+				FROM ec_posts p
+				JOIN _emdash_bylines b ON p.primary_byline_id = b.translation_group AND b.locale = ?
+				LEFT JOIN content_taxonomies ct ON p.id = ct.entry_id AND ct.collection = 'posts'
+				LEFT JOIN taxonomies t ON ct.taxonomy_id = t.id AND t.name = 'category'
+				WHERE b.slug = ? AND p.status = 'published'
+				GROUP BY p.id
+				ORDER BY p.published_at DESC
+				LIMIT ? OFFSET ?;
+			`)
+			.all(locale, authorSlug, limit, offset) as Array<{
+				id: string;
+				slug: string;
+				title: string;
+				excerpt: string | null;
+				published_at: string;
+				featured_image: string | null;
+				category_label: string | null;
+				category_slug: string | null;
+			}>;
+
+		const author = resolve7cAuthor(byline, locale);
+
+		return {
+			byline,
+			author,
+			posts,
+			total,
+			page,
+			totalPages,
+			hasMore: offset + posts.length < total,
+		};
+	} finally {
+		db.close();
+	}
+}
+
+
 

@@ -1,6 +1,7 @@
 ---
 import { getEmDashCollection, getTermsForEntries } from "emdash";
 import Base from "../../layouts/Base.astro";
+import { build7cDispatchPreview } from "../../lib/7c-dispatch";
 
 const cursor = Astro.url.searchParams.get("cursor") || undefined;
 const {
@@ -38,12 +39,13 @@ const formattedPosts = posts.map((post) => {
 		category: firstCategory,
 		formattedDate,
 		slug: post.data?.slug || post.id,
+		preview: build7cDispatchPreview(post, firstCategory, "id"),
 	};
 });
 ---
 
 <Base
-	title="Semua Artikel — Dispatch Redaksi"
+	title="Semua Artikel — Arsip Liputan"
 	description="Arsip seluruh artikel, liputan, dan berita terkini dari Tujuhcahaya Media House."
 >
 	<div class="dispatch-archive-page">
@@ -51,7 +53,7 @@ const formattedPosts = posts.map((post) => {
 		<div class="dispatch-header">
 			<div class="dispatch-header-left">
 				<span class="dispatch-pulse-dot" aria-hidden="true"></span>
-				<h1 class="dispatch-header-title">DISPATCH REDAKSI — ARSIP LENGKAP</h1>
+				<h1 class="dispatch-header-title">ARSIP LIPUTAN</h1>
 				<span class="dispatch-count-badge">16.745 Artikel</span>
 			</div>
 
@@ -74,19 +76,17 @@ const formattedPosts = posts.map((post) => {
 					<p>Belum ada artikel yang diterbitkan.</p>
 				</div>
 			) : (
-				formattedPosts.map((item, idx) => (
-					<a href={`/${item.slug}`} class="dispatch-row">
-						<!-- Status Circle (Row 0 on page 1 is checked lead story, rest are hollow circles) -->
-						<div class="dispatch-bullet-wrapper">
-							{idx === 0 && !cursor ? (
-								<span class="dispatch-bullet checked" aria-hidden="true">
-									<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
-										<polyline points="20 6 9 17 4 12"></polyline>
-									</svg>
-								</span>
-							) : (
-								<span class="dispatch-bullet" aria-hidden="true"></span>
-							)}
+				formattedPosts.map((item) => (
+					<a
+						href={`/${item.slug}`}
+						class="dispatch-row"
+						data-post-slug={item.slug}
+						data-astro-reload
+						data-dispatch-preview={JSON.stringify(item.preview)}
+					>
+						<!-- Status Circle (Hollow circle, transforms to check mark when read and persisted in localStorage) -->
+						<div class="dispatch-bullet-wrapper" title="Tandai status baca (Klik untuk ubah)">
+							<span class="dispatch-bullet" aria-hidden="true"></span>
 						</div>
 
 						<!-- Article Title (Truncated) -->

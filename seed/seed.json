@@ -64,6 +64,63 @@
 					"searchable": true
 				}
 			]
+		},
+		{
+			"slug": "submissions",
+			"label": "Kirim Naskah",
+			"labelSingular": "Naskah Masuk",
+			"urlPattern": "/submissions/{slug}",
+			"supports": ["drafts", "search"],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Judul Naskah",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "author_name",
+					"label": "Nama Penulis",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "author_email",
+					"label": "Email Penulis",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "author_phone",
+					"label": "Nomor WhatsApp",
+					"type": "string"
+				},
+				{
+					"slug": "category",
+					"label": "Kanal / Rubrik",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "content",
+					"label": "Isi Naskah",
+					"type": "text",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "curation_status",
+					"label": "Status Kurasi",
+					"type": "string"
+				},
+				{
+					"slug": "notes",
+					"label": "Catatan Redaksi",
+					"type": "text"
+				}
+			]
 		}
 	],
 	"taxonomies": [

@@ -10,7 +10,7 @@
   },
   "topbar": {
     "brand_tagline": "TUJUHCAHAYA MEDIA HOUSE",
-    "dispatch_live": "DISPATCH REDAKSI",
+    "dispatch_live": "LIPUTAN TERKINI",
     "switch_lang": "Ganti bahasa"
   },
   "editorial": {
@@ -21,13 +21,13 @@
     "articles_count": "16.745 Artikel",
     "trending": "Liputan Populer",
     "latest": "Liputan Terkini",
-    "empty_state": "Belum ada artikel pada pilar ini.",
+    "empty_state": "Belum ada artikel pada rubrik ini.",
     "back_to_home": "Kembali ke Beranda",
     "page_not_found": "Halaman Tidak Ditemukan"
   },
   "footer": {
     "tagline": "Media house digital independen yang mengeksplorasi jurnalisme investigatif, teknologi, kultur urban, musik, dan dinamika sosial masyarakat modern.",
-    "pillars_title": "Pilar Liputan",
+    "pillars_title": "Rubrik Liputan",
     "company_title": "Redaksi & Legal",
     "about": "Tentang Kami",
     "editorial_team": "Susunan Redaksi",

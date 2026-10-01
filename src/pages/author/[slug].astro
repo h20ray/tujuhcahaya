@@ -1,0 +1,540 @@
+---
+import { decodeSlug } from "emdash";
+import Base from "../../layouts/Base.astro";
+import { get7cPostsByAuthor, C7_AUTHORS } from "../../lib/7c-cms";
+import { build7cDispatchPreview } from "../../lib/7c-dispatch";
+
+const rawSlug = decodeSlug(Astro.params.slug);
+if (!rawSlug) {
+	return Astro.redirect("/404");
+}
+
+const pageQuery = Number(Astro.url.searchParams.get("page")) || 1;
+const page = Math.max(1, pageQuery);
+const limit = 25;
+
+const { byline, author, posts, total, totalPages, hasMore } = await get7cPostsByAuthor(
+	rawSlug,
+	page,
+	limit,
+	"id"
+);
+
+// If byline not in database and not a known author
+if (!byline && author.isEditorialFallback && rawSlug !== "redaksi") {
+	return Astro.redirect("/404");
+}
+
+const formattedPosts = posts.map((post) => {
+	const formattedDate = post.published_at
+		? new Date(post.published_at).toLocaleDateString("id-ID", {
+				day: "numeric",
+				month: "short",
+				year: "numeric",
+		  })
+		: "";
+	const cat = {
+		label: post.category_label || "Berita",
+		slug: post.category_slug || "berita",
+	};
+	return {
+		id: post.id,
+		slug: post.slug,
+		title: post.title,
+		formattedDate,
+		publishedAt: post.published_at,
+		category: cat,
+		preview: build7cDispatchPreview(post, cat, "id"),
+	};
+});
+
+const allAuthorSlugs = Object.keys(C7_AUTHORS);
+---
+
+<Base
+	title={`${author.name} — Penulis di Tujuhcahaya`}
+	description={author.bio || `Kumpulan artikel, liputan investigatif, dan tulisan oleh ${author.name} di Tujuhcahaya.`}
+>
+	<div class="dispatch-archive-page">
+		<!-- Author Hero Profile Header -->
+		<section class="c7-author-profile-hero" aria-label="Profil Penulis">
+			<div class="c7-author-hero-wrap">
+				<div class="c7-author-hero-avatar">
+					{author.avatarUrl ? (
+						<img
+							src={author.avatarUrl}
+							alt={author.name}
+							width="88"
+							height="88"
+							class="c7-hero-avatar-img"
+						/>
+					) : (
+						<div class="c7-hero-avatar-fallback" aria-hidden="true">
+							{author.name.slice(0, 2).toUpperCase()}
+						</div>
+					)}
+				</div>
+
+				<div class="c7-author-hero-info">
+					<div class="c7-author-hero-badges">
+						<span class="c7-hero-kicker">PROFIL JURNALIS</span>
+						<span class="c7-hero-role">{author.role}</span>
+						<span class="c7-hero-count">{total.toLocaleString("id-ID")} Artikel Terbit</span>
+					</div>
+
+					<h1 class="c7-author-hero-name">{author.name}</h1>
+
+					{author.bio && (
+						<p class="c7-author-hero-bio">{author.bio}</p>
+					)}
+				</div>
+			</div>
+		</section>
+
+		<!-- Sub-navigation: All Editorial Authors -->
+		<div class="dispatch-header">
+			<div class="dispatch-header-left">
+				<span class="dispatch-pulse-dot" aria-hidden="true"></span>
+				<h2 class="dispatch-header-title">SEMUA LIPUTAN OLEH {author.name.toUpperCase()}</h2>
+			</div>
+
+			<!-- Authors Filter Tabs -->
+			<div class="dispatch-category-filters" role="navigation" aria-label="Daftar Penulis Tujuhcahaya">
+				{allAuthorSlugs.map((aSlug) => {
+					const aData = C7_AUTHORS[aSlug];
+					const isActive = aSlug === author.slug;
+					return (
+						<a
+							href={`/author/${aSlug}`}
+							class={`dispatch-filter-tab ${isActive ? "active" : ""}`}
+						>
+							{aData.name}
+						</a>
+					);
+				})}
+			</div>
+		</div>
+
+		<!-- Dispatch Table Rows -->
+		<div class="dispatch-table" role="feed" aria-label={`Daftar Artikel oleh ${author.name}`}>
+			{formattedPosts.length === 0 ? (
+				<div class="dispatch-empty-state">
+					<p>Belum ada artikel yang diterbitkan oleh penulis ini.</p>
+				</div>
+			) : (
+				formattedPosts.map((item) => (
+					<a
+						href={`/${item.slug}`}
+						class="dispatch-row"
+						data-post-slug={item.slug}
+						data-astro-reload
+						data-dispatch-preview={JSON.stringify(item.preview)}
+					>
+						<!-- Status Circle (Hollow circle, transforms to check mark when read and persisted in localStorage) -->
+						<div class="dispatch-bullet-wrapper" title="Tandai status baca (Klik untuk ubah)">
+							<span class="dispatch-bullet" aria-hidden="true"></span>
+						</div>
+
+						<!-- Title -->
+						<span class="dispatch-title">
+							{item.title}
+						</span>
+
+						<!-- Category Pill -->
+						<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
+							<span class="cat-dot" aria-hidden="true"></span>
+							<span>{item.category.label}</span>
+						</span>
+
+						<!-- Date Field -->
+						<time class="dispatch-date" datetime={item.publishedAt}>
+							{item.formattedDate}
+						</time>
+					</a>
+				))
+			)}
+		</div>
+
+		<!-- Pagination Footer -->
+		<div class="dispatch-footer">
+			<div class="dispatch-footer-meta">
+				<span class="dispatch-footer-dot" aria-hidden="true"></span>
+				<span>{author.name} • Halaman {page} dari {totalPages || 1} ({total} Total)</span>
+			</div>
+
+			<div class="dispatch-pagination">
+				{page > 1 && (
+					<a href={`/author/${author.slug}?page=${page - 1}`} class="dispatch-page-btn">
+						&larr; Sebelumnya
+					</a>
+				)}
+				{hasMore && (
+					<a href={`/author/${author.slug}?page=${page + 1}`} class="dispatch-page-btn primary">
+						Selanjutnya &rarr;
+					</a>
+				)}
+			</div>
+		</div>
+	</div>
+</Base>
+
+<style>
+	.dispatch-archive-page {
+		max-width: 1120px;
+		margin: 0 auto;
+		padding: 2.5rem 1.5rem 5rem;
+		min-height: 80vh;
+	}
+
+	/* Author Profile Hero */
+	.c7-author-profile-hero {
+		background: var(--7c-sys-surface-container-high);
+		border: 1px solid var(--7c-sys-outline-variant);
+		border-radius: var(--7c-radius-lg, 12px);
+		padding: 2.25rem 2rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.c7-author-hero-wrap {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.c7-author-hero-avatar {
+		flex-shrink: 0;
+	}
+
+	.c7-hero-avatar-img {
+		width: 88px;
+		height: 88px;
+		border-radius: 50%;
+		object-fit: cover;
+		border: 3px solid var(--7c-sys-outline-variant);
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+		display: block;
+	}
+
+	.c7-hero-avatar-fallback {
+		width: 88px;
+		height: 88px;
+		border-radius: 50%;
+		background: var(--7c-sys-primary);
+		color: var(--7c-sys-on-primary);
+		font-family: var(--7c-font-display);
+		font-weight: 800;
+		font-size: 1.75rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 3px solid var(--7c-sys-outline-variant);
+	}
+
+	.c7-author-hero-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		flex: 1;
+	}
+
+	.c7-author-hero-badges {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		flex-wrap: wrap;
+	}
+
+	.c7-hero-kicker {
+		font-family: var(--7c-font-mono, monospace);
+		font-size: 0.68rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--7c-sys-primary);
+	}
+
+	.c7-hero-role {
+		font-size: 0.75rem;
+		font-weight: 700;
+		padding: 0.2rem 0.65rem;
+		border-radius: 999px;
+		background: var(--7c-sys-surface-container-highest);
+		color: var(--7c-sys-on-surface);
+		border: 1px solid var(--7c-sys-outline-variant);
+	}
+
+	.c7-hero-count {
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--7c-sys-on-surface-variant);
+	}
+
+	.c7-author-hero-name {
+		font-family: var(--7c-font-display);
+		font-size: 1.85rem;
+		font-weight: 900;
+		letter-spacing: -0.02em;
+		color: var(--7c-sys-on-surface);
+		margin: 0;
+		line-height: 1.15;
+	}
+
+	.c7-author-hero-bio {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: var(--7c-sys-on-surface-variant);
+		margin: 0;
+		max-width: 720px;
+	}
+
+	/* Dispatch Table Header */
+	.dispatch-header {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding-bottom: 1.25rem;
+		border-bottom: 1px solid var(--7c-sys-outline-variant);
+		margin-bottom: 1rem;
+	}
+
+	.dispatch-header-left {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+	}
+
+	.dispatch-pulse-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--7c-sys-primary);
+		box-shadow: 0 0 10px var(--7c-sys-primary);
+	}
+
+	.dispatch-header-title {
+		font-family: var(--7c-font-mono, monospace);
+		font-size: 0.85rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		color: var(--7c-sys-on-surface);
+		margin: 0;
+	}
+
+	.dispatch-category-filters {
+		display: flex;
+		gap: 0.5rem;
+		overflow-x: auto;
+		padding-bottom: 0.35rem;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		overscroll-behavior-x: contain;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.dispatch-category-filters::-webkit-scrollbar {
+		display: none;
+	}
+
+	.dispatch-filter-tab {
+		font-size: 0.78rem;
+		font-weight: 600;
+		padding: 0.35rem 0.85rem;
+		border-radius: var(--7c-radius-sm, 6px);
+		background: var(--7c-sys-surface-container);
+		border: 1px solid var(--7c-sys-outline-variant);
+		color: var(--7c-sys-on-surface-variant);
+		text-decoration: none;
+		white-space: nowrap;
+		transition: all 0.15s ease;
+	}
+
+	.dispatch-filter-tab:hover {
+		color: var(--7c-sys-on-surface);
+		background: var(--7c-sys-surface-container-high);
+	}
+
+	.dispatch-filter-tab.active {
+		background: var(--7c-sys-primary);
+		color: var(--7c-sys-on-primary);
+		border-color: var(--7c-sys-primary);
+	}
+
+	/* Dispatch Table Rows */
+	.dispatch-table {
+		display: flex;
+		flex-direction: column;
+		background: var(--7c-sys-surface-container-low);
+		border: 1px solid var(--7c-sys-outline-variant);
+		border-radius: var(--7c-radius-md, 8px);
+		overflow: hidden;
+	}
+
+	.dispatch-empty-state {
+		padding: 3.5rem 1.5rem;
+		text-align: center;
+		color: var(--7c-sys-on-surface-variant);
+		font-size: 0.95rem;
+	}
+
+	.dispatch-row {
+		display: grid;
+		grid-template-columns: 24px 1fr auto 110px;
+		gap: 1rem;
+		align-items: center;
+		padding: 0.85rem 1.25rem;
+		border-bottom: 1px solid var(--7c-sys-outline-variant);
+		text-decoration: none;
+		color: var(--7c-sys-on-surface);
+		transition: background 0.15s ease;
+	}
+
+	.dispatch-row:last-child {
+		border-bottom: none;
+	}
+
+	.dispatch-row:hover {
+		background: var(--7c-sys-surface-container-high);
+	}
+
+	.dispatch-bullet-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.dispatch-bullet {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		border: 1.5px solid var(--7c-sys-outline);
+	}
+
+	.dispatch-bullet.checked {
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background: var(--7c-sys-primary);
+		color: var(--7c-sys-on-primary);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: none;
+	}
+
+	.dispatch-title {
+		font-size: 0.92rem;
+		font-weight: 600;
+		line-height: 1.4;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.dispatch-row:hover .dispatch-title {
+		color: var(--7c-sys-primary);
+	}
+
+	.dispatch-cat-pill {
+		font-size: 0.72rem;
+		font-weight: 700;
+		padding: 0.2rem 0.6rem;
+		border-radius: 999px;
+		background: var(--7c-sys-surface-container-highest);
+		color: var(--7c-sys-on-surface);
+		border: 1px solid var(--7c-sys-outline-variant);
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		white-space: nowrap;
+	}
+
+	.cat-dot {
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background: var(--7c-sys-primary);
+	}
+
+	.dispatch-date {
+		font-size: 0.75rem;
+		color: var(--7c-sys-on-surface-variant);
+		text-align: right;
+		white-space: nowrap;
+		font-family: var(--7c-font-mono, monospace);
+	}
+
+	/* Footer */
+	.dispatch-footer {
+		margin-top: 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 0.82rem;
+		color: var(--7c-sys-on-surface-variant);
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.dispatch-footer-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.dispatch-footer-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--7c-sys-primary);
+	}
+
+	.dispatch-pagination {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.dispatch-page-btn {
+		font-size: 0.8rem;
+		font-weight: 700;
+		padding: 0.4rem 0.85rem;
+		border-radius: var(--7c-radius-sm, 6px);
+		background: var(--7c-sys-surface-container);
+		border: 1px solid var(--7c-sys-outline-variant);
+		color: var(--7c-sys-on-surface);
+		text-decoration: none;
+		transition: all 0.15s ease;
+	}
+
+	.dispatch-page-btn:hover {
+		background: var(--7c-sys-surface-container-highest);
+		border-color: var(--7c-sys-outline);
+	}
+
+	.dispatch-page-btn.primary {
+		background: var(--7c-sys-primary);
+		color: var(--7c-sys-on-primary);
+		border-color: var(--7c-sys-primary);
+	}
+
+	@media (max-width: 768px) {
+		.c7-author-hero-wrap {
+			flex-direction: column;
+			text-align: center;
+			align-items: center;
+		}
+
+		.c7-author-hero-badges {
+			justify-content: center;
+		}
+
+		.dispatch-row {
+			grid-template-columns: 20px 1fr;
+			gap: 0.5rem 0.75rem;
+		}
+
+		.dispatch-cat-pill,
+		.dispatch-date {
+			grid-column: 2;
+		}
+	}
+</style>

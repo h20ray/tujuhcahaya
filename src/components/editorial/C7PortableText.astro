@@ -1,0 +1,37 @@
+---
+/**
+ * C7PortableText — Enhanced Editorial Portable Text Renderer
+ *
+ * Automatically wires 7C bespoke editorial blocks:
+ * - scoreBox -> C7ScoreBox
+ * - specTable -> C7SpecTable
+ * - pullQuote -> C7PullQuote
+ *
+ * Ensures seamless fallback to default Portable Text rendering for standard blocks.
+ */
+
+import { PortableText } from "emdash/ui";
+import C7ScoreBox from "./C7ScoreBox.astro";
+import C7SpecTable from "./C7SpecTable.astro";
+import C7PullQuote from "./C7PullQuote.astro";
+
+interface Props {
+	value: unknown;
+	components?: Record<string, unknown>;
+	class?: string;
+}
+
+const { value, components = {}, class: className = "" } = Astro.props;
+
+const customComponents = {
+	type: {
+		scoreBox: C7ScoreBox,
+		specTable: C7SpecTable,
+		pullQuote: C7PullQuote,
+		...((components as Record<string, unknown>)?.type as Record<string, unknown> || {}),
+	},
+	...components,
+};
+---
+
+<PortableText value={value} components={customComponents as any} class={className} />

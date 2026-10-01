@@ -200,6 +200,8 @@
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .dispatch-category-filters::-webkit-scrollbar {
@@ -278,6 +280,28 @@
   flex: 1;
 }
 
+/* 7C Dynamic Smart Fill (Auto-expands rows to fill vertical void seamlessly) */
+.dispatch-table.smart-filled {
+  overflow: hidden;
+}
+
+.dispatch-table.smart-filled .dispatch-row {
+  display: none;
+}
+
+.dispatch-table.smart-filled .dispatch-row.is-visible {
+  display: flex;
+  flex: 1 1 0;
+  min-height: 35px;
+  max-height: 48px;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.dispatch-table.smart-filled .dispatch-row.is-visible.is-last-visible,
+.dispatch-table.smart-filled .dispatch-row.is-visible:last-of-type {
+  border-bottom: none !important;
+}
+
 .dispatch-row {
   display: flex;
   align-items: center;
@@ -293,11 +317,26 @@
   background-color: var(--color-card-subtle);
 }
 
+.dispatch-row.is-last-visible,
 .dispatch-row:last-child {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 /* Status Bullets */
+.dispatch-bullet-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 50%;
+  transition: transform 0.12s ease;
+}
+
+.dispatch-bullet-wrapper:hover {
+  transform: scale(1.15);
+}
+
 .dispatch-bullet {
   width: 15px;
   height: 15px;
@@ -307,7 +346,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: all 0.15s ease;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dispatch-row:hover .dispatch-bullet {
@@ -360,6 +399,66 @@
 .dispatch-row:hover .dispatch-arrow {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* 7C Source Pill (Appears on hover replacing the previous arrow) */
+.c7-source-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--7c-font-display, var(--font-display, "Plus Jakarta Sans", sans-serif));
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding: 0.18rem 0.45rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  user-select: none;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.15s ease;
+}
+
+.dispatch-row:hover .c7-source-pill,
+.dispatch-row:focus-visible .c7-source-pill,
+.dispatch-row:focus-within .c7-source-pill {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (hover: none) {
+  .c7-source-pill {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 7C Official Brand Pill (Red) */
+.c7-source-pill-7c {
+  background-color: rgba(213, 0, 0, 0.1);
+  color: #d50000;
+  border: 1px solid rgba(213, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .c7-source-pill-7c {
+  background-color: rgba(255, 82, 82, 0.14);
+  color: #ff5252;
+  border: 1px solid rgba(255, 82, 82, 0.35);
+}
+
+/* External Syndicated Partner Source Pill */
+.c7-source-pill-external {
+  background-color: var(--color-card-subtle, rgba(0, 0, 0, 0.04));
+  color: var(--color-text-muted, #64748b);
+  border: 1px solid var(--color-border, #e2e8f0);
+}
+
+[data-theme="dark"] .c7-source-pill-external {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 /* Category Pill (Replacing Shipped/In progress/etc.) */
@@ -749,7 +848,7 @@
 .metrics-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: none;
   background-color: var(--color-bg);
 }
 
@@ -1119,54 +1218,58 @@
 .article-container {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 350px;
-  gap: 2.5rem;
-  padding: 2.5rem 1.5rem;
+  gap: 3.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
   align-items: start;
 }
 
 @media (max-width: 992px) {
   .article-container {
     grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+    padding: 1.5rem 1rem 3.5rem;
   }
 }
 
 .single-article, .single-page {
-  background: var(--color-card);
-  padding: 2.25rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  border: none;
 }
 
 @media (max-width: 640px) {
   .single-article, .single-page {
-    padding: 1.25rem;
+    padding: 0;
   }
 }
 
 .breadcrumb {
   font-size: 0.8125rem;
-  color: var(--color-text-muted);
+  color: var(--7c-sys-on-surface-variant);
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.4rem;
   margin-bottom: 1.25rem;
-  overflow-x: auto;
-  white-space: nowrap;
 }
 
 .article-title {
-  font-family: var(--font-display);
-  font-size: 2.25rem;
+  font-family: var(--7c-font-display, var(--font-display));
+  font-size: 2.6rem;
   font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: -0.025em;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
   margin: 0.75rem 0 1.25rem;
-  color: var(--color-text);
+  color: var(--7c-sys-on-surface, var(--color-text));
 }
 
 @media (max-width: 768px) {
   .article-title {
-    font-size: 1.75rem;
+    font-size: 1.95rem;
+    line-height: 1.25;
   }
 }
 
@@ -1176,10 +1279,10 @@
   align-items: center;
   gap: 1.25rem;
   padding-bottom: 1.25rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--7c-sys-surface-container-highest, rgba(0, 0, 0, 0.08));
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: var(--7c-sys-on-surface-variant, var(--color-text-muted));
 }
 
 .meta-item {
@@ -1189,26 +1292,29 @@
 }
 
 .article-featured-image {
-  margin-bottom: 2rem;
-  border-radius: var(--radius-md);
+  margin: 2rem 0 2.5rem;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  border: none;
+  background-color: var(--7c-sys-surface-container-low, #f8fafc);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
 }
 
 .article-featured-image img {
   width: 100%;
-  max-height: 520px;
+  max-height: 560px;
   object-fit: cover;
+  display: block;
 }
 
 .article-featured-image figcaption {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
+  font-size: 0.825rem;
+  color: var(--7c-sys-on-surface-variant, var(--color-text-muted));
   text-align: center;
-  padding: 0.5rem;
-  font-style: italic;
-  background-color: var(--color-card-subtle);
-  border-top: 1px solid var(--color-border);
+  padding: 0.75rem 1rem;
+  font-style: normal;
+  background-color: var(--7c-sys-surface-container-low, #f8fafc);
+  border: none;
 }
 
 /* Long-Form Prose Typography (Google Blog style) */

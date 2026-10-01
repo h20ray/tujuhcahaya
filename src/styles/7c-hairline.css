@@ -2,11 +2,17 @@
  * 7C Hairline Grid System (7C Bespoke 1px Architectural Framing)
  */
 
+/* Base hairline container (Default: open canvas for article & archive pages) */
 .c7-hairline-container,
 .hairline-container {
   max-width: var(--7c-max-width, 1280px);
   margin: 0 auto;
   width: 100%;
+}
+
+/* Hairline side borders exclusively for the Home Page */
+.c7-hairline-home,
+.c7-hairline-container.c7-hairline-home {
   border-left: 1px solid var(--7c-sys-outline-variant);
   border-right: 1px solid var(--7c-sys-outline-variant);
 }

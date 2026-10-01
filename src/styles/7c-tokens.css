@@ -4,12 +4,19 @@
  */
 
 :root {
+  color-scheme: light;
+
   /* MD3X Core Brand Roles */
   --7c-sys-primary: #d50000; /* Official Tujuhcahaya Crimson */
   --7c-sys-primary-hover: #b70000;
   --7c-sys-on-primary: #ffffff;
   --7c-sys-primary-container: #ffdad6;
   --7c-sys-on-primary-container: #410002;
+
+  /* 7C MD3X Precision Scrollbar Tokens (Light Mode) */
+  --7c-sys-scrollbar-thumb: rgba(148, 163, 184, 0.55);
+  --7c-sys-scrollbar-thumb-hover: rgba(100, 116, 139, 0.85);
+  --7c-sys-scrollbar-track: transparent;
 
   --7c-sys-secondary: #d97706; /* Golden Amber */
   --7c-sys-secondary-hover: #b45309;
@@ -57,6 +64,9 @@
   --7c-radius-md: 8px;
   --7c-radius-lg: 12px;
   --7c-max-width: 1280px;
+
+  /* 7C Persistent Audio Dock Height */
+  --c7-radio-dock-height: 64px;
 
   /* Backward Compatibility Aliases */
   --color-primary: var(--7c-sys-primary);
@@ -106,12 +116,19 @@
 }
 
 [data-theme="dark"] {
+  color-scheme: dark;
+
   /* MD3X Core Brand Roles (Dark OLED Mode) */
   --7c-sys-primary: #ff5252; /* Vivid Coral Crimson */
   --7c-sys-primary-hover: #ff758f;
   --7c-sys-on-primary: #050608;
   --7c-sys-primary-container: #93000a;
   --7c-sys-on-primary-container: #ffdad6;
+
+  /* 7C MD3X Precision Scrollbar Tokens (Dark OLED Mode) */
+  --7c-sys-scrollbar-thumb: rgba(255, 255, 255, 0.22);
+  --7c-sys-scrollbar-thumb-hover: rgba(255, 255, 255, 0.45);
+  --7c-sys-scrollbar-track: transparent;
 
   --7c-sys-secondary: #fbbf24; /* Bright Amber */
   --7c-sys-secondary-hover: #f59e0b;
@@ -187,4 +204,10 @@
   --emdash-search-border-focus: var(--7c-sys-primary);
   --emdash-search-hover: var(--7c-sys-surface-container-highest);
   --emdash-search-highlight: var(--7c-sys-primary);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --c7-radio-dock-height: 58px;
+  }
 }

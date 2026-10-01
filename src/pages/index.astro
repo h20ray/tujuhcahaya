@@ -1,13 +1,14 @@
 ---
-import { getEmDashCollection, getSiteSettings } from "emdash";
+import { getEmDashCollection, getSiteSettings, getTermsForEntries } from "emdash";
 import Base from "../layouts/Base.astro";
 import IsometricStack from "../components/ui/IsometricStack.astro";
 import { resolveStarterSiteIdentity } from "../utils/site-identity";
+import { build7cDispatchPreview, resolve7cArticleSource } from "../lib/7c-dispatch";
 
-// Fetch recent 11 posts for the compact hero dispatch list
+// Fetch recent 25 posts for the compact hero dispatch list (auto-fits via smart fill)
 const { entries: posts, cacheHint } = await getEmDashCollection("posts", {
 	orderBy: { published_at: "desc" },
-	limit: 11,
+	limit: 25,
 });
 
 if (Astro.cache?.enabled && cacheHint) {
@@ -18,13 +19,29 @@ const { siteTitle, siteTagline } = resolveStarterSiteIdentity(
 	await getSiteSettings(),
 );
 
-const heroNewsList = posts.map((post) => ({
-	post,
-	slug: post.data?.slug || post.id,
-}));
+// Single batched query for categories across hero posts
+const categoriesByEntry = await getTermsForEntries(
+	"posts",
+	posts.map((p) => p.data.id),
+	"category",
+);
+
+const heroNewsList = posts.map((post) => {
+	const cats = categoriesByEntry.get(post.data.id) ?? [];
+	const firstCategory = cats[0] ?? { label: "Berita", slug: "berita" };
+	const slug = post.data?.slug || post.id;
+	const source = resolve7cArticleSource(post);
+	return {
+		post,
+		slug,
+		category: firstCategory,
+		source,
+		preview: build7cDispatchPreview(post, firstCategory, "id"),
+	};
+});
 ---
 
-<Base title={siteTitle} description={siteTagline}>
+<Base title={siteTitle} description={siteTagline} isHome={true}>
 	<!-- HERO SECTION: Option B Hybrid (Left: Linear-Style Dispatch Table | Right: Isometric 3D Stack) -->
 	<section class="hero-split" aria-label="Profil & Sorotan Tujuhcahaya">
 		<!-- Left Column: Linear-Style Editorial Dispatch Table -->
@@ -34,7 +51,7 @@ const heroNewsList = posts.map((post) => ({
 			<!-- Header Bar of Dispatch Table -->
 			<div class="dispatch-header">
 				<div class="dispatch-header-left">
-					<span class="dispatch-header-title">DISPATCH REDAKSI</span>
+					<span class="dispatch-header-title">LIPUTAN TERKINI</span>
 					<span class="dispatch-count-badge">16.745 Artikel</span>
 				</div>
 				<a href="/posts" class="dispatch-all-link">
@@ -45,19 +62,17 @@ const heroNewsList = posts.map((post) => ({
 
 			<!-- Dispatch Table Rows (Compact: Bullet + Title + Hover Arrow) -->
 			<div class="dispatch-table" role="feed" aria-label="Daftar Liputan Terkini">
-				{heroNewsList.map((item, idx) => (
-					<a href={`/${item.slug}`} class="dispatch-row dispatch-row-compact">
-						<!-- Status Circle (Row 0 is checked lead story, rest are hollow circles) -->
-						<div class="dispatch-bullet-wrapper">
-							{idx === 0 ? (
-								<span class="dispatch-bullet checked" aria-hidden="true">
-									<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
-										<polyline points="20 6 9 17 4 12"></polyline>
-									</svg>
-								</span>
-							) : (
-								<span class="dispatch-bullet" aria-hidden="true"></span>
-							)}
+				{heroNewsList.map((item) => (
+					<a
+						href={`/${item.slug}`}
+						class="dispatch-row dispatch-row-compact"
+						data-post-slug={item.slug}
+						data-astro-reload
+						data-dispatch-preview={JSON.stringify(item.preview)}
+					>
+						<!-- Status Circle (Hollow circle, transforms to check mark when read and persisted in localStorage) -->
+						<div class="dispatch-bullet-wrapper" title="Tandai status baca (Klik untuk ubah)">
+							<span class="dispatch-bullet" aria-hidden="true"></span>
 						</div>
 
 						<!-- Article Title -->
@@ -65,8 +80,13 @@ const heroNewsList = posts.map((post) => ({
 							{item.post.data.title}
 						</span>
 
-						<!-- Hover Action Arrow -->
-						<span class="dispatch-arrow" aria-hidden="true">&rarr;</span>
+						<!-- Source Pill (7C Red for Tujuhcahaya, or external source) -->
+						<span
+							class={`c7-source-pill ${item.source.is7c ? "c7-source-pill-7c" : "c7-source-pill-external"}`}
+							title={`Sumber: ${item.source.name}`}
+						>
+							{item.source.label}
+						</span>
 					</a>
 				))}
 			</div>
@@ -126,4 +146,5 @@ const heroNewsList = posts.map((post) => ({
 			<span class="metric-label">Perspektif Segar</span>
 		</div>
 	</section>
+	<script src="../scripts/7c-dispatch-smart-fill.ts"></script>
 </Base>

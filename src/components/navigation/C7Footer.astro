@@ -1,119 +1,317 @@
 ---
-import {
-	type Locale,
-	DEFAULT_LOCALE,
-	use7cTranslation,
-} from "../../i18n/utils";
+import C7Logo from "../ui/C7Logo.astro";
+import { type Locale, DEFAULT_LOCALE } from "../../i18n/utils";
 
 interface Props {
 	locale?: Locale;
 }
 
 const { locale = DEFAULT_LOCALE } = Astro.props;
-const { t } = use7cTranslation(locale);
-const currentYear = new Date().getFullYear();
-const prefix = locale === "en" ? "/en" : "";
+const isEn = locale === "en";
+const prefix = isEn ? "/en" : "";
 ---
 
-<footer class="c7-site-footer">
-	<div class="c7-footer-inner">
-		<div class="c7-footer-col c7-footer-brand">
-			<h4>TUJUHCAHAYA</h4>
-			<p class="c7-footer-tagline">
-				{t.footer.tagline}
-			</p>
+<footer
+	class="c7-uni-footer"
+	id="footer-standard"
+	role="contentinfo"
+	aria-label={isEn ? "Site Footer" : "Footer Situs"}
+>
+	<div class="c7-uni-footer-main">
+		<!-- Section 1: Logo -->
+		<div class="c7-uni-footer-logo">
+			<a
+				href={prefix || "/"}
+				class="c7-uni-logo-link"
+				aria-label="Tujuhcahaya Homepage"
+			>
+				<C7Logo width={24} height={24} class="c7-uni-logo-svg" />
+				<span class="c7-uni-logo-text">TUJUHCAHAYA</span>
+			</a>
 		</div>
 
-		<div class="c7-footer-col">
-			<h4>{t.footer.pillars_title}</h4>
-			<ul class="c7-footer-links">
-				<li><a href={`${prefix}/category/berita`}>{locale === "en" ? "News & Investigation" : "Berita & Investigasi"}</a></li>
-				<li><a href={`${prefix}/category/tech`}>{locale === "en" ? "Tech & Science" : "Teknologi & Sains"}</a></li>
-				<li><a href={`${prefix}/category/game`}>{locale === "en" ? "Gaming & Esports" : "Esports & Gaming"}</a></li>
-				<li><a href={`${prefix}/category/musik`}>{locale === "en" ? "Music & Sound" : "Musik & Audio"}</a></li>
-				<li><a href={`${prefix}/category/budaya`}>{locale === "en" ? "Art & Pop Culture" : "Seni & Budaya Pop"}</a></li>
-				<li><a href={`${prefix}/category/kesehatan`}>{locale === "en" ? "Health & Life" : "Kesehatan & Hidup"}</a></li>
+		<!-- Section 2: Main Links (blog.google style) -->
+		<nav class="c7-uni-footer-nav" aria-label={isEn ? "Footer Navigation" : "Navigasi Footer"}>
+			<ul class="c7-uni-footer-links">
+				<li class="c7-uni-link-item">
+					<a href={`${prefix}/privacy-policy`} class="c7-uni-link">
+						{isEn ? "Privacy" : "Privasi"}
+					</a>
+				</li>
+				<li class="c7-uni-link-item">
+					<a href={`${prefix}/pedoman-media-siber`} class="c7-uni-link">
+						{isEn ? "Cyber Guidelines" : "Pedoman Media Siber"}
+					</a>
+				</li>
+				<li class="c7-uni-link-item">
+					<a href={`${prefix}/about-us`} class="c7-uni-link">
+						{isEn ? "About" : "Tentang Kami"}
+					</a>
+				</li>
+				<li class="c7-uni-link-item">
+					<a href={`${prefix}/redaksi`} class="c7-uni-link">
+						{isEn ? "Masthead" : "Susunan Redaksi"}
+					</a>
+				</li>
 			</ul>
-		</div>
+		</nav>
 
-		<div class="c7-footer-col">
-			<h4>{t.footer.company_title}</h4>
-			<ul class="c7-footer-links">
-				<li><a href={`${prefix}/about-us`}>{t.footer.about}</a></li>
-				<li><a href={`${prefix}/redaksi`}>{t.footer.editorial_team}</a></li>
-				<li><a href={`${prefix}/pedoman-media-siber`}>{t.footer.cyber_guidelines}</a></li>
-				<li><a href={`${prefix}/privacy-policy`}>{t.footer.privacy}</a></li>
-				<li><a href={`${prefix}/kontak`}>{t.footer.contact}</a></li>
-			</ul>
-		</div>
+		<!-- Section 3: Social Networks (low-emphasis icon buttons) -->
+		<ul class="c7-uni-footer-socials" aria-label={isEn ? "Social Channels" : "Media Sosial Resmi"}>
+			<li class="c7-uni-social-item">
+				<a
+					href="https://www.instagram.com/tujuhcahayahub"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="c7-uni-social-btn"
+					aria-label="Instagram @tujuhcahayahub"
+					title="Instagram"
+				>
+					<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+						<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+						<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+						<line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+					</svg>
+				</a>
+			</li>
+
+			<li class="c7-uni-social-item">
+				<a
+					href="https://x.com/tujuhcahayahub"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="c7-uni-social-btn"
+					aria-label="X (Twitter) @tujuhcahayahub"
+					title="X / Twitter"
+				>
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+					</svg>
+				</a>
+			</li>
+
+			<li class="c7-uni-social-item">
+				<a
+					href="https://www.tiktok.com/@tujuhcahayahub"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="c7-uni-social-btn"
+					aria-label="TikTok @tujuhcahayahub"
+					title="TikTok"
+				>
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.48 6.3 6.3 0 0 0 1.87-4.48V8.65a8.28 8.28 0 0 0 5.24 1.86v-3.5a4.83 4.83 0 0 1-1.34-.32z"></path>
+					</svg>
+				</a>
+			</li>
+
+			<li class="c7-uni-social-item">
+				<a
+					href="https://www.youtube.com/@tujuhcahaya"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="c7-uni-social-btn"
+					aria-label="YouTube Tujuhcahaya"
+					title="YouTube"
+				>
+					<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+						<path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+						<polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+					</svg>
+				</a>
+			</li>
+
+			<li class="c7-uni-social-item">
+				<a
+					href="/rss.xml"
+					class="c7-uni-social-btn"
+					aria-label="RSS 2.0 Feed"
+					title="RSS Feed"
+				>
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+						<path d="M4 11a9 9 0 0 1 9 9"></path>
+						<path d="M4 4a16 16 0 0 1 16 16"></path>
+						<circle cx="5" cy="19" r="1"></circle>
+					</svg>
+				</a>
+			</li>
+		</ul>
 	</div>
 
-	<div class="c7-footer-bottom">
-		<p>&copy; {currentYear} {t.footer.copyright}</p>
+	<!-- Simple Sub-bar -->
+	<div class="c7-uni-footer-subbar">
+		<div class="c7-uni-subbar-inner">
+			<span class="c7-uni-copy">Tujuhcahaya</span>
+		</div>
 	</div>
 </footer>
 
 <style>
-	.c7-site-footer {
-		background-color: var(--7c-sys-surface-container-lowest);
+	/* blog.google Minimalist Uni-Footer for 7C */
+	.c7-uni-footer {
+		width: 100%;
+		background-color: var(--7c-sys-surface-container-lowest, #121214);
 		border-top: 1px solid var(--7c-sys-outline-variant);
 		color: var(--7c-sys-on-surface-variant);
+		font-family: var(--7c-font-sans, "Google Sans", sans-serif);
 		margin-top: auto;
 	}
 
-	.c7-footer-inner {
-		padding: 3rem 1.5rem 2rem;
-		display: grid;
-		grid-template-columns: 2fr 1fr 1fr;
-		gap: 3rem;
-	}
-
-	@media (max-width: 768px) {
-		.c7-footer-inner {
-			grid-template-columns: 1fr;
-			gap: 2rem;
-		}
-	}
-
-	.c7-footer-col h4 {
-		color: var(--7c-sys-on-surface);
-		font-family: var(--7c-font-display);
-		font-size: 0.95rem;
-		font-weight: 800;
-		margin-bottom: 1.15rem;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-	}
-
-	.c7-footer-tagline {
-		font-size: 0.875rem;
-		line-height: 1.6;
-		max-width: 420px;
-	}
-
-	.c7-footer-links {
-		list-style: none;
+	.c7-uni-footer-main {
+		max-width: var(--7c-max-width, 1280px);
+		margin: 0 auto;
+		padding: 1.25rem 1.75rem;
 		display: flex;
-		flex-direction: column;
-		gap: 0.6rem;
-		padding: 0;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		flex-wrap: wrap;
 	}
 
-	.c7-footer-links a {
-		font-size: 0.875rem;
-		color: var(--7c-sys-on-surface-variant);
-		transition: color 0.15s ease;
+	/* Logo */
+	.c7-uni-footer-logo {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
 	}
 
-	.c7-footer-links a:hover {
+	.c7-uni-logo-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		text-decoration: none;
+		color: var(--7c-sys-on-surface);
+		transition: opacity 0.15s ease;
+	}
+
+	.c7-uni-logo-link:hover {
+		opacity: 0.85;
+	}
+
+	.c7-uni-logo-svg {
 		color: var(--7c-sys-primary);
 	}
 
-	.c7-footer-bottom {
-		border-top: 1px solid var(--7c-sys-outline-variant);
-		padding: 1.25rem 1.5rem;
-		text-align: center;
-		font-size: 0.8125rem;
+	.c7-uni-logo-text {
+		font-family: var(--7c-font-display, "Google Sans", sans-serif);
+		font-weight: 800;
+		font-size: 0.95rem;
+		letter-spacing: 0.04em;
+		color: var(--7c-sys-on-surface);
+	}
+
+	/* Nav & Links */
+	.c7-uni-footer-nav {
+		display: flex;
+		align-items: center;
+		flex: 1;
+		min-width: 0;
+	}
+
+	.c7-uni-footer-links {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		flex-wrap: wrap;
+	}
+
+	.c7-uni-link-item {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.c7-uni-link {
 		color: var(--7c-sys-on-surface-variant);
+		font-size: 0.8125rem;
+		font-weight: 500;
+		text-decoration: none;
+		transition: color 0.15s ease;
+		white-space: nowrap;
+	}
+
+	.c7-uni-link:hover {
+		color: var(--7c-sys-primary);
+		text-decoration: underline;
+	}
+
+	/* Social Network Icon Buttons */
+	.c7-uni-footer-socials {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		flex-shrink: 0;
+	}
+
+	.c7-uni-social-item {
+		display: inline-flex;
+	}
+
+	.c7-uni-social-btn {
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--7c-sys-on-surface-variant);
+		background: transparent;
+		transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+		text-decoration: none;
+	}
+
+	.c7-uni-social-btn:hover {
+		background: var(--7c-sys-surface-container-highest, rgba(255, 255, 255, 0.1));
+		color: var(--7c-sys-primary);
+		transform: translateY(-1px);
+	}
+
+	/* Sub-bar (Simple Copyright) */
+	.c7-uni-footer-subbar {
+		border-top: 1px solid var(--7c-sys-outline-variant);
+		padding: 0.75rem 1.75rem;
+		font-size: 0.75rem;
+		color: var(--7c-sys-on-surface-variant);
+	}
+
+	.c7-uni-subbar-inner {
+		max-width: var(--7c-max-width, 1280px);
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+	}
+
+	.c7-uni-copy {
+		font-size: 0.75rem;
+		color: var(--7c-sys-on-surface-variant);
+		opacity: 0.85;
+	}
+
+	/* Responsive Breakpoints */
+	@media (max-width: 840px) {
+		.c7-uni-footer-main {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.25rem;
+			padding: 1.25rem;
+		}
+
+		.c7-uni-footer-links {
+			gap: 1rem;
+		}
+
+		.c7-uni-footer-socials {
+			align-self: flex-start;
+			margin-top: 0.25rem;
+		}
+
+		.c7-uni-footer-subbar {
+			padding: 0.75rem 1.25rem;
+		}
 	}
 </style>

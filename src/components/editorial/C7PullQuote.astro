@@ -1,0 +1,106 @@
+---
+/**
+ * C7PullQuote — Editorial Callout & Pull Quote
+ *
+ * Distinctive editorial callout for key takeaways, satirical punches,
+ * and high-impact quotes. Highlights the 7C pillar spectrum colors.
+ */
+
+interface Props {
+	quote: string;
+	author?: string;
+	role?: string;
+	pillar?: "tech" | "game" | "berita" | "musik" | "budaya" | "kesehatan" | "primary";
+	class?: string;
+}
+
+const {
+	quote,
+	author,
+	role,
+	pillar = "primary",
+	class: className = "",
+} = Astro.props;
+
+const pillarColorMap: Record<string, string> = {
+	primary: "var(--7c-sys-primary, #0f172a)",
+	tech: "var(--7c-pillar-tech, #0284c7)",
+	game: "var(--7c-pillar-game, #7c3aed)",
+	berita: "var(--7c-pillar-berita, #dc2626)",
+	musik: "var(--7c-pillar-musik, #ea580c)",
+	budaya: "var(--7c-pillar-budaya, #059669)",
+	kesehatan: "var(--7c-pillar-kesehatan, #0d9488)",
+};
+
+const accentColor = pillarColorMap[pillar] || pillarColorMap.primary;
+---
+
+<figure class={`c7-pullquote ${className}`} style={`--quote-accent: ${accentColor};`}>
+	<blockquote class="c7-pullquote-content">
+		<span class="c7-quote-mark" aria-hidden="true">&ldquo;</span>
+		<p>{quote}</p>
+	</blockquote>
+
+	{(author || role) && (
+		<figcaption class="c7-pullquote-caption">
+			{author && <strong class="caption-author">— {author}</strong>}
+			{role && <span class="caption-role">, {role}</span>}
+		</figcaption>
+	)}
+</figure>
+
+<style>
+	.c7-pullquote {
+		margin: 2.75rem 0;
+		padding: 1.5rem 1.75rem;
+		background: var(--7c-sys-surface-container, #f8fafc);
+		border-left: 4px solid var(--quote-accent);
+		border-radius: 0 var(--7c-sys-radius-sm, 6px) var(--7c-sys-radius-sm, 6px) 0;
+		position: relative;
+	}
+
+	.c7-pullquote-content {
+		margin: 0;
+		position: relative;
+	}
+
+	.c7-quote-mark {
+		position: absolute;
+		top: -0.75rem;
+		left: -0.25rem;
+		font-size: 3.5rem;
+		line-height: 1;
+		font-family: Georgia, serif;
+		color: var(--quote-accent);
+		opacity: 0.25;
+		user-select: none;
+	}
+
+	.c7-pullquote-content p {
+		font-family: var(--7c-sys-font-sans, system-ui, sans-serif);
+		font-size: 1.15rem;
+		font-weight: 600;
+		line-height: 1.6;
+		color: var(--7c-sys-on-surface, #0f172a);
+		margin: 0;
+		position: relative;
+		z-index: 1;
+		font-style: italic;
+	}
+
+	.c7-pullquote-caption {
+		margin-top: 1rem;
+		font-size: 0.8125rem;
+		color: var(--7c-sys-on-surface-variant, #64748b);
+		text-align: right;
+	}
+
+	.caption-author {
+		color: var(--7c-sys-on-surface, #0f172a);
+		font-weight: 700;
+	}
+
+	.caption-role {
+		font-style: normal;
+	}
+</style>

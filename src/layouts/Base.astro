@@ -5,6 +5,9 @@ import { createPublicPageContext } from "emdash/page";
 import C7Masthead from "../components/navigation/C7Masthead.astro";
 import C7Footer from "../components/navigation/C7Footer.astro";
 import { resolveStarterSiteIdentity } from "../utils/site-identity";
+import { C7RadioPlayer } from "@tujuhcahaya/radio-player/client";
+import C7DispatchDrawer from "../components/editorial/C7DispatchDrawer.astro";
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 
 interface Props {
@@ -15,9 +18,10 @@ interface Props {
 	canonical?: string | null;
 	/** Pass content reference for plugin page contributions on content pages */
 	content?: { collection: string; id: string; slug?: string | null };
+	isHome?: boolean;
 }
 
-const { title, pageTitle, description, image, canonical, content } =
+const { title, pageTitle, description, image, canonical, content, isHome: propIsHome } =
 	Astro.props;
 const [settingsResult, menuResult] = await Promise.all([
 	getSiteSettingsWithCacheHint(),
@@ -43,6 +47,7 @@ import { get7cLocaleFromUrl } from "../i18n/utils";
 
 const currentPath = Astro.url.pathname;
 const locale = get7cLocaleFromUrl(Astro.url);
+const isHome = propIsHome ?? (currentPath === "/" || currentPath === "" || currentPath === "/en" || currentPath === "/en/");
 
 const currentDateStr = new Date().toLocaleDateString(locale === "en" ? "en-US" : "id-ID", {
 	weekday: "long",
@@ -87,16 +92,21 @@ const pageCtx = createPublicPageContext({
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 		<EmDashHead page={pageCtx} />
+		<ClientRouter />
 
 		<script is:inline>
-			// Instant theme initialization to prevent flash
-			const savedTheme = localStorage.getItem("theme");
-			const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-			if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-				document.documentElement.setAttribute("data-theme", "dark");
-			} else {
-				document.documentElement.removeAttribute("data-theme");
-			}
+			// Instant theme initialization to prevent flash (FOUC)
+			(() => {
+				try {
+					const saved = localStorage.getItem("theme");
+					const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+					if (saved === "dark" || (!saved && prefersDark)) {
+						document.documentElement.setAttribute("data-theme", "dark");
+					} else {
+						document.documentElement.removeAttribute("data-theme");
+					}
+				} catch (_) {}
+			})();
 		</script>
 	</head>
 	<body>
@@ -110,41 +120,74 @@ const pageCtx = createPublicPageContext({
 		<!-- Full-Width Minimalist Masthead (Edge-to-Edge) -->
 		<C7Masthead currentPath={currentPath} currentDateStr={currentDateStr} locale={locale} menu={menu} />
 
-		<div class="c7-hairline-container hairline-container">
+		<div class:list={["c7-hairline-container", "hairline-container", { "c7-hairline-home": isHome }]}>
 			<!-- Main Body Content Slot (WCAG Landmark) -->
 			<main id="main-content" tabindex="-1">
 				<slot />
 			</main>
-
-			<!-- Company Profile Footer -->
-			<C7Footer locale={locale} />
 		</div>
 
-		<script>
-			// Global Theme Toggle Handler with WCAG aria-pressed state
-			const toggleBtns = document.querySelectorAll(".c7-theme-toggle");
-			function syncThemeAccessibility() {
-				const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-				toggleBtns.forEach((btn) => {
-					btn.setAttribute("aria-pressed", isDark ? "true" : "false");
-					btn.setAttribute("aria-label", isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap");
-				});
-			}
-			syncThemeAccessibility();
+		<!-- blog.google Minimalist Uni-Footer (Edge-to-Edge) -->
+		<C7Footer locale={locale} />
 
-			toggleBtns.forEach((btn) => {
-				btn.addEventListener("click", () => {
-					const current = document.documentElement.getAttribute("data-theme");
-					const next = current === "dark" ? "light" : "dark";
-					if (next === "dark") {
-						document.documentElement.setAttribute("data-theme", "dark");
-						localStorage.setItem("theme", "dark");
-					} else {
-						document.documentElement.removeAttribute("data-theme");
-						localStorage.setItem("theme", "light");
+		<!-- 7C Radio Player Bottom Spacer (Prevents footer and content clipping) -->
+		<div class="c7-radio-bottom-spacer" aria-hidden="true" transition:persist="c7-radio-spacer"></div>
+
+		<script>
+			function setupInteractions() {
+				// Mobile Menu Drawer Handler
+				const mobileMenuToggle = document.getElementById("c7-mobile-menu-toggle");
+				const mobileDrawer = document.getElementById("c7-mobile-drawer");
+				const openIcon = mobileMenuToggle?.querySelector(".c7-menu-open-icon") as HTMLElement | null;
+				const closeIcon = mobileMenuToggle?.querySelector(".c7-menu-close-icon") as HTMLElement | null;
+
+				function toggleMobileDrawer(open?: boolean) {
+					if (!mobileDrawer || !mobileMenuToggle) return;
+					const shouldOpen = open !== undefined ? open : mobileDrawer.hidden;
+					mobileDrawer.hidden = !shouldOpen;
+					mobileMenuToggle.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
+					if (openIcon && closeIcon) {
+						openIcon.style.display = shouldOpen ? "none" : "block";
+						closeIcon.style.display = shouldOpen ? "block" : "none";
 					}
-					syncThemeAccessibility();
+				}
+
+				mobileMenuToggle?.addEventListener("click", () => {
+					toggleMobileDrawer();
 				});
+
+				// Close mobile drawer on escape
+				window.addEventListener("keydown", (e) => {
+					if (e.key === "Escape" && mobileDrawer && !mobileDrawer.hidden) {
+						toggleMobileDrawer(false);
+					}
+				});
+
+				// Close mobile drawer when clicking a mobile nav link
+				document.querySelectorAll(".c7-mobile-nav-item").forEach((link) => {
+					link.addEventListener("click", () => {
+						toggleMobileDrawer(false);
+					});
+				});
+
+				// Ensure search input has an accessible label for screen readers
+				function checkSearchInputLabel() {
+					const searchInputs = document.querySelectorAll(".emdash-live-search-input");
+					searchInputs.forEach((input) => {
+						if (!input.getAttribute("aria-label")) {
+							input.setAttribute("aria-label", "Cari artikel atau liputan");
+						}
+					});
+				}
+				checkSearchInputLabel();
+			}
+
+			// Run on initial page load and on every View Transitions page swap
+			document.addEventListener("astro:page-load", setupInteractions);
+
+			// Reset body scroll position on View Transitions page swap
+			document.addEventListener("astro:after-swap", () => {
+				document.body.scrollTop = 0;
 			});
 
 			// Global Cmd+K / Ctrl+K search shortcut handler (Vengeance-style)
@@ -158,57 +201,16 @@ const pageCtx = createPublicPageContext({
 					}
 				}
 			});
-
-			// Mobile Menu Drawer Handler
-			const mobileMenuToggle = document.getElementById("c7-mobile-menu-toggle");
-			const mobileDrawer = document.getElementById("c7-mobile-drawer");
-			const openIcon = mobileMenuToggle?.querySelector(".c7-menu-open-icon") as HTMLElement | null;
-			const closeIcon = mobileMenuToggle?.querySelector(".c7-menu-close-icon") as HTMLElement | null;
-
-			function toggleMobileDrawer(open?: boolean) {
-				if (!mobileDrawer || !mobileMenuToggle) return;
-				const shouldOpen = open !== undefined ? open : mobileDrawer.hidden;
-				mobileDrawer.hidden = !shouldOpen;
-				mobileMenuToggle.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
-				if (openIcon && closeIcon) {
-					openIcon.style.display = shouldOpen ? "none" : "block";
-					closeIcon.style.display = shouldOpen ? "block" : "none";
-				}
-			}
-
-			mobileMenuToggle?.addEventListener("click", () => {
-				toggleMobileDrawer();
-			});
-
-			// Close mobile drawer on escape
-			window.addEventListener("keydown", (e) => {
-				if (e.key === "Escape" && mobileDrawer && !mobileDrawer.hidden) {
-					toggleMobileDrawer(false);
-				}
-			});
-
-			// Close mobile drawer when clicking a mobile nav link
-			document.querySelectorAll(".c7-mobile-nav-item").forEach((link) => {
-				link.addEventListener("click", () => {
-					toggleMobileDrawer(false);
-				});
-			});
-
-			// Ensure search input has an accessible label for screen readers
-			function checkSearchInputLabel() {
-				const searchInputs = document.querySelectorAll(".emdash-live-search-input");
-				searchInputs.forEach((input) => {
-					if (!input.getAttribute("aria-label")) {
-						input.setAttribute("aria-label", "Cari artikel atau liputan");
-					}
-				});
-			}
-			checkSearchInputLabel();
-			if ("MutationObserver" in window) {
-				const observer = new MutationObserver(checkSearchInputLabel);
-				observer.observe(document.body, { childList: true, subtree: true });
-			}
 		</script>
+
+		<!-- 7C Radio Player Floating Dock (Persistent across page navigation) -->
+		<C7RadioPlayer client:only="react" transition:persist="c7-radio-player" />
+
+		<!-- 7C Dispatch Article Preview Slide-over Drawer -->
+		<C7DispatchDrawer />
+
+		<!-- 7C Theme Controller (ClientRouter Lifecycle & Persistence) -->
+		<script src="../scripts/7c-theme.ts"></script>
 
 		<EmDashBodyEnd page={pageCtx} />
 	</body>

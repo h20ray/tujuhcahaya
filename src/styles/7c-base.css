@@ -9,22 +9,71 @@
 }
 
 html {
+  height: 100%;
+  overflow: hidden;
   font-family: var(--7c-font-sans);
   background-color: var(--7c-sys-surface-container-lowest);
   color: var(--7c-sys-on-surface);
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Smooth scrolling for in-page anchor jumps; never conflict with router navigation */
+@media (prefers-reduced-motion: no-preference) {
+  body:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Disable smooth scrolling during Astro View Transitions to eliminate jagged jumps */
+html[data-astro-transition],
+::view-transition {
+  scroll-behavior: auto !important;
+}
+
+/* 7C MD3X Precision Custom Scrollbar (Chromium, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--7c-sys-scrollbar-track, transparent);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--7c-sys-scrollbar-thumb);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--7c-sys-scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 body {
-  min-height: 100vh;
+  height: calc(100dvh - var(--c7-radio-dock-height, 64px));
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   background-color: var(--7c-sys-surface-container-lowest);
   color: var(--7c-sys-on-surface);
   line-height: 1.6;
   transition: background-color 0.2s ease, color 0.2s ease;
+
+  /* Prevent horizontal layout shifts / jagged jumps when scrollbars appear or drawers open */
+  scrollbar-gutter: stable;
+
+  /* Standard W3C Scrollbar (Firefox 64+ & modern browsers) */
+  scrollbar-width: thin;
+  scrollbar-color: var(--7c-sys-scrollbar-thumb) var(--7c-sys-scrollbar-track);
 }
 
 a {
@@ -90,3 +139,9 @@ img {
     scroll-behavior: auto !important;
   }
 }
+
+/* 7C Radio Player Bottom Spacer (Auto-compensation handled by body viewport containment) */
+.c7-radio-bottom-spacer {
+  display: none;
+}
+

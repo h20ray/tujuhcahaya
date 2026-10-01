@@ -1,0 +1,250 @@
+---
+/**
+ * C7ScoreBox — Editorial Verdict & Review Scorecard
+ *
+ * Designed for Tujuhcahaya Tech & Gaming reviews.
+ * Adheres to 7C MD3X specifications with Surface Container elevation,
+ * 1px hairline divider, and dynamic chromatic verdict accenting.
+ */
+
+interface Props {
+	score: number;
+	verdict?: string;
+	summary?: string;
+	pros?: string[];
+	cons?: string[];
+	productName?: string;
+	badge?: string;
+	class?: string;
+}
+
+const {
+	score,
+	verdict = score >= 8.5 ? "SANGAT DIREKOMENDASIKAN" : score >= 7.0 ? "LAYAK BELI" : "SKIP DULU",
+	summary = "",
+	pros = [],
+	cons = [],
+	productName = "Putusan Redaksi",
+	badge = "Review Tujuhcahaya",
+	class: className = "",
+} = Astro.props;
+
+// Format score to 1 decimal place (e.g. 8.5)
+const formattedScore = Number(score).toFixed(1);
+
+// Semantic verdict hue
+const scoreTierClass = score >= 8.5
+	? "tier-gold"
+	: score >= 7.0
+	? "tier-green"
+	: "tier-amber";
+---
+
+<aside class={`c7-scorebox c7-hairline-box ${scoreTierClass} ${className}`} aria-label={`Skor Review: ${formattedScore} - ${productName}`}>
+	<!-- Header Bar -->
+	<div class="c7-scorebox-header">
+		<div class="c7-scorebox-meta">
+			<span class="c7-scorebox-badge">{badge}</span>
+			<h3 class="c7-scorebox-title">{productName}</h3>
+		</div>
+		<div class="c7-scorebox-rating">
+			<span class="rating-number">{formattedScore}</span>
+			<span class="rating-max">/10</span>
+		</div>
+	</div>
+
+	<!-- Verdict Banner -->
+	<div class="c7-scorebox-verdict-banner">
+		<div class="verdict-label">Putusan Akhir:</div>
+		<div class="verdict-value">{verdict}</div>
+	</div>
+
+	{summary && (
+		<p class="c7-scorebox-summary">{summary}</p>
+	)}
+
+	<!-- Pros & Cons Grid -->
+	{(pros.length > 0 || cons.length > 0) && (
+		<div class="c7-scorebox-grid">
+			{pros.length > 0 && (
+				<div class="c7-scorebox-col pros">
+					<div class="col-heading">
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+							<polyline points="20 6 9 17 4 12"></polyline>
+						</svg>
+						<span>Kelebihan</span>
+					</div>
+					<ul class="col-list">
+						{pros.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			)}
+
+			{cons.length > 0 && (
+				<div class="c7-scorebox-col cons">
+					<div class="col-heading">
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+							<line x1="18" y1="6" x2="6" y2="18"></line>
+							<line x1="6" y1="6" x2="18" y2="18"></line>
+						</svg>
+						<span>Kekurangan</span>
+					</div>
+					<ul class="col-list">
+						{cons.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			)}
+		</div>
+	)}
+</aside>
+
+<style>
+	.c7-scorebox {
+		margin: 2.5rem 0;
+		padding: 1.5rem;
+		background: var(--7c-sys-surface-container, #ffffff);
+		border-radius: var(--7c-sys-radius-sm, 6px);
+		border: 1px solid var(--7c-sys-outline-variant, #e2e8f0);
+	}
+
+	.c7-scorebox-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.c7-scorebox-badge {
+		font-family: var(--7c-sys-font-mono, monospace);
+		font-size: 0.6875rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--7c-sys-primary, #0f172a);
+		display: inline-block;
+		margin-bottom: 0.25rem;
+	}
+
+	.c7-scorebox-title {
+		font-size: 1.35rem;
+		font-weight: 800;
+		color: var(--7c-sys-on-surface, #0f172a);
+		margin: 0;
+		line-height: 1.2;
+	}
+
+	.c7-scorebox-rating {
+		display: flex;
+		align-items: baseline;
+		background: var(--7c-sys-surface-container-high, #f8fafc);
+		padding: 0.5rem 0.85rem;
+		border: 1px solid var(--7c-sys-outline-variant, #cbd5e1);
+		border-radius: 4px;
+	}
+
+	.rating-number {
+		font-size: 2.25rem;
+		font-weight: 900;
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.rating-max {
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--7c-sys-on-surface-variant, #64748b);
+		margin-left: 2px;
+	}
+
+	.tier-gold .rating-number { color: #d97706; }
+	.tier-green .rating-number { color: #16a34a; }
+	.tier-amber .rating-number { color: #dc2626; }
+
+	.c7-scorebox-verdict-banner {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.6rem 0.85rem;
+		background: var(--7c-sys-surface-container-high, #f1f5f9);
+		border-left: 3px solid var(--7c-sys-primary, #0f172a);
+		font-size: 0.875rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.tier-gold .c7-scorebox-verdict-banner { border-left-color: #d97706; }
+	.tier-green .c7-scorebox-verdict-banner { border-left-color: #16a34a; }
+	.tier-amber .c7-scorebox-verdict-banner { border-left-color: #dc2626; }
+
+	.verdict-label {
+		font-weight: 700;
+		text-transform: uppercase;
+		font-size: 0.75rem;
+		letter-spacing: 0.05em;
+		color: var(--7c-sys-on-surface-variant, #64748b);
+	}
+
+	.verdict-value {
+		font-weight: 800;
+		color: var(--7c-sys-on-surface, #0f172a);
+		letter-spacing: -0.01em;
+	}
+
+	.c7-scorebox-summary {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: var(--7c-sys-on-surface, #334155);
+		margin: 0 0 1.5rem 0;
+	}
+
+	.c7-scorebox-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.25rem;
+		padding-top: 1.25rem;
+		border-top: 1px dashed var(--7c-sys-outline-variant, #e2e8f0);
+	}
+
+	.col-heading {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.8125rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-bottom: 0.75rem;
+	}
+
+	.pros .col-heading { color: #16a34a; }
+	.cons .col-heading { color: #dc2626; }
+
+	.col-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.875rem;
+		line-height: 1.55;
+		color: var(--7c-sys-on-surface, #334155);
+	}
+
+	.col-list li {
+		position: relative;
+		padding-left: 1rem;
+		margin-bottom: 0.45rem;
+	}
+
+	.col-list li::before {
+		content: "•";
+		position: absolute;
+		left: 0;
+		font-weight: 900;
+	}
+
+	.pros .col-list li::before { color: #16a34a; }
+	.cons .col-list li::before { color: #dc2626; }
+</style>
