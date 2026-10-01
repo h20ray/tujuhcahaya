@@ -2,7 +2,7 @@
 import { getEmDashCollection, getTermsForEntries } from "emdash";
 import Base from "../../../layouts/Base.astro";
 import { use7cTranslation } from "../../../i18n/utils";
-import { format7cCompactDate } from "../../../lib/7c-cms";
+import { format7cCompactDate, resolve7cAuthor } from "../../../lib/7c-cms";
 import { build7cDispatchPreview } from "../../../lib/7c-dispatch";
 
 const locale = "en";
@@ -34,11 +34,19 @@ const formattedPosts = posts.map((post) => {
 	const cats = categoriesByEntry.get(post.data.id) ?? [];
 	const firstCategory = cats[0] ?? { label: "News", slug: "berita" };
 	const formattedDate = format7cCompactDate(post.data.publishedAt, locale);
+	const authorProfile = resolve7cAuthor(
+		(post.data as any)?.byline ||
+			(post.data as any)?.primaryBylineId ||
+			(post.data as any)?.primary_byline_id ||
+			post.data,
+		"en",
+	);
 	const slug = post.data?.slug || post.id;
 	return {
 		post,
 		category: firstCategory,
 		formattedDate,
+		author: authorProfile,
 		slug,
 		preview: build7cDispatchPreview(post, firstCategory, "en"),
 	};
@@ -53,9 +61,8 @@ const formattedPosts = posts.map((post) => {
 		<!-- Header of Archive Dispatch Table -->
 		<div class="dispatch-header">
 			<div class="dispatch-header-left">
-				<span class="dispatch-pulse-dot" aria-hidden="true"></span>
 				<h1 class="dispatch-header-title">{t.topbar.dispatch_live} — COMPLETE ARCHIVE</h1>
-				<span class="dispatch-count-badge">{t.editorial.articles_count}</span>
+				<span class="dispatch-count-badge">16k+ Articles</span>
 			</div>
 
 			<!-- Quick Category Filter Pills -->
@@ -95,22 +102,20 @@ const formattedPosts = posts.map((post) => {
 							{item.post.data.title}
 						</span>
 
-						<!-- Category Pill -->
+						<!-- Category Pill (Dotless & Clean) -->
 						<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
-							<span class="cat-dot" aria-hidden="true"></span>
 							<span>{item.category.label}</span>
 						</span>
 
-						<!-- Assignee / Author Pill -->
-						<span class="dispatch-assignee">
-							<span class="assignee-avatar" aria-hidden="true">
-								<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+						<!-- Author Pill (Real Editorial Author, Zero X button) -->
+						<span class="dispatch-author-pill">
+							<span class="dispatch-author-avatar" aria-hidden="true">
+								<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
 									<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
 									<circle cx="12" cy="7" r="4"></circle>
 								</svg>
 							</span>
-							<span class="assignee-name">Editorial</span>
-							<span class="assignee-x" aria-hidden="true">&times;</span>
+							<span class="dispatch-author-name">{item.author.name}</span>
 						</span>
 
 						<!-- Date Field (Right-aligned) -->
@@ -122,20 +127,21 @@ const formattedPosts = posts.map((post) => {
 			)}
 		</div>
 
-		<!-- Dispatch Bottom Bar with Linear-Style Pagination -->
-		<div class="dispatch-footer">
-			<div class="dispatch-footer-meta">
-				<span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background-color: var(--7c-sys-primary);" aria-hidden="true"></span>
-				<span>{cursor ? "Archive Page" : "Latest Archive Page"}</span>
+		<!-- Auto-load Sentinel & Infinite Scroll Controller -->
+		<div
+			id="dispatch-load-sentinel"
+			class="dispatch-load-sentinel"
+			data-next-cursor={nextCursor || ""}
+			data-locale="en"
+		>
+			<div class="dispatch-loading-indicator" style="display: none;">
+				<span class="dispatch-loading-spinner" aria-hidden="true"></span>
+				<span>Loading next stories...</span>
 			</div>
-
-			<div class="dispatch-pagination" aria-label="Archive Pagination">
-				{cursor && (
-					<a href="/en/posts" class="dispatch-page-btn">
-						<span aria-hidden="true">&larr;</span>
-						<span>First Page</span>
-					</a>
-				)}
+			<div class="dispatch-end-message" style={!nextCursor ? "display: block;" : "display: none;"}>
+				<span>All stories loaded.</span>
+			</div>
+			<noscript>
 				{nextCursor && (
 					<a
 						href={`/en/posts?cursor=${encodeURIComponent(nextCursor)}`}
@@ -145,7 +151,12 @@ const formattedPosts = posts.map((post) => {
 						<span aria-hidden="true">&rarr;</span>
 					</a>
 				)}
-			</div>
+			</noscript>
 		</div>
 	</div>
+
+	<script>
+		import { initPostsAutoload } from "../../../scripts/7c-posts-autoload";
+		initPostsAutoload();
+	</script>
 </Base>

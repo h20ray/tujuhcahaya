@@ -94,7 +94,6 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 		<!-- Sub-navigation: All Editorial Authors -->
 		<div class="dispatch-header">
 			<div class="dispatch-header-left">
-				<span class="dispatch-pulse-dot" aria-hidden="true"></span>
 				<h2 class="dispatch-header-title">SEMUA LIPUTAN OLEH {author.name.toUpperCase()}</h2>
 			</div>
 
@@ -142,7 +141,6 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 
 						<!-- Category Pill -->
 						<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
-							<span class="cat-dot" aria-hidden="true"></span>
 							<span>{item.category.label}</span>
 						</span>
 
@@ -303,14 +301,6 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 		gap: 0.65rem;
 	}
 
-	.dispatch-pulse-dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background: var(--7c-sys-primary);
-		box-shadow: 0 0 10px var(--7c-sys-primary);
-	}
-
 	.dispatch-header-title {
 		font-family: var(--7c-font-mono, monospace);
 		font-size: 0.85rem;
@@ -454,13 +444,6 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 		align-items: center;
 		gap: 0.35rem;
 		white-space: nowrap;
-	}
-
-	.cat-dot {
-		width: 5px;
-		height: 5px;
-		border-radius: 50%;
-		background: var(--7c-sys-primary);
 	}
 
 	.dispatch-date {

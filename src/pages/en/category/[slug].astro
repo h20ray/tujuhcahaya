@@ -6,7 +6,8 @@ import {
 } from "emdash";
 import Base from "../../../layouts/Base.astro";
 import { use7cTranslation } from "../../../i18n/utils";
-import { format7cCompactDate } from "../../../lib/7c-cms";
+import { format7cCompactDate, resolve7cAuthor } from "../../../lib/7c-cms";
+import { build7cDispatchPreview } from "../../../lib/7c-dispatch";
 
 const locale = "en";
 const { t } = use7cTranslation(locale);
@@ -40,11 +41,21 @@ if (Astro.cache?.enabled) {
 
 const formattedPosts = posts.map((post) => {
 	const formattedDate = format7cCompactDate(post.data.publishedAt, locale);
+	const authorProfile = resolve7cAuthor(
+		(post.data as any)?.byline ||
+			(post.data as any)?.primaryBylineId ||
+			(post.data as any)?.primary_byline_id ||
+			post.data,
+		"en",
+	);
+	const cat = { label: term.label, slug: term.slug };
 	return {
 		post,
-		category: { label: term.label, slug: term.slug },
+		category: cat,
 		formattedDate,
+		author: authorProfile,
 		slug: post.data?.slug || post.id,
+		preview: build7cDispatchPreview(post, cat, "en"),
 	};
 });
 ---
@@ -57,7 +68,6 @@ const formattedPosts = posts.map((post) => {
 		<!-- Header of Archive Dispatch Table -->
 		<div class="dispatch-header">
 			<div class="dispatch-header-left">
-				<span class="dispatch-pulse-dot" aria-hidden="true"></span>
 				<h1 class="dispatch-header-title">EDITORIAL DISPATCH — {term.label.toUpperCase()}</h1>
 				<span class="dispatch-count-badge">Category</span>
 			</div>
@@ -81,19 +91,17 @@ const formattedPosts = posts.map((post) => {
 					<p>No stories found in this category yet.</p>
 				</div>
 			) : (
-				formattedPosts.map((item, idx) => (
-					<a href={`/en/${item.slug}`} class="dispatch-row">
-						<!-- Status Circle -->
-						<div class="dispatch-bullet-wrapper">
-							{idx === 0 && !cursor ? (
-								<span class="dispatch-bullet checked" aria-hidden="true">
-									<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
-										<polyline points="20 6 9 17 4 12"></polyline>
-									</svg>
-								</span>
-							) : (
-								<span class="dispatch-bullet" aria-hidden="true"></span>
-							)}
+				formattedPosts.map((item) => (
+					<a
+						href={`/en/${item.slug}`}
+						class="dispatch-row"
+						data-post-slug={item.slug}
+						data-astro-reload
+						data-dispatch-preview={JSON.stringify(item.preview)}
+					>
+						<!-- Status Circle (Hollow circle, transforms to check mark when read and persisted in localStorage) -->
+						<div class="dispatch-bullet-wrapper" title="Toggle read status">
+							<span class="dispatch-bullet" aria-hidden="true"></span>
 						</div>
 
 						<!-- Article Title (Truncated) -->
@@ -101,22 +109,20 @@ const formattedPosts = posts.map((post) => {
 							{item.post.data.title}
 						</span>
 
-						<!-- Category Pill -->
+						<!-- Category Pill (Dotless & Clean) -->
 						<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
-							<span class="cat-dot" aria-hidden="true"></span>
 							<span>{item.category.label}</span>
 						</span>
 
-						<!-- Assignee / Author Pill -->
-						<span class="dispatch-assignee">
-							<span class="assignee-avatar" aria-hidden="true">
-								<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+						<!-- Author Pill (Real Editorial Author, Zero X button) -->
+						<span class="dispatch-author-pill">
+							<span class="dispatch-author-avatar" aria-hidden="true">
+								<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
 									<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
 									<circle cx="12" cy="7" r="4"></circle>
 								</svg>
 							</span>
-							<span class="assignee-name">Editorial</span>
-							<span class="assignee-x" aria-hidden="true">&times;</span>
+							<span class="dispatch-author-name">{item.author.name}</span>
 						</span>
 
 						<!-- Date Field (Right-aligned) -->
@@ -128,20 +134,22 @@ const formattedPosts = posts.map((post) => {
 			)}
 		</div>
 
-		<!-- Dispatch Bottom Bar with Linear-Style Pagination -->
-		<div class="dispatch-footer">
-			<div class="dispatch-footer-meta">
-				<span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background-color: var(--7c-sys-primary);" aria-hidden="true"></span>
-				<span>{term.label} • {cursor ? "Archive Page" : "Latest Archive Page"}</span>
+		<!-- Auto-load Sentinel & Infinite Scroll Controller -->
+		<div
+			id="dispatch-load-sentinel"
+			class="dispatch-load-sentinel"
+			data-next-cursor={nextCursor || ""}
+			data-locale="en"
+			data-category={term.slug}
+		>
+			<div class="dispatch-loading-indicator" style="display: none;">
+				<span class="dispatch-loading-spinner" aria-hidden="true"></span>
+				<span>Loading next stories...</span>
 			</div>
-
-			<div class="dispatch-pagination" aria-label={`Category ${term.label} Pagination`}>
-				{cursor && (
-					<a href={`/en/category/${term.slug}`} class="dispatch-page-btn">
-						<span aria-hidden="true">&larr;</span>
-						<span>First Page</span>
-					</a>
-				)}
+			<div class="dispatch-end-message" style={!nextCursor ? "display: block;" : "display: none;"}>
+				<span>All stories in {term.label} loaded.</span>
+			</div>
+			<noscript>
 				{nextCursor && (
 					<a
 						href={`/en/category/${term.slug}?cursor=${encodeURIComponent(nextCursor)}`}
@@ -151,7 +159,12 @@ const formattedPosts = posts.map((post) => {
 						<span aria-hidden="true">&rarr;</span>
 					</a>
 				)}
-			</div>
+			</noscript>
 		</div>
 	</div>
+
+	<script>
+		import { initPostsAutoload } from "../../../scripts/7c-posts-autoload";
+		initPostsAutoload();
+	</script>
 </Base>

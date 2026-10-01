@@ -324,10 +324,42 @@ export const C7_AUTHORS: Record<
 };
 
 /**
+ * Translation group & Byline ID mappings to canonical author slugs
+ */
+export const C7_BYLINE_ID_MAP: Record<string, string> = {
+	"0100MUNS3DJL68FA69B26FACE9": "h20ray",
+	"0100MUNS3DJN572038F317780B": "h20ray",
+	"0100MUNS3DJOA35D985DFFDBA0": "margarethanina",
+	"0100MUNS3DJP23DBBB7C836C77": "margarethanina",
+	"0100MUNS3DJPCA4539BDBEB12A": "elangelano",
+	"0100MUNS3DJQ2297CDA3676A67": "elangelano",
+	"0100MUNS3DJQ06A12A6DABF37A": "rachelpatricia",
+	"0100MUNS3DJR758DF40AB5AD39": "rachelpatricia",
+	"0100MUNS3DJSD97205CCB31353": "sarahdilla",
+	"0100MUNS3DJT5A2245DC3513DC": "sarahdilla",
+	"0100MUNS3DJT76BFD04713B98E": "wodemahendra",
+	"0100MUNS3DJU33A11FDD2E6A64": "wodemahendra",
+};
+
+/**
  * Resolve an author/byline into an authentic C7AuthorProfile with fallback to Redaksi
  */
 export function resolve7cAuthor(byline: any, locale: Locale = "id"): C7AuthorProfile {
-	const slug = typeof byline?.slug === "string" ? byline.slug.toLowerCase().trim() : "";
+	let slug = "";
+	if (typeof byline === "string") {
+		const clean = byline.trim();
+		slug = C7_BYLINE_ID_MAP[clean] || (C7_AUTHORS[clean.toLowerCase()] ? clean.toLowerCase() : "");
+	} else if (byline && typeof byline === "object") {
+		if (typeof byline.slug === "string" && byline.slug.trim().length > 0) {
+			slug = byline.slug.toLowerCase().trim();
+		} else if (typeof byline.id === "string" && C7_BYLINE_ID_MAP[byline.id]) {
+			slug = C7_BYLINE_ID_MAP[byline.id];
+		} else if (typeof byline.primaryBylineId === "string" && C7_BYLINE_ID_MAP[byline.primaryBylineId]) {
+			slug = C7_BYLINE_ID_MAP[byline.primaryBylineId];
+		} else if (typeof byline.primary_byline_id === "string" && C7_BYLINE_ID_MAP[byline.primary_byline_id]) {
+			slug = C7_BYLINE_ID_MAP[byline.primary_byline_id];
+		}
+	}
 	const knownAuthor = C7_AUTHORS[slug];
 	const isEn = locale === "en";
 

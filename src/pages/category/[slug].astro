@@ -5,6 +5,7 @@ import {
 	decodeSlug,
 } from "emdash";
 import Base from "../../layouts/Base.astro";
+import { resolve7cAuthor } from "../../lib/7c-cms";
 import { build7cDispatchPreview } from "../../lib/7c-dispatch";
 
 const slug = decodeSlug(Astro.params.slug);
@@ -41,11 +42,19 @@ const formattedPosts = posts.map((post) => {
 				month: "short",
 		  })
 		: "";
+	const authorProfile = resolve7cAuthor(
+		(post.data as any)?.byline ||
+			(post.data as any)?.primaryBylineId ||
+			(post.data as any)?.primary_byline_id ||
+			post.data,
+		"id",
+	);
 	const cat = { label: term.label, slug: term.slug };
 	return {
 		post,
 		category: cat,
 		formattedDate,
+		author: authorProfile,
 		slug: post.data?.slug || post.id,
 		preview: build7cDispatchPreview(post, cat, "id"),
 	};
@@ -60,7 +69,6 @@ const formattedPosts = posts.map((post) => {
 		<!-- Header of Archive Dispatch Table -->
 		<div class="dispatch-header">
 			<div class="dispatch-header-left">
-				<span class="dispatch-pulse-dot" aria-hidden="true"></span>
 				<h1 class="dispatch-header-title">ARSIP LIPUTAN — {term.label.toUpperCase()}</h1>
 				<span class="dispatch-count-badge">Kategori</span>
 			</div>
@@ -102,22 +110,20 @@ const formattedPosts = posts.map((post) => {
 							{item.post.data.title}
 						</span>
 
-						<!-- Category Pill -->
+						<!-- Category Pill (Dotless & Clean) -->
 						<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
-							<span class="cat-dot" aria-hidden="true"></span>
 							<span>{item.category.label}</span>
 						</span>
 
-						<!-- Assignee / Author Pill (Linear [👤 Redaksi ×]) -->
-						<span class="dispatch-assignee">
-							<span class="assignee-avatar" aria-hidden="true">
-								<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+						<!-- Author Pill (Real Editorial Author, Zero X button) -->
+						<span class="dispatch-author-pill">
+							<span class="dispatch-author-avatar" aria-hidden="true">
+								<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
 									<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
 									<circle cx="12" cy="7" r="4"></circle>
 								</svg>
 							</span>
-							<span class="assignee-name">Redaksi</span>
-							<span class="assignee-x" aria-hidden="true">&times;</span>
+							<span class="dispatch-author-name">{item.author.name}</span>
 						</span>
 
 						<!-- Date Field (Right-aligned) -->
@@ -129,20 +135,22 @@ const formattedPosts = posts.map((post) => {
 			)}
 		</div>
 
-		<!-- Dispatch Bottom Bar with Linear-Style Pagination -->
-		<div class="dispatch-footer">
-			<div class="dispatch-footer-meta">
-				<span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background-color: var(--color-primary);" aria-hidden="true"></span>
-				<span>{term.label} • {cursor ? "Arsip Lanjutan" : "Halaman Utama"}</span>
+		<!-- Auto-load Sentinel & Infinite Scroll Controller -->
+		<div
+			id="dispatch-load-sentinel"
+			class="dispatch-load-sentinel"
+			data-next-cursor={nextCursor || ""}
+			data-locale="id"
+			data-category={term.slug}
+		>
+			<div class="dispatch-loading-indicator" style="display: none;">
+				<span class="dispatch-loading-spinner" aria-hidden="true"></span>
+				<span>Memuat liputan berikutnya...</span>
 			</div>
-
-			<div class="dispatch-pagination" aria-label={`Navigasi Halaman ${term.label}`}>
-				{cursor && (
-					<a href={`/category/${term.slug}`} class="dispatch-page-btn">
-						<span aria-hidden="true">&larr;</span>
-						<span>Halaman Pertama</span>
-					</a>
-				)}
+			<div class="dispatch-end-message" style={!nextCursor ? "display: block;" : "display: none;"}>
+				<span>Seluruh arsip liputan {term.label} telah dimuat.</span>
+			</div>
+			<noscript>
 				{nextCursor && (
 					<a
 						href={`/category/${term.slug}?cursor=${encodeURIComponent(nextCursor)}`}
@@ -152,7 +160,12 @@ const formattedPosts = posts.map((post) => {
 						<span aria-hidden="true">&rarr;</span>
 					</a>
 				)}
-			</div>
+			</noscript>
 		</div>
 	</div>
+
+	<script>
+		import { initPostsAutoload } from "../../scripts/7c-posts-autoload";
+		initPostsAutoload();
+	</script>
 </Base>
