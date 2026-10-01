@@ -1,41 +1,53 @@
 /**
- * 7C Theme Controller (Light & Dark OLED Mode)
+ * 7C Theme Controller (Light, Dark OLED & System Mode)
  *
  * Provides single-source-of-truth theme management, persistence in localStorage,
  * system preference detection, and seamless Astro View Transitions (<ClientRouter />) lifecycle support.
  */
 
-export type C7Theme = "light" | "dark";
+export type C7ThemeSetting = "light" | "dark" | "system";
+export type C7EffectiveTheme = "light" | "dark";
+// Backward compatibility alias
+export type C7Theme = C7EffectiveTheme;
 
 export const C7_THEME_STORAGE_KEY = "theme";
 
-export function getSystemPreference(): C7Theme {
+export function getSystemPreference(): C7EffectiveTheme {
 	if (typeof window === "undefined") return "light";
 	return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
-export function getSavedTheme(): C7Theme | null {
+export function getSavedTheme(): C7ThemeSetting | null {
 	if (typeof localStorage === "undefined") return null;
 	try {
 		const saved = localStorage.getItem(C7_THEME_STORAGE_KEY);
-		if (saved === "light" || saved === "dark") return saved;
+		if (saved === "light" || saved === "dark" || saved === "system") return saved;
 		return null;
 	} catch {
 		return null;
 	}
 }
 
-export function getCurrentTheme(): C7Theme {
-	const saved = getSavedTheme();
-	if (saved) return saved;
+export function getThemeSetting(): C7ThemeSetting {
+	return getSavedTheme() || "system";
+}
+
+export function getEffectiveTheme(setting?: C7ThemeSetting): C7EffectiveTheme {
+	const currentSetting = setting || getThemeSetting();
+	if (currentSetting === "light") return "light";
+	if (currentSetting === "dark") return "dark";
 	return getSystemPreference();
+}
+
+export function getCurrentTheme(): C7EffectiveTheme {
+	return getEffectiveTheme();
 }
 
 /**
  * Apply theme attribute to target documentElement.
  * Can be applied to live document.documentElement or incoming e.newDocument.documentElement.
  */
-export function applyThemeToElement(el: HTMLElement, theme: C7Theme): void {
+export function applyThemeToElement(el: HTMLElement, theme: C7EffectiveTheme): void {
 	if (theme === "dark") {
 		el.setAttribute("data-theme", "dark");
 	} else {
@@ -43,45 +55,50 @@ export function applyThemeToElement(el: HTMLElement, theme: C7Theme): void {
 	}
 }
 
-export function applyTheme(theme?: C7Theme): C7Theme {
-	const resolved = theme || getCurrentTheme();
-	if (typeof document !== "undefined") {
-		applyThemeToElement(document.documentElement, resolved);
-		syncThemeAccessibility(resolved);
-	}
-	return resolved;
-}
-
-export function setTheme(theme: C7Theme): void {
-	try {
-		localStorage.setItem(C7_THEME_STORAGE_KEY, theme);
-	} catch {}
-	applyTheme(theme);
-}
-
-export function toggleTheme(): C7Theme {
-	const current = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
-	const next: C7Theme = current === "dark" ? "light" : "dark";
-	setTheme(next);
-	return next;
-}
-
-export function syncThemeAccessibility(theme?: C7Theme): void {
+export function syncThemeButtons(currentSetting?: C7ThemeSetting): void {
 	if (typeof document === "undefined") return;
-	const isDark = (theme || getCurrentTheme()) === "dark";
-	const isEn = window.location.pathname.startsWith("/en");
-
-	const toggleBtns = document.querySelectorAll(".c7-theme-toggle");
-	toggleBtns.forEach((btn) => {
-		btn.setAttribute("aria-pressed", isDark ? "true" : "false");
-		if (isEn) {
-			btn.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
-			btn.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
-		} else {
-			btn.setAttribute("aria-label", isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap");
-			btn.setAttribute("title", isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap");
-		}
+	const activeSetting = currentSetting || getThemeSetting();
+	const themeBtns = document.querySelectorAll(".c7-theme-btn, .theme-btn");
+	themeBtns.forEach((btn) => {
+		const btnTheme = btn.getAttribute("data-theme");
+		const isActive = btnTheme === activeSetting;
+		btn.classList.toggle("active", isActive);
+		btn.setAttribute("aria-pressed", String(isActive));
 	});
+}
+
+export function applyTheme(setting?: C7ThemeSetting): C7EffectiveTheme {
+	const currentSetting = setting || getThemeSetting();
+	const effective = getEffectiveTheme(currentSetting);
+	if (typeof document !== "undefined") {
+		applyThemeToElement(document.documentElement, effective);
+		syncThemeButtons(currentSetting);
+	}
+	return effective;
+}
+
+export function setThemeSetting(setting: C7ThemeSetting): void {
+	try {
+		if (setting === "system") {
+			localStorage.removeItem(C7_THEME_STORAGE_KEY);
+		} else {
+			localStorage.setItem(C7_THEME_STORAGE_KEY, setting);
+		}
+	} catch {}
+	applyTheme(setting);
+}
+
+// Backward compatibility helper
+export function setTheme(theme: C7ThemeSetting): void {
+	setThemeSetting(theme);
+}
+
+// Backward compatibility helper
+export function toggleTheme(): C7EffectiveTheme {
+	const current = getEffectiveTheme();
+	const next: C7ThemeSetting = current === "dark" ? "light" : "dark";
+	setThemeSetting(next);
+	return getEffectiveTheme(next);
 }
 
 /**
@@ -96,15 +113,15 @@ export function initThemeLifecycle(): void {
 	// 1. Initial application on bundle execution
 	applyTheme();
 
-	// 2. CRITICAL: Preserve data-theme attribute on the incoming document BEFORE Astro swaps the DOM
+	// 2. CRITICAL: Preserve data-theme attribute on incoming document BEFORE Astro swaps the DOM
 	document.addEventListener("astro:before-swap", (e: any) => {
-		const activeTheme = getCurrentTheme();
+		const activeTheme = getEffectiveTheme();
 		if (e.newDocument && e.newDocument.documentElement) {
 			applyThemeToElement(e.newDocument.documentElement, activeTheme);
 		}
 	});
 
-	// 3. Re-sync accessibility attributes after DOM is swapped
+	// 3. Re-sync button active states after DOM is swapped
 	document.addEventListener("astro:page-load", () => {
 		applyTheme();
 	});
@@ -114,28 +131,29 @@ export function initThemeLifecycle(): void {
 		applyTheme();
 	});
 
-	// 5. Respond to OS color scheme changes in real-time (only if user hasn't explicitly set a preference)
+	// 5. Respond to OS color scheme changes in real-time (when in system mode)
 	try {
 		const media = window.matchMedia("(prefers-color-scheme: dark)");
 		media.addEventListener("change", () => {
-			if (!getSavedTheme()) {
-				applyTheme();
+			if (getThemeSetting() === "system") {
+				applyTheme("system");
 			}
 		});
 	} catch {}
 
-	// 6. Global delegated click handler (attached once to document, zero listener stacking)
+	// 6. Global delegated click handler for segmented .c7-theme-btn buttons
 	document.addEventListener(
 		"click",
 		(e) => {
 			const target = e.target as HTMLElement | null;
 			if (!target) return;
-			const btn = target.closest(".c7-theme-toggle");
+			const btn = target.closest(".c7-theme-btn, .theme-btn");
 			if (!btn) return;
 
 			e.preventDefault();
 			e.stopPropagation();
-			toggleTheme();
+			const targetTheme = (btn.getAttribute("data-theme") || "system") as C7ThemeSetting;
+			setThemeSetting(targetTheme);
 		},
 		{ capture: true },
 	);

@@ -85,7 +85,7 @@ const pageCtx = createPublicPageContext({
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,600,700|Google+Sans+Flex:400,500|Google+Sans+Text:400,500,600,700|Product+Sans:400,700&display=swap"
+			href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,600,700|Google+Sans+Text:400,500,700|Product+Sans:400,700&display=swap&lang=en"
 			rel="stylesheet"
 		/>
 		<link
@@ -104,7 +104,7 @@ const pageCtx = createPublicPageContext({
 				try {
 					const saved = localStorage.getItem("theme");
 					const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-					if (saved === "dark" || (!saved && prefersDark)) {
+					if (saved === "dark" || ((!saved || saved === "system") && prefersDark)) {
 						document.documentElement.setAttribute("data-theme", "dark");
 					} else {
 						document.documentElement.removeAttribute("data-theme");

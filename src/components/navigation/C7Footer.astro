@@ -1,5 +1,6 @@
 ---
 import C7Logo from "../ui/C7Logo.astro";
+import C7FooterSubbar from "./C7FooterSubbar.astro";
 import { type Locale, DEFAULT_LOCALE } from "../../i18n/utils";
 
 interface Props {
@@ -138,12 +139,8 @@ const prefix = isEn ? "/en" : "";
 		</ul>
 	</div>
 
-	<!-- Simple Sub-bar -->
-	<div class="c7-uni-footer-subbar">
-		<div class="c7-uni-subbar-inner">
-			<span class="c7-uni-copy">Tujuhcahaya</span>
-		</div>
-	</div>
+	<!-- Sub-bar (Copyright, Theme Switcher & EmDash Credit) -->
+	<C7FooterSubbar locale={locale} />
 </footer>
 
 <style>
@@ -271,27 +268,6 @@ const prefix = isEn ? "/en" : "";
 		transform: translateY(-1px);
 	}
 
-	/* Sub-bar (Simple Copyright) */
-	.c7-uni-footer-subbar {
-		border-top: 1px solid var(--7c-sys-outline-variant);
-		padding: 0.75rem 1.75rem;
-		font-size: 0.75rem;
-		color: var(--7c-sys-on-surface-variant);
-	}
-
-	.c7-uni-subbar-inner {
-		max-width: var(--7c-max-width, 1280px);
-		margin: 0 auto;
-		display: flex;
-		align-items: center;
-	}
-
-	.c7-uni-copy {
-		font-size: 0.75rem;
-		color: var(--7c-sys-on-surface-variant);
-		opacity: 0.85;
-	}
-
 	/* Responsive Breakpoints */
 	@media (max-width: 840px) {
 		.c7-uni-footer-main {
@@ -308,10 +284,6 @@ const prefix = isEn ? "/en" : "";
 		.c7-uni-footer-socials {
 			align-self: flex-start;
 			margin-top: 0.25rem;
-		}
-
-		.c7-uni-footer-subbar {
-			padding: 0.75rem 1.25rem;
 		}
 	}
 </style>
