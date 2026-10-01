@@ -348,10 +348,9 @@ const serializedRubrikData = Object.fromEntries(
 		filter: brightness(1.15);
 	}
 
-	/* Selected & Active States */
+	/* Selected & Active States: Box surfaces NEVER change their fill color */
 	.layer.sel .f-top {
-		fill: var(--layer-accent, #e11d48);
-		stroke: var(--layer-stroke, #be123c);
+		stroke: var(--layer-stroke, var(--layer-accent));
 		stroke-width: 1.5;
 	}
 
@@ -372,33 +371,22 @@ const serializedRubrikData = Object.fromEntries(
 	}
 
 	/* Top Face Logo Graphic (Tujuhcahaya Vector Emblem) */
-	/* In resting state, each stack's logo proudly displays in its category accent color */
+	/* Box color stays clean; only the Tujuhcahaya SVG icon changes color according to each rubrik */
 	.top-logo-path {
 		fill: var(--layer-accent);
 		transition: fill 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
-		opacity: 0.9;
+		opacity: 0.95;
 	}
 
 	.layer:hover .top-logo-path {
 		opacity: 1;
-		filter: drop-shadow(0 0 4px var(--layer-accent));
+		filter: drop-shadow(0 0 5px var(--layer-accent));
 	}
 
-	/* Selected state: logo contrasts against filled top face with WCAG AAA readability */
 	.layer.sel .top-logo-path {
-		fill: #ffffff !important;
+		fill: var(--layer-accent) !important;
 		opacity: 1;
-	}
-
-	/* Light mode exception for amber budaya slab */
-	.layer[data-key="budaya"].sel .top-logo-path {
-		fill: #090d16 !important;
-	}
-
-	/* Dark mode: Deep OLED Obsidian logo on vivid luminous pastel slab (9.8:1 - 12.2:1 AAA) */
-	:global([data-theme="dark"]) .layer.sel .top-logo-path {
-		fill: #050608 !important;
-		opacity: 1;
+		filter: drop-shadow(0 0 6px var(--layer-accent));
 	}
 
 	/* Typography on Isometric Faces (WCAG AAA Contrast Compliant) */
