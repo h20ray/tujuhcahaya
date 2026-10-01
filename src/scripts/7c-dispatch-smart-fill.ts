@@ -6,6 +6,36 @@
  * without any awkward voids or half-clipped rows.
  */
 
+export function initHeroMobileTabs(): void {
+	if (typeof window === "undefined" || typeof document === "undefined") return;
+
+	const tabsContainer = document.querySelector(".c7-hero-mobile-tabs");
+	const heroSplit = document.querySelector(".hero-split") as HTMLElement | null;
+	if (!tabsContainer || !heroSplit) return;
+
+	const buttons = tabsContainer.querySelectorAll<HTMLButtonElement>(".c7-hero-tab-btn");
+	buttons.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const target = btn.getAttribute("data-hero-tab");
+			if (!target) return;
+
+			buttons.forEach((b) => {
+				const isCurrent = b === btn;
+				b.classList.toggle("is-active", isCurrent);
+				b.setAttribute("aria-selected", isCurrent ? "true" : "false");
+			});
+
+			heroSplit.setAttribute("data-active-tab", target);
+
+			if (target === "dispatch") {
+				requestAnimationFrame(() => {
+					smartFillDispatch();
+				});
+			}
+		});
+	});
+}
+
 export function smartFillDispatch(): void {
 	if (typeof window === "undefined" || typeof document === "undefined") return;
 
@@ -19,39 +49,20 @@ export function smartFillDispatch(): void {
 	const rows = Array.from(table.querySelectorAll(".dispatch-row")) as HTMLElement[];
 	if (rows.length === 0) return;
 
-	// On mobile/tablet where columns are stacked (< 992px), show a clean fixed subset
-	if (window.innerWidth <= 992) {
-		table.classList.remove("smart-filled");
-		const mobileLimit = Math.min(10, rows.length);
-		rows.forEach((row, i) => {
-			row.classList.remove("is-visible");
-			if (i < mobileLimit) {
-				row.style.display = "";
-				if (i === mobileLimit - 1) {
-					row.classList.add("is-last-visible");
-				} else {
-					row.classList.remove("is-last-visible");
-				}
-			} else {
-				row.classList.remove("is-last-visible");
-				row.style.display = "none";
-			}
-		});
-		return;
-	}
-
-	// In desktop two-column mode: measure available vertical space
+	// Measure available vertical space in left pane
 	const paneHeight = leftPane.clientHeight;
-	const headerHeight = header ? header.offsetHeight : 48;
-	const footerHeight = footer ? footer.offsetHeight : 44;
+	const headerHeight = header ? header.offsetHeight : 44;
+	const footerHeight = footer ? footer.offsetHeight : 40;
 	const availableHeight = paneHeight - headerHeight - footerHeight;
 
-	// Target comfortable row height: ~38px - 44px
-	const targetRowHeight = 40;
-	let maxRows = Math.floor(availableHeight / targetRowHeight);
+	// Target comfortable row height: ~40px - 44px
+	const isMobile = window.innerWidth <= 992;
+	const targetRowHeight = isMobile ? 42 : 40;
+	let maxRows = availableHeight > 80 ? Math.floor(availableHeight / targetRowHeight) : 8;
 
-	// Boundary guards: at least 8 rows, capped by actual fetched rows
-	maxRows = Math.max(8, Math.min(maxRows, rows.length));
+	// Boundary guards: at least 5 on mobile, 8 on desktop, capped by actual fetched rows
+	const minLimit = isMobile ? 5 : 8;
+	maxRows = Math.max(minLimit, Math.min(maxRows, rows.length));
 
 	// If pane is tall enough to fit more rows at minimum height (~36px)
 	if (availableHeight / maxRows > 46 && maxRows < rows.length) {
@@ -95,6 +106,9 @@ export function initDispatchSmartFill(): void {
 	const heroSplit = document.querySelector(".hero-split");
 
 	if (!leftPane) return;
+
+	// Initialize mobile segmented tabs
+	initHeroMobileTabs();
 
 	// Initial calculation
 	smartFillDispatch();

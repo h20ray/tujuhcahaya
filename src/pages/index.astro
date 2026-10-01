@@ -43,9 +43,38 @@ const heroNewsList = posts.map((post) => {
 
 <Base title={siteTitle} description={siteTagline} isHome={true}>
 	<!-- HERO SECTION: Option B Hybrid (Left: Linear-Style Dispatch Table | Right: Isometric 3D Stack) -->
-	<section class="hero-split" aria-label="Profil & Sorotan Tujuhcahaya">
+	<section class="hero-split" data-active-tab="dispatch" aria-label="Profil & Sorotan Tujuhcahaya">
+		<!-- Mobile Segmented View Switcher (< 992px) -->
+		<div class="c7-hero-mobile-tabs" role="tablist" aria-label="Pilihan Tampilan Sorotan Tujuhcahaya">
+			<button
+				type="button"
+				role="tab"
+				id="hero-tab-dispatch"
+				class="c7-hero-tab-btn is-active"
+				aria-selected="true"
+				aria-controls="hero-left-pane"
+				data-hero-tab="dispatch"
+			>
+				<span class="c7-tab-icon" aria-hidden="true">⚡</span>
+				<span class="c7-tab-label">Liputan Terkini</span>
+				<span class="c7-tab-count">16k</span>
+			</button>
+			<button
+				type="button"
+				role="tab"
+				id="hero-tab-stack"
+				class="c7-hero-tab-btn"
+				aria-selected="false"
+				aria-controls="hero-right-pane"
+				data-hero-tab="stack"
+			>
+				<span class="c7-tab-icon" aria-hidden="true">⬡</span>
+				<span class="c7-tab-label">7 Pilar Studio</span>
+			</button>
+		</div>
+
 		<!-- Left Column: Linear-Style Editorial Dispatch Table -->
-		<div class="hero-left-pane">
+		<div class="hero-left-pane" id="hero-left-pane" role="tabpanel" aria-labelledby="hero-tab-dispatch">
 			<h1 class="sr-only">Tujuhcahaya — Media House &amp; Creative Studio</h1>
 
 			<!-- Header Bar of Dispatch Table -->
@@ -104,7 +133,7 @@ const heroNewsList = posts.map((post) => {
 		</div>
 
 		<!-- Right Column: Isometric 3D Layered Stack of the 7 Pillars with 7C Perspective Grid Background -->
-		<div class="hero-right-pane">
+		<div class="hero-right-pane" id="hero-right-pane" role="tabpanel" aria-labelledby="hero-tab-stack">
 			<!-- Ambient Radial Glow -->
 			<div class="hero-right-glow" aria-hidden="true"></div>
 

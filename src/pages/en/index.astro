@@ -47,9 +47,38 @@ const heroNewsList = posts.map((post) => {
 	description={t.footer.tagline}
 >
 	<!-- HERO SECTION: English Curated Dispatch -->
-	<section class="hero-split" aria-label="Tujuhcahaya Profile & Highlights">
+	<section class="hero-split" data-active-tab="dispatch" aria-label="Tujuhcahaya Profile & Highlights">
+		<!-- Mobile Segmented View Switcher (< 992px) -->
+		<div class="c7-hero-mobile-tabs" role="tablist" aria-label="Tujuhcahaya Highlight Views">
+			<button
+				type="button"
+				role="tab"
+				id="hero-tab-dispatch-en"
+				class="c7-hero-tab-btn is-active"
+				aria-selected="true"
+				aria-controls="hero-left-pane-en"
+				data-hero-tab="dispatch"
+			>
+				<span class="c7-tab-icon" aria-hidden="true">⚡</span>
+				<span class="c7-tab-label">Live Dispatches</span>
+				<span class="c7-tab-count">16k</span>
+			</button>
+			<button
+				type="button"
+				role="tab"
+				id="hero-tab-stack-en"
+				class="c7-hero-tab-btn"
+				aria-selected="false"
+				aria-controls="hero-right-pane-en"
+				data-hero-tab="stack"
+			>
+				<span class="c7-tab-icon" aria-hidden="true">⬡</span>
+				<span class="c7-tab-label">7 Pillars 3D</span>
+			</button>
+		</div>
+
 		<!-- Left Column: Linear-Style Editorial Dispatch Table -->
-		<div class="hero-left-pane">
+		<div class="hero-left-pane" id="hero-left-pane-en" role="tabpanel" aria-labelledby="hero-tab-dispatch-en">
 			<h1 class="sr-only">Tujuhcahaya — Media House &amp; Creative Studio</h1>
 
 			<!-- Header Bar of Dispatch Table -->
@@ -115,7 +144,7 @@ const heroNewsList = posts.map((post) => {
 		</div>
 
 		<!-- Right Column: Isometric 3D Layered Stack -->
-		<div class="hero-right-pane">
+		<div class="hero-right-pane" id="hero-right-pane-en" role="tabpanel" aria-labelledby="hero-tab-stack-en">
 			<div class="hero-right-glow" aria-hidden="true"></div>
 			<div class="hero-iso-grid-bg" aria-hidden="true">
 				<svg viewBox="0 0 1000 500" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-iso-grid-svg">

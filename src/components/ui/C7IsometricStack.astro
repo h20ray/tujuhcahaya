@@ -521,6 +521,51 @@ const pillars = [
 	.cd-action-link .arrow {
 		font-size: 1.05rem;
 	}
+
+	@media (max-width: 991px) {
+		.cake-svg {
+			max-height: min(250px, 34vh);
+		}
+
+		.cake-detail {
+			padding: 0.65rem 0.85rem;
+			min-height: auto;
+			margin-top: 0.5rem;
+		}
+
+		.cd-header {
+			margin-bottom: 0.2rem;
+		}
+
+		.cd-generic {
+			font-size: 0.7rem;
+		}
+
+		.cd-badge {
+			font-size: 0.65rem;
+			padding: 0.1rem 0.35rem;
+		}
+
+		.cd-name {
+			font-size: 0.95rem;
+			margin-bottom: 0.25rem;
+		}
+
+		.cd-desc {
+			font-size: 0.75rem;
+			line-height: 1.35;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			margin-bottom: 0.5rem;
+		}
+
+		.cd-action-link {
+			font-size: 0.75rem;
+			padding: 0.35rem 0.65rem;
+		}
+	}
 </style>
 
 <script is:inline>
