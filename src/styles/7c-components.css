@@ -475,15 +475,22 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  background-color: transparent;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.dispatch-row:hover .dispatch-bullet {
+/* Border color highlight is EXCLUSIVELY for Unread / Unchecked state on hover */
+.dispatch-row:hover .dispatch-bullet:not(.checked),
+.dispatch-bullet-wrapper:hover .dispatch-bullet:not(.checked) {
   border-color: var(--color-primary);
 }
 
-.dispatch-bullet.checked {
-  border-color: var(--color-text);
+/* Read / Checked state: Solid checkmark circle, ZERO border, NEVER red */
+.dispatch-bullet.checked,
+.dispatch-row:hover .dispatch-bullet.checked,
+.dispatch-bullet-wrapper:hover .dispatch-bullet.checked {
+  border: none !important;
+  border-color: transparent !important;
   background-color: var(--color-text);
   color: var(--color-bg);
 }

@@ -179,11 +179,17 @@
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
+		background: transparent;
 	}
-	.c7-status-bullet.checked {
-		background-color: var(--7c-sys-primary, #d50000);
+	.c7-drawer-status-pill:hover .c7-status-bullet:not(.checked) {
 		border-color: var(--7c-sys-primary, #d50000);
-		color: #ffffff;
+	}
+	.c7-status-bullet.checked,
+	.c7-drawer-status-pill:hover .c7-status-bullet.checked {
+		background-color: var(--7c-sys-on-surface, #090d16);
+		border: none !important;
+		border-color: transparent !important;
+		color: var(--7c-sys-surface, #ffffff);
 	}
 	.c7-drawer-close-btn {
 		display: inline-flex;

@@ -401,22 +401,30 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 	}
 
 	.dispatch-bullet {
-		width: 7px;
-		height: 7px;
+		width: 15px;
+		height: 15px;
 		border-radius: 50%;
-		border: 1.5px solid var(--7c-sys-outline);
-	}
-
-	.dispatch-bullet.checked {
-		width: 14px;
-		height: 14px;
-		border-radius: 50%;
-		background: var(--7c-sys-primary);
-		color: var(--7c-sys-on-primary);
-		display: flex;
+		border: 1.5px solid var(--7c-sys-outline, #cbd5e1);
+		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		border: none;
+		flex-shrink: 0;
+		background: transparent;
+		transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.dispatch-row:hover .dispatch-bullet:not(.checked),
+	.dispatch-bullet-wrapper:hover .dispatch-bullet:not(.checked) {
+		border-color: var(--7c-sys-primary, #d50000);
+	}
+
+	.dispatch-bullet.checked,
+	.dispatch-row:hover .dispatch-bullet.checked,
+	.dispatch-bullet-wrapper:hover .dispatch-bullet.checked {
+		border: none !important;
+		border-color: transparent !important;
+		background: var(--7c-sys-on-surface, #090d16);
+		color: var(--7c-sys-surface, #ffffff);
 	}
 
 	.dispatch-title {
