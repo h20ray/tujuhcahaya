@@ -228,12 +228,16 @@ const displayTags = tags.length > 0 ? tags : defaultTopics;
 		border: none;
 		border-radius: 20px;
 		padding: 1.5rem;
-		transition: background-color 0.2s ease, box-shadow 0.2s ease;
+		box-shadow: var(--7c-sys-elevation-1);
+		transition: background-color 0.2s ease, box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), transform 0.25s cubic-bezier(0.2, 0, 0, 1);
 	}
 
 	.c7-sidebar-card:hover {
 		background: var(--7c-sys-surface-container);
+		box-shadow: var(--7c-sys-elevation-2);
+		transform: translateY(-2px);
 	}
+
 
 	/* Search Input */
 	.c7-sidebar-search-card {
@@ -331,13 +335,20 @@ const displayTags = tags.length > 0 ? tags : defaultTopics;
 		font-family: var(--7c-font-mono);
 		font-size: 0.68rem;
 		font-weight: 700;
-		color: var(--7c-sys-primary);
-		background: rgba(213, 0, 0, 0.08);
+		color: var(--7c-sys-on-primary-container, #410002);
+		background: var(--7c-sys-primary-container, #ffdad6);
 		border: none;
 		padding: 0.15rem 0.45rem;
 		border-radius: 9999px;
 		letter-spacing: 0.04em;
 	}
+
+	:global([data-theme="dark"]) .c7-sidebar-badge {
+		color: var(--7c-sys-on-primary-container, #ffdad6);
+		background: var(--7c-sys-primary-container, #2d1517);
+		border: 1px solid rgba(255, 180, 171, 0.25);
+	}
+
 
 	/* Ranked Trending List */
 	.c7-ranked-list {
@@ -414,8 +425,14 @@ const displayTags = tags.length > 0 ? tags : defaultTopics;
 	}
 
 	.c7-rank-title a:hover {
-		color: var(--7c-sys-primary);
+		color: var(--7c-sys-on-surface);
+		text-decoration: underline;
 	}
+
+	:global([data-theme="dark"]) .c7-rank-title a:hover {
+		color: #ffffff;
+	}
+
 
 	/* Rubrik / Editorial List */
 	.c7-pillars-list {

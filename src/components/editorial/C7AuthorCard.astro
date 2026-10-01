@@ -119,13 +119,16 @@ const initials = author.name
 		display: flex;
 		gap: 1.5rem;
 		align-items: flex-start;
-		transition: background-color 0.2s ease, transform 0.2s ease;
+		box-shadow: var(--7c-sys-elevation-1);
+		transition: background-color 0.2s ease, transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1);
 	}
 
 	.c7-author-card:hover {
 		background: var(--7c-sys-surface-container);
+		box-shadow: var(--7c-sys-elevation-2);
 		transform: translateY(-2px);
 	}
+
 
 	.c7-author-avatar-wrap {
 		flex-shrink: 0;
@@ -207,8 +210,14 @@ const initials = author.name
 	}
 
 	.c7-author-name a:hover {
-		color: var(--7c-sys-primary);
+		color: var(--7c-sys-on-surface);
+		text-decoration: underline;
 	}
+
+	:global([data-theme="dark"]) .c7-author-name a:hover {
+		color: #ffffff;
+	}
+
 
 	.c7-author-role-badge {
 		align-self: flex-start;

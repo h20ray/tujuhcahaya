@@ -187,8 +187,9 @@ const pillars = [
 	</div>
 
 	<!-- 7C Bespoke Synchronized Editorial Detail Panel -->
-	<div class="cake-detail" id="cakeDetail" aria-live="polite">
+	<div class="cake-detail" id="cakeDetail" aria-live="polite" style="--cd-accent: var(--7c-pillar-game, #34d399);">
 		<div class="cd-header">
+
 			<span class="cd-generic" id="cdGeneric">Pilar 06 • Interaktif</span>
 			<span class="cd-badge" id="cdCount">4.282 Liputan Terbit</span>
 		</div>
@@ -478,16 +479,17 @@ const pillars = [
 	.cd-badge {
 		font-size: 0.72rem;
 		font-weight: 600;
-		color: var(--color-primary);
+		color: var(--cd-accent, var(--7c-pillar-game, #10b981));
 		background: var(--color-card-subtle);
 		padding: 0.15rem 0.5rem;
-		border-radius: 0;
-		border: 1px solid var(--color-border);
+		border-radius: var(--7c-radius-sm, 4px);
+		border: 1px solid var(--cd-accent, var(--color-border));
+		transition: color 0.2s ease, border-color 0.2s ease;
 	}
 
 	:global([data-theme="dark"]) .cd-badge {
 		background: rgba(255, 255, 255, 0.04);
-		border-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.15);
 	}
 
 	.cd-name {
@@ -510,20 +512,23 @@ const pillars = [
 		font-family: var(--7c-font-display, "Google Sans", system-ui, sans-serif);
 		font-size: 0.85rem;
 		font-weight: 600;
-		color: var(--color-primary);
+		color: var(--cd-accent, var(--7c-pillar-game, #10b981));
 		display: inline-flex;
 		align-items: center;
 		gap: 0.35rem;
-		transition: transform 0.15s ease;
+		text-decoration: none;
+		transition: color 0.2s ease, transform 0.15s ease, opacity 0.15s ease;
 	}
 
 	.cd-action-link:hover {
 		transform: translateX(3px);
+		opacity: 0.85;
 	}
 
 	.cd-action-link .arrow {
 		font-size: 1.05rem;
 	}
+
 
 	@media (max-width: 991px) {
 		.cake-svg {
@@ -579,49 +584,56 @@ const pillars = [
 				n: "Berita & Newsroom",
 				c: "4.265 Liputan Terbit",
 				d: "Laporan berita terhangat, isu kebijakan esensial, peristiwa sosial, dan investigasi mendalam berintegritas.",
-				url: "/category/berita"
+				url: "/category/berita",
+				accent: "var(--7c-pillar-berita, #ff5252)"
 			},
 			game: {
 				g: "Pilar 06 • Interaktif",
 				n: "Video Game & Esports",
 				c: "4.282 Liputan Terbit",
 				d: "Review game konsol dan PC, perkembangan industri game global, strategi esports, dan komunitas gamer.",
-				url: "/category/game"
+				url: "/category/game",
+				accent: "var(--7c-pillar-game, #34d399)"
 			},
 			tech: {
 				g: "Pilar 05 • Masa Depan",
 				n: "Teknologi & Inovasi",
 				c: "3.729 Liputan Terbit",
 				d: "Kecerdasan buatan, perangkat keras mutakhir, terobosan software, dan perkembangan ekosistem digital dunia.",
-				url: "/category/tech"
+				url: "/category/tech",
+				accent: "var(--7c-pillar-tech, #38bdf8)"
 			},
 			musik: {
 				g: "Pilar 04 • Audio & Hiburan",
 				n: "Musik & Nada",
 				c: "3.576 Liputan Terbit",
 				d: "Kurasi rilisan musik terkini, ulasan album, profil musisi independen dan arus utama, serta tren audio global.",
-				url: "/category/musik"
+				url: "/category/musik",
+				accent: "var(--7c-pillar-musik, #a78bfa)"
 			},
 			budaya: {
 				g: "Pilar 03 • Seni & Kultur",
 				n: "Seni & Budaya Pop",
 				c: "233 Liputan Terbit",
 				d: "Eksplorasi fenomena urban, warisan budaya lokal, seni visual, dan dinamika sosial masyarakat modern.",
-				url: "/category/budaya"
+				url: "/category/budaya",
+				accent: "var(--7c-pillar-budaya, #fbbf24)"
 			},
 			kesehatan: {
 				g: "Pilar 02 • Gaya Hidup",
 				n: "Kesehatan & Kebugaran",
 				c: "606 Liputan Terbit",
 				d: "Informasi medis terpercaya, wawasan kebugaran fisik dan mental, serta tren hidup sehat tanpa menggurui.",
-				url: "/category/kesehatan"
+				url: "/category/kesehatan",
+				accent: "var(--7c-pillar-kesehatan, #2dd4bf)"
 			},
 			lab: {
 				g: "Pilar 01 • Studio & Hub",
 				n: "Tujuhcahaya Media Lab",
 				c: "Studio & Hub",
 				d: "Pusat eksplorasi media independen, riset konten kreatif, dan fondasi arsitektur digital Tujuhcahaya.",
-				url: "/about-us"
+				url: "/about-us",
+				accent: "var(--7c-pillar-lab, #94a3b8)"
 			}
 		};
 
@@ -647,7 +659,11 @@ const pillars = [
 			if (elDesc) elDesc.textContent = d.d;
 			if (elCount) elCount.textContent = d.c;
 			if (elLink) elLink.setAttribute("href", d.url);
+			if (detail && d.accent) {
+				detail.style.setProperty("--cd-accent", d.accent);
+			}
 		}
+
 
 		function selectLayer(key) {
 			const hinting = container.querySelector(".layer.hint");

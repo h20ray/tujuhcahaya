@@ -81,7 +81,9 @@
   color: var(--7c-sys-on-surface);
   background: var(--7c-sys-surface-container-low);
   border-radius: 0 16px 16px 0;
+  box-shadow: var(--7c-sys-elevation-1);
 }
+
 
 .c7-prose blockquote p:last-child,
 .article-body blockquote p:last-child,
@@ -142,7 +144,7 @@
 .single-article .article-content img {
   border-radius: 16px;
   border: none;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--7c-sys-elevation-1);
   display: block;
   margin: 2rem auto;
   max-width: 100%;
@@ -163,11 +165,14 @@
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--7c-sys-scrollbar-thumb) transparent;
-  border-radius: var(--7c-radius-md, 8px);
+  border-radius: 14px;
+  border: none;
+  box-shadow: var(--7c-sys-elevation-1);
   padding: 1.25rem;
   background-color: var(--7c-sys-surface-container-low);
   margin: 2rem 0;
 }
+
 
 .c7-prose table,
 .article-body table,

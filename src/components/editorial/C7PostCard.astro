@@ -53,15 +53,16 @@ const effectiveThumbnail = thumbnail || C7_DEFAULT_FEATURED_IMAGE;
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-		transition: transform 0.25s cubic-bezier(0.34, 0.8, 0.34, 1), background-color 0.2s ease, box-shadow 0.25s ease;
+		box-shadow: var(--7c-sys-elevation-1);
+		transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease, box-shadow 0.25s ease;
 	}
 
 	.c7-card:hover {
-		transform: translateY(-4px);
+		transform: translateY(-3px);
 		background-color: var(--7c-sys-surface-container);
-		box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
+		box-shadow: var(--7c-sys-elevation-2);
 	}
+
 
 	.c7-card-media {
 		position: relative;
@@ -122,8 +123,14 @@ const effectiveThumbnail = thumbnail || C7_DEFAULT_FEATURED_IMAGE;
 	}
 
 	.c7-card-title a:hover {
-		color: var(--7c-sys-primary);
+		color: var(--7c-sys-on-surface);
+		text-decoration: underline;
 	}
+
+	:global([data-theme="dark"]) .c7-card-title a:hover {
+		color: #ffffff;
+	}
+
 
 	.c7-card-excerpt {
 		font-size: 0.875rem;

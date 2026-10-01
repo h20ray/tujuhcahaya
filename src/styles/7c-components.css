@@ -169,18 +169,20 @@
 
   .c7-hero-tab-btn .c7-tab-count {
     font-size: 0.68rem;
-    font-weight: 800;
-    padding: 0.1rem 0.4rem;
+    font-weight: 600;
+    padding: 0.12rem 0.45rem;
     border-radius: 9999px;
-    background-color: rgba(213, 0, 0, 0.1);
-    color: var(--color-primary);
+    background-color: var(--7c-sys-primary-container, #ffdad6);
+    color: var(--7c-sys-on-primary-container, #410002);
     line-height: 1;
   }
 
   [data-theme="dark"] .c7-hero-tab-btn .c7-tab-count {
-    background-color: rgba(255, 82, 82, 0.16);
-    color: #ff5252;
+    background-color: var(--7c-sys-primary-container, #2d1517);
+    color: var(--7c-sys-on-primary-container, #ffdad6);
+    border: 1px solid rgba(255, 180, 171, 0.25);
   }
+
 
   .c7-hero-tab-btn:hover {
     color: var(--color-text);
@@ -291,16 +293,23 @@
 .dispatch-all-link {
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--color-primary);
+  color: var(--7c-sys-on-surface-variant, #94a3b8);
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  transition: transform 0.15s ease;
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
 }
 
 .dispatch-all-link:hover {
+  color: var(--7c-sys-on-surface, #0f172a);
   transform: translateX(2px);
 }
+
+[data-theme="dark"] .dispatch-all-link:hover {
+  color: #ffffff;
+}
+
 
 /* Quick Category Filters in Dispatch Header */
 .dispatch-category-filters {
@@ -418,14 +427,26 @@
   gap: 0.75rem;
   padding: 0.65rem 1.25rem;
   border-bottom: 1px dashed var(--color-border);
-  transition: background-color 0.12s ease;
+  border-left: 2.5px solid transparent;
+  transition: background-color 0.15s ease, border-left-color 0.15s ease;
   text-decoration: none;
   color: inherit;
+  position: relative;
 }
 
 .dispatch-row:hover {
-  background-color: var(--color-card-subtle);
+  background-color: var(--7c-sys-surface-container-high, var(--color-card-subtle));
+  border-left-color: var(--7c-sys-primary);
 }
+
+@media (max-width: 991px), (pointer: coarse) {
+  .dispatch-row {
+    min-height: 48px;
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+
 
 .dispatch-row.is-last-visible,
 .dispatch-row:last-child {
@@ -484,8 +505,13 @@
 }
 
 .dispatch-row:hover .dispatch-title {
-  color: var(--color-primary);
+  color: var(--7c-sys-on-surface, #0f172a);
 }
+
+[data-theme="dark"] .dispatch-row:hover .dispatch-title {
+  color: #ffffff;
+}
+
 
 .dispatch-row-compact {
   padding: 0.65rem 1.25rem;
@@ -545,18 +571,19 @@
   }
 }
 
-/* 7C Official Brand Pill (Red) */
+/* 7C Official Brand Pill (Red - MD3 Tonal Container) */
 .c7-source-pill-7c {
-  background-color: rgba(213, 0, 0, 0.1);
-  color: #d50000;
-  border: 1px solid rgba(213, 0, 0, 0.3);
+  background-color: var(--7c-sys-primary-container, #ffdad6);
+  color: var(--7c-sys-on-primary-container, #410002);
+  border: 1px solid rgba(213, 0, 0, 0.2);
 }
 
 [data-theme="dark"] .c7-source-pill-7c {
-  background-color: rgba(255, 82, 82, 0.14);
-  color: #ff5252;
-  border: 1px solid rgba(255, 82, 82, 0.35);
+  background-color: var(--7c-sys-primary-container, #2d1517);
+  color: var(--7c-sys-on-primary-container, #ffdad6);
+  border: 1px solid rgba(255, 180, 171, 0.3);
 }
+
 
 /* External Syndicated Partner Source Pill */
 .c7-source-pill-external {
@@ -777,16 +804,25 @@
 }
 
 .dispatch-footer-cta {
-  font-weight: 700;
-  color: var(--color-primary);
+  font-weight: 600;
+  color: var(--7c-sys-on-surface-variant, #94a3b8);
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
 }
 
 .dispatch-footer-cta:hover {
-  text-decoration: underline;
+  color: var(--7c-sys-on-surface, #0f172a);
+  transform: translateX(2px);
+  text-decoration: none;
 }
+
+[data-theme="dark"] .dispatch-footer-cta:hover {
+  color: #ffffff;
+}
+
 
 .hero-ctas {
   display: flex;
@@ -1050,19 +1086,22 @@
 }
 
 .post-card {
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  background: var(--7c-sys-surface-container-low, var(--color-card-subtle));
+  border: none;
+  border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: var(--7c-sys-elevation-1);
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease, box-shadow 0.25s ease;
 }
 
 .post-card:hover {
   transform: translateY(-3px);
-  border-color: var(--color-primary);
+  background-color: var(--7c-sys-surface-container, var(--color-card));
+  box-shadow: var(--7c-sys-elevation-2);
 }
+
 
 .card-media {
   position: relative;
@@ -1109,8 +1148,13 @@
 }
 
 .post-card:hover .card-title {
-  color: var(--color-primary);
+  color: var(--7c-sys-on-surface, #0f172a);
 }
+
+[data-theme="dark"] .post-card:hover .card-title {
+  color: #ffffff;
+}
+
 
 .card-excerpt {
   font-size: 0.875rem;
@@ -1321,8 +1365,14 @@
 }
 
 .rank-title:hover {
-  color: var(--color-primary);
+  color: var(--7c-sys-on-surface, #0f172a);
+  text-decoration: underline;
 }
+
+[data-theme="dark"] .rank-title:hover {
+  color: #ffffff;
+}
+
 
 /* Single Article Layout */
 .article-container {
