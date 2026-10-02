@@ -1,0 +1,173 @@
+---
+/**
+ * C7ThemeToggle - 7C Bespoke Animated Single-Icon Theme Switcher
+ *
+ * Smooth morphing animation between radiant Sun and Crescent Moon.
+ * Pure SVG + GPU-accelerated CSS transitions with zero runtime dependencies.
+ * Fully accessible with WCAG 2.1 touch target, dynamic aria-label & title.
+ */
+import { type Locale, DEFAULT_LOCALE } from "../../i18n/utils";
+
+interface Props {
+	id?: string;
+	locale?: Locale;
+	class?: string;
+}
+
+const { id = "desktop", locale = DEFAULT_LOCALE, class: className = "" } = Astro.props;
+const isEn = locale === "en";
+const maskId = `c7-theme-mask-${id}`;
+---
+
+<button
+	type="button"
+	class:list={["c7-theme-toggle", className]}
+	id={`c7-theme-toggle-${id}`}
+	data-c7-theme-toggle
+	aria-label={isEn ? "Switch to dark mode" : "Beralih ke mode gelap"}
+	aria-pressed="false"
+	title={isEn ? "Toggle theme (Light / Dark)" : "Ganti tema (Terang / Gelap)"}
+>
+	<svg
+		class="c7-theme-icon"
+		xmlns="http://www.w3.org/2000/svg"
+		width="20"
+		height="20"
+		viewBox="0 0 24 24"
+		fill="none"
+		aria-hidden="true"
+	>
+		<mask id={maskId}>
+			<rect x="0" y="0" width="100%" height="100%" fill="white" />
+			<circle class="c7-theme-mask-circle" cx="24" cy="10" r="6" fill="black" />
+		</mask>
+		<circle
+			class="c7-theme-sun-center"
+			cx="12"
+			cy="12"
+			r="5"
+			fill="currentColor"
+			mask={`url(#${maskId})`}
+		/>
+		<g
+			class="c7-theme-sun-beams"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+		>
+			<line x1="12" y1="1" x2="12" y2="3" />
+			<line x1="12" y1="21" x2="12" y2="23" />
+			<line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+			<line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+			<line x1="1" y1="12" x2="3" y2="12" />
+			<line x1="21" y1="12" x2="23" y2="12" />
+			<line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+			<line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+		</g>
+	</svg>
+</button>
+
+<style>
+	/* Borderless Minimalist Theme Switcher - Single Icon Only */
+	.c7-theme-toggle {
+		width: 32px;
+		height: 32px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border: 0 !important;
+		border-width: 0 !important;
+		border-style: none !important;
+		border-color: transparent !important;
+		background: transparent !important;
+		background-color: transparent !important;
+		box-shadow: none !important;
+		color: var(--7c-sys-on-surface-variant);
+		cursor: pointer;
+		padding: 0 !important;
+		margin: 0;
+		outline: none !important;
+		flex-shrink: 0;
+		border-radius: var(--7c-radius-full, 9999px);
+		transition: color 0.2s cubic-bezier(0.2, 0, 0, 1), transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+		-webkit-appearance: none;
+		appearance: none;
+	}
+
+	.c7-theme-toggle:hover {
+		color: var(--7c-sys-primary);
+		transform: scale(1.12);
+		background: transparent !important;
+		background-color: transparent !important;
+		border: 0 !important;
+		border-width: 0 !important;
+		border-style: none !important;
+		box-shadow: none !important;
+	}
+
+	.c7-theme-toggle:active {
+		transform: scale(0.92);
+	}
+
+	.c7-theme-toggle:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 2px var(--7c-sys-surface), 0 0 0 4.5px rgba(213, 0, 0, 0.22);
+	}
+
+	:global([data-theme="dark"]) .c7-theme-toggle:focus-visible {
+		box-shadow: 0 0 0 2px var(--7c-sys-surface), 0 0 0 4.5px rgba(255, 82, 82, 0.28);
+	}
+
+	/* SVG Base & Transitions */
+	.c7-theme-icon {
+		overflow: visible;
+		transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+		transform-origin: center;
+	}
+
+	.c7-theme-sun-center {
+		transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+		transform-origin: center;
+	}
+
+	.c7-theme-mask-circle {
+		transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+		transform-origin: center;
+		transform: translate(0, 0);
+	}
+
+	.c7-theme-sun-beams {
+		transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1), opacity 0.3s ease;
+		transform-origin: center;
+		opacity: 1;
+		transform: scale(1) rotate(0deg);
+	}
+
+	/* Dark Mode State - Morph to Crescent Moon */
+	:global(:root[data-theme="dark"]) .c7-theme-icon {
+		transform: rotate(-20deg);
+	}
+
+	:global(:root[data-theme="dark"]) .c7-theme-sun-center {
+		transform: scale(1.75);
+	}
+
+	:global(:root[data-theme="dark"]) .c7-theme-mask-circle {
+		transform: translate(-7px, -2px);
+	}
+
+	:global(:root[data-theme="dark"]) .c7-theme-sun-beams {
+		transform: scale(0.2) rotate(45deg);
+		opacity: 0;
+	}
+
+	/* Accessibility: Reduced Motion */
+	@media (prefers-reduced-motion: reduce) {
+		.c7-theme-icon,
+		.c7-theme-sun-center,
+		.c7-theme-mask-circle,
+		.c7-theme-sun-beams {
+			transition: none !important;
+		}
+	}
+</style>

@@ -1,0 +1,262 @@
+/* Top Utility Bar */
+.top-bar {
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  padding: 6px 0;
+}
+
+.top-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.top-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+/* 7C Bespoke Animated Theme Toggle - Strict Borderless */
+.c7-theme-toggle,
+button.c7-theme-toggle,
+.c7-theme-toggle:hover,
+.c7-theme-toggle:focus,
+.c7-theme-toggle:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Masthead Header */
+.site-masthead {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* backdrop-filter dihapus: hemat GPU pada elemen sticky */
+}
+
+.masthead-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.5rem;
+  gap: 1.5rem;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.45rem;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+.logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: #ffffff;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.logo-accent {
+  color: var(--color-primary);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link-item {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--nav-text);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+}
+
+.nav-link-item:hover, .nav-link-item.active {
+  color: var(--color-primary);
+  background-color: var(--color-card-subtle);
+}
+
+.nav-link-item.active {
+  font-weight: 600;
+}
+
+/* Hero Section (Desktop: 60% Left Dispatch Feed, 40% Right 3D Isometric Stack | Mobile: 100dvh Fit with Segmented Tab Switcher) */
+.hero-split {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+/* Mobile Segmented Tab Switcher (< 992px) */
+.c7-hero-mobile-tabs {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .hero-split {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c7-hero-mobile-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.85rem;
+    background-color: var(--color-card-subtle);
+    border-bottom: 1px solid var(--color-border);
+    width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+
+  .c7-hero-tab-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.75rem;
+    font-family: var(--7c-font-sans, inherit);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-text-muted);
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--7c-radius-full, 9999px);
+    cursor: pointer;
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    min-height: 36px;
+  }
+
+  .c7-hero-tab-btn .c7-tab-icon {
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+
+  .c7-hero-tab-btn .c7-tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.15rem 0.45rem;
+    border-radius: 9999px;
+    background-color: var(--7c-sys-primary-container, #ffdad6);
+    color: var(--7c-sys-on-primary-container, #410002);
+    line-height: 1;
+    border: none;
+    min-height: 18px;
+    box-sizing: border-box;
+  }
+
+  [data-theme="dark"] .c7-hero-tab-btn .c7-tab-count {
+    background-color: var(--7c-sys-primary-container, #2d1517);
+    color: var(--7c-sys-on-primary-container, #ffdad6);
+    border: none;
+  }
+
+
+  .c7-hero-tab-btn:hover {
+    color: var(--color-text);
+    background-color: var(--color-bg);
+  }
+
+  .c7-hero-tab-btn.is-active {
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border-color: var(--color-border);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  [data-theme="dark"] .c7-hero-tab-btn.is-active {
+    background-color: #16181d;
+    border-color: var(--7c-sys-outline-variant, #2a2e37);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Pane Switching on Mobile via data-active-tab */
+  .hero-split[data-active-tab="dispatch"] .hero-left-pane {
+    display: flex !important;
+  }
+
+  .hero-split[data-active-tab="dispatch"] .hero-right-pane {
+    display: none !important;
+  }
+
+  .hero-split[data-active-tab="stack"] .hero-left-pane {
+    display: none !important;
+  }
+
+  .hero-split[data-active-tab="stack"] .hero-right-pane {
+    display: flex !important;
+  }
+
+  /* 100dvh Mobile Fit Containment: Left Pane */
+  .hero-left-pane {
+    border-right: none;
+    border-bottom: none;
+    height: calc(100dvh - 56px - 45px - var(--c7-radio-dock-height, 64px));
+    max-height: calc(100dvh - 56px - 45px - var(--c7-radio-dock-height, 64px));
+    min-height: 400px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* 100dvh Mobile Fit Containment: Right Pane */
+  .hero-right-pane {
+    border-right: none;
+    border-bottom: none;
+    height: calc(100dvh - 56px - 45px - var(--c7-radio-dock-height, 64px));
+    max-height: calc(100dvh - 56px - 45px - var(--c7-radio-dock-height, 64px));
+    min-height: 400px;
+    padding: 0.75rem 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+}
+
+.hero-left-pane {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  min-height: 520px;
+}

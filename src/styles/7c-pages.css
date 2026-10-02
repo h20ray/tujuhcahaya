@@ -1,0 +1,117 @@
+/* Tag Pill */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: middle;
+  background-color: var(--color-card-subtle);
+  border: none;
+  color: var(--color-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  min-height: 28px;
+  box-sizing: border-box;
+  border-radius: 9999px;
+  box-shadow: var(--7c-sys-elevation-0);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease, color 0.15s ease;
+}
+
+.tag-pill:hover {
+  background-color: var(--7c-sys-surface-container-highest);
+  box-shadow: var(--7c-sys-elevation-1);
+  color: var(--7c-sys-on-surface);
+  transform: translateY(-1px);
+}
+
+.tag-pill:focus-visible {
+  outline: none;
+  box-shadow: var(--7c-sys-focus-ring);
+}
+
+.section-header {
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* ==========================================================================
+   7C Static Pages (Human-Centric Editorial Styling)
+   ========================================================================== */
+
+/* Page Title on Static Pages */
+.single-page .article-title {
+  font-family: var(--7c-font-display);
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--7c-sys-on-surface);
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Tentang Kami: Calm, authentic sign-off */
+.single-page[data-static-slug="about-us"] .article-content p:last-child {
+  margin-top: 2.5rem;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--7c-sys-on-surface-variant);
+}
+
+/* Susunan Redaksi: Clean, legible editorial masthead */
+.single-page[data-static-slug="redaksi"] .article-content h1,
+.single-page[data-static-slug="redaksi"] .article-content h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--7c-sys-on-surface);
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.single-page[data-static-slug="redaksi"] .article-content p:has(strong) {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--7c-sys-on-surface);
+}
+
+.single-page[data-static-slug="redaksi"] .article-content ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.single-page[data-static-slug="redaksi"] .article-content ul li {
+  background: var(--7c-sys-surface-container);
+  color: var(--7c-sys-on-surface);
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+/* Pedoman Media Siber: Clear, readable sections */
+.single-page[data-static-slug="pedoman-media-siber"] .article-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--7c-sys-on-surface);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+

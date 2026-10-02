@@ -6,6 +6,12 @@
  * Fully harmonized with Astro View Transitions (<ClientRouter />).
  */
 
+declare global {
+	interface Window {
+		__c7DispatchDrawerInitialized?: boolean;
+	}
+}
+
 export const C7_READ_ARTICLES_STORAGE_KEY = "c7_read_articles";
 
 export interface C7DispatchPreviewData {
@@ -258,8 +264,8 @@ function toggleCurrentDrawerRead(): void {
 
 function setupGlobalDelegation(): void {
 	if (typeof window === "undefined") return;
-	if ((window as any).__c7DispatchDrawerInitialized) return;
-	(window as any).__c7DispatchDrawerInitialized = true;
+	if (window.__c7DispatchDrawerInitialized) return;
+	window.__c7DispatchDrawerInitialized = true;
 
 	// Close interactions via Escape
 	window.addEventListener("keydown", (e) => {

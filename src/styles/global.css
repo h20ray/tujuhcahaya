@@ -14,4 +14,11 @@
 @import "./7c-base.css";
 @import "./7c-hairline.css";
 @import "./7c-prose.css";
-@import "./7c-components.css";
+@import "./7c-nav.css";
+@import "./7c-dispatch-table.css";
+@import "./7c-dispatch-pills.css";
+@import "./7c-dispatch-bottom.css";
+@import "./7c-isometric.css";
+@import "./7c-editorial.css";
+@import "./7c-article.css";
+@import "./7c-pages.css";

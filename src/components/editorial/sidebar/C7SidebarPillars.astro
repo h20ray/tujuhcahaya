@@ -1,0 +1,170 @@
+---
+/**
+ * C7SidebarPillars — 7C editorial pillars
+ */
+import type { Locale } from "../../../i18n/utils";
+
+interface Props {
+	categorySlug?: string;
+	locale?: Locale;
+}
+
+const { categorySlug, locale = "id" } = Astro.props;
+const isEn = locale === "en";
+
+const pillars = [
+	{ slug: "berita", label: "Berita & Investigasi", pillar: "berita" },
+	{ slug: "tech", label: "Teknologi & Sains", pillar: "tech" },
+	{ slug: "game", label: "Esports & Gaming", pillar: "game" },
+	{ slug: "musik", label: "Musik & Nada", pillar: "musik" },
+	{ slug: "budaya", label: "Seni & Kultur Pop", pillar: "budaya" },
+	{ slug: "kesehatan", label: "Kesehatan & Hidup", pillar: "kesehatan" },
+	{ slug: "lab", label: "Lab & Eksperimen", pillar: "lab" },
+];
+---
+
+<section class="c7-sidebar-card" aria-label={isEn ? "Editorial" : "Editorial"}>
+	<div class="c7-sidebar-header">
+		<div class="c7-sidebar-header-left">
+			<span class="c7-header-dot" aria-hidden="true"></span>
+			<h3 class="c7-sidebar-title">{isEn ? "Editorial" : "Rubrik Liputan"}</h3>
+		</div>
+	</div>
+
+	<nav class="c7-pillars-nav" aria-label="Daftar Rubrik Liputan">
+		<ul class="c7-pillars-list">
+			{pillars.map((p) => {
+				const isActive = categorySlug === p.slug;
+				return (
+					<li class="c7-pillar-item">
+						<a
+							href={isEn ? `/en/category/${p.slug}` : `/category/${p.slug}`}
+							class={`c7-pillar-link c7-pillar-${p.pillar} ${isActive ? "active" : ""}`}
+							aria-current={isActive ? "page" : undefined}
+						>
+							<span class="c7-pillar-indicator" aria-hidden="true"></span>
+							<span class="c7-pillar-label">{p.label}</span>
+							<span class="c7-pillar-arrow" aria-hidden="true">&rarr;</span>
+						</a>
+					</li>
+				);
+			})}
+		</ul>
+	</nav>
+</section>
+
+<style>
+	.c7-sidebar-card {
+		background: var(--7c-sys-surface-container-low);
+		border: none;
+		border-radius: 20px;
+		padding: 1.5rem;
+		box-shadow: var(--7c-sys-elevation-1);
+		transition: background-color 0.2s ease, box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.c7-sidebar-card:hover {
+		background: var(--7c-sys-surface-container);
+		box-shadow: var(--7c-sys-elevation-2);
+		transform: translateY(-2px);
+	}
+
+	.c7-sidebar-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-bottom: 0.85rem;
+		margin-bottom: 1.15rem;
+		border-bottom: 1px solid var(--7c-sys-surface-container-highest, rgba(0, 0, 0, 0.06));
+	}
+
+	.c7-sidebar-header-left {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.c7-header-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background-color: var(--7c-sys-primary);
+	}
+
+	.c7-sidebar-title {
+		font-family: var(--7c-font-display);
+		font-size: 0.9rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		text-transform: none;
+		color: var(--7c-sys-on-surface);
+		margin: 0;
+	}
+
+	.c7-pillars-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.c7-pillar-link {
+		display: flex;
+		align-items: center;
+		padding: 0.6rem 0.85rem;
+		border-radius: 12px;
+		border: none;
+		text-decoration: none;
+		color: var(--7c-sys-on-surface);
+		font-size: 0.875rem;
+		font-weight: 600;
+		transition: all 0.15s ease;
+	}
+
+	.c7-pillar-link:hover {
+		background: var(--7c-sys-surface-container-high);
+		transform: translateX(3px);
+	}
+
+	.c7-pillar-link.active {
+		background: var(--7c-sys-surface-container-high);
+		color: var(--7c-sys-primary);
+		font-weight: 700;
+	}
+
+	.c7-pillar-indicator {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		margin-right: 0.65rem;
+		flex-shrink: 0;
+	}
+
+	.c7-pillar-berita .c7-pillar-indicator { background-color: var(--7c-pillar-berita); }
+	.c7-pillar-tech .c7-pillar-indicator { background-color: var(--7c-pillar-tech); }
+	.c7-pillar-game .c7-pillar-indicator { background-color: var(--7c-pillar-game); }
+	.c7-pillar-musik .c7-pillar-indicator { background-color: var(--7c-pillar-musik); }
+	.c7-pillar-budaya .c7-pillar-indicator { background-color: var(--7c-pillar-budaya); }
+	.c7-pillar-kesehatan .c7-pillar-indicator { background-color: var(--7c-pillar-kesehatan); }
+	.c7-pillar-lab .c7-pillar-indicator { background-color: var(--7c-pillar-lab); }
+
+	.c7-pillar-label {
+		flex: 1;
+	}
+
+	.c7-pillar-arrow {
+		font-size: 0.85rem;
+		color: var(--7c-sys-on-surface-variant);
+		opacity: 0;
+		transform: translateX(-4px);
+		transition: all 0.15s ease;
+	}
+
+	.c7-pillar-link:hover .c7-pillar-arrow {
+		opacity: 1;
+		transform: translateX(0);
+		color: var(--7c-sys-primary);
+	}
+</style>

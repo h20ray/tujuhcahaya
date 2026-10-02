@@ -1,0 +1,31 @@
+---
+/**
+ * ResizableNavbar — Public component entrypoint for NularUI Resizable Navbar in Tujuhcahaya.
+ *
+ * Preserves the exact public component API (navItems, actions, logoText, logoHref, class)
+ * while delegating seamlessly to C7ResizableNavbar with 7C MD3X design language and tokens.
+ */
+import C7ResizableNavbar, {
+	type NavItem,
+	type NavAction,
+} from "./navigation/C7ResizableNavbar.astro";
+
+export type { NavItem, NavAction };
+
+interface Props {
+	/** Nav entries rendered in the centered desktop nav and the mobile menu. */
+	navItems?: NavItem[];
+	/** Action buttons rendered next to the links. Defaults to a Login/Book a call pair or 7C default actions. */
+	actions?: NavAction[];
+	/** Brand label shown next to the logo mark. */
+	logoText?: string;
+	/** Destination for the logo link. */
+	logoHref?: string;
+	/** Additional classes for the root element. */
+	class?: string;
+}
+
+const props = Astro.props;
+---
+
+<C7ResizableNavbar {...props} />

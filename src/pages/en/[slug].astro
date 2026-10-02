@@ -21,6 +21,9 @@ import {
 	resolve7cFeaturedImage,
 	resolve7cAuthor,
 } from "../../lib/7c-cms";
+import type { C7PostData } from "../../lib/7c-cms";
+
+import { resolve7cLegacyUrl } from "../../lib/7c-url-guardian";
 
 const locale = "en";
 const { t } = use7cTranslation(locale);
@@ -32,17 +35,21 @@ if (!slug) {
 
 // 1. Check posts collection first
 let isPost = true;
-let { entry, cacheHint } = await getEmDashEntry("posts", slug);
+let { entry, cacheHint } = await getEmDashEntry("posts", slug, { locale: "en" });
 
 // 2. Fallback to pages collection (e.g. /en/about-us)
 if (!entry) {
 	isPost = false;
-	const pageResult = await getEmDashEntry("pages", slug);
+	const pageResult = await getEmDashEntry("pages", slug, { locale: "en" });
 	entry = pageResult.entry;
 	cacheHint = pageResult.cacheHint;
 }
 
 if (!entry) {
+	const legacyMatch = resolve7cLegacyUrl(Astro.url.pathname, Astro.url.searchParams);
+	if (legacyMatch) {
+		return Astro.redirect(legacyMatch.destination, legacyMatch.status);
+	}
 	return Astro.redirect("/404");
 }
 
@@ -70,7 +77,7 @@ const { posts: relatedPosts } = isPost
 
 const heroImage = resolve7cFeaturedImage(entry.data.featured_image, entry.data.title);
 const ogImage = seo.ogImage || heroImage.url;
-const authorProfile = resolve7cAuthor((entry.data as any)?.byline, locale);
+const authorProfile = resolve7cAuthor(((entry.data as unknown) as C7PostData).byline || null, locale);
 const authorName = authorProfile.name;
 ---
 
@@ -244,22 +251,21 @@ const authorName = authorProfile.name;
 
 				<!-- Related Posts Section -->
 				{relatedPosts.length > 0 && (
-					<section class="c7-related-section" aria-label="Related Dispatches">
+					<section class="c7-related-section" aria-label="Related Stories">
 						<div class="c7-related-header">
-							<span class="c7-pulse-indicator" aria-hidden="true"></span>
-							<h3 class="c7-related-title">READ NEXT: RELATED DISPATCHES</h3>
+							<h3 class="c7-related-title">Read Next: Related Stories</h3>
 						</div>
 						<div class="c7-related-grid">
 							{relatedPosts.map((p) => {
 								const pSlug = p.data?.slug || p.id;
 								const pCat = p.data?.terms?.category?.[0]?.label || "News";
-								const pThumb = p.data?.featured_image?.url || p.data?.featured_image?.src || (typeof p.data?.featured_image === "string" ? p.data?.featured_image : null);
+								const pThumb = resolve7cFeaturedImage(p.data?.featured_image, p.data?.title || "Tujuhcahaya").url;
 								return (
 									<C7PostCard
 										title={p.data?.title || ""}
 										slug={`en/${pSlug}`}
 										category={pCat}
-										publishedAt={p.data?.publishedAt}
+										publishedAt={typeof p.data?.publishedAt === "string" ? p.data.publishedAt : null}
 										thumbnail={pThumb}
 									/>
 								);
@@ -269,10 +275,23 @@ const authorName = authorProfile.name;
 				)}
 			</article>
 		) : (
-			<article class="single-page">
+			<article class="single-page" data-static-slug={slug}>
+				<!-- Semantic Breadcrumbs for Static Page -->
+				<nav class="c7-breadcrumb" aria-label="Page Breadcrumbs">
+					<a href="/en" class="c7-breadcrumb-link">{t.nav.home}</a>
+					<svg class="c7-breadcrumb-sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+						<polyline points="9 18 15 12 9 6"></polyline>
+					</svg>
+					<span class="c7-breadcrumb-current" aria-current="page">
+						{entry.data.title}
+					</span>
+				</nav>
+
 				<h1 class="article-title" {...entry.edit?.title}>
 					{entry.data.title}
 				</h1>
+
+
 				<div class="article-body c7-prose prose" {...entry.edit?.content}>
 					<C7PortableText value={entry.data.content} />
 				</div>
@@ -285,6 +304,7 @@ const authorName = authorProfile.name;
 			categorySlug={categories[0]?.slug}
 			tags={tags}
 			locale="en"
+			isStaticPage={!isPost}
 		/>
 	</div>
 
@@ -443,8 +463,13 @@ const authorName = authorProfile.name;
 	.c7-share-btn {
 		display: inline-flex;
 		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		vertical-align: middle;
 		gap: 0.4rem;
 		padding: 0.4rem 0.75rem;
+		min-height: 32px;
+		box-sizing: border-box;
 		font-family: var(--7c-font-sans);
 		font-size: 0.78rem;
 		font-weight: 600;
@@ -463,6 +488,11 @@ const authorName = authorProfile.name;
 		color: var(--7c-sys-on-surface);
 		box-shadow: var(--7c-sys-elevation-2);
 		transform: translateY(-1px);
+	}
+
+	.c7-share-btn:focus-visible {
+		outline: none;
+		box-shadow: var(--7c-sys-focus-ring);
 	}
 
 	:global([data-theme="dark"]) .c7-share-btn:hover {
@@ -495,9 +525,16 @@ const authorName = authorProfile.name;
 	}
 
 	.c7-tag-pill {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		vertical-align: middle;
 		font-size: 0.78rem;
 		font-weight: 600;
 		padding: 0.35rem 0.75rem;
+		min-height: 28px;
+		box-sizing: border-box;
 		border-radius: 9999px;
 		background: var(--7c-sys-surface-container-high);
 		border: none;
@@ -512,6 +549,11 @@ const authorName = authorProfile.name;
 		background: var(--7c-sys-surface-container-highest);
 		box-shadow: var(--7c-sys-elevation-2);
 		transform: translateY(-1px);
+	}
+
+	.c7-tag-pill:focus-visible {
+		outline: none;
+		box-shadow: var(--7c-sys-focus-ring);
 	}
 
 	:global([data-theme="dark"]) .c7-tag-pill:hover {
@@ -557,12 +599,6 @@ const authorName = authorProfile.name;
 		margin: 0;
 	}
 
-	.c7-pulse-indicator {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background-color: var(--7c-sys-primary);
-	}
 
 	.c7-related-grid {
 		display: grid;

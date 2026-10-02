@@ -1,0 +1,221 @@
+---
+/**
+ * C7SidebarStaticCard — Static page directory + editorial contact
+ */
+import type { Locale } from "../../../i18n/utils";
+
+interface Props {
+	currentSlug?: string;
+	locale?: Locale;
+}
+
+const { currentSlug, locale = "id" } = Astro.props;
+const isEn = locale === "en";
+
+const prefix = isEn ? "/en" : "";
+const staticDirectory = [
+	{ slug: "about-us", href: `${prefix}/about-us`, label: isEn ? "About Us" : "Tentang Kami" },
+	{ slug: "redaksi", href: `${prefix}/redaksi`, label: isEn ? "Editorial Board" : "Susunan Redaksi" },
+	{ slug: "pedoman-media-siber", href: `${prefix}/pedoman-media-siber`, label: isEn ? "Cyber Guidelines" : "Pedoman Media Siber" },
+	{ slug: "privacy-policy", href: `${prefix}/privacy-policy`, label: isEn ? "Privacy Policy" : "Kebijakan Privasi" },
+	{ slug: "terms-of-use", href: `${prefix}/terms-of-use`, label: isEn ? "Terms of Use" : "Syarat & Ketentuan" },
+	{ slug: "kirim-tulisan", href: isEn ? "/en/submit" : "/kirim-tulisan", label: isEn ? "Community Submit" : "Kirim Tulisan" },
+];
+---
+
+<section class="c7-sidebar-card c7-sidebar-static-nav" aria-label={isEn ? "Newsroom Pages" : "Halaman Redaksi"}>
+	<div class="c7-sidebar-header">
+		<div class="c7-sidebar-header-left">
+			<h3 class="c7-sidebar-title">{isEn ? "Halaman Redaksi" : "Halaman Redaksi"}</h3>
+		</div>
+	</div>
+	<ul class="c7-static-nav-list">
+		{staticDirectory.map((link) => (
+			<li>
+				<a
+					href={link.href}
+					class:list={["c7-static-nav-item", { "is-active": currentSlug === link.slug }]}
+				>
+					<span class="c7-static-nav-dot" aria-hidden="true"></span>
+					<span class="c7-static-nav-label">{link.label}</span>
+					{currentSlug === link.slug && (
+						<span class="c7-static-nav-badge">
+							{isEn ? "Active" : "Aktif"}
+						</span>
+					)}
+				</a>
+			</li>
+		))}
+	</ul>
+</section>
+
+<section class="c7-sidebar-card c7-sidebar-contact-card" aria-label={isEn ? "Editorial Desk Contact" : "Kontak Redaksi"}>
+	<div class="c7-sidebar-header">
+		<div class="c7-sidebar-header-left">
+			<h3 class="c7-sidebar-title">{isEn ? "Kontak Redaksi" : "Kontak Redaksi"}</h3>
+		</div>
+	</div>
+	<div class="c7-sidebar-contact-body">
+		<p class="c7-sidebar-contact-desc">
+			{isEn
+				? "Questions, tips, or formal correction requests regarding published reporting can be directed directly to our editorial team."
+				: "Pertanyaan, hak jawab, klarifikasi, atau permohonan koreksi pemberitaan dapat disampaikan langsung ke meja redaksi."}
+		</p>
+		<a href="mailto:redaksi@tujuhcahaya.com" class="c7-sidebar-email-link">
+			<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+				<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+				<polyline points="22,6 12,13 2,6"></polyline>
+			</svg>
+			<span>{isEn ? "editorial@tujuhcahaya.com" : "redaksi@tujuhcahaya.com"}</span>
+		</a>
+	</div>
+</section>
+
+<style>
+	.c7-sidebar-card {
+		background: var(--7c-sys-surface-container-low);
+		border: none;
+		border-radius: 20px;
+		padding: 1.5rem;
+		box-shadow: var(--7c-sys-elevation-1);
+		transition: background-color 0.2s ease, box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.c7-sidebar-card:hover {
+		background: var(--7c-sys-surface-container);
+		box-shadow: var(--7c-sys-elevation-2);
+		transform: translateY(-2px);
+	}
+
+	.c7-sidebar-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-bottom: 0.85rem;
+		margin-bottom: 1.15rem;
+		border-bottom: 1px solid var(--7c-sys-surface-container-highest, rgba(0, 0, 0, 0.06));
+	}
+
+	.c7-sidebar-header-left {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.c7-header-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background-color: var(--7c-sys-primary);
+	}
+
+	.c7-sidebar-title {
+		font-family: var(--7c-font-display);
+		font-size: 0.9rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		text-transform: none;
+		color: var(--7c-sys-on-surface);
+		margin: 0;
+	}
+
+	/* Static Page Directory in Sidebar */
+	.c7-sidebar-static-nav {
+		border-color: var(--7c-sys-outline-variant);
+	}
+
+	.c7-static-nav-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.c7-static-nav-item {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		padding: 0.55rem 0.75rem;
+		border-radius: var(--7c-radius-sm, 8px);
+		text-decoration: none;
+		color: var(--7c-sys-on-surface-variant);
+		font-size: 0.84rem;
+		font-weight: 500;
+		transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+	}
+
+	.c7-static-nav-item:hover {
+		background-color: var(--7c-sys-surface-container-highest);
+		color: var(--7c-sys-on-surface);
+		transform: translateX(2px);
+	}
+
+	.c7-static-nav-item.is-active {
+		background-color: var(--7c-sys-surface-container-high);
+		color: var(--7c-sys-on-surface);
+		font-weight: 600;
+	}
+
+	.c7-static-nav-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background-color: var(--7c-sys-outline-variant);
+		flex-shrink: 0;
+	}
+
+	.c7-static-nav-item.is-active .c7-static-nav-dot {
+		background-color: var(--7c-sys-on-surface);
+	}
+
+	.c7-static-nav-label {
+		flex: 1;
+	}
+
+	.c7-static-nav-badge {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		vertical-align: middle;
+		font-size: 0.7rem;
+		font-weight: 500;
+		padding: 0.2rem 0.5rem;
+		border-radius: 9999px;
+		background-color: var(--7c-sys-surface-container-highest);
+		color: var(--7c-sys-on-surface-variant);
+	}
+
+	/* Meja Redaksi Contact Box */
+	.c7-sidebar-contact-card {
+		background: var(--7c-sys-surface-container-low);
+		border: none;
+	}
+
+	.c7-sidebar-contact-desc {
+		font-size: 0.8125rem;
+		line-height: 1.6;
+		color: var(--7c-sys-on-surface-variant);
+		margin: 0 0 0.85rem;
+	}
+
+	.c7-sidebar-email-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.82rem;
+		font-weight: 500;
+		color: var(--7c-sys-on-surface);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		word-break: break-all;
+		transition: opacity 0.15s ease;
+	}
+
+	.c7-sidebar-email-link:hover {
+		text-decoration: underline;
+		opacity: 0.85;
+	}
+</style>

@@ -12,8 +12,31 @@ import {
 	resolve7cAuthor,
 	resolve7cFeaturedImage,
 } from "./7c-cms";
+import type { C7RawByline, C7PostData } from "./7c-cms";
 
 export const C7_READ_ARTICLES_STORAGE_KEY = "c7_read_articles";
+
+export interface C7RawPost {
+	id?: string;
+	data?: {
+		id?: string;
+		slug?: string;
+		title?: string;
+		excerpt?: string;
+		published_at?: string;
+		publishedAt?: string;
+		content?: unknown;
+		byline?: C7RawByline;
+		primary_byline_id?: C7RawByline;
+		primaryBylineId?: C7RawByline;
+		featured_image?: unknown;
+		source?: string;
+		publisher?: string;
+		origin?: string;
+		source_name?: string;
+		[key: string]: unknown;
+	};
+}
 
 export interface C7ArticleSource {
 	name: string;
@@ -26,8 +49,8 @@ export interface C7ArticleSource {
  * Resolve article publisher or syndication source.
  * Defaults to 7C (Tujuhcahaya) with brand red accent, supports external syndication partners.
  */
-export function resolve7cArticleSource(post: any): C7ArticleSource {
-	const data = post?.data || post || {};
+export function resolve7cArticleSource(post: C7RawPost | unknown): C7ArticleSource {
+	const data = (((post as C7RawPost)?.data || (post as C7RawPost) || {}) as C7PostData) ?? {};
 	const rawSource =
 		typeof data.source === "string"
 			? data.source
@@ -87,18 +110,18 @@ export interface C7DispatchPreviewItem {
 /**
  * Check if a Portable Text block belongs to the header / subheader family
  */
-export function isHeadingBlock(block: any): boolean {
+export function isHeadingBlock(block: unknown): boolean {
 	if (!block) return false;
 
 	// 1. Check Portable Text style property (e.g. h1, h2, h3, h4, h5, h6, heading, title)
-	const style = String(block.style || "").toLowerCase().trim();
+	const style = String((block as { style?: unknown }).style || "").toLowerCase().trim();
 	if (/^h[1-6]$/.test(style)) return true;
 	if (["heading", "subheading", "header", "subheader", "title", "subtitle"].includes(style)) {
 		return true;
 	}
 
 	// 2. Check block _type property
-	const type = String(block._type || "").toLowerCase().trim();
+	const type = String((block as { _type?: unknown })._type || "").toLowerCase().trim();
 	if (["heading", "subheading", "header", "subheader"].includes(type)) {
 		return true;
 	}
@@ -122,10 +145,17 @@ export function isHeadingText(text: string): boolean {
  * Extract clean text paragraphs from Portable Text blocks for preview display.
  * Strictly excludes any elements from the header / subheader family (h1-h6).
  */
+type C7PortableTextSpan = { text?: string };
+type C7PortableTextBlock = {
+	_type?: string;
+	style?: string;
+	children?: C7PortableTextSpan[];
+};
+
 export function extract7cPreviewParagraphs(content: unknown, maxParagraphs: number = 2): string[] {
 	if (!content) return [];
 
-	let blocks: any[] = [];
+	let blocks: C7PortableTextBlock[] = [];
 	if (typeof content === "string") {
 		try {
 			blocks = JSON.parse(content);
@@ -167,7 +197,7 @@ export function extract7cPreviewParagraphs(content: unknown, maxParagraphs: numb
 
 		if (block && (block._type === "block" || !block._type) && Array.isArray(block.children)) {
 			const text = block.children
-				.map((c: any) => (typeof c?.text === "string" ? c.text : ""))
+				.map((c) => (typeof c.text === "string" ? c.text : ""))
 				.join("")
 				.trim();
 
@@ -186,21 +216,22 @@ export function extract7cPreviewParagraphs(content: unknown, maxParagraphs: numb
  * Build structured preview payload for a single dispatch item
  */
 export function build7cDispatchPreview(
-	post: any,
+	post: C7RawPost | unknown,
 	category?: { label: string; slug: string } | null,
 	locale: Locale = "id",
 ): C7DispatchPreviewItem {
-	const data = post?.data || post || {};
-	const slug = data.slug || post?.id || "";
-	const title = data.title || "Tanpa Judul";
-	const excerpt = data.excerpt || "";
+	const raw = (post as C7RawPost)?.data || (post as C7RawPost) || {};
+	const data = raw as C7PostData;
+	const slug = data?.slug || (post as C7RawPost)?.id || "";
+	const title = data?.title || "Tanpa Judul";
+	const excerpt = data?.excerpt || "";
 	const resolvedCategory = category || { label: "Berita", slug: "berita" };
-	const publishedAt = data.published_at || data.publishedAt;
+	const publishedAt = data?.published_at || data?.publishedAt;
 	const formattedDate = format7cCompactDate(publishedAt, locale);
-	const readingTimeMin = calc7cReadingTime(data.content);
+	const readingTimeMin = calc7cReadingTime(data?.content);
 
-	const authorProfile = resolve7cAuthor(data.byline || data.primary_byline_id, locale);
-	const resolvedImage = resolve7cFeaturedImage(data.featured_image, title);
+	const authorProfile = resolve7cAuthor(data?.byline || data?.primary_byline_id || null, locale);
+	const resolvedImage = resolve7cFeaturedImage(data?.featured_image, title);
 	const imageUrl = resolvedImage.isFallback ? null : resolvedImage.url;
 
 	const paragraphs = extract7cPreviewParagraphs(data.content, 2);

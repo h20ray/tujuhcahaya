@@ -39,6 +39,11 @@ export default defineConfig({
 			prefixDefaultLocale: false,
 		},
 	},
+	redirects: {
+		"/wp-admin": "/_emdash/admin",
+		"/wp-admin/[...path]": "/_emdash/admin",
+		"/wp-login.php": "/_emdash/admin",
+	},
 	image: {
 		layout: "constrained",
 		responsiveStyles: true,

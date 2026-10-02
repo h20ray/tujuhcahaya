@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { getEmDashCollection, getTermsForEntries } from "emdash";
 import { resolve7cAuthor } from "../../lib/7c-cms";
 import { build7cDispatchPreview } from "../../lib/7c-dispatch";
+import type { C7PostData, C7RawByline } from "../../lib/7c-cms";
 
 export const GET: APIRoute = async ({ url }) => {
 	const cursor = url.searchParams.get("cursor") || undefined;
@@ -11,7 +12,7 @@ export const GET: APIRoute = async ({ url }) => {
 	const locale = localeParam === "en" ? "en" : "id";
 	const isEn = locale === "en";
 
-	const whereClause: Record<string, any> = {};
+	const whereClause: Record<string, string> = {};
 	if (category) {
 		whereClause.category = category;
 	} else if (tag) {
@@ -49,11 +50,9 @@ export const GET: APIRoute = async ({ url }) => {
 				  })
 				: "";
 
+			const postData = (post.data as unknown || {}) as C7PostData;
 			const authorProfile = resolve7cAuthor(
-				(post.data as any)?.byline ||
-					(post.data as any)?.primaryBylineId ||
-					(post.data as any)?.primary_byline_id ||
-					post.data,
+				(postData.byline || postData.primaryBylineId || postData.primary_byline_id || null) as C7RawByline,
 				locale,
 			);
 
@@ -90,11 +89,11 @@ export const GET: APIRoute = async ({ url }) => {
 				},
 			},
 		);
-	} catch (err: any) {
+	} catch (err) {
 		return new Response(
 			JSON.stringify({
 				error: "Failed to fetch posts",
-				message: err?.message || String(err),
+				message: err instanceof Error ? err.message : String(err),
 			}),
 			{
 				status: 500,

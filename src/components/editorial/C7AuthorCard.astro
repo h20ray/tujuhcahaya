@@ -220,16 +220,23 @@ const initials = author.name
 
 
 	.c7-author-role-badge {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		vertical-align: middle;
 		align-self: flex-start;
 		font-family: var(--7c-font-sans);
 		font-size: 0.72rem;
 		font-weight: 700;
 		letter-spacing: 0.03em;
-		padding: 0.2rem 0.65rem;
+		padding: 0.22rem 0.65rem;
+		min-height: 22px;
+		box-sizing: border-box;
 		border-radius: 999px;
 		background: var(--7c-sys-surface-container-highest);
 		color: var(--7c-sys-on-surface-variant);
-		border: 1px solid var(--7c-sys-outline-variant);
+		border: none;
 		white-space: nowrap;
 	}
 

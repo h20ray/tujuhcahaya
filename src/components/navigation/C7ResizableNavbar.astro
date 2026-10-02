@@ -1,0 +1,388 @@
+---
+import C7Logo from "../ui/C7Logo.astro";
+import C7ThemeToggle from "../ui/C7ThemeToggle.astro";
+import C7ResizableNavbarMegaMenu from "./C7ResizableNavbarMegaMenu.astro";
+import LiveSearch from "emdash/ui/search";
+import {
+	type Locale,
+	DEFAULT_LOCALE,
+	use7cTranslation,
+	get7cLocalizedPath,
+} from "../../i18n/utils";
+
+export interface NavItem {
+	name: string;
+	link: string;
+	isMegaMenu?: boolean;
+}
+
+export interface NavAction {
+	name: string;
+	link: string;
+	variant?: "primary" | "secondary";
+}
+
+interface Props {
+	navItems?: NavItem[];
+	actions?: NavAction[];
+	logoText?: string;
+	logoHref?: string;
+	class?: string;
+	currentPath?: string;
+	currentDateStr?: string;
+	locale?: Locale;
+	menu?: {
+		items: { url: string; label: string; target?: string }[];
+	} | null;
+}
+
+const {
+	navItems: customNavItems,
+	actions,
+	logoText = "Tujuhcahaya",
+	logoHref = "/",
+	class: className,
+	currentPath: propCurrentPath,
+	currentDateStr,
+	locale = DEFAULT_LOCALE,
+} = Astro.props;
+
+const { t } = use7cTranslation(locale);
+const prefix = locale === "en" ? "/en" : "";
+const currentPath = propCurrentPath ?? Astro.url.pathname;
+
+const idPath = get7cLocalizedPath(currentPath, "id");
+const enPath = get7cLocalizedPath(currentPath, "en");
+
+// Shortened 7C Navigation Contract: "News" (Mega Menu), "Tentang Kami"
+const defaultNavItems: NavItem[] = [
+	{ name: "News", link: `${prefix}/category/berita`, isMegaMenu: true },
+	{ name: t.nav.about, link: `${prefix}/about-us` },
+];
+
+const resolvedNavItems = customNavItems && customNavItems.length > 0 ? customNavItems : defaultNavItems;
+const hasCustomActions = actions && actions.length > 0;
+
+// Editorial Pillars for the Mega Menu
+const pillars = [
+	{
+		id: "berita",
+		title: locale === "en" ? "News" : "Berita",
+		url: `${prefix}/category/berita`,
+		desc: locale === "en" ? "Investigative & hard news" : "Investigasi, hard news & peristiwa",
+		color: "var(--7c-pillar-berita)",
+	},
+	{
+		id: "tech",
+		title: "Tech",
+		url: `${prefix}/category/tech`,
+		desc: locale === "en" ? "AI, gadgets & software" : "AI, gadget, software & masa depan",
+		color: "var(--7c-pillar-tech)",
+	},
+	{
+		id: "game",
+		title: "Game",
+		url: `${prefix}/category/game`,
+		desc: locale === "en" ? "Esports & gaming industry" : "Esports, review & kultur gaming",
+		color: "var(--7c-pillar-game)",
+	},
+	{
+		id: "musik",
+		title: locale === "en" ? "Music" : "Musik",
+		url: `${prefix}/category/musik`,
+		desc: locale === "en" ? "Curated tracks & releases" : "Rilisan, kurasi nada & resensi",
+		color: "var(--7c-pillar-musik)",
+	},
+	{
+		id: "budaya",
+		title: locale === "en" ? "Culture" : "Budaya",
+		url: `${prefix}/category/budaya`,
+		desc: locale === "en" ? "Arts, heritage & essays" : "Seni, sejarah, tradisi & esai",
+		color: "var(--7c-pillar-budaya)",
+	},
+	{
+		id: "kesehatan",
+		title: locale === "en" ? "Health" : "Kesehatan",
+		url: `${prefix}/category/kesehatan`,
+		desc: locale === "en" ? "Medical science & wellness" : "Riset medis, sains & gaya hidup",
+		color: "var(--7c-pillar-kesehatan)",
+	},
+];
+
+const menuId = `c7-resizable-nav-menu-${Math.random().toString(36).slice(2, 9)}`;
+const megaMenuId = `c7-rn-megamenu-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+import "./C7ResizableNavbar.css";
+import "./C7ResizableNavbar.ts";
+
+
+<c7-resizable-navbar class:list={["c7-resizable-navbar", className]}>
+	<div class="c7-rn-shell c7-rn-desktop-shell">
+		<div class="c7-rn-brand-group">
+			<a class="c7-rn-logo" href={logoHref} aria-label={logoText}>
+				<C7Logo width={24} height={24} color="var(--7c-sys-primary)" ariaHidden={true} />
+				<span class="c7-rn-logo-text">Tujuh<span class="c7-rn-logo-accent">cahaya</span></span>
+			</a>
+
+			<nav class="c7-rn-nav-items" aria-label="Navigasi Utama">
+				{
+					resolvedNavItems.map((item) => {
+						const isNewsItem = item.isMegaMenu || item.name.toLowerCase() === "news";
+						const isActive =
+							currentPath === item.link ||
+							(item.link !== "/" && item.link !== "/en" && currentPath.startsWith(item.link));
+
+						if (isNewsItem) {
+							return (
+								<div class="c7-rn-mega-wrapper">
+									<a
+										class:list={["c7-rn-nav-link", "c7-rn-mega-trigger", { active: isActive }]}
+										href={item.link}
+										aria-expanded="false"
+										aria-haspopup="true"
+										aria-controls={megaMenuId}
+									>
+										<span>{item.name}</span>
+										<svg
+											class="c7-rn-chevron"
+											width="12"
+											height="12"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2.5"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											aria-hidden="true"
+										>
+											<polyline points="6 9 12 15 18 9" />
+										</svg>
+									</a>
+
+									<C7ResizableNavbarMegaMenu pillars={pillars} prefix={prefix} megaMenuId={megaMenuId} locale={locale} />
+								</div>
+							);
+						}
+
+						return (
+							<a
+								class:list={["c7-rn-nav-link", { active: isActive }]}
+								href={item.link}
+								aria-current={isActive ? "page" : undefined}
+							>
+								{item.name}
+							</a>
+						);
+					})
+				}
+			</nav>
+		</div>
+
+		<div class="c7-rn-actions">
+			{hasCustomActions ? (
+				actions!.map((action) => (
+					<a
+						class:list={["c7-rn-nav-button", action.variant ?? "primary"]}
+						href={action.link}
+					>
+						{action.name}
+					</a>
+				))
+			) : (
+				<>
+					<button
+						type="button"
+						class="c7-rn-icon-btn c7-rn-search-btn"
+						id="c7-command-palette-trigger"
+						aria-label={locale === "en" ? "Search & Command Palette (Ctrl+K)" : "Pencarian & Command Palette (Ctrl+K)"}
+						title={locale === "en" ? "Search stories, destinations, radio request (Ctrl+K / ⌘K)" : "Cari liputan, navigasi, request radio (Ctrl+K / ⌘K)"}
+						data-palette-trigger
+					>
+						<svg
+							class="c7-rn-search-icon-svg"
+							xmlns="http://www.w3.org/2000/svg"
+							width="18"
+							height="18"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"
+						>
+							<circle cx="11" cy="11" r="8" />
+							<line x1="21" y1="21" x2="16.65" y2="16.65" />
+						</svg>
+					</button>
+
+					<span class="c7-rn-divider" aria-hidden="true"></span>
+
+					<div class="c7-rn-lang-switcher" aria-label={t.topbar.switch_lang}>
+						<a
+							href={idPath}
+							class:list={["c7-rn-lang-btn", { active: locale === "id" }]}
+							aria-current={locale === "id" ? "true" : undefined}
+						>
+							ID
+						</a>
+						<span class="c7-rn-lang-sep" aria-hidden="true">/</span>
+						<a
+							href={enPath}
+							class:list={["c7-rn-lang-btn", { active: locale === "en" }]}
+							aria-current={locale === "en" ? "true" : undefined}
+						>
+							EN
+						</a>
+					</div>
+
+					<C7ThemeToggle id="resizable-desktop" locale={locale} />
+				</>
+			)}
+		</div>
+	</div>
+
+	<div class="c7-rn-shell c7-rn-mobile-shell">
+		<div class="c7-rn-mobile-header">
+			<a class="c7-rn-logo" href={logoHref} aria-label={logoText}>
+				<C7Logo width={22} height={22} color="var(--7c-sys-primary)" ariaHidden={true} />
+				<span class="c7-rn-logo-text">Tujuh<span class="c7-rn-logo-accent">cahaya</span></span>
+			</a>
+
+			<div class="c7-rn-mobile-right">
+				<button
+					type="button"
+					class="c7-rn-icon-btn c7-rn-search-btn"
+					aria-label={locale === "en" ? "Search & Command Palette" : "Pencarian & Command Palette"}
+					title={locale === "en" ? "Search & Command Palette" : "Pencarian & Command Palette"}
+					data-palette-trigger
+				>
+					<svg
+						class="c7-rn-search-icon-svg"
+						xmlns="http://www.w3.org/2000/svg"
+						width="18"
+						height="18"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<circle cx="11" cy="11" r="8" />
+						<line x1="21" y1="21" x2="16.65" y2="16.65" />
+					</svg>
+				</button>
+
+				<C7ThemeToggle id="resizable-mobile" locale={locale} />
+
+				<button
+					class="c7-rn-mobile-toggle"
+					type="button"
+					aria-label={locale === "en" ? "Toggle navigation menu" : "Buka menu navigasi"}
+					aria-expanded="false"
+					aria-controls={menuId}
+				>
+					<svg
+						class="c7-rn-icon-menu"
+						viewBox="0 0 24 24"
+						width="20"
+						height="20"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<line x1="4" y1="7" x2="20" y2="7" />
+						<line x1="4" y1="12" x2="20" y2="12" />
+						<line x1="4" y1="17" x2="20" y2="17" />
+					</svg>
+					<svg
+						class="c7-rn-icon-close"
+						viewBox="0 0 24 24"
+						width="20"
+						height="20"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<line x1="18" y1="6" x2="6" y2="18" />
+						<line x1="6" y1="6" x2="18" y2="18" />
+					</svg>
+				</button>
+			</div>
+		</div>
+
+		<div class="c7-rn-mobile-menu" id={menuId} aria-hidden="true">
+			<div class="c7-rn-mobile-search">
+				<svg
+					class="c7-rn-search-icon"
+					xmlns="http://www.w3.org/2000/svg"
+					width="15"
+					height="15"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<circle cx="11" cy="11" r="8" />
+					<line x1="21" y1="21" x2="16.65" y2="16.65" />
+				</svg>
+				<LiveSearch
+					placeholder={locale === "en" ? "Search stories..." : "Cari liputan..."}
+					collections={["posts", "pages"]}
+					class="c7-live-search"
+					inputClass="c7-search-input"
+					resultsClass="c7-search-results"
+				/>
+			</div>
+
+			<nav class="c7-rn-mobile-nav-items" aria-label="Navigasi Mobile">
+				<div class="c7-rn-mobile-news-group">
+					<div class="c7-rn-mobile-group-header">
+						<span class="c7-rn-pulse-dot" aria-hidden="true"></span>
+						<span>{locale === "en" ? "NEWS & CHANNELS" : "RUBRIK & KANAL LIPUTAN"}</span>
+					</div>
+					<div class="c7-rn-mobile-pillars-grid">
+						{pillars.map((pillar) => (
+							<a href={pillar.url} class="c7-rn-mobile-pillar-link">
+								<span class="c7-rn-pillar-dot" style={`background-color: ${pillar.color};`} aria-hidden="true"></span>
+								<span class="c7-rn-mobile-pillar-name">{pillar.title}</span>
+							</a>
+						))}
+					</div>
+				</div>
+
+				<a class="c7-rn-mobile-link" href={`${prefix}/about-us`}>
+					<span>{t.nav.about}</span>
+					<span class="c7-rn-mobile-arrow" aria-hidden="true">&rarr;</span>
+				</a>
+				<a class="c7-rn-mobile-link" href={`${prefix}/kirim-tulisan`}>
+					<span>{locale === "en" ? "Submit Dispatch" : "Kirim Tulisan"}</span>
+					<span class="c7-rn-mobile-arrow" aria-hidden="true">&rarr;</span>
+				</a>
+			</nav>
+
+			<div class="c7-rn-mobile-footer">
+				<div class="c7-rn-mobile-lang">
+					<a href={idPath} class:list={["c7-rn-mobile-lang-btn", { active: locale === "id" }]}>ID</a>
+					<span class="c7-rn-lang-sep">/</span>
+					<a href={enPath} class:list={["c7-rn-mobile-lang-btn", { active: locale === "en" }]}>EN</a>
+				</div>
+				<span class="c7-rn-mobile-meta">
+					{currentDateStr ? currentDateStr : "7C DIGITAL ENGINE • TUJUHCAHAYA"}
+				</span>
+			</div>
+		</div>
+	</div>
+</c7-resizable-navbar>

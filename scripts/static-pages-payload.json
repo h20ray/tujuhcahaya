@@ -1,0 +1,2398 @@
+[
+  {
+    "slug": "privacy-policy",
+    "locale": "id",
+    "title": "Kebijakan Privasi",
+    "content": [
+      {
+        "_type": "block",
+        "_key": "k-6383baea",
+        "style": "h2",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-84459698",
+            "text": "Kebijakan Privasi Tujuhcahaya",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-fa40276a",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-43b6ee2e",
+            "text": "Di Tujuhcahaya (tujuhcahaya.com), privasi pengunjung adalah prioritas utama kami. Kebijakan Privasi ini menerangkan jenis data dan informasi yang kami kumpulkan, bagaimana informasi tersebut digunakan, serta langkah-langkah yang kami ambil untuk melindungi privasi Anda saat membaca dan berinteraksi di platform kami.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-f29f2700",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-42fd2d29",
+            "text": "1. Informasi yang Kami Kumpulkan",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-f5703e8e",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-86bef960",
+            "text": "Kami tidak mewajibkan pembaca untuk mendaftar akun atau masuk log hanya untuk membaca berita. Informasi teknis yang terkumpul secara otomatis melalui log server dan analitik meliputi:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-1f700b91",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-71d41027",
+            "text": "• Data Teknis: Alamat protokol internet (IP address), jenis peramban (browser), sistem operasi, dan tipe perangkat.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-5ed59d86",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-3f69fe4c",
+            "text": "• Data Kunjungan: Halaman yang diakses, durasi membaca, halaman perujuk (referrer), dan timestamp kunjungan.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-2298dece",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-1027b05c",
+            "text": "2. Penggunaan Informasi",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-892a3436",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-87e7bfe1",
+            "text": "Informasi yang dikumpulkan semata-mata dimanfaatkan untuk kepentingan teknis dan editorial internal:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-8d0d7104",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-13b2769d",
+            "text": "• Memantau kecepatan dan kestabilan pemuatan halaman web di berbagai perangkat.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-773097b0",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-74ff09a6",
+            "text": "• Memahami minat pembaca guna meningkatkan mutu dan keragaman topik liputan.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-78698874",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-38001447",
+            "text": "• Kami tidak pernah menjual, menyewakan, atau membagikan data pribadi Anda kepada pihak ketiga.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-7814709e",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-25aaf577",
+            "text": "3. Kuki (Cookies)",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-016227fb",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-c573f763",
+            "text": "Tujuhcahaya menggunakan cookies teknis ringan untuk mengingat preferensi tampilan Anda (seperti pilihan mode terang/gelap). Anda dapat menonaktifkan cookies melalui pengaturan browser Anda kapan saja tanpa kehilangan akses membaca berita.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-d6e0d602",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-a6ce4e8a",
+            "text": "4. Layanan Pihak Ketiga & Jaringan Eksternal",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-8446d82a",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-cb08a6b8",
+            "text": "Situs kami dapat memuat tautan ke situs eksternal atau memutar aliran audio siaran radio streaming. Kami tidak bertanggung jawab atas kebijakan privasi di situs web eksternal tersebut dan menganjurkan pembaca memeriksa kebijakan privasi masing-masing.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-965538a2",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-4de5db2c",
+            "text": "5. Keamanan Data",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-96702741",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-1e6d5bc1",
+            "text": "Kami menerapkan standar keamanan enkripsi modern (HTTPS/TLS) untuk mengamankan seluruh jalur transmisi data antara peramban Anda dan server Tujuhcahaya.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-09e82342",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-c859d668",
+            "text": "6. Hubungi Kami",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-4dd9e689",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-e1c49a4e",
+            "text": "Pertanyaan atau permohonan informasi terkait kebijakan privasi dapat disampaikan melalui email: redaksi@tujuhcahaya.com.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-afdb8975",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-42ce2704",
+            "text": "Kebijakan ini berlaku efektif sejak 28 September 2024 dan diperbarui secara berkala.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "terms-of-use",
+    "locale": "id",
+    "title": "Syarat dan Ketentuan",
+    "content": [
+      {
+        "_type": "block",
+        "_key": "k-5dca0b68",
+        "style": "h2",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-67cf83ec",
+            "text": "Syarat dan Ketentuan Penggunaan",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-7c24e37e",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-c8c92fb7",
+            "text": "Selamat datang di Tujuhcahaya (tujuhcahaya.com). Dengan mengakses dan menggunakan situs ini, Anda menyetujui ketentuan penggunaan, Kebijakan Privasi, dan pedoman editorial yang tercantum di bawah ini.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-8d86f477",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-6d2dbd94",
+            "text": "1. Hak Cipta dan Penggunaan Konten",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-e197f7ac",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-716129bc",
+            "text": "Seluruh konten yang dipublikasikan di Tujuhcahaya, termasuk naskah artikel, ulasan, grafis, logo, dan tata letak desain, dilindungi oleh undang-undang hak cipta. Kami mendukung penyebaran informasi untuk kepentingan publik dan dialog konstruktif dengan ketentuan:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-dcb48319",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-b4a74ddd",
+            "text": "• Menyertakan atribusi sumber yang jelas dengan tautan aktif (backlink) ke Tujuhcahaya.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-ccc12cca",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-72b6188e",
+            "text": "• Tidak memotong atau memanipulasi makna isi tulisan sehingga menimbulkan distorsi fakta.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-131029e1",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-20a64c79",
+            "text": "• Penggunaan materi untuk tujuan non-komersial, edukasi, dan dialog sosial.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-80d12787",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-08f2e2b2",
+            "text": "2. Batasan Tanggung Jawab",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-daf260c4",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-6c6b2db3",
+            "text": "Tujuhcahaya menyajikan liputan, artikel opini, dan ulasan secara cermat dan bertanggung jawab. Kami berupaya semaksimal mungkin memastikan akurasi data pada saat pemuatan, namun tidak bertanggung jawab atas kerugian tidak langsung akibat keputusan pribadi yang diambil pembaca atas isi tulisan.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-3bc26f63",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-8835acad",
+            "text": "3. Tautan Eksternal",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-1db16c4a",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-bb2d67de",
+            "text": "Artikel kami dapat memuat tautan rujukan ke situs web eksternal untuk memperkaya konteks informasi. Keberadaan tautan tersebut tidak menunjukkan dukungan penuh atas isi atau kebijakan situs pihak ketiga.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-db28fff8",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-ff977a29",
+            "text": "4. Perubahan Ketentuan",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-2a9b1a49",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-3cf5eea5",
+            "text": "Tujuhcahaya berhak memperbarui ketentuan ini sewaktu-waktu. Perubahan akan dicantumkan secara transparan di halaman ini.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-9af5235c",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-58bcff39",
+            "text": "Ketentuan ini berlaku efektif sejak 28 September 2024.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "about-us",
+    "locale": "id",
+    "title": "Tentang Kami",
+    "content": [
+      {
+        "_type": "block",
+        "_key": "key-4-m2dnv",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-1-n2901",
+            "text": "Selamat datang di "
+          },
+          {
+            "_type": "span",
+            "_key": "key-2-gwqw5",
+            "text": "Tujuhcahaya",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-3-edu2a",
+            "text": ", sebuah portal yang terinspirasi oleh filosofi angka 7, angka yang selalu membawa makna lebih dari sekadar hitungan. Di dalam banyak ajaran dan ilmu, angka 7 adalah lambang kesempurnaan, keseimbangan, dan siklus yang lengkap. Dari tujuh lapis langit dalam kepercayaan hingga tujuh warna pelangi yang menghiasi langit, kami percaya bahwa setiap cahaya punya peran penting. Dan di sini, kami hadir untuk memberikan tujuh cahaya itu—informasi, inspirasi, pengetahuan, dan hiburan—yang (diharapkan) akan menerangi hari-harimu."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-10-5rq5h",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-5-3bbd6",
+            "text": "Kenapa tujuh? Karena di balik angka ini, ada harmoni dan keseimbangan yang ingin kami cerminkan dalam konten yang kami sajikan. Seperti pelangi yang muncul setelah hujan, "
+          },
+          {
+            "_type": "span",
+            "_key": "key-6-8wfvx",
+            "text": "Tujuhcahaya",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-7-zj97h",
+            "text": " hadir untuk memberikan warna baru setelah hiruk-pikuk keseharianmu. Kami ingin menjadi tempat di mana kamu bisa menemukan sudut pandang yang berbeda, perspektif yang lebih segar, dan tentu saja, dengan gaya yang santai, ringan, dan kadang "
+          },
+          {
+            "_type": "span",
+            "_key": "key-8-msixv",
+            "text": "aneh",
+            "marks": [
+              "em"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-9-n8yle",
+            "text": ", tapi dengan sentuhan kami sendiri."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-14-lkb8z",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-11-zuipa",
+            "text": "Kami percaya bahwa setiap orang butuh cahaya di hidupnya. Entah itu cahaya informasi yang terang, wawasan yang dalam, atau sekadar hiburan yang menyenangkan, di "
+          },
+          {
+            "_type": "span",
+            "_key": "key-12-i4f8c",
+            "text": "Tujuhcahaya",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-13-0prsk",
+            "text": ", kami berusaha menghadirkan semua itu. Dengan kombinasi humor, logika, dan sedikit bumbu satir, kami mencoba membahas isu-isu terkini dengan cara yang tidak menggurui. Kami ingin pembaca merasa seperti sedang ngobrol santai dengan teman lama, bukan seperti sedang mendengar ceramah yang membosankan."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-18-p3xb7",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-15-b7qqx",
+            "text": "Misi kami sederhana: menerangi setiap sudut kehidupan dengan cahaya yang berbeda. Kami ingin menjadi jendela yang membuka pandangan baru, menjadi sumber inspirasi yang tidak berat di kepala, dan tentu saja, menjadi tempat di mana kamu bisa mendapat informasi tanpa harus merasa terbebani. Kalau kamu suka pelangi, kamu pasti akan suka "
+          },
+          {
+            "_type": "span",
+            "_key": "key-16-ims5y",
+            "text": "Tujuhcahaya",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-17-nl5qb",
+            "text": ". Karena setiap warna punya ceritanya sendiri, begitu juga dengan setiap artikel yang kami sajikan."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-20-nvn3o",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-19-ikq9t",
+            "text": "Apa saja yang akan kamu temukan di sini? Mulai dari berita aktual, opini segar, hingga cerita inspiratif yang mungkin tidak akan kamu temukan di tempat lain. Setiap artikel kami tulis dengan penuh cinta, dan pastinya dengan sudut pandang yang tidak biasa. Kadang serius, kadang santai, kadang kocak—karena hidup memang tidak bisa dibawa terlalu serius. Jadi, kalau kamu bosan dengan berita yang itu-itu saja, di sinilah tempatmu."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-23-rehd8",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-21-mephq",
+            "text": "Tujuhcahaya",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-22-8zg7s",
+            "text": " juga adalah komunitas. Kami percaya bahwa informasi dan inspirasi seharusnya tidak hanya datang dari satu arah. Itulah kenapa kami mengundang kalian semua untuk ikut terlibat, memberikan komentar, berbagi pendapat, dan bahkan mengirimkan tulisan. Di sini, setiap cahaya punya tempatnya sendiri, dan setiap suara punya maknanya sendiri."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-27-vqx20",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-24-hkdzo",
+            "text": "Jadi, apa pun cahayamu, kami ada di sini untukmu. Nikmati setiap warna, setiap cerita, dan setiap tawa yang kami hadirkan di "
+          },
+          {
+            "_type": "span",
+            "_key": "key-25-vmwdu",
+            "text": "Tujuhcahaya",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-26-vw3tp",
+            "text": ". Terima kasih sudah menjadi bagian dari perjalanan ini, dan mari bersama-sama kita terus menyinari dunia dengan lebih banyak cahaya!"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-29-yc7e6",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-28-s817x",
+            "text": "Andoru"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "live",
+    "locale": "id",
+    "title": "Live",
+    "content": [
+      {
+        "_type": "image",
+        "_key": "key-1-zml4p",
+        "asset": {
+          "_type": "reference",
+          "_ref": "https://media.xlocal.id/tujuhcahaya/uploads/2025/09/7stream_logo.svg",
+          "url": "https://media.xlocal.id/tujuhcahaya/uploads/2025/09/7stream_logo.svg"
+        },
+        "alt": ""
+      },
+      {
+        "_type": "block",
+        "_key": "key-3-ku50r",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-2-76a54",
+            "text": "7Stream | Musik Streaming Online 24 Jam Tanpa Iklan"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-5-tmjlb",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-4-tw237",
+            "text": "[radioxtc_player]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "redaksi",
+    "locale": "id",
+    "title": "Susunan Redaksi",
+    "content": [
+      {
+        "_type": "block",
+        "_key": "key-2-jx6cf",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-1-wdy2o",
+            "text": "Tujuhcahaya hadir untuk kamu yang bosan dengan konten mainstream yang bikin pusing. Kami percaya kalau dunia ini penuh dengan hal-hal kecil—yang kadang absurd, kadang penting, kadang nggak penting sama sekali—tapi tetap layak diceritakan. Karena, ya, hidup itu nggak melulu soal hal besar, kan?"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-6-0gl7i",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-3-rcjbg",
+            "text": "Didirikan secara tidak sengaja pada tanggal "
+          },
+          {
+            "_type": "span",
+            "_key": "key-4-0bxwi",
+            "text": "22 August 2011",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-5-e9dgc",
+            "text": ", kami berawal dari obrolan iseng sekelompok orang yang terlalu banyak ide, terlalu sedikit tempat menulis, tapi terlalu percaya diri bahwa internet bisa jadi medium ajaib buat berbagi pandangan dan keresahan. Setelah melewati fase trial and error (dan beberapa kali hampir menyerah), kami akhirnya kembali dengan semangat baru: bikin dunia maya jadi lebih seru, satu cerita dalam satu waktu."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-10-klx8d",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-7-m9cl5",
+            "text": "Tujuan kami sederhana: "
+          },
+          {
+            "_type": "span",
+            "_key": "key-8-iqvux",
+            "text": "mengangkat hal-hal di sekitar yang sering luput dari perhatian.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-9-hoz2k",
+            "text": " Entah itu fenomena kecil yang bikin mikir, obrolan receh di tongkrongan, atau cerita absurd yang cuma terjadi sekali dalam seumur hidup. Tapi, hei, jangan buru-buru percaya sama kami! Semua yang kamu baca di sini nggak selalu minta disetujui. Kami cuma mau berbagi perspektif, dan mungkin, bikin kamu lihat dunia dari sudut pandang yang beda."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-14-bo4cw",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-11-y1tq1",
+            "text": "Seluruh isi situs ini adalah hasil kerja keras, observasi, "
+          },
+          {
+            "_type": "span",
+            "_key": "key-12-i9jcx",
+            "text": "kejulidan kecil",
+            "marks": [
+              "em"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-13-u7lrw",
+            "text": ", dan eksplorasi yang dilakukan oleh tim redaksi dan kontributor. Apa yang kamu baca di sini adalah sesuatu yang pernah kami lihat, rasakan, atau cukup bikin kami nggak bisa tidur karena mikir, “Duh, ini harus dibahas!”"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-16-8v46o",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-15-hd853",
+            "text": "Kalau kamu nggak setuju, nggak apa-apa. Kalau kamu mau diskusi, kami senang. Dan kalau kamu mau ketawa (atau ngamuk), berarti tulisan kami berhasil menyentuh kamu di titik tertentu."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-22-ze8gj",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-17-tebvw",
+            "text": "Kadang, kata-kata aja nggak cukup. Itulah kenapa kami menyediakan "
+          },
+          {
+            "_type": "span",
+            "_key": "key-18-q8bq7",
+            "text": "radio streaming",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-19-nhl9l",
+            "text": ", tempat kamu bisa menikmati "
+          },
+          {
+            "_type": "span",
+            "_key": "key-20-gimln",
+            "text": "playlist",
+            "marks": [
+              "em"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-21-at6wm",
+            "text": " musik yang cocok untuk setiap suasana. Nggak ada penyiar, nggak ada iklan yang ganggu, hanya musik yang terus mengalir."
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-24-6xi4h",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-23-4v7uu",
+            "text": "Percaya deh, dunia ini lebih menarik kalau kita nggak cuma lihat yang ada di permukaannya aja.",
+            "marks": [
+              "strong"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "break",
+        "_key": "key-25-3jr75",
+        "style": "lineBreak"
+      },
+      {
+        "_type": "block",
+        "_key": "key-27-wnv28",
+        "style": "h1",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-26-raegd",
+            "text": "Redaksi"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-29-4wxjq",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-28-covip",
+            "text": "Pemimpin Umum",
+            "marks": [
+              "strong"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-31-0rs08",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-30-2vfhg",
+            "text": "Sarah Dilla"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-33-p2rko",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-32-t6isy",
+            "text": "Pemimpin Redaksi",
+            "marks": [
+              "strong"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-35-lcsxr",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-34-z7kq5",
+            "text": "Rachel Patricia"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-37-jjwo0",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-36-jwpue",
+            "text": "Editor & Penulis",
+            "marks": [
+              "strong"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-39-4a94x",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-38-uxrks",
+            "text": "Elang Elano"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-41-6mpik",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-40-1i42n",
+            "text": "Candra Tujuhcahaya"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-43-lfgd6",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-42-855kx",
+            "text": "Margaretha Nina"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-45-fckdl",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-44-hnf1d",
+            "text": "Nadya Putri"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-47-mrx5m",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-46-9fhh3",
+            "text": "Tim Kreatif",
+            "marks": [
+              "strong"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-49-21x7c",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-48-6h05y",
+            "text": "Hendra Tujuhcahaya"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-51-r4cft",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-50-iguer",
+            "text": "Elang Elano"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-53-vvi4m",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-52-b5g27",
+            "text": "Tim Kreatif Radio",
+            "marks": [
+              "strong"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-55-axe53",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-54-zfehr",
+            "text": "Andoru (Kurator Musik)"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-57-b1wjm",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-56-y4tau",
+            "text": "Wode (Koordinator Teknologi)"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-59-8fhaf",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-58-9tsi5",
+            "text": "Developer Website",
+            "marks": [
+              "strong"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-61-uroir",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-60-tlqnk",
+            "text": "Andi Gilang"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "key-68-vazxe",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-62-vcgf2",
+            "text": "Alamat Redaksi\n",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "key-63-8ee1n",
+            "text": "Jl. Imajinasi No. 99, Kota Fiktif, 54321\n"
+          },
+          {
+            "_type": "span",
+            "_key": "key-64-apso2",
+            "text": "Telp: (021) 9876-5432\n"
+          },
+          {
+            "_type": "span",
+            "_key": "key-65-e6qmk",
+            "text": "Email: "
+          },
+          {
+            "_type": "span",
+            "_key": "key-67-etakt",
+            "text": "redaksi@tujuhcahaya.com",
+            "marks": [
+              "key-66-k5rdz"
+            ]
+          }
+        ],
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "key-66-k5rdz",
+            "href": "mailto:redaksi@namawebsite.com"
+          }
+        ]
+      },
+      {
+        "_type": "break",
+        "_key": "key-69-owngo",
+        "style": "lineBreak"
+      },
+      {
+        "_type": "block",
+        "_key": "key-71-6d7cv",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "key-70-q0phs",
+            "text": "Karena semua cerita layak untuk didengar. Bahkan yang nggak penting sekalipun.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "pedoman-media-siber",
+    "locale": "id",
+    "title": "Pedoman Pemberitaan Media Siber",
+    "content": [
+      {
+        "_type": "block",
+        "_key": "k-2f5099a8",
+        "style": "h2",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-d601dbcf",
+            "text": "Pedoman Pemberitaan Media Siber Tujuhcahaya",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-900b2593",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-a86e6261",
+            "text": "Kemerdekaan berpendapat, kemerdekaan berekspresi, dan kemerdekaan pers adalah hak asasi manusia yang dilindungi oleh Pancasila, Undang-Undang Dasar 1945, serta Deklarasi Universal Hak Asasi Manusia PBB. Sebagai media siber independen yang mengedepankan etika, kecerdasan publik, dan akuntabilitas informasi, Tujuhcahaya (tujuhcahaya.com) menjunjung tinggi dan menerapkan secara utuh Pedoman Pemberitaan Media Siber yang disahkan oleh Dewan Pers dan komunitas pers di Jakarta pada 3 Februari 2012.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-ab115479",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-067e43c9",
+            "text": "1. Ruang Lingkup",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-79d89fa5",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-d9f9cd1a",
+            "text": "Media Siber adalah segala bentuk media yang menggunakan wahana internet dan melaksanakan kegiatan jurnalistik, serta memenuhi persyaratan Undang-Undang Pers dan Standar Perusahaan Pers yang ditetapkan Dewan Pers.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-67e1b35d",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-d35d42c6",
+            "text": "Isi Buatan Pengguna (User Generated Content) adalah segala isi yang dibuat dan/atau dipublikasikan oleh pengguna media siber, antara lain artikel, komentar, opini, foto, audio, maupun video.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-2907cc43",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-fba7c899",
+            "text": "2. Verifikasi dan Keberimbangan Berita",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-2269f5f4",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-99bfdeb0",
+            "text": "Pada prinsipnya setiap berita harus melalui verifikasi. Berita yang dapat merugikan pihak lain memerlukan verifikasi pada berita yang sama untuk memenuhi prinsip akurasi dan keberimbangan.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-3a68b559",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-5c273163",
+            "text": "Setiap berita yang dipublikasikan di Tujuhcahaya wajib mencantumkan waktu pemuatan (timestamp) dan identitas jurnalis/kontributor redaksi.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-7a8ec180",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-6d4fcd36",
+            "text": "3. Isi Buatan Pengguna (User Generated Content)",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-5b9c0b8c",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-3000423d",
+            "text": "Tujuhcahaya menyediakan kanal pengiriman naskah dan opini publik melalui ruang Kirim Tulisan. Seluruh materi kiriman pengguna disaring melalui mekanisme kurasi redaksi sebelum dipublikasikan.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-0b8db60d",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-6a942f6a",
+            "text": "Pengguna dilarang memuat isi buatan pengguna yang mengandung kebohongan, fitnah, ujaran kebencian, diskriminasi, serta pelanggaran hak kekayaan intelektual.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-7590fc1d",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-ccce9f09",
+            "text": "4. Ralat, Koreksi, dan Hak Jawab",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-9805f3e7",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-74f3df66",
+            "text": "Ralat, koreksi, dan hak jawab mengacu pada Undang-Undang Pers, Kode Etik Jurnalistik, dan Pedoman Hak Jawab yang ditetapkan Dewan Pers.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-ac5cb31d",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-79213f46",
+            "text": "Ralat atau koreksi wajib ditautkan secara langsung pada berita awal yang diralat, disertai keterangan waktu pelaksanaan koreksi.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-a69d749e",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-c87af38b",
+            "text": "5. Pencabutan Berita",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-884e326b",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-c6f48142",
+            "text": "Berita yang sudah dipublikasikan tidak dapat dicabut karena alasan penyensoran oleh pihak luar redaksi, kecuali terkait masalah perlindungan masa depan anak, kerahasiaan korban kekerasan, atau atas pertimbangan khusus Dewan Pers.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-72f0cd3e",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-73dab345",
+            "text": "6. Praktik Iklan dan Sponsor",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-74f492ac",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-541556a7",
+            "text": "Tujuhcahaya membedakan secara tegas dan terang antara produk berita/liputan jurnalistik dengan materi iklan, advetorial, atau konten bersponsor.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-07d6f12c",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-fd98ab02",
+            "text": "7. Hak Cipta dan Pengutipan",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-feddf4e6",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-2db5171e",
+            "text": "Tujuhcahaya menghormati hak cipta pihak lain dan mewajibkan pencantuman sumber secara jelas pada setiap rujukan kutipan, infografis, data riset, atau materi audiovisual yang digunakan.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-8d5780a7",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-bcf9a3ee",
+            "text": "8. Pengaduan dan Penyelesaian Sengketa",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-b273876a",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-1c53103c",
+            "text": "Masyarakat atau pihak yang merasa dirugikan oleh pemberitaan dapat menyampaikan surat tanggapan, koreksi, atau pengaduan langsung melalui meja redaksi di email: redaksi@tujuhcahaya.com. Penilaian akhir atas sengketa pelaksanaan pedoman ini diselesaikan oleh Dewan Pers.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "pedoman-media-siber",
+    "locale": "en",
+    "title": "Cyber Media News Guidelines",
+    "content": [
+      {
+        "_type": "block",
+        "_key": "k-0aea1525",
+        "style": "h2",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-d70ba2a0",
+            "text": "Cyber Media News Guidelines",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-42e89d2a",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-a978dd49",
+            "text": "Freedom of speech, freedom of expression, and freedom of the press are fundamental human rights protected by the Constitution of the Republic of Indonesia and the Universal Declaration of Human Rights. Tujuhcahaya (tujuhcahaya.com) strictly adheres to the Cyber Media News Guidelines officially enacted by the Indonesian Press Council (Dewan Pers).",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-0faa3c50",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-f32a943a",
+            "text": "1. Scope",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-7efc2e6d",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-699ff69c",
+            "text": "Cyber Media encompasses all digital platforms utilizing internet infrastructure to conduct journalistic operations in accordance with the Press Law and Press Company Standards.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-7fae8266",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-9d2b8942",
+            "text": "2. Verification and Balance",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-169ddda1",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-e604c98e",
+            "text": "Every article published undergoes thorough verification. News reports involving allegations or disputes must ensure fair, proportional opportunities for response to maintain accuracy and balance.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-05125a4b",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-b4f20407",
+            "text": "3. User-Generated Content (UGC)",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-c4e22f11",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-26f9f240",
+            "text": "Reader submissions and community essays submitted via our platform are curated by editorial staff. Submissions promoting defamation, hate speech, unlawful incitement, or copyright infringement will not be published.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-6bef7fc8",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-c6bfde1c",
+            "text": "4. Corrections and Right of Reply",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-202e7fc1",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-d7646908",
+            "text": "Corrections and Rights of Reply are handled in accordance with journalistic standards. Any corrected article will contain an explicit editorial note detailing the nature and timestamp of the update.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-4fdaba24",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-db166b3c",
+            "text": "5. Retractions",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-8730ae29",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-e61ed6f4",
+            "text": "Published news reports cannot be arbitrarily retracted or censored due to external pressure, except when necessary for the protection of minors or per Press Council rulings.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-d56ef44c",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-4c56737b",
+            "text": "6. Advertising and Sponsored Content",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-58424d67",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-4a1ad1fb",
+            "text": "Tujuhcahaya strictly differentiates between editorial journalism and sponsored or advertising material through clear labeling.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-ce446d14",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-1a9a6778",
+            "text": "7. Dispute Resolution",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-c68ae15d",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-104f95a2",
+            "text": "Complaints or requests for correction regarding any published coverage should be directed to the editorial desk at: editorial@tujuhcahaya.com. Final arbitrations are resolved through the Indonesian Press Council.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "privacy-policy",
+    "locale": "en",
+    "title": "Privacy Policy",
+    "content": [
+      {
+        "_type": "block",
+        "_key": "k-5b35da2b",
+        "style": "h2",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-a06b21ba",
+            "text": "Tujuhcahaya Privacy Policy",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-e16fd6a8",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-7cda6805",
+            "text": "At Tujuhcahaya (tujuhcahaya.com), protecting your privacy is our top priority. This Privacy Policy outlines what information we collect, how it is used, and the steps we take to safeguard your data while visiting our news platform.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-ff13c81f",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-708a71cb",
+            "text": "1. Information We Collect",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-819c0bc2",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-98e5aa3e",
+            "text": "We do not require user account registration or login to read our news coverage. Like standard web platforms, non-personally identifiable technical information is collected automatically:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-32d75913",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-47d76115",
+            "text": "• Technical Data: IP address, browser type, operating system, and device category.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-8a86c7f8",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-7add7e0a",
+            "text": "• Usage Data: Viewed articles, reading duration, referring pages, and visit timestamps.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-93149769",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-b33ee05f",
+            "text": "2. How We Use Information",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-e7cb81ce",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-d62ef0ba",
+            "text": "Collected metrics are used solely for performance monitoring and editorial optimization:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-74143255",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-6650c53f",
+            "text": "• Ensuring fast article loading and responsive layout rendering across devices.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-8da91886",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-7b3f76aa",
+            "text": "• Analyzing readership trends to enhance journalistic coverage.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-829bcd5e",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-ea2b9cfb",
+            "text": "• We do not sell, rent, or trade your personal data to third parties.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-2bed22d7",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-c6c17c7b",
+            "text": "3. Cookies",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-1c1838b8",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-b6dce49c",
+            "text": "Tujuhcahaya utilizes lightweight client cookies strictly to preserve your interface preferences (such as light/dark theme). You may disable cookies in your browser settings at any time without restricting access to our articles.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-cf9d7da6",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-2b6f886c",
+            "text": "4. Data Security",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-a08cd3b1",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-08a55b6a",
+            "text": "We employ standard encrypted transport protocols (HTTPS/TLS) to protect data transmissions between your browser and our servers.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-371b3f6a",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-8249ac80",
+            "text": "5. Contact",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-c41f0b9a",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-56939a0d",
+            "text": "For privacy inquiries, please contact: editorial@tujuhcahaya.com.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-9e4876e7",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-aeb7875c",
+            "text": "This policy is effective as of September 28, 2024.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "terms-of-use",
+    "locale": "en",
+    "title": "Terms of Use",
+    "content": [
+      {
+        "_type": "block",
+        "_key": "k-c2426d35",
+        "style": "h2",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-27558d09",
+            "text": "Terms of Use",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-5249e0d3",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-ef4f5bea",
+            "text": "Welcome to Tujuhcahaya (tujuhcahaya.com). By accessing and utilizing this platform, you agree to comply with the terms and legal notices outlined below.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-f8a679de",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-66b2ac0b",
+            "text": "1. Intellectual Property and Content Usage",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-631ca8b4",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-30ebc7a1",
+            "text": "All editorial materials published on Tujuhcahaya, including articles, essays, graphics, and layout designs, are protected by intellectual property laws. You may quote and share excerpts provided that:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-785e7d46",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-4233ab86",
+            "text": "• Proper credit and active attribution links to Tujuhcahaya are included.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-bc44eac8",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-5b0ca42e",
+            "text": "• Content is not modified or distorted to misrepresent original facts or editorial intent.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-7e3efa64",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-7c0e2c80",
+            "text": "• Usage aligns with fair use, non-commercial research, or constructive public dialogue.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-01884e9b",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-517cbe0b",
+            "text": "2. Disclaimer of Liability",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-5c9da52f",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-5c8658dc",
+            "text": "Tujuhcahaya publishes reports, opinion essays, and technological analyses with high journalistic diligence. While we strive for accuracy at publication, content is provided 'as is' without warranties for individual consequential outcomes.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-8d1f9449",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-269b2a81",
+            "text": "3. External Links",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-2f4b9a96",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-3b220339",
+            "text": "Our dispatches may link to external websites for contextual reference. Tujuhcahaya is not responsible for the content or practices of external third-party sites.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-13cce8a8",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-889101cd",
+            "text": "These terms are effective as of September 28, 2024.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "about-us",
+    "locale": "en",
+    "title": "About Us",
+    "content": [
+      {
+        "_type": "block",
+        "_key": "k-ad88eda7",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-1f1f23a9",
+            "text": "Welcome to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "s-98750015",
+            "text": "Tujuhcahaya",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "s-10de5f98",
+            "text": ", an independent digital newsroom inspired by the philosophy of the number 7: balance, completeness, and a dynamic spectrum of perspectives. From the seven colors of light to seven editorial pillars—investigative news, deep tech, gaming culture, music, contemporary arts, wellness, and experimental media.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-58ff1543",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-4eced426",
+            "text": "Our editorial philosophy pairs rigorous journalistic integrity with an observant, witty, and grounded voice reminiscent of Vice and Wired. We believe that critical discussions about technology, culture, and society need not be dry or pedantic.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-cd23aa45",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-0cd981d6",
+            "text": "Beyond written journalism, Tujuhcahaya hosts an ad-free 24-hour curated music radio platform. Welcome to our publication, explore our reporting, and discover fresh perspectives from Southeast Asia and beyond.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "redaksi",
+    "locale": "en",
+    "title": "Editorial Board",
+    "content": [
+      {
+        "_type": "block",
+        "_key": "k-20fc0e12",
+        "style": "h2",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-3c493ad0",
+            "text": "Editorial Masthead & Board",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-3486f5e5",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-24803d38",
+            "text": "Founded on August 22, 2011, Tujuhcahaya operates as an independent media organization dedicated to investigative reporting, technology analysis, and cultural commentary.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-16097f03",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-65ec8639",
+            "text": "Executive & Editorial Leadership",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-10603493",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-497f9ebe",
+            "text": "Publisher: Sarah Dilla",
+            "marks": [
+              "strong"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-d42f8b7f",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-674f878f",
+            "text": "Editor-in-Chief: Rachel Patricia",
+            "marks": [
+              "strong"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-ba7e1f99",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-7fa5a7ae",
+            "text": "Senior Editors",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-549b53df",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-82da1604",
+            "text": "• Elang Elano — Technology & Science",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-659a4e64",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-c2efbd74",
+            "text": "• Candra Tujuhcahaya — News & Investigations",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-1dbb6479",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-f8f97420",
+            "text": "• Margaretha Nina — Arts & Culture",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-9626b097",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-558f268f",
+            "text": "• Nadya Putri — Society & Features",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-30ed3954",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-7267ea15",
+            "text": "Creative, Technology & Audio Lab",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-ddaa24f3",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-4a24ca84",
+            "text": "• Hendra Tujuhcahaya — Visual Director",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-83d0a4ce",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-f42a4d96",
+            "text": "• Andoru — Music Curator & 7Stream Broadcasts",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-568de5eb",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-9e61f837",
+            "text": "• Wode — Systems Architecture",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-5613fcf9",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-50b62827",
+            "text": "• Andi Gilang — Platform Engineering",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-35a4f53e",
+        "style": "h3",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-814886bf",
+            "text": "Newsroom Inquiries",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-9a5bf617",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-f5908432",
+            "text": "General Newsroom & Corrections: editorial@tujuhcahaya.com",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "k-5069d1c8",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s-87d8e611",
+            "text": "Community Submissions: tujuhcahaya.com/en/submit",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+]

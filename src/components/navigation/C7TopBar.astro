@@ -164,21 +164,33 @@ const enPath = get7cLocalizedPath(currentPath, "en");
 
 	.c7-theme-toggle-btn {
 		background: var(--7c-sys-surface-container-high);
-		border: 1px solid var(--7c-sys-outline-variant);
+		border: none;
 		color: var(--7c-sys-on-surface);
 		border-radius: var(--7c-radius-sm);
-		padding: 3px 9px;
+		padding: 4px 10px;
 		font-size: 0.75rem;
 		font-weight: 600;
 		cursor: pointer;
 		display: flex;
 		align-items: center;
 		gap: 0.4rem;
-		transition: all 0.15s ease;
+		box-shadow: var(--7c-sys-elevation-0);
+		transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 	}
 
 	.c7-theme-toggle-btn:hover {
 		background: var(--7c-sys-surface-container-highest);
-		border-color: var(--7c-sys-primary);
+		box-shadow: var(--7c-sys-elevation-1);
+		transform: translateY(-1px);
+	}
+
+	.c7-theme-toggle-btn:focus-visible {
+		outline: none;
+		box-shadow: var(--7c-sys-focus-ring);
+	}
+
+	.c7-lang-link:focus-visible {
+		outline: none;
+		box-shadow: var(--7c-sys-focus-ring);
 	}
 </style>

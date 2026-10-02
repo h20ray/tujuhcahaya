@@ -186,8 +186,9 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 	/* Author Profile Hero */
 	.c7-author-profile-hero {
 		background: var(--7c-sys-surface-container-high);
-		border: 1px solid var(--7c-sys-outline-variant);
-		border-radius: var(--7c-radius-lg, 12px);
+		border: none;
+		border-radius: 20px;
+		box-shadow: var(--7c-sys-elevation-1);
 		padding: 2.25rem 2rem;
 		margin-bottom: 2.5rem;
 	}
@@ -207,8 +208,8 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 		height: 88px;
 		border-radius: 50%;
 		object-fit: cover;
-		border: 3px solid var(--7c-sys-outline-variant);
-		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+		border: none;
+		box-shadow: var(--7c-sys-elevation-1);
 		display: block;
 	}
 
@@ -224,7 +225,8 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border: 3px solid var(--7c-sys-outline-variant);
+		border: none;
+		box-shadow: var(--7c-sys-elevation-1);
 	}
 
 	.c7-author-hero-info {
@@ -251,13 +253,20 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 	}
 
 	.c7-hero-role {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		vertical-align: middle;
 		font-size: 0.75rem;
-		font-weight: 500;
-		padding: 0.2rem 0.65rem;
-		border-radius: 999px;
+		font-weight: 600;
+		padding: 0.22rem 0.65rem;
+		min-height: 22px;
+		box-sizing: border-box;
+		border-radius: 9999px;
 		background: var(--7c-sys-surface-container-highest);
 		color: var(--7c-sys-on-surface);
-		border: 1px solid var(--7c-sys-outline-variant);
+		border: none;
 	}
 
 	.c7-hero-count {
@@ -325,27 +334,42 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 	}
 
 	.dispatch-filter-tab {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		vertical-align: middle;
 		font-size: 0.78rem;
 		font-weight: 600;
 		padding: 0.35rem 0.85rem;
-		border-radius: var(--7c-radius-sm, 6px);
-		background: var(--7c-sys-surface-container);
-		border: 1px solid var(--7c-sys-outline-variant);
+		min-height: 28px;
+		box-sizing: border-box;
+		border-radius: 9999px;
+		background: var(--7c-sys-surface-container-high);
+		border: none;
 		color: var(--7c-sys-on-surface-variant);
 		text-decoration: none;
 		white-space: nowrap;
-		transition: all 0.15s ease;
+		box-shadow: var(--7c-sys-elevation-0);
+		transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease, color 0.15s ease;
 	}
 
 	.dispatch-filter-tab:hover {
 		color: var(--7c-sys-on-surface);
-		background: var(--7c-sys-surface-container-high);
+		background: var(--7c-sys-surface-container-highest);
+		box-shadow: var(--7c-sys-elevation-1);
+		transform: translateY(-1px);
 	}
 
 	.dispatch-filter-tab.active {
 		background: var(--7c-sys-primary);
 		color: var(--7c-sys-on-primary);
-		border-color: var(--7c-sys-primary);
+		box-shadow: var(--7c-sys-elevation-1);
+	}
+
+	.dispatch-filter-tab:focus-visible {
+		outline: none;
+		box-shadow: var(--7c-sys-focus-ring);
 	}
 
 	/* Dispatch Table Rows */
@@ -353,8 +377,9 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 		display: flex;
 		flex-direction: column;
 		background: var(--7c-sys-surface-container-low);
-		border: 1px solid var(--7c-sys-outline-variant);
-		border-radius: var(--7c-radius-md, 8px);
+		border: none;
+		border-radius: 16px;
+		box-shadow: var(--7c-sys-elevation-1);
 		overflow: hidden;
 	}
 
@@ -432,15 +457,20 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 	}
 
 	.dispatch-cat-pill {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		vertical-align: middle;
 		font-size: 0.72rem;
 		font-weight: 700;
 		padding: 0.2rem 0.6rem;
-		border-radius: 999px;
+		min-height: 22px;
+		box-sizing: border-box;
+		border-radius: 9999px;
 		background: var(--7c-sys-surface-container-highest);
 		color: var(--7c-sys-on-surface);
-		border: 1px solid var(--7c-sys-outline-variant);
-		display: inline-flex;
-		align-items: center;
+		border: none;
 		gap: 0.35rem;
 		white-space: nowrap;
 	}
@@ -484,26 +514,40 @@ const allAuthorSlugs = Object.keys(C7_AUTHORS);
 	}
 
 	.dispatch-page-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		vertical-align: middle;
 		font-size: 0.8rem;
 		font-weight: 700;
 		padding: 0.4rem 0.85rem;
-		border-radius: var(--7c-radius-sm, 6px);
-		background: var(--7c-sys-surface-container);
-		border: 1px solid var(--7c-sys-outline-variant);
+		min-height: 32px;
+		box-sizing: border-box;
+		border-radius: 9999px;
+		background: var(--7c-sys-surface-container-high);
+		border: none;
+		box-shadow: var(--7c-sys-elevation-1);
 		color: var(--7c-sys-on-surface);
 		text-decoration: none;
-		transition: all 0.15s ease;
+		transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease, color 0.15s ease;
 	}
 
 	.dispatch-page-btn:hover {
 		background: var(--7c-sys-surface-container-highest);
-		border-color: var(--7c-sys-outline);
+		box-shadow: var(--7c-sys-elevation-2);
+		transform: translateY(-1px);
+	}
+
+	.dispatch-page-btn:focus-visible {
+		outline: none;
+		box-shadow: var(--7c-sys-focus-ring);
 	}
 
 	.dispatch-page-btn.primary {
 		background: var(--7c-sys-primary);
 		color: var(--7c-sys-on-primary);
-		border-color: var(--7c-sys-primary);
+		box-shadow: var(--7c-sys-elevation-1);
 	}
 
 	@media (max-width: 768px) {

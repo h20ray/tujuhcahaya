@@ -1,0 +1,286 @@
+---
+// Tujuhcahaya - Isometric 3D Layered Architecture Scene ("Cake" Engine)
+// 7C Digital Engine with 2:1 dimetric projection and bespoke spring kinematics
+import C7IsometricGlow from "./C7IsometricGlow.astro";
+
+interface Rubrik {
+	key: string;
+	num: string;
+	name: string;
+	shortLeft: string;
+	shortRight: string;
+	accent: string;
+	stroke: string;
+	y: number;
+}
+
+export interface Props {
+	rubriks: Rubrik[];
+	serializedRubrikData: Record<string, { n: string; d: string; url: string; accent: string }>;
+	isEn: boolean;
+}
+
+const { rubriks, serializedRubrikData, isEn } = Astro.props;
+---
+
+<div
+	class="cake enter has-out"
+	id="cakeContainer"
+	data-rubriks={JSON.stringify(serializedRubrikData)}
+>
+	<svg
+		viewBox="-287 -35 574 610"
+		class="cake-svg"
+		shape-rendering="geometricPrecision"
+		text-rendering="geometricPrecision"
+		aria-label={isEn ? "Tujuhcahaya 7-Section Layered Architecture — click any layer to inspect" : "Tujuh Lapis Cahaya Tujuhcahaya Media — klik lapisan mana saja untuk memisahkan"}
+	>
+		<defs>
+			<!-- 7C Reusable Dimetric 2:1 Slab Geometry Template -->
+			<g id="cake-slab-template">
+				<!-- Top Face: 380px wide diamond (Rhombus, 2:1 slope) -->
+				<path class="f-top" d="M0 0 L190 95 L0 190 L-190 95 Z" />
+				<!-- Left Face: 40px vertical extrusion -->
+				<path class="f-left" d="M-190 95 L0 190 L0 230 L-190 135 Z" />
+				<!-- Right Face: 40px vertical extrusion -->
+				<path class="f-right" d="M0 190 L190 95 L190 135 L0 230 Z" />
+			</g>
+		</defs>
+
+		<!-- 7 Layers in Painter's Order wrapped in dynamic balance assembly -->
+		<g class="cake-assembly">
+			{rubriks.map((p, index) => {
+				const isDefault = p.key === "game"; // Default selected layer
+				return (
+					<g
+						class={`layer ${isDefault ? "sel out" : ""}`}
+						data-key={p.key}
+						role="button"
+						tabindex="0"
+						aria-pressed={isDefault ? "true" : "false"}
+						aria-label={`${p.name} (${isEn ? "Layer" : "Lapis"} ${p.num})`}
+						style={`transform: translate(0px, ${p.y}px); --layer-accent: ${p.accent}; --layer-stroke: ${p.stroke};`}
+					>
+						<g class="drop" style={`animation-delay: ${0.05 + index * 0.08}s`}>
+							<g class="slide">
+								<use href="#cake-slab-template" />
+
+								<!-- Left Face Label (Affine Isometric Matrix, slope 0.5) -->
+								<text
+									class="lab lab-l"
+									text-anchor="middle"
+									dominant-baseline="central"
+									transform="matrix(0.894, 0.447, 0, 1, -95, 164)"
+								>
+									{p.shortLeft}
+								</text>
+
+								<!-- Right Face Label (Affine Isometric Matrix, slope -0.5) -->
+								<text
+									class="lab lab-r"
+									text-anchor="middle"
+									dominant-baseline="central"
+									transform="matrix(0.894, -0.447, 0, 1, 95, 164)"
+								>
+									{p.shortRight}
+								</text>
+
+								<!-- Top Layer Graphic (Official Tujuhcahaya Logo mapped to top diamond) rendered on EVERY slab -->
+								<C7IsometricGlow />
+							</g>
+						</g>
+					</g>
+				);
+			})}
+		</g>
+	</svg>
+</div>
+
+<style>
+	.cake {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		position: relative;
+		margin: auto 0;
+	}
+
+	.cake-svg {
+		width: 100%;
+		height: auto;
+		max-height: 480px;
+		display: block;
+		overflow: visible;
+		shape-rendering: geometricPrecision;
+		text-rendering: geometricPrecision;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.cake-assembly,
+		.layer .slide {
+			transition: none !important;
+		}
+	}
+
+	.layer {
+		cursor: pointer;
+		outline: none;
+	}
+
+	/* Face Styling with Dimetric Directional Lighting */
+	.f-top {
+		fill: var(--color-card, #ffffff);
+		stroke: var(--color-border, #d0d5db);
+		stroke-width: 1;
+		transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.2s ease;
+	}
+
+	.f-left {
+		fill: var(--color-card-subtle, #f3f5f6);
+		stroke: var(--color-border, #d0d5db);
+		stroke-width: 1;
+		transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.2s ease;
+	}
+
+	.f-right {
+		fill: var(--color-bg, #fbfcfd);
+		stroke: var(--color-border, #d0d5db);
+		stroke-width: 1;
+		transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.2s ease;
+	}
+
+	/* Dark Mode Faces */
+	:global([data-theme="dark"]) .f-top {
+		fill: #0d1017;
+		stroke: rgba(255, 255, 255, 0.12);
+	}
+	:global([data-theme="dark"]) .f-left {
+		fill: #06080c;
+		stroke: rgba(255, 255, 255, 0.1);
+	}
+	:global([data-theme="dark"]) .f-right {
+		fill: #11151e;
+		stroke: rgba(255, 255, 255, 0.12);
+	}
+
+	/* Layer Hover & Focus Illumination */
+	.layer:hover .f-top,
+	.layer:focus-visible .f-top {
+		stroke: var(--layer-stroke, var(--layer-accent));
+		stroke-width: 1.5;
+	}
+
+	:global([data-theme="dark"]) .layer:hover .f-top,
+	:global([data-theme="dark"]) .layer:focus-visible .f-top {
+		stroke: var(--layer-accent, var(--color-primary));
+		stroke-width: 1.5;
+	}
+
+	/* Selected & Active States: Box surfaces NEVER change their fill color */
+	.layer.sel .f-top {
+		stroke: var(--layer-stroke, var(--layer-accent));
+		stroke-width: 1.5;
+	}
+
+	.layer.sel .f-left,
+	.layer.sel .f-right {
+		stroke: var(--layer-stroke, var(--layer-accent));
+		stroke-width: 1.2;
+	}
+
+	.layer:focus-visible .f-top {
+		stroke: var(--layer-accent, var(--color-primary));
+		stroke-width: 2.5;
+	}
+	.layer:focus-visible .f-left,
+	.layer:focus-visible .f-right {
+		stroke: var(--layer-accent, var(--color-primary));
+		stroke-width: 2;
+	}
+
+	/* Typography on Isometric Faces (WCAG AAA Contrast Compliant) */
+	.lab {
+		font-family: var(--7c-font-display, "Google Sans", system-ui, sans-serif);
+		font-size: 11.5px;
+		font-weight: 600;
+		letter-spacing: 1.5px;
+		user-select: none;
+		pointer-events: none;
+	}
+
+	.lab-l {
+		fill: #334155;
+	}
+
+	:global([data-theme="dark"]) .lab-l {
+		fill: #e2e8f0;
+	}
+
+	.lab-r {
+		fill: #0f172a;
+	}
+
+	:global([data-theme="dark"]) .lab-r {
+		fill: #f8fafc;
+	}
+
+	.layer.sel .lab-r {
+		font-weight: 700;
+	}
+
+	/* Dynamic Visual Weight Counterbalance */
+	.cake-assembly {
+		transition: transform 560ms cubic-bezier(0.3, 1.18, 0.4, 1);
+	}
+
+	.cake.has-out .cake-assembly {
+		transform: translateX(-70px);
+	}
+
+	/* 7C Bespoke Spring Kinematics */
+	.layer .slide {
+		transition: transform 560ms cubic-bezier(0.3, 1.18, 0.4, 1);
+	}
+
+	/* Sliced-Out State */
+	.layer.out .slide,
+	.layer.out:hover .slide,
+	.layer.out:focus-visible .slide {
+		transform: translate(140px, 70px);
+	}
+
+	/* Page-load Cascade Stagger Entrance */
+	@keyframes cakein {
+		0% {
+			opacity: 0;
+			transform: translate(140px, -70px);
+		}
+		100% {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	@keyframes cakehint {
+		0%, 100% {
+			transform: none;
+		}
+		45% {
+			transform: translate(40px, 20px);
+		}
+	}
+
+	.cake.enter g.layer .drop {
+		animation: cakein 640ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.layer.hint .slide {
+		animation: cakehint 1s cubic-bezier(0.45, 0, 0.3, 1) both;
+	}
+
+	@media (max-width: 991px) {
+		.cake-svg {
+			max-height: min(250px, 34vh);
+		}
+	}
+</style>

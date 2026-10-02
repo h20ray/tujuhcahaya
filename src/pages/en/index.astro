@@ -23,12 +23,12 @@ const { siteTitle } = await get7cSiteIdentity();
 
 const categoriesByEntry = await getTermsForEntries(
 	"posts",
-	posts.map((p) => p.data.id),
+	posts.map((p) => p.data.id ?? p.id),
 	"category",
 );
 
 const heroNewsList = posts.map((post) => {
-	const cats = categoriesByEntry.get(post.data.id) ?? [];
+	const cats = categoriesByEntry.get(post.data.id ?? post.id) ?? [];
 	const firstCategory = cats[0] ?? { label: "News", slug: "berita" };
 	const slug = post.data?.slug || post.id;
 	const source = resolve7cArticleSource(post);
@@ -110,7 +110,7 @@ const heroNewsList = posts.map((post) => {
 							</div>
 
 							<!-- Article Title -->
-							<span class="dispatch-title" {...item.post.edit?.title}>
+							<span class="dispatch-title" {...(item.post.edit?.title ?? {})}>
 								{item.post.data.title}
 							</span>
 

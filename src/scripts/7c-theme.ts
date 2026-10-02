@@ -10,6 +10,12 @@ export type C7EffectiveTheme = "light" | "dark";
 // Backward compatibility alias
 export type C7Theme = C7EffectiveTheme;
 
+declare global {
+	interface Window {
+		__c7ThemeInitialized?: boolean;
+	}
+}
+
 export const C7_THEME_STORAGE_KEY = "theme";
 
 export function getSystemPreference(): C7EffectiveTheme {
@@ -58,12 +64,35 @@ export function applyThemeToElement(el: HTMLElement, theme: C7EffectiveTheme): v
 export function syncThemeButtons(currentSetting?: C7ThemeSetting): void {
 	if (typeof document === "undefined") return;
 	const activeSetting = currentSetting || getThemeSetting();
+	const effective = getEffectiveTheme(activeSetting);
+	const isDark = effective === "dark";
+	const isEn = document.documentElement.lang === "en";
+
+	// 1. Sync segmented theme buttons (if present)
 	const themeBtns = document.querySelectorAll(".c7-theme-btn, .theme-btn");
 	themeBtns.forEach((btn) => {
 		const btnTheme = btn.getAttribute("data-theme");
 		const isActive = btnTheme === activeSetting;
 		btn.classList.toggle("active", isActive);
 		btn.setAttribute("aria-pressed", String(isActive));
+	});
+
+	// 2. Sync single animated toggle buttons (.c7-theme-toggle)
+	const toggles = document.querySelectorAll(".c7-theme-toggle, [data-c7-theme-toggle]");
+	toggles.forEach((btn) => {
+		btn.setAttribute("aria-pressed", String(isDark));
+		btn.setAttribute(
+			"aria-label",
+			isDark
+				? (isEn ? "Switch to light mode" : "Beralih ke mode terang")
+				: (isEn ? "Switch to dark mode" : "Beralih ke mode gelap"),
+		);
+		btn.setAttribute(
+			"title",
+			isDark
+				? (isEn ? "Switch to light mode" : "Beralih ke mode terang")
+				: (isEn ? "Switch to dark mode" : "Beralih ke mode gelap"),
+		);
 	});
 }
 
@@ -107,17 +136,18 @@ export function toggleTheme(): C7EffectiveTheme {
  */
 export function initThemeLifecycle(): void {
 	if (typeof window === "undefined") return;
-	if ((window as any).__c7ThemeInitialized) return;
-	(window as any).__c7ThemeInitialized = true;
+	if (window.__c7ThemeInitialized) return;
+	window.__c7ThemeInitialized = true;
 
 	// 1. Initial application on bundle execution
 	applyTheme();
 
 	// 2. CRITICAL: Preserve data-theme attribute on incoming document BEFORE Astro swaps the DOM
-	document.addEventListener("astro:before-swap", (e: any) => {
+	document.addEventListener("astro:before-swap", (e) => {
 		const activeTheme = getEffectiveTheme();
-		if (e.newDocument && e.newDocument.documentElement) {
-			applyThemeToElement(e.newDocument.documentElement, activeTheme);
+		const swapEvent = e as Event & { newDocument?: Document };
+		if (swapEvent.newDocument?.documentElement) {
+			applyThemeToElement(swapEvent.newDocument.documentElement, activeTheme);
 		}
 	});
 
@@ -141,12 +171,23 @@ export function initThemeLifecycle(): void {
 		});
 	} catch {}
 
-	// 6. Global delegated click handler for segmented .c7-theme-btn buttons
+	// 6. Global delegated click handler for single-icon toggle & segmented buttons
 	document.addEventListener(
 		"click",
 		(e) => {
 			const target = e.target as HTMLElement | null;
 			if (!target) return;
+
+			// Handle single-icon animated theme toggle (.c7-theme-toggle)
+			const toggleBtn = target.closest(".c7-theme-toggle, [data-c7-theme-toggle]");
+			if (toggleBtn) {
+				e.preventDefault();
+				e.stopPropagation();
+				toggleTheme();
+				return;
+			}
+
+			// Handle segmented theme buttons (if present)
 			const btn = target.closest(".c7-theme-btn, .theme-btn");
 			if (!btn) return;
 

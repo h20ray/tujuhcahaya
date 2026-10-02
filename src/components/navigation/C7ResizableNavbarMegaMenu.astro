@@ -1,0 +1,47 @@
+---
+interface Pillar {
+	id: string;
+	title: string;
+	url: string;
+	desc: string;
+	color: string;
+}
+
+interface Props {
+	pillars: Pillar[];
+	prefix: string;
+	megaMenuId: string;
+	locale: string;
+}
+
+const { pillars, prefix, megaMenuId, locale } = Astro.props;
+---
+
+<div class="c7-rn-mega-dropdown" id={megaMenuId} role="region" aria-label="Kanal Berita Tujuhcahaya">
+	<div class="c7-rn-mega-header">
+		<div class="c7-rn-mega-badge">
+			<span>Editorial</span>
+		</div>
+	</div>
+
+	<div class="c7-rn-mega-grid">
+		{pillars.map((pillar) => (
+			<a href={pillar.url} class="c7-rn-mega-card">
+				<div class="c7-rn-mega-card-row">
+					<span class="c7-rn-pillar-dot" style={`background-color: ${pillar.color};`} aria-hidden="true" />
+					<span class="c7-rn-mega-title">{pillar.title}</span>
+				</div>
+				<p class="c7-rn-mega-desc">{pillar.desc}</p>
+			</a>
+		))}
+	</div>
+
+	<div class="c7-rn-mega-footer">
+		<a href={`${prefix}/kirim-tulisan`} class="c7-rn-mega-footer-link">
+			<span>{locale === "en" ? "Submit Op-Ed / Dispatch" : "Kirim Naskah Opini"}</span>
+		</a>
+		<a href={`${prefix}/posts`} class="c7-rn-mega-footer-link">
+			<span>{locale === "en" ? "Complete Archive" : "Arsip Lengkap"}</span>
+		</a>
+	</div>
+</div>

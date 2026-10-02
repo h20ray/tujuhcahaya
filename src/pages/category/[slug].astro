@@ -6,6 +6,7 @@ import {
 } from "emdash";
 import Base from "../../layouts/Base.astro";
 import { resolve7cAuthor } from "../../lib/7c-cms";
+import type { C7PostData } from "../../lib/7c-cms";
 import { build7cDispatchPreview } from "../../lib/7c-dispatch";
 
 const slug = decodeSlug(Astro.params.slug);
@@ -42,11 +43,9 @@ const formattedPosts = posts.map((post) => {
 				month: "short",
 		  })
 		: "";
+	const postData = (post.data as unknown) as C7PostData;
 	const authorProfile = resolve7cAuthor(
-		(post.data as any)?.byline ||
-			(post.data as any)?.primaryBylineId ||
-			(post.data as any)?.primary_byline_id ||
-			post.data,
+		postData.byline || postData.primaryBylineId || postData.primary_byline_id || null,
 		"id",
 	);
 	const cat = { label: term.label, slug: term.slug };

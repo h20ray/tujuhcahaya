@@ -1,0 +1,112 @@
+---
+/**
+ * C7CommandPalette — 7C Bespoke Command Palette (MD3X Standard)
+ *
+ * Fullscreen modal command palette driven entirely by the keyboard.
+ * Multi-domain search across:
+ * 1. Posts & Editorial stories (/_emdash/api/search)
+ * 2. Static Pages & Editorial Rubriks (/_emdash/api/search + local index)
+ * 3. Radio Song Request catalog (/_emdash/api/plugins/tujuhcahaya-radio/song-request)
+ * 4. Radio Song History (/_emdash/api/plugins/tujuhcahaya-radio/now-playing history)
+ * 5. Quick Actions (Theme toggle, radio play/pause, lyrics drawer, language toggle)
+ *
+ * Note: Zero arrow icons utilized in UI to avoid generic AI-slop visual tropes.
+ */
+import { type Locale, DEFAULT_LOCALE, get7cLocalizedPath } from "../../i18n/utils";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const isEn = locale === "en";
+const prefix = isEn ? "/en" : "";
+const idPath = get7cLocalizedPath(Astro.url.pathname, "id");
+const enPath = get7cLocalizedPath(Astro.url.pathname, "en");
+import "./C7CommandPalette.css";
+import "./C7CommandPalette.ts";
+---
+
+<c7-command-palette
+  class="c7-command-palette"
+  data-locale={locale}
+  data-prefix={prefix}
+  data-id-path={idPath}
+  data-en-path={enPath}
+  aria-hidden="true"
+  inert
+>
+  <div class="c7-cp-backdrop" data-cp-backdrop></div>
+
+  <div class="c7-cp-dialog" role="dialog" aria-modal="true" aria-label={isEn ? "Command Palette" : "Pencarian & Perintah"}>
+    <!-- Top Search Bar -->
+    <div class="c7-cp-header">
+      <div class="c7-cp-input-wrap">
+        <svg class="c7-cp-search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+
+        <input
+          type="text"
+          role="searchbox"
+          class="c7-cp-input"
+          data-cp-input
+          placeholder={isEn ? "Search stories, destinations, radio songs, or actions..." : "Cari liputan, halaman, lagu radio, atau aksi cepat..."}
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          aria-autocomplete="list"
+          aria-controls="c7-cp-results-list"
+        />
+
+        <button type="button" class="c7-cp-clear-btn" data-cp-clear aria-label={isEn ? "Clear input" : "Hapus teks"} hidden>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <kbd class="c7-cp-esc-badge" data-cp-close title="Tutup Palette">ESC</kbd>
+      </div>
+
+      <div class="c7-cp-tabs" role="tablist" aria-label="Filter Kategori">
+        <button type="button" class="c7-cp-tab active" data-cp-tab="all" role="tab" aria-selected="true">{isEn ? "All" : "Semua"}</button>
+        <button type="button" class="c7-cp-tab" data-cp-tab="posts" role="tab" aria-selected="false">{isEn ? "Stories" : "Liputan"}</button>
+        <button type="button" class="c7-cp-tab" data-cp-tab="pages" role="tab" aria-selected="false">{isEn ? "Pages" : "Halaman"}</button>
+        <button type="button" class="c7-cp-tab" data-cp-tab="request" role="tab" aria-selected="false">{isEn ? "Song Request" : "Request Lagu"}</button>
+        <button type="button" class="c7-cp-tab" data-cp-tab="history" role="tab" aria-selected="false">{isEn ? "Radio History" : "Riwayat Siaran"}</button>
+        <button type="button" class="c7-cp-tab" data-cp-tab="actions" role="tab" aria-selected="false">{isEn ? "Quick Actions" : "Aksi Cepat"}</button>
+      </div>
+    </div>
+
+    <div class="c7-cp-toast" data-cp-toast hidden>
+      <span class="c7-cp-toast-icon" aria-hidden="true"></span>
+      <span class="c7-cp-toast-text" data-cp-toast-text></span>
+    </div>
+
+    <div class="c7-cp-body" id="c7-cp-results-list" role="listbox" data-cp-results>
+      <!-- Dynamic Results injected by script -->
+    </div>
+
+    <div class="c7-cp-footer">
+      <div class="c7-cp-footer-status">
+        <span class="c7-cp-engine-tag">7C COMMAND ENGINE</span>
+      </div>
+      <div class="c7-cp-footer-hints">
+        <span class="c7-cp-hint-item">
+          <kbd class="c7-cp-kbd">?</kbd><kbd class="c7-cp-kbd">?</kbd>
+          <span>{isEn ? "Navigate" : "Navigasi"}</span>
+        </span>
+        <span class="c7-cp-hint-item">
+          <kbd class="c7-cp-kbd">?</kbd>
+          <span>{isEn ? "Select" : "Pilih"}</span>
+        </span>
+        <span class="c7-cp-hint-item">
+          <kbd class="c7-cp-kbd">ESC</kbd>
+          <span>{isEn ? "Close" : "Tutup"}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</c7-command-palette>

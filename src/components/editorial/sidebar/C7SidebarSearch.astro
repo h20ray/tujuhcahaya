@@ -1,0 +1,133 @@
+---
+/**
+ * C7SidebarSearch — Quick search widget
+ */
+import type { Locale } from "../../../i18n/utils";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = "id" } = Astro.props;
+const isEn = locale === "en";
+---
+
+<section class="c7-sidebar-card c7-sidebar-search-card" aria-label={isEn ? "Search" : "Pencarian"}>
+	<form method="get" action={isEn ? "/en/search" : "/search"} class="c7-search-form" role="search">
+		<label for="c7-sidebar-search-input" class="sr-only">
+			{isEn ? "Search Tujuhcahaya" : "Cari di Tujuhcahaya"}
+		</label>
+		<div class="c7-search-input-wrapper">
+			<svg class="c7-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+				<circle cx="11" cy="11" r="8"></circle>
+				<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+			</svg>
+			<input
+				type="search"
+				id="c7-sidebar-search-input"
+				name="q"
+				placeholder={isEn ? "Search articles, topics..." : "Cari liputan, topik, rubrik..."}
+				class="c7-search-input"
+				autocomplete="off"
+			/>
+			<kbd class="c7-search-kbd" title="Tekan Ctrl+K atau Cmd+K untuk cari cepat">⌘K</kbd>
+		</div>
+	</form>
+</section>
+
+<style>
+	.c7-sidebar-card {
+		background: var(--7c-sys-surface-container-low);
+		border: none;
+		border-radius: 20px;
+		padding: 1.5rem;
+		box-shadow: var(--7c-sys-elevation-1);
+		transition: background-color 0.2s ease, box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.c7-sidebar-card:hover {
+		background: var(--7c-sys-surface-container);
+		box-shadow: var(--7c-sys-elevation-2);
+		transform: translateY(-2px);
+	}
+
+	.c7-sidebar-search-card {
+		padding: 0.35rem 0.65rem;
+		border-radius: 9999px;
+		background: var(--7c-sys-surface-container-low);
+		border: none;
+		box-shadow: var(--7c-sys-elevation-1);
+		transition: box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease, transform 0.2s ease;
+	}
+
+	.c7-sidebar-search-card:hover {
+		background: var(--7c-sys-surface-container);
+		box-shadow: var(--7c-sys-elevation-2);
+		transform: translateY(-1px);
+	}
+
+	.c7-sidebar-search-card:focus-within {
+		background: var(--7c-sys-surface-container-lowest);
+		box-shadow: 0 0 0 3px rgba(213, 0, 0, 0.12), var(--7c-sys-elevation-2);
+		transform: translateY(-1px);
+	}
+
+	:global([data-theme="dark"]) .c7-sidebar-search-card:focus-within {
+		background: var(--7c-sys-surface-container-low);
+		box-shadow: 0 0 0 3px rgba(255, 82, 82, 0.18), var(--7c-sys-elevation-2);
+	}
+
+	.c7-search-input-wrapper {
+		position: relative;
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+
+	.c7-search-icon {
+		position: absolute;
+		left: 0.5rem;
+		color: var(--7c-sys-on-surface-variant);
+		pointer-events: none;
+		transition: color 0.15s ease;
+	}
+
+	.c7-sidebar-search-card:focus-within .c7-search-icon {
+		color: var(--7c-sys-primary);
+	}
+
+	.c7-search-input {
+		width: 100%;
+		padding: 0.55rem 2.6rem 0.55rem 2.2rem;
+		font-family: var(--7c-font-sans);
+		font-size: 0.875rem;
+		background: transparent;
+		border: none;
+		border-radius: 9999px;
+		color: var(--7c-sys-on-surface);
+		transition: all 0.2s ease;
+	}
+
+	.c7-search-input:focus {
+		outline: none;
+		background: transparent;
+		box-shadow: none;
+	}
+
+	.c7-search-kbd {
+		position: absolute;
+		right: 0.45rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		font-family: var(--7c-font-mono);
+		font-size: 0.6875rem;
+		padding: 0.2rem 0.45rem;
+		background: var(--7c-sys-surface-container-high);
+		border: none;
+		border-radius: 6px;
+		color: var(--7c-sys-on-surface-variant);
+		pointer-events: none;
+	}
+</style>

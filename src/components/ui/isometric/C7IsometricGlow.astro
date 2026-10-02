@@ -1,0 +1,35 @@
+---
+// Tujuhcahaya - Isometric Top-Diamond Brand Mark (per slab)
+// 7C Bespoke vector emblem rendered on the top face of every layer
+---
+
+<g transform="matrix(1, 0.5, -1, 0.5, 0, 95)" class="top-logo-group">
+	<g transform="scale(0.0065) translate(-7937.5, -7937.5)">
+		<path
+			class="top-logo-path"
+			d="M13209.56 2093.57c60.25-170.71 42.67-323.83-52.72-459.4-95.4-135.56-233.46-203.34-414.21-203.34H9820.58L5106.13 14956.64c-70.29 180.74-60.26 341.41 30.12 481.99 90.37 140.57 230.96 210.87 421.74 210.87h2907z"
+			style="fill-rule:nonzero"
+		/>
+		<path
+			class="top-logo-path"
+			d="M4988.18 225.5c1302.14 0 2357.73 1055.59 2357.73 2357.73 0 1302.15-1055.59 2357.73-2357.73 2357.73S2630.45 3885.38 2630.45 2583.23c0-1302.14 1055.59-2357.73 2357.73-2357.73"
+		/>
+	</g>
+</g>
+
+<style>
+	.top-logo-path {
+		fill: var(--layer-accent);
+		transition: fill 0.25s ease, opacity 0.25s ease;
+		opacity: 0.95;
+	}
+
+	:global(.layer):hover .top-logo-path {
+		opacity: 1;
+	}
+
+	:global(.layer.sel) .top-logo-path {
+		fill: var(--layer-accent) !important;
+		opacity: 1;
+	}
+</style>

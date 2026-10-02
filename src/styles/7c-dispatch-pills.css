@@ -1,0 +1,371 @@
+/* Status Bullets */
+.dispatch-bullet-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 50%;
+  transition: transform 0.12s ease;
+}
+
+.dispatch-bullet-wrapper:hover {
+  transform: scale(1.15);
+}
+
+.dispatch-bullet {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: transparent;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Border color highlight is EXCLUSIVELY for Unread / Unchecked state on hover */
+.dispatch-row:hover .dispatch-bullet:not(.checked),
+.dispatch-bullet-wrapper:hover .dispatch-bullet:not(.checked) {
+  border-color: var(--color-primary);
+}
+
+/* Read / Checked state: Solid checkmark circle, ZERO border, NEVER red */
+.dispatch-bullet.checked,
+.dispatch-row:hover .dispatch-bullet.checked,
+.dispatch-bullet-wrapper:hover .dispatch-bullet.checked {
+  border: none !important;
+  border-color: transparent !important;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+/* Article Title */
+.dispatch-title {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  line-height: 1.4;
+  transition: color 0.15s ease;
+}
+
+.dispatch-row:hover .dispatch-title {
+  color: var(--7c-sys-on-surface, #0f172a);
+}
+
+[data-theme="dark"] .dispatch-row:hover .dispatch-title {
+  color: #ffffff;
+}
+
+
+.dispatch-row-compact {
+  padding: 0.65rem 1.25rem;
+}
+
+.dispatch-row-compact .dispatch-title {
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.dispatch-arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.dispatch-row:hover .dispatch-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 7C Source Pill (Appears on hover replacing the previous arrow) */
+.c7-source-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  font-family: var(--7c-font-display, var(--font-display, "Google Sans", sans-serif));
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 0.18rem 0.45rem;
+  min-height: 18px;
+  box-sizing: border-box;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  user-select: none;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.15s ease;
+}
+
+.dispatch-row:hover .c7-source-pill,
+.dispatch-row:focus-visible .c7-source-pill,
+.dispatch-row:focus-within .c7-source-pill {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (hover: none) {
+  .c7-source-pill {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 7C Official Brand Pill (Red - MD3 Tonal Container) */
+.c7-source-pill-7c {
+  background-color: var(--7c-sys-primary-container, #ffdad6);
+  color: var(--7c-sys-on-primary-container, #410002);
+  border: none;
+}
+
+[data-theme="dark"] .c7-source-pill-7c {
+  background-color: var(--7c-sys-primary-container, #2d1517);
+  color: var(--7c-sys-on-primary-container, #ffdad6);
+  border: none;
+}
+
+
+/* External Syndicated Partner Source Pill */
+.c7-source-pill-external {
+  background-color: var(--color-card-subtle, rgba(0, 0, 0, 0.04));
+  color: var(--color-text-muted, #64748b);
+  border: none;
+}
+
+[data-theme="dark"] .c7-source-pill-external {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  border: none;
+}
+
+/* Category Pill (Replacing Shipped/In progress/etc.) */
+.dispatch-cat-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: middle;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  min-height: 22px;
+  box-sizing: border-box;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: none;
+  background-color: var(--7c-sys-surface-container-high);
+  color: var(--7c-sys-on-surface);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Category Color Variations (Dotless & Clean - Tonal Surfaces) */
+.cat-game {
+  background-color: rgba(16, 185, 129, 0.12);
+  color: #047857;
+}
+
+[data-theme="dark"] .cat-game {
+  background-color: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+}
+
+.cat-tech {
+  background-color: rgba(2, 132, 199, 0.12);
+  color: #0369a1;
+}
+
+[data-theme="dark"] .cat-tech {
+  background-color: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+.cat-berita {
+  background-color: rgba(213, 0, 0, 0.10);
+  color: #b70000;
+}
+
+[data-theme="dark"] .cat-berita {
+  background-color: rgba(255, 82, 82, 0.15);
+  color: #ff5252;
+}
+
+.cat-musik {
+  background-color: rgba(124, 58, 237, 0.12);
+  color: #6d28d9;
+}
+
+[data-theme="dark"] .cat-musik {
+  background-color: rgba(167, 139, 250, 0.15);
+  color: #a78bfa;
+}
+
+.cat-budaya {
+  background-color: rgba(217, 119, 6, 0.12);
+  color: #b45309;
+}
+
+[data-theme="dark"] .cat-budaya {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.cat-kesehatan {
+  background-color: rgba(13, 148, 136, 0.12);
+  color: #0f766e;
+}
+
+[data-theme="dark"] .cat-kesehatan {
+  background-color: rgba(45, 212, 191, 0.15);
+  color: #2dd4bf;
+}
+
+.cat-default {
+  background-color: var(--color-card-subtle);
+  color: var(--color-text-muted);
+}
+
+/* Author Pill (Authentic Editorial Author, Zero X button) */
+.dispatch-author-pill,
+.dispatch-assignee {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: middle;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  min-height: 22px;
+  box-sizing: border-box;
+  border-radius: 9999px;
+  background-color: var(--7c-sys-surface-container-high, #f1f5f9);
+  border: none;
+  font-family: var(--7c-font-sans, system-ui, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--7c-sys-on-surface-variant, #475569);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .dispatch-author-pill,
+[data-theme="dark"] .dispatch-assignee {
+  background-color: var(--7c-sys-surface-container-high, #111420);
+  border: none;
+  color: var(--7c-sys-on-surface-variant, #94a3b8);
+}
+
+@media (max-width: 640px) {
+  .dispatch-author-pill,
+  .dispatch-assignee {
+    display: none;
+  }
+}
+
+.dispatch-author-avatar,
+.assignee-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--7c-sys-surface-container-highest, #e2e8f0);
+  color: var(--7c-sys-on-surface, #090d16);
+}
+
+[data-theme="dark"] .dispatch-author-avatar,
+[data-theme="dark"] .assignee-avatar {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #f8fafc;
+}
+
+.dispatch-author-name,
+.assignee-name {
+  line-height: 1;
+}
+
+/* Auto-load Sentinel & Loading Indicator */
+.dispatch-load-sentinel {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+}
+
+.dispatch-loading-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--7c-font-sans, system-ui, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--7c-sys-on-surface-variant, #64748b);
+}
+
+.dispatch-loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--7c-sys-outline-variant, #cbd5e1);
+  border-top-color: var(--7c-sys-primary, #d50000);
+  border-radius: 50%;
+  animation: c7-spinner-spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes c7-spinner-spin {
+  to { transform: rotate(360deg); }
+}
+
+.dispatch-end-message {
+  font-family: var(--7c-font-sans, system-ui, sans-serif);
+  font-size: 0.8rem;
+  color: var(--7c-sys-on-surface-variant, #94a3b8);
+  letter-spacing: 0.02em;
+}
+
+/* Date Field */
+.dispatch-date {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-align: right;
+  min-width: 54px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.dispatch-date.text-amber {
+  color: #d97706;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .dispatch-date.text-amber {
+  color: #fbbf24;
+}
+
+.dispatch-date.text-red {
+  color: #d50000;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .dispatch-date.text-red {
+  color: #ff5252;
+}

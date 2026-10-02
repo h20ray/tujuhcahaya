@@ -13,6 +13,15 @@ const testCases = [
 	{ input: "/cart/", params: "", expected: "/" },
 	{ input: "/checkout", params: "", expected: "/" },
 	{ input: "/my-account/", params: "", expected: "/" },
+	{ input: "/about", params: "", expected: "/about-us" },
+	{ input: "/about/", params: "", expected: "/about-us" },
+	{ input: "/tujuhcahaya", params: "", expected: "/" },
+	{ input: "/tujuhcahaya/", params: "", expected: "/" },
+	{ input: "/wp-admin", params: "", expected: "/_emdash/admin" },
+	{ input: "/wp-admin/", params: "", expected: "/_emdash/admin" },
+	{ input: "/wp-admin/edit.php", params: "", expected: "/_emdash/admin" },
+	{ input: "/wp-login.php", params: "", expected: "/_emdash/admin" },
+	{ input: "/wp-login.php/", params: "", expected: "/_emdash/admin" },
 ];
 
 console.log("=== Testing 7C Legacy URL Guardian ===");

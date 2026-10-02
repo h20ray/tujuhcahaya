@@ -1,0 +1,219 @@
+---
+/**
+ * C7SidebarTrending — Ranked top 5 recent posts
+ */
+import C7Badge from "../../ui/C7Badge.astro";
+import { get7cSidebarPosts, format7cCompactDate } from "../../../lib/7c-cms";
+import type { Locale } from "../../../i18n/utils";
+
+interface Props {
+	currentSlug?: string;
+	locale?: Locale;
+}
+
+const { currentSlug, locale = "id" } = Astro.props;
+const isEn = locale === "en";
+
+const { posts: sidebarPosts } = await get7cSidebarPosts(currentSlug, 5, locale);
+---
+
+{sidebarPosts.length > 0 && (
+	<section class="c7-sidebar-card" aria-label={isEn ? "Trending Stories" : "Liputan Terkini"}>
+		<div class="c7-sidebar-header">
+			<div class="c7-sidebar-header-left">
+				<span class="c7-header-dot" aria-hidden="true"></span>
+				<h3 class="c7-sidebar-title">{isEn ? "Trending Stories" : "Liputan Terkini"}</h3>
+			</div>
+			<span class="c7-sidebar-badge">TOP 5</span>
+		</div>
+
+		<ol class="c7-ranked-list">
+			{sidebarPosts.map((entry, idx) => {
+				const postSlug = entry.data?.slug || entry.id;
+				const postTitle = entry.data?.title || "Liputan Terkini";
+				const postCat = entry.data?.terms?.category?.[0]?.label || "Berita";
+				const postCatSlug = entry.data?.terms?.category?.[0]?.slug || "berita";
+				const dateStr = format7cCompactDate(entry.data?.publishedAt, locale);
+				const rankStr = String(idx + 1).padStart(2, "0");
+
+				return (
+					<li class="c7-ranked-item">
+						<span class="c7-rank-number" aria-hidden="true">{rankStr}</span>
+						<div class="c7-rank-body">
+							<div class="c7-rank-meta">
+								<C7Badge
+									label={postCat}
+									pillar={postCatSlug}
+									href={isEn ? `/en/category/${postCatSlug}` : `/category/${postCatSlug}`}
+								/>
+								{dateStr && <time class="c7-rank-date">{dateStr}</time>}
+							</div>
+							<h4 class="c7-rank-title">
+								<a href={isEn ? `/en/${postSlug}` : `/${postSlug}`}>
+									{postTitle}
+								</a>
+							</h4>
+						</div>
+					</li>
+				);
+			})}
+		</ol>
+	</section>
+)}
+
+<style>
+	.c7-sidebar-card {
+		background: var(--7c-sys-surface-container-low);
+		border: none;
+		border-radius: 20px;
+		padding: 1.5rem;
+		box-shadow: var(--7c-sys-elevation-1);
+		transition: background-color 0.2s ease, box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.c7-sidebar-card:hover {
+		background: var(--7c-sys-surface-container);
+		box-shadow: var(--7c-sys-elevation-2);
+		transform: translateY(-2px);
+	}
+
+	.c7-sidebar-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-bottom: 0.85rem;
+		margin-bottom: 1.15rem;
+		border-bottom: 1px solid var(--7c-sys-surface-container-highest, rgba(0, 0, 0, 0.06));
+	}
+
+	.c7-sidebar-header-left {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.c7-header-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background-color: var(--7c-sys-primary);
+	}
+
+	.c7-sidebar-title {
+		font-family: var(--7c-font-display);
+		font-size: 0.9rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		text-transform: none;
+		color: var(--7c-sys-on-surface);
+		margin: 0;
+	}
+
+	.c7-sidebar-badge {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		text-align: center;
+		vertical-align: middle;
+		font-family: var(--7c-font-mono);
+		font-size: 0.68rem;
+		font-weight: 700;
+		color: var(--7c-sys-on-primary-container, #410002);
+		background: var(--7c-sys-primary-container, #ffdad6);
+		border: none;
+		padding: 0.22rem 0.55rem;
+		min-height: 20px;
+		box-sizing: border-box;
+		border-radius: 9999px;
+		letter-spacing: 0.04em;
+	}
+
+	:global([data-theme="dark"]) .c7-sidebar-badge {
+		color: var(--7c-sys-on-primary-container, #ffdad6);
+		background: var(--7c-sys-primary-container, #2d1517);
+		border: none;
+	}
+
+	.c7-ranked-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.c7-ranked-item {
+		display: flex;
+		gap: 0.85rem;
+		padding: 0.85rem 0;
+		border-bottom: 1px solid var(--7c-sys-surface-container-highest, rgba(0, 0, 0, 0.05));
+		align-items: flex-start;
+	}
+
+	.c7-ranked-item:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+
+	.c7-ranked-item:first-child {
+		padding-top: 0;
+	}
+
+	.c7-rank-number {
+		font-family: var(--7c-font-display);
+		font-size: 1.35rem;
+		font-weight: 700;
+		color: var(--7c-sys-primary);
+		line-height: 1;
+		min-width: 26px;
+		padding-top: 0.1rem;
+		user-select: none;
+	}
+
+	.c7-rank-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		flex: 1;
+		min-width: 0;
+	}
+
+	.c7-rank-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.c7-rank-date {
+		font-size: 0.72rem;
+		color: var(--7c-sys-on-surface-variant);
+	}
+
+	.c7-rank-title {
+		font-size: 0.925rem;
+		font-weight: 500;
+		line-height: 1.35;
+		margin: 0;
+	}
+
+	.c7-rank-title a {
+		color: var(--7c-sys-on-surface);
+		text-decoration: none;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		transition: color 0.15s ease;
+	}
+
+	.c7-rank-title a:hover {
+		color: var(--7c-sys-on-surface);
+		text-decoration: underline;
+	}
+
+	:global([data-theme="dark"]) .c7-rank-title a:hover {
+		color: #ffffff;
+	}
+</style>

@@ -132,12 +132,13 @@ export function generate7cPagesSitemap(siteUrl: string = "https://tujuhcahaya.co
 			{ path: "/en/submit", priority: "0.7", changefreq: "monthly" },
 		];
 
-		// Exclude WooCommerce stale pages
+		// Exclude internal/stale slugs, group by slug for unique URLs
 		const pages = db.prepare(`
-			SELECT slug, updated_at
+			SELECT slug, MAX(updated_at) AS updated_at
 			FROM ec_pages
 			WHERE status = 'published'
-			  AND slug NOT IN ('shop', 'cart', 'checkout', 'my-account', 'tujuhcahaya', 'homepage')
+			  AND slug NOT IN ('shop', 'cart', 'checkout', 'my-account', 'tujuhcahaya', 'homepage', 'about', 'live')
+			GROUP BY slug
 			ORDER BY slug ASC;
 		`).all() as Array<{ slug: string; updated_at: string | null }>;
 
@@ -152,6 +153,12 @@ export function generate7cPagesSitemap(siteUrl: string = "https://tujuhcahaya.co
 			const lastmod = p.updated_at ? new Date(p.updated_at).toISOString() : nowIso;
 			urls.push(`  <url>
     <loc>${base}/${p.slug}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`);
+			urls.push(`  <url>
+    <loc>${base}/en/${p.slug}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

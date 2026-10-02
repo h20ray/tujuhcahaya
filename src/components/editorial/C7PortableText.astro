@@ -10,7 +10,7 @@
  * Ensures seamless fallback to default Portable Text rendering for standard blocks.
  */
 
-import { PortableText } from "emdash/ui";
+import { PortableText, type PortableTextProps } from "emdash/ui";
 import C7ScoreBox from "./C7ScoreBox.astro";
 import C7SpecTable from "./C7SpecTable.astro";
 import C7PullQuote from "./C7PullQuote.astro";
@@ -34,4 +34,4 @@ const customComponents = {
 };
 ---
 
-<PortableText value={value} components={customComponents as any} class={className} />
+<PortableText value={value} components={customComponents as unknown as PortableTextProps["components"]} class={className} />

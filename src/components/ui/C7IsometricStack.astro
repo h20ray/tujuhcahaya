@@ -3,6 +3,10 @@
 // 7C Digital Engine with 2:1 dimetric projection and bespoke spring kinematics
 // MD3X Color System & WCAG AAA Compliant
 
+import C7IsometricStackLayout from "./isometric/C7IsometricStackLayout.astro";
+import C7IsometricGrid from "./isometric/C7IsometricGrid.astro";
+import C7IsometricCard from "./isometric/C7IsometricCard.astro";
+
 interface Props {
 	lang?: "id" | "en";
 }
@@ -129,528 +133,80 @@ const defaultRubrik = rubriks.find((r) => r.key === "game") || rubriks[5];
 const serializedRubrikData = Object.fromEntries(
 	rubriks.map((r) => [
 		r.key,
-		{ g: r.generic, n: r.name, c: r.count, d: r.desc, url: r.url, accent: r.accent },
+		{ n: r.name, d: r.desc, url: r.url, accent: r.accent },
 	])
 );
 ---
 
-<div class="c7-stack-widget">
-	<div class="cake enter has-out" id="cakeContainer">
-		<svg
-			viewBox="-287 -35 574 610"
-			class="cake-svg"
-			aria-label={isEn ? "Tujuhcahaya 7-Section Layered Architecture — click any layer to inspect" : "Tujuh Lapis Cahaya Tujuhcahaya Media — klik lapisan mana saja untuk memisahkan"}
-		>
-			<defs>
-				<!-- 7C Reusable Dimetric 2:1 Slab Geometry Template -->
-				<g id="cake-slab-template">
-					<!-- Top Face: 380px wide diamond (Rhombus, 2:1 slope) -->
-					<path class="f-top" d="M0 0 L190 95 L0 190 L-190 95 Z" />
-					<!-- Left Face: 40px vertical extrusion -->
-					<path class="f-left" d="M-190 95 L0 190 L0 230 L-190 135 Z" />
-					<!-- Right Face: 40px vertical extrusion -->
-					<path class="f-right" d="M0 190 L190 95 L190 135 L0 230 Z" />
-				</g>
-			</defs>
+<C7IsometricStackLayout>
+	<C7IsometricGrid
+		rubriks={rubriks}
+		serializedRubrikData={serializedRubrikData}
+		isEn={isEn}
+	/>
+	<C7IsometricCard
+		name={defaultRubrik.name}
+		desc={defaultRubrik.desc}
+		url={defaultRubrik.url}
+		accent={defaultRubrik.accent}
+	/>
+</C7IsometricStackLayout>
 
-			<!-- 7 Layers in Painter's Order wrapped in dynamic balance assembly -->
-			<g class="cake-assembly">
-			{rubriks.map((p, index) => {
-				const isDefault = p.key === "game"; // Default selected layer
-				return (
-					<g
-						class={`layer ${isDefault ? "sel out" : ""}`}
-						data-key={p.key}
-						role="button"
-						tabindex="0"
-						aria-pressed={isDefault ? "true" : "false"}
-						aria-label={`${p.name} (${isEn ? "Layer" : "Lapis"} ${p.num})`}
-						style={`transform: translate(0px, ${p.y}px); --layer-accent: ${p.accent}; --layer-stroke: ${p.stroke};`}
-					>
-						<g class="drop" style={`animation-delay: ${0.05 + index * 0.08}s`}>
-							<g class="slide">
-								<use href="#cake-slab-template" />
+<script>
+	let currentCleanup: (() => void) | null = null;
 
-								<!-- Left Face Label (Affine Isometric Matrix, slope 0.5) -->
-								<text
-									class="lab lab-l"
-									text-anchor="middle"
-									dominant-baseline="central"
-									transform="matrix(0.894, 0.447, 0, 1, -95, 164)"
-								>
-									{p.shortLeft}
-								</text>
-
-								<!-- Right Face Label (Affine Isometric Matrix, slope -0.5) -->
-								<text
-									class="lab lab-r"
-									text-anchor="middle"
-									dominant-baseline="central"
-									transform="matrix(0.894, -0.447, 0, 1, 95, 164)"
-								>
-									{p.shortRight}
-								</text>
-
-								<!-- Top Layer Graphic (Official Tujuhcahaya Logo mapped to top diamond) rendered on EVERY slab -->
-								<g transform="matrix(1, 0.5, -1, 0.5, 0, 95)" class="top-logo-group">
-									<g transform="scale(0.0065) translate(-7937.5, -7937.5)">
-										<path
-											class="top-logo-path"
-											d="M13209.56 2093.57c60.25-170.71 42.67-323.83-52.72-459.4-95.4-135.56-233.46-203.34-414.21-203.34H9820.58L5106.13 14956.64c-70.29 180.74-60.26 341.41 30.12 481.99 90.37 140.57 230.96 210.87 421.74 210.87h2907z"
-											style="fill-rule:nonzero"
-										/>
-										<path
-											class="top-logo-path"
-											d="M4988.18 225.5c1302.14 0 2357.73 1055.59 2357.73 2357.73 0 1302.15-1055.59 2357.73-2357.73 2357.73S2630.45 3885.38 2630.45 2583.23c0-1302.14 1055.59-2357.73 2357.73-2357.73"
-										/>
-									</g>
-								</g>
-							</g>
-						</g>
-					</g>
-				);
-			})}
-			</g>
-		</svg>
-	</div>
-
-	<!-- 7C Bespoke Synchronized Editorial Detail Panel -->
-	<div class="cake-detail" id="cakeDetail" aria-live="polite" style="--cd-accent: var(--7c-pillar-game, #34d399);">
-		<div class="cd-header">
-			<span class="cd-generic" id="cdGeneric">{defaultRubrik.generic}</span>
-			<span class="cd-badge" id="cdCount">{defaultRubrik.count}</span>
-		</div>
-		<h3 class="cd-name" id="cdName">{defaultRubrik.name}</h3>
-		<p class="cd-desc" id="cdDesc">{defaultRubrik.desc}</p>
-		<div class="cd-links">
-			<a href={defaultRubrik.url} id="cdLink" class="cd-action-link">
-				<span>{isEn ? "Explore This Category" : "Jelajahi Liputan Kategori Ini"}</span>
-				<span class="arrow" aria-hidden="true">&rarr;</span>
-			</a>
-		</div>
-	</div>
-</div>
-
-<style>
-	.c7-stack-widget {
-		width: 100%;
-		max-width: 520px;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-between;
-		user-select: none;
-	}
-
-	.cake {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		position: relative;
-		margin: auto 0;
-	}
-
-	.cake-svg {
-		width: 100%;
-		height: auto;
-		max-height: 480px;
-		display: block;
-		overflow: visible;
-		animation: iso-breathe 7s ease-in-out infinite;
-		will-change: transform;
-		transform-origin: center center;
-	}
-
-	@keyframes iso-breathe {
-		0%, 100% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-6px);
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.cake-svg {
-			animation: none !important;
-			transform: none !important;
-		}
-		.cake-assembly,
-		.layer .slide {
-			transition: none !important;
-		}
-	}
-
-	.layer {
-		cursor: pointer;
-		outline: none;
-	}
-
-	/* Face Styling with Dimetric Directional Lighting */
-	.f-top {
-		fill: var(--color-card, #ffffff);
-		stroke: var(--color-border, #d0d5db);
-		stroke-width: 1;
-		transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.2s ease, filter 0.2s ease;
-	}
-
-	.f-left {
-		fill: var(--color-card-subtle, #f3f5f6);
-		stroke: var(--color-border, #d0d5db);
-		stroke-width: 1;
-		transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.2s ease, filter 0.2s ease;
-	}
-
-	.f-right {
-		fill: var(--color-bg, #fbfcfd);
-		stroke: var(--color-border, #d0d5db);
-		stroke-width: 1;
-		transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.2s ease, filter 0.2s ease;
-	}
-
-	/* Dark Mode Faces */
-	:global([data-theme="dark"]) .f-top {
-		fill: #0d1017;
-		stroke: rgba(255, 255, 255, 0.12);
-	}
-	:global([data-theme="dark"]) .f-left {
-		fill: #06080c;
-		stroke: rgba(255, 255, 255, 0.1);
-	}
-	:global([data-theme="dark"]) .f-right {
-		fill: #11151e;
-		stroke: rgba(255, 255, 255, 0.12);
-	}
-
-	/* Layer Hover & Focus Illumination */
-	.layer:hover .f-top,
-	.layer:focus-visible .f-top {
-		filter: brightness(1.08);
-		stroke: var(--layer-stroke, var(--layer-accent));
-		stroke-width: 1.5;
-	}
-
-	.layer:hover .f-left,
-	.layer:hover .f-right {
-		filter: brightness(1.05);
-	}
-
-	:global([data-theme="dark"]) .layer:hover .f-top,
-	:global([data-theme="dark"]) .layer:focus-visible .f-top {
-		filter: brightness(1.22);
-		stroke: var(--layer-accent, var(--color-primary));
-		stroke-width: 1.5;
-	}
-
-	:global([data-theme="dark"]) .layer:hover .f-left,
-	:global([data-theme="dark"]) .layer:hover .f-right {
-		filter: brightness(1.15);
-	}
-
-	/* Selected & Active States: Box surfaces NEVER change their fill color */
-	.layer.sel .f-top {
-		stroke: var(--layer-stroke, var(--layer-accent));
-		stroke-width: 1.5;
-	}
-
-	.layer.sel .f-left,
-	.layer.sel .f-right {
-		stroke: var(--layer-stroke, var(--layer-accent));
-		stroke-width: 1.2;
-	}
-
-	.layer:focus-visible .f-top {
-		stroke: var(--layer-accent, var(--color-primary));
-		stroke-width: 2.5;
-	}
-	.layer:focus-visible .f-left,
-	.layer:focus-visible .f-right {
-		stroke: var(--layer-accent, var(--color-primary));
-		stroke-width: 2;
-	}
-
-	/* Top Face Logo Graphic (Tujuhcahaya Vector Emblem) */
-	/* Box color stays clean; only the Tujuhcahaya SVG icon changes color according to each rubrik */
-	.top-logo-path {
-		fill: var(--layer-accent);
-		transition: fill 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
-		opacity: 0.95;
-	}
-
-	.layer:hover .top-logo-path {
-		opacity: 1;
-		filter: drop-shadow(0 0 5px var(--layer-accent));
-	}
-
-	.layer.sel .top-logo-path {
-		fill: var(--layer-accent) !important;
-		opacity: 1;
-		filter: drop-shadow(0 0 6px var(--layer-accent));
-	}
-
-	/* Typography on Isometric Faces (WCAG AAA Contrast Compliant) */
-	.lab {
-		font-family: var(--7c-font-display, "Google Sans", system-ui, sans-serif);
-		font-size: 11.5px;
-		font-weight: 600;
-		letter-spacing: 1.5px;
-		user-select: none;
-		pointer-events: none;
-	}
-
-	.lab-l {
-		fill: #334155;
-	}
-
-	:global([data-theme="dark"]) .lab-l {
-		fill: #e2e8f0;
-	}
-
-	.lab-r {
-		fill: #0f172a;
-	}
-
-	:global([data-theme="dark"]) .lab-r {
-		fill: #f8fafc;
-	}
-
-	.layer.sel .lab-r {
-		font-weight: 700;
-	}
-
-	/* Dynamic Visual Weight Counterbalance */
-	.cake-assembly {
-		transition: transform 560ms cubic-bezier(0.3, 1.18, 0.4, 1);
-		will-change: transform;
-	}
-
-	.cake.has-out .cake-assembly {
-		transform: translateX(-70px);
-	}
-
-	/* 7C Bespoke Spring Kinematics */
-	.layer .slide {
-		transition: transform 560ms cubic-bezier(0.3, 1.18, 0.4, 1);
-	}
-
-	/* Sliced-Out State */
-	.layer.out .slide,
-	.layer.out:hover .slide,
-	.layer.out:focus-visible .slide {
-		transform: translate(140px, 70px);
-	}
-
-	/* Page-load Cascade Stagger Entrance */
-	@keyframes cakein {
-		0% {
-			opacity: 0;
-			transform: translate(140px, -70px);
-		}
-		100% {
-			opacity: 1;
-			transform: none;
-		}
-	}
-
-	@keyframes cakehint {
-		0%, 100% {
-			transform: none;
-		}
-		45% {
-			transform: translate(40px, 20px);
-		}
-	}
-
-	.cake.enter g.layer .drop {
-		animation: cakein 640ms cubic-bezier(0.22, 1, 0.36, 1) both;
-	}
-
-	.layer.hint .slide {
-		animation: cakehint 1s cubic-bezier(0.45, 0, 0.3, 1) both;
-	}
-
-	/* 7C Bespoke Editorial Detail Panel */
-	.cake-detail {
-		margin-top: auto;
-		width: 100%;
-		border: 1px solid var(--color-border);
-		border-radius: 0;
-		padding: 1.15rem 1.35rem;
-		background: var(--color-card);
-		transition: opacity 160ms ease, transform 160ms ease;
-		min-height: 145px;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	:global([data-theme="dark"]) .cake-detail {
-		background: #0f1218;
-		border-color: rgba(255, 255, 255, 0.1);
-	}
-
-	.cake-detail.swap {
-		opacity: 0;
-		transform: translateY(6px);
-	}
-
-	.cd-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 0.35rem;
-	}
-
-	.cd-generic {
-		font-family: var(--7c-font-display, "Google Sans", system-ui, sans-serif);
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.05em;
-		text-transform: uppercase;
-		color: var(--color-text-muted);
-	}
-
-	.cd-badge {
-		font-size: 0.72rem;
-		font-weight: 600;
-		color: var(--cd-accent, var(--7c-pillar-game, #10b981));
-		background: var(--color-card-subtle);
-		padding: 0.15rem 0.5rem;
-		border-radius: var(--7c-radius-sm, 4px);
-		border: 1px solid var(--cd-accent, var(--color-border));
-		transition: color 0.2s ease, border-color 0.2s ease;
-	}
-
-	:global([data-theme="dark"]) .cd-badge {
-		background: rgba(255, 255, 255, 0.04);
-		border-color: rgba(255, 255, 255, 0.15);
-	}
-
-	.cd-name {
-		font-family: var(--7c-font-display, "Google Sans", system-ui, sans-serif);
-		font-size: 1.25rem;
-		font-weight: 600;
-		letter-spacing: -0.015em;
-		color: var(--color-text);
-		margin: 0.25rem 0 0.45rem;
-	}
-
-	.cd-desc {
-		font-size: 0.875rem;
-		line-height: 1.55;
-		color: var(--color-text-muted);
-		margin-bottom: 0.85rem;
-	}
-
-	.cd-action-link {
-		font-family: var(--7c-font-display, "Google Sans", system-ui, sans-serif);
-		font-size: 0.85rem;
-		font-weight: 600;
-		color: var(--cd-accent, var(--7c-pillar-game, #10b981));
-		display: inline-flex;
-		align-items: center;
-		gap: 0.35rem;
-		text-decoration: none;
-		transition: color 0.2s ease, transform 0.15s ease, opacity 0.15s ease;
-	}
-
-	.cd-action-link:hover {
-		transform: translateX(3px);
-		opacity: 0.85;
-	}
-
-	.cd-action-link .arrow {
-		font-size: 1.05rem;
-	}
-
-	@media (max-width: 991px) {
-		.cake-svg {
-			max-height: min(250px, 34vh);
+	function initCakeWidget(): void {
+		if (currentCleanup) {
+			currentCleanup();
+			currentCleanup = null;
 		}
 
-		.cake-detail {
-			padding: 0.65rem 0.85rem;
-			min-height: auto;
-			margin-top: 0.5rem;
-		}
-
-		.cd-header {
-			margin-bottom: 0.2rem;
-		}
-
-		.cd-generic {
-			font-size: 0.7rem;
-		}
-
-		.cd-badge {
-			font-size: 0.65rem;
-			padding: 0.1rem 0.35rem;
-		}
-
-		.cd-name {
-			font-size: 0.95rem;
-			margin-bottom: 0.25rem;
-		}
-
-		.cd-desc {
-			font-size: 0.75rem;
-			line-height: 1.35;
-			display: -webkit-box;
-			-webkit-line-clamp: 2;
-			-webkit-box-orient: vertical;
-			overflow: hidden;
-			margin-bottom: 0.5rem;
-		}
-
-		.cd-action-link {
-			font-size: 0.75rem;
-			padding: 0.35rem 0.65rem;
-		}
-	}
-</style>
-
-<script is:inline define:vars={{ serializedRubrikData }}>
-	(function () {
-		const RUBRIK_DATA = serializedRubrikData;
 		const container = document.getElementById("cakeContainer");
 		const detail = document.getElementById("cakeDetail");
 		if (!container || !detail) return;
 
-		const layers = Array.from(container.querySelectorAll(".layer"));
-		let currentKey = "game";
-		let swapTimer = null;
+		const rawRubriks = container.getAttribute("data-rubriks");
+		if (!rawRubriks) return;
 
-		function renderCard(key) {
-			const d = RUBRIK_DATA[key];
+		let rubrikData: Record<string, { n: string; d: string; url: string; accent: string }> | null = null;
+		try {
+			rubrikData = JSON.parse(rawRubriks);
+		} catch {
+			return;
+		}
+		if (!rubrikData) return;
+
+		const layers = Array.from(container.querySelectorAll<SVGElement>(".layer"));
+		let currentKey = "game";
+		let swapTimer: ReturnType<typeof setTimeout> | null = null;
+		let hintTimer: ReturnType<typeof setTimeout> | null = null;
+
+		function renderCard(key: string): void {
+			const d = rubrikData?.[key];
 			if (!d) return;
-			const elGeneric = document.getElementById("cdGeneric");
 			const elName = document.getElementById("cdName");
 			const elDesc = document.getElementById("cdDesc");
-			const elCount = document.getElementById("cdCount");
-			const elLink = document.getElementById("cdLink");
 
-			if (elGeneric) elGeneric.textContent = d.g;
+			if (detail) {
+				detail.setAttribute("href", d.url);
+				if (d.accent) {
+					detail.style.setProperty("--cd-accent", d.accent);
+				}
+			}
 			if (elName) elName.textContent = d.n;
 			if (elDesc) elDesc.textContent = d.d;
-			if (elCount) elCount.textContent = d.c;
-			if (elLink) elLink.setAttribute("href", d.url);
-			if (detail && d.accent) {
-				detail.style.setProperty("--cd-accent", d.accent);
-			}
 		}
 
-		function selectLayer(key) {
-			const hinting = container.querySelector(".layer.hint");
+		function selectLayer(key: string): void {
+			const hinting = container?.querySelector(".layer.hint");
 			if (hinting) hinting.classList.remove("hint");
 
 			const isSwap = key !== currentKey;
 			currentKey = key;
 
-			layers.forEach(g => {
+			layers.forEach((g) => {
 				const isTarget = g.getAttribute("data-key") === key;
 				if (isTarget && g.classList.contains("sel") && !isSwap) {
-					// Toggle back in or out if clicking the already selected slab
 					g.classList.toggle("out");
 				} else {
 					g.classList.toggle("sel", isTarget);
@@ -659,52 +215,95 @@ const serializedRubrikData = Object.fromEntries(
 				g.setAttribute("aria-pressed", String(isTarget));
 			});
 
-			const hasOut = !!container.querySelector(".layer.out");
-			container.classList.toggle("has-out", hasOut);
+			const hasOut = Boolean(container?.querySelector(".layer.out"));
+			container?.classList.toggle("has-out", hasOut);
 
 			if (!isSwap) return;
 
-			clearTimeout(swapTimer);
-			detail.classList.add("swap");
+			if (swapTimer) clearTimeout(swapTimer);
+			detail?.classList.add("swap");
 			swapTimer = setTimeout(() => {
 				renderCard(key);
-				detail.classList.remove("swap");
+				detail?.classList.remove("swap");
 			}, 160);
 		}
 
-		function activate(g) {
-			container.classList.add("touched");
-			selectLayer(g.getAttribute("data-key"));
+		function activate(g: Element): void {
+			container?.classList.add("touched");
+			const key = g.getAttribute("data-key");
+			if (key) selectLayer(key);
 		}
 
-		layers.forEach((g, idx) => {
-			g.addEventListener("click", () => activate(g));
-			g.addEventListener("keydown", e => {
-				if (e.key === "Enter" || e.key === " ") {
-					e.preventDefault();
-					activate(g);
-				} else if (e.key === "ArrowDown") {
-					e.preventDefault();
-					const nextIdx = (idx + 1) % layers.length;
-					layers[nextIdx].focus();
-					activate(layers[nextIdx]);
-				} else if (e.key === "ArrowUp") {
-					e.preventDefault();
-					const prevIdx = (idx - 1 + layers.length) % layers.length;
-					layers[prevIdx].focus();
-					activate(layers[prevIdx]);
-				}
-			});
-		});
+		function handleClick(e: MouseEvent): void {
+			const target = e.target as Element | null;
+			const g = target?.closest(".layer");
+			if (g && container?.contains(g)) {
+				activate(g);
+			}
+		}
 
-		// Idle attention hint pulse at 1600ms if not yet interacted
-		setTimeout(() => {
-			if (container.classList.contains("touched")) return;
+		function handleKeydown(e: KeyboardEvent): void {
+			if (e.key !== "Enter" && e.key !== " " && e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+			const target = e.target as Element | null;
+			const g = target?.closest(".layer");
+			if (!g || !container?.contains(g)) return;
+
+			const idx = layers.indexOf(g as SVGElement);
+			if (idx < 0) return;
+
+			e.preventDefault();
+
+			if (e.key === "Enter" || e.key === " ") {
+				activate(g);
+			} else if (e.key === "ArrowDown") {
+				const nextIdx = (idx + 1) % layers.length;
+				layers[nextIdx].focus();
+				activate(layers[nextIdx]);
+			} else if (e.key === "ArrowUp") {
+				const prevIdx = (idx - 1 + layers.length) % layers.length;
+				layers[prevIdx].focus();
+				activate(layers[prevIdx]);
+			}
+		}
+
+		container.addEventListener("click", handleClick as EventListener);
+		container.addEventListener("keydown", handleKeydown as EventListener);
+
+		hintTimer = setTimeout(() => {
+			if (!container || container.classList.contains("touched")) return;
 			const topLayer = container.querySelector('.layer[data-key="berita"]');
 			if (topLayer) {
 				topLayer.classList.add("hint");
 				topLayer.addEventListener("animationend", () => topLayer.classList.remove("hint"), { once: true });
 			}
 		}, 1600);
-	})();
+
+		currentCleanup = function (): void {
+			if (swapTimer) clearTimeout(swapTimer);
+			if (hintTimer) clearTimeout(hintTimer);
+			container.removeEventListener("click", handleClick as EventListener);
+			container.removeEventListener("keydown", handleKeydown as EventListener);
+		};
+	}
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", initCakeWidget);
+	} else {
+		initCakeWidget();
+	}
+
+
+	document.addEventListener("astro:page-load", initCakeWidget);
+	document.addEventListener("astro:before-swap", () => {
+		if (currentCleanup) {
+			currentCleanup();
+			currentCleanup = null;
+		}
+	});
+	window.addEventListener("pagehide", () => {
+		if (currentCleanup) {
+			currentCleanup();
+			currentCleanup = null;
+		}
+	});
 </script>

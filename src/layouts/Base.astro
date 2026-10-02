@@ -2,7 +2,8 @@
 import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from "emdash";
 import { EmDashHead, EmDashBodyStart, EmDashBodyEnd } from "emdash/ui";
 import { createPublicPageContext } from "emdash/page";
-import C7Masthead from "../components/navigation/C7Masthead.astro";
+import C7ResizableNavbar from "../components/navigation/C7ResizableNavbar.astro";
+import C7CommandPalette from "../components/navigation/C7CommandPalette.astro";
 import C7Footer from "../components/navigation/C7Footer.astro";
 import { resolveStarterSiteIdentity } from "../utils/site-identity";
 import { C7RadioPlayer } from "@tujuhcahaya/radio-player/client";
@@ -121,8 +122,8 @@ const pageCtx = createPublicPageContext({
 			{locale === "en" ? "Skip to main content" : "Lewati ke konten utama"}
 		</a>
 
-		<!-- Full-Width Minimalist Masthead (Edge-to-Edge) -->
-		<C7Masthead currentPath={currentPath} currentDateStr={currentDateStr} locale={locale} menu={menu} />
+		<!-- 7C Resizable Navbar (Centered Dynamic Pill with Frosted Blur & News Mega Menu) -->
+		<C7ResizableNavbar currentPath={currentPath} currentDateStr={currentDateStr} locale={locale} menu={menu} />
 
 		<div class:list={["c7-hairline-container", "hairline-container", { "c7-hairline-home": isHome }]}>
 			<!-- Main Body Content Slot (WCAG Landmark) -->
@@ -193,19 +194,10 @@ const pageCtx = createPublicPageContext({
 			document.addEventListener("astro:after-swap", () => {
 				document.body.scrollTop = 0;
 			});
-
-			// Global Cmd+K / Ctrl+K search shortcut handler (Vengeance-style)
-			window.addEventListener("keydown", (e) => {
-				if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-					e.preventDefault();
-					const searchInput = document.querySelector(".c7-search-input") as HTMLInputElement | null;
-					if (searchInput) {
-						searchInput.focus();
-						searchInput.select();
-					}
-				}
-			});
 		</script>
+
+		<!-- 7C Bespoke Command Palette (Fullscreen Keyboard-Driven Search & Actions) -->
+		<C7CommandPalette locale={locale} />
 
 		<!-- 7C Radio Player Floating Dock (Persistent across page navigation) -->
 		<C7RadioPlayer client:only="react" transition:persist="c7-radio-player" />

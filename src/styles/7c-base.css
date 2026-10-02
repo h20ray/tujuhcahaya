@@ -69,9 +69,6 @@ body {
   line-height: 1.6;
   transition: background-color 0.2s ease, color 0.2s ease;
 
-  /* Prevent horizontal layout shifts / jagged jumps when scrollbars appear or drawers open */
-  scrollbar-gutter: stable;
-
   /* Standard W3C Scrollbar (Firefox 64+ & modern browsers) */
   scrollbar-width: thin;
   scrollbar-color: var(--7c-sys-scrollbar-thumb) var(--7c-sys-scrollbar-track);
@@ -89,11 +86,11 @@ img {
   display: block;
 }
 
-/* WCAG 2.4.7 / 2.4.11 Focus Visible Appearance */
+/* WCAG 2.4.7 / 2.4.11 Focus Visible Appearance with MD3X Elevated Ambient Halo */
 :focus-visible {
-  outline: 2px solid var(--7c-sys-primary);
-  outline-offset: 3px;
-  border-radius: var(--7c-radius-sm);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: var(--7c-sys-focus-ring);
 }
 
 /* WCAG 2.4.1 Bypass Blocks: Skip to Main Content */

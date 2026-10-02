@@ -148,5 +148,33 @@ export function resolve7cLegacyUrl(
 		};
 	}
 
+	// 10. Stale / legacy static pages
+	if (/^\/about\/?$/i.test(cleanPath)) {
+		return {
+			redirect: true,
+			destination: "/about-us",
+			status: 301,
+			matchedRule: "7c-about-alias",
+		};
+	}
+	if (/^\/(?:tujuhcahaya|homepage)\/?$/i.test(cleanPath)) {
+		return {
+			redirect: true,
+			destination: "/",
+			status: 301,
+			matchedRule: "7c-homepage-alias",
+		};
+	}
+
+	// 11. Legacy WP Admin & Login endpoints -> EmDash Admin dashboard
+	if (/^\/(?:wp-admin(?:\/.*)?|wp-login\.php)$/i.test(cleanPath)) {
+		return {
+			redirect: true,
+			destination: "/_emdash/admin",
+			status: 302,
+			matchedRule: "wp-admin-redirect",
+		};
+	}
+
 	return null;
 }

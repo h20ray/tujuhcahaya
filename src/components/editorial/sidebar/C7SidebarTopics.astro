@@ -1,0 +1,140 @@
+---
+/**
+ * C7SidebarTopics — Trending / article topic chips
+ */
+import type { Locale } from "../../../i18n/utils";
+
+interface Props {
+	tags?: Array<{ id?: string; label: string; slug: string }>;
+	locale?: Locale;
+}
+
+const { tags = [], locale = "id" } = Astro.props;
+const isEn = locale === "en";
+
+const defaultTopics = isEn
+	? [
+			{ label: "Gadget", slug: "tech" },
+			{ label: "Smartphone", slug: "tech" },
+			{ label: "Esports", slug: "game" },
+			{ label: "Pop Culture", slug: "budaya" },
+			{ label: "Investigation", slug: "berita" },
+			{ label: "AI & Future", slug: "tech" },
+			{ label: "Wellness", slug: "kesehatan" },
+	  ]
+	: [
+			{ label: "Gadget", slug: "tech" },
+			{ label: "Smartphone", slug: "tech" },
+			{ label: "Esports", slug: "game" },
+			{ label: "Kultur Pop", slug: "budaya" },
+			{ label: "Investigasi", slug: "berita" },
+			{ label: "AI & Inovasi", slug: "tech" },
+			{ label: "Kesehatan", slug: "kesehatan" },
+	  ];
+
+const displayTags = tags.length > 0 ? tags : defaultTopics;
+---
+
+<section class="c7-sidebar-card" aria-label={isEn ? "Hot Topics" : "Topik Populer"}>
+	<div class="c7-sidebar-header">
+		<div class="c7-sidebar-header-left">
+			<span class="c7-header-dot" aria-hidden="true"></span>
+			<h3 class="c7-sidebar-title">{isEn ? (tags.length > 0 ? "Article Topics" : "Trending Topics") : (tags.length > 0 ? "Topik Terkait" : "Topik Populer")}</h3>
+		</div>
+	</div>
+	<div class="c7-tags-cloud">
+		{displayTags.map((t) => (
+			<a
+				href={isEn ? `/en/tag/${t.slug}` : `/tag/${t.slug}`}
+				class="c7-topic-chip"
+			>
+				#{t.label}
+			</a>
+		))}
+	</div>
+</section>
+
+<style>
+	.c7-sidebar-card {
+		background: var(--7c-sys-surface-container-low);
+		border: none;
+		border-radius: 20px;
+		padding: 1.5rem;
+		box-shadow: var(--7c-sys-elevation-1);
+		transition: background-color 0.2s ease, box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.c7-sidebar-card:hover {
+		background: var(--7c-sys-surface-container);
+		box-shadow: var(--7c-sys-elevation-2);
+		transform: translateY(-2px);
+	}
+
+	.c7-sidebar-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-bottom: 0.85rem;
+		margin-bottom: 1.15rem;
+		border-bottom: 1px solid var(--7c-sys-surface-container-highest, rgba(0, 0, 0, 0.06));
+	}
+
+	.c7-sidebar-header-left {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.c7-header-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background-color: var(--7c-sys-primary);
+	}
+
+	.c7-sidebar-title {
+		font-family: var(--7c-font-display);
+		font-size: 0.9rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		text-transform: none;
+		color: var(--7c-sys-on-surface);
+		margin: 0;
+	}
+
+	.c7-tags-cloud {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+	}
+
+	.c7-topic-chip {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		vertical-align: middle;
+		font-size: 0.75rem;
+		font-weight: 600;
+		padding: 0.35rem 0.65rem;
+		border-radius: 9999px;
+		background: var(--7c-sys-surface-container-high);
+		border: none;
+		color: var(--7c-sys-on-surface-variant);
+		text-decoration: none;
+		box-shadow: var(--7c-sys-elevation-0);
+		transition: background-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease, transform 0.15s ease;
+	}
+
+	.c7-topic-chip:hover {
+		color: var(--7c-sys-on-surface);
+		background: var(--7c-sys-surface-container-highest);
+		box-shadow: var(--7c-sys-elevation-1);
+		transform: translateY(-1px);
+	}
+
+	.c7-topic-chip:focus-visible {
+		outline: none;
+		box-shadow: var(--7c-sys-focus-ring);
+	}
+</style>

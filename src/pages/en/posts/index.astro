@@ -3,6 +3,7 @@ import { getEmDashCollection, getTermsForEntries } from "emdash";
 import Base from "../../../layouts/Base.astro";
 import { use7cTranslation } from "../../../i18n/utils";
 import { format7cCompactDate, resolve7cAuthor } from "../../../lib/7c-cms";
+import type { C7PostData } from "../../../lib/7c-cms";
 import { build7cDispatchPreview } from "../../../lib/7c-dispatch";
 
 const locale = "en";
@@ -34,11 +35,9 @@ const formattedPosts = posts.map((post) => {
 	const cats = categoriesByEntry.get(post.data.id) ?? [];
 	const firstCategory = cats[0] ?? { label: "News", slug: "berita" };
 	const formattedDate = format7cCompactDate(post.data.publishedAt, locale);
+	const postData = (post.data as unknown) as C7PostData;
 	const authorProfile = resolve7cAuthor(
-		(post.data as any)?.byline ||
-			(post.data as any)?.primaryBylineId ||
-			(post.data as any)?.primary_byline_id ||
-			post.data,
+		postData.byline || postData.primaryBylineId || postData.primary_byline_id || null,
 		"en",
 	);
 	const slug = post.data?.slug || post.id;

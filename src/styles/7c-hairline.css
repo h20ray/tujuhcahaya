@@ -68,6 +68,12 @@
   background-color: var(--7c-sys-primary-hover);
 }
 
+.c7-btn-primary:focus-visible,
+.btn-primary:focus-visible {
+  outline: none;
+  box-shadow: var(--7c-sys-focus-ring);
+}
+
 .c7-btn-outline,
 .btn-outline {
   display: inline-flex;
@@ -90,4 +96,11 @@
 .btn-outline:hover {
   background-color: var(--7c-sys-surface-container-high);
   border-color: var(--7c-sys-on-surface);
+}
+
+.c7-btn-outline:focus-visible,
+.btn-outline:focus-visible {
+  outline: none;
+  border-color: rgba(213, 0, 0, 0.45);
+  box-shadow: 0 0 0 3px rgba(213, 0, 0, 0.16);
 }

@@ -39,8 +39,10 @@ const normalizedPillar = pillar.toLowerCase().trim();
 	.c7-badge {
 		display: inline-flex;
 		align-items: center;
+		justify-content: center;
+		vertical-align: middle;
 		gap: 0.35rem;
-		padding: 0.25rem 0.65rem;
+		padding: 0.22rem 0.6rem;
 		border-radius: 9999px;
 		font-size: 0.72rem;
 		font-weight: 600;
@@ -50,17 +52,27 @@ const normalizedPillar = pillar.toLowerCase().trim();
 		border: none;
 		background-color: var(--7c-sys-surface-container-high);
 		color: var(--7c-sys-on-surface);
-		transition: all 0.15s ease;
+		transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
 		text-decoration: none;
 		width: fit-content;
+		box-sizing: border-box;
+	}
+
+	.c7-badge-text {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		text-align: center;
 	}
 
 	.c7-badge-dot {
-		width: 6px;
-		height: 6px;
+		width: 5px;
+		height: 5px;
 		border-radius: 50%;
 		display: inline-block;
 		background-color: var(--7c-sys-primary);
+		flex-shrink: 0;
 	}
 
 	/* MD3X Pillar Spectrum Color Alignments */
@@ -106,9 +118,23 @@ const normalizedPillar = pillar.toLowerCase().trim();
 	}
 	.c7-badge-lab .c7-badge-dot { background-color: var(--7c-pillar-lab); }
 
-	/* Hover interaction */
+	/* Dark mode container elevation */
+	:global([data-theme="dark"]) .c7-badge-berita { background-color: rgba(255, 82, 82, 0.16); }
+	:global([data-theme="dark"]) .c7-badge-game { background-color: rgba(52, 211, 153, 0.16); }
+	:global([data-theme="dark"]) .c7-badge-tech { background-color: rgba(56, 189, 248, 0.16); }
+	:global([data-theme="dark"]) .c7-badge-musik { background-color: rgba(167, 139, 250, 0.16); }
+	:global([data-theme="dark"]) .c7-badge-budaya { background-color: rgba(251, 191, 36, 0.16); }
+	:global([data-theme="dark"]) .c7-badge-kesehatan { background-color: rgba(45, 212, 191, 0.16); }
+	:global([data-theme="dark"]) .c7-badge-lab { background-color: rgba(148, 163, 184, 0.16); }
+
+	/* Hover and focus interactions */
 	a.c7-badge:hover {
 		transform: translateY(-1px);
 		filter: brightness(0.92);
+	}
+
+	a.c7-badge:focus-visible {
+		outline: none;
+		box-shadow: var(--7c-sys-focus-ring);
 	}
 </style>
