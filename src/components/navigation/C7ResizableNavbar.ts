@@ -1,4 +1,6 @@
-	class C7ResizableNavbarElement extends HTMLElement {
+	const SafeHTMLElement = typeof HTMLElement !== "undefined" ? HTMLElement : (class {} as typeof HTMLElement);
+
+	class C7ResizableNavbarElement extends SafeHTMLElement {
 		#abort: AbortController | null = null;
 		#megaCloseTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -217,11 +219,13 @@
 		}
 	}
 
-	if (!customElements.get("c7-resizable-navbar")) {
-		customElements.define("c7-resizable-navbar", C7ResizableNavbarElement);
-	}
+	if (typeof customElements !== "undefined") {
+		if (!customElements.get("c7-resizable-navbar")) {
+			customElements.define("c7-resizable-navbar", C7ResizableNavbarElement);
+		}
 
-	class NularResizableNavbarElement extends C7ResizableNavbarElement {}
-	if (!customElements.get("nular-resizable-navbar")) {
-		customElements.define("nular-resizable-navbar", NularResizableNavbarElement);
+		class NularResizableNavbarElement extends C7ResizableNavbarElement {}
+		if (!customElements.get("nular-resizable-navbar")) {
+			customElements.define("nular-resizable-navbar", NularResizableNavbarElement);
+		}
 	}

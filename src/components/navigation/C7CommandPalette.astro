@@ -24,7 +24,6 @@ const prefix = isEn ? "/en" : "";
 const idPath = get7cLocalizedPath(Astro.url.pathname, "id");
 const enPath = get7cLocalizedPath(Astro.url.pathname, "en");
 import "./C7CommandPalette.css";
-import "./C7CommandPalette.ts";
 ---
 
 <c7-command-palette
@@ -110,3 +109,5 @@ import "./C7CommandPalette.ts";
     </div>
   </div>
 </c7-command-palette>
+
+<script src="./C7CommandPalette.ts"></script>

@@ -43,7 +43,9 @@
 		duration?: number;
 	}
 
-	class C7CommandPaletteElement extends HTMLElement {
+	const SafeHTMLElement = typeof HTMLElement !== "undefined" ? HTMLElement : (class {} as typeof HTMLElement);
+
+	class C7CommandPaletteElement extends SafeHTMLElement {
 		#isOpen = false;
 		#activeTab = "all";
 		#query = "";
@@ -923,6 +925,6 @@
 		}
 	}
 
-	if (!customElements.get("c7-command-palette")) {
+	if (typeof customElements !== "undefined" && !customElements.get("c7-command-palette")) {
 		customElements.define("c7-command-palette", C7CommandPaletteElement);
 	}

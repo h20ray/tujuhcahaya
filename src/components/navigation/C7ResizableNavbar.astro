@@ -111,11 +111,8 @@ const pillars = [
 
 const menuId = `c7-resizable-nav-menu-${Math.random().toString(36).slice(2, 9)}`;
 const megaMenuId = `c7-rn-megamenu-${Math.random().toString(36).slice(2, 9)}`;
----
-
 import "./C7ResizableNavbar.css";
-import "./C7ResizableNavbar.ts";
-
+---
 
 <c7-resizable-navbar class:list={["c7-resizable-navbar", className]}>
 	<div class="c7-rn-shell c7-rn-desktop-shell">
@@ -386,3 +383,5 @@ import "./C7ResizableNavbar.ts";
 		</div>
 	</div>
 </c7-resizable-navbar>
+
+<script src="./C7ResizableNavbar.ts"></script>
