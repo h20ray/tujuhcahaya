@@ -3,6 +3,7 @@ import { C7CommandPalettePreviewController } from "./C7CommandPalettePreviewCont
 import { buildDefaultActions } from "./C7CommandPaletteActionProvider";
 import * as renderer from "./C7CommandPaletteRenderer";
 import type { C7PaletteTab, C7PreviewTrack } from "./C7CommandPaletteTypes";
+import { format7cText, use7cTranslation } from "../../i18n/utils";
 
 const SafeHTMLElement = typeof HTMLElement !== "undefined" ? HTMLElement : (class {} as typeof HTMLElement);
 
@@ -28,6 +29,10 @@ class C7CommandPaletteElement extends SafeHTMLElement {
 
 	#isEn(): boolean {
 		return this.getAttribute("data-locale") === "en";
+	}
+
+	#t() {
+		return use7cTranslation(this.#isEn() ? "en" : "id").t;
 	}
 
 	#getActionContext() {
@@ -190,13 +195,13 @@ class C7CommandPaletteElement extends SafeHTMLElement {
 
 		const q = this.#query.toLowerCase();
 		const activeTab = this.#activeTab;
-		const isEn = this.#isEn();
+		const t = this.#t();
 		const prefix = this.getAttribute("data-prefix") || "";
 
 		if (!q) {
 			const defaultActions = buildDefaultActions(this.#getActionContext());
 			const filteredActions = activeTab === "all" || activeTab === "actions" ? defaultActions : [];
-			container.innerHTML = renderer.renderQuickActions(filteredActions, isEn) || renderer.renderInitialPrompt(isEn);
+			container.innerHTML = renderer.renderQuickActions(filteredActions, t.palette) || renderer.renderInitialPrompt(t.palette);
 			this.#bindItemClicks();
 			this.#setActiveIndex(0);
 			return;
@@ -205,7 +210,7 @@ class C7CommandPaletteElement extends SafeHTMLElement {
 		this.#abortController?.abort();
 		this.#abortController = new AbortController();
 
-		container.innerHTML = renderer.renderLoading(isEn);
+		container.innerHTML = renderer.renderLoading(t.palette);
 
 		const matchedActions = buildDefaultActions(this.#getActionContext()).filter(
 			(a) =>
@@ -222,7 +227,7 @@ class C7CommandPaletteElement extends SafeHTMLElement {
 
 		container.innerHTML = renderer.renderSearchResults({
 			query: this.#query,
-			isEn,
+			t: t.palette,
 			prefix,
 			postResults: searchItems.filter((i) => i.collection === "posts"),
 			pageResults: searchItems.filter((i) => i.collection === "pages"),
@@ -290,21 +295,13 @@ class C7CommandPaletteElement extends SafeHTMLElement {
 		if (requestId) {
 			const title = decodeURIComponent(item.getAttribute("data-song-title") || "");
 			const artist = decodeURIComponent(item.getAttribute("data-song-artist") || "");
-			const isEn = this.#isEn();
-			this.#showToast(isEn ? `Sending request for "${title}"...` : `Mengirim permintaan lagu "${title}"...`);
+			const t = this.#t();
+			this.#showToast(format7cText(t.palette.sending_request, { title }));
 			const result = await this.#engine.submitSongRequest(requestId, title, artist);
 			if (result.ok) {
-				this.#showToast(
-					isEn
-						? `Request for "${title}" sent to broadcast queue!`
-						: `Permintaan lagu "${title}" berhasil masuk ke antrean siaran Tujuhcahaya Radio!`,
-					false
-				);
+				this.#showToast(format7cText(t.palette.request_success, { title }), false);
 			} else {
-				this.#showToast(
-					result.message || (isEn ? "Failed to submit request" : "Gagal mengirim permintaan lagu"),
-					true
-				);
+				this.#showToast(result.message || t.palette.failed_request, true);
 			}
 			return;
 		}

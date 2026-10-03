@@ -12,10 +12,13 @@ export type { C7TranslationSchema } from "./types";
 export const DEFAULT_LOCALE: Locale = "id";
 export const SUPPORTED_LOCALES: Locale[] = ["id", "en"];
 
-const dictionaries: Record<Locale, C7TranslationSchema> = {
-	id: idDict as C7TranslationSchema,
-	en: enDict as C7TranslationSchema,
-};
+// `satisfies` (not `as`) so TypeScript verifies the JSON dictionaries actually
+// conform to C7TranslationSchema — drift now fails `npm run typecheck` instead
+// of silently producing `undefined` at runtime.
+const dictionaries = {
+	id: idDict satisfies C7TranslationSchema,
+	en: enDict satisfies C7TranslationSchema,
+} satisfies Record<Locale, C7TranslationSchema>;
 
 /**
  * Determine locale from URL pathname

@@ -10,6 +10,8 @@ export type C7EffectiveTheme = "light" | "dark";
 // Backward compatibility alias
 export type C7Theme = C7EffectiveTheme;
 
+import { use7cTranslation } from "../i18n/utils";
+
 declare global {
 	interface Window {
 		__c7ThemeInitialized?: boolean;
@@ -67,6 +69,7 @@ export function syncThemeButtons(currentSetting?: C7ThemeSetting): void {
 	const effective = getEffectiveTheme(activeSetting);
 	const isDark = effective === "dark";
 	const isEn = document.documentElement.lang === "en";
+	const { t } = use7cTranslation(isEn ? "en" : "id");
 
 	// 1. Sync segmented theme buttons (if present)
 	const themeBtns = document.querySelectorAll(".c7-theme-btn, .theme-btn");
@@ -81,18 +84,9 @@ export function syncThemeButtons(currentSetting?: C7ThemeSetting): void {
 	const toggles = document.querySelectorAll(".c7-theme-toggle, [data-c7-theme-toggle]");
 	toggles.forEach((btn) => {
 		btn.setAttribute("aria-pressed", String(isDark));
-		btn.setAttribute(
-			"aria-label",
-			isDark
-				? (isEn ? "Switch to light mode" : "Beralih ke mode terang")
-				: (isEn ? "Switch to dark mode" : "Beralih ke mode gelap"),
-		);
-		btn.setAttribute(
-			"title",
-			isDark
-				? (isEn ? "Switch to light mode" : "Beralih ke mode terang")
-				: (isEn ? "Switch to dark mode" : "Beralih ke mode gelap"),
-		);
+		const nextLabel = isDark ? t.theme.switch_to_light : t.theme.switch_to_dark;
+		btn.setAttribute("aria-label", nextLabel);
+		btn.setAttribute("title", nextLabel);
 	});
 }
 

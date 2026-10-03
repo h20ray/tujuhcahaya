@@ -2,7 +2,7 @@
 /**
  * C7SidebarStaticCard — Static page directory + editorial contact
  */
-import type { Locale } from "../../../i18n/utils";
+import { type Locale, use7cTranslation } from "../../../i18n/utils";
 
 interface Props {
 	currentSlug?: string;
@@ -11,22 +11,23 @@ interface Props {
 
 const { currentSlug, locale = "id" } = Astro.props;
 const isEn = locale === "en";
+const { t } = use7cTranslation(locale);
 
 const prefix = isEn ? "/en" : "";
 const staticDirectory = [
-	{ slug: "about-us", href: `${prefix}/about-us`, label: isEn ? "About Us" : "Tentang Kami" },
-	{ slug: "redaksi", href: `${prefix}/redaksi`, label: isEn ? "Editorial Board" : "Susunan Redaksi" },
-	{ slug: "pedoman-media-siber", href: `${prefix}/pedoman-media-siber`, label: isEn ? "Cyber Guidelines" : "Pedoman Media Siber" },
-	{ slug: "privacy-policy", href: `${prefix}/privacy-policy`, label: isEn ? "Privacy Policy" : "Kebijakan Privasi" },
-	{ slug: "terms-of-use", href: `${prefix}/terms-of-use`, label: isEn ? "Terms of Use" : "Syarat & Ketentuan" },
-	{ slug: "kirim-tulisan", href: isEn ? "/en/submit" : "/kirim-tulisan", label: isEn ? "Community Submit" : "Kirim Tulisan" },
+	{ slug: "about-us", href: `${prefix}/about-us`, label: t.sidebar.static_nav_about_us },
+	{ slug: "redaksi", href: `${prefix}/redaksi`, label: t.sidebar.static_nav_redaksi },
+	{ slug: "pedoman-media-siber", href: `${prefix}/pedoman-media-siber`, label: t.sidebar.static_nav_pedoman },
+	{ slug: "privacy-policy", href: `${prefix}/privacy-policy`, label: t.sidebar.static_nav_privacy },
+	{ slug: "terms-of-use", href: `${prefix}/terms-of-use`, label: t.sidebar.static_nav_terms },
+	{ slug: "kirim-tulisan", href: isEn ? "/en/submit" : "/kirim-tulisan", label: t.sidebar.static_nav_submit },
 ];
 ---
 
-<section class="c7-sidebar-card c7-sidebar-static-nav" aria-label={isEn ? "Newsroom Pages" : "Halaman Redaksi"}>
+<section class="c7-sidebar-card c7-sidebar-static-nav" aria-label={t.sidebar.static_title}>
 	<div class="c7-sidebar-header">
 		<div class="c7-sidebar-header-left">
-			<h3 class="c7-sidebar-title">{isEn ? "Halaman Redaksi" : "Halaman Redaksi"}</h3>
+			<h3 class="c7-sidebar-title">{t.sidebar.static_title}</h3>
 		</div>
 	</div>
 	<ul class="c7-static-nav-list">
@@ -40,7 +41,7 @@ const staticDirectory = [
 					<span class="c7-static-nav-label">{link.label}</span>
 					{currentSlug === link.slug && (
 						<span class="c7-static-nav-badge">
-							{isEn ? "Active" : "Aktif"}
+							{t.common.active}
 						</span>
 					)}
 				</a>
@@ -49,17 +50,15 @@ const staticDirectory = [
 	</ul>
 </section>
 
-<section class="c7-sidebar-card c7-sidebar-contact-card" aria-label={isEn ? "Editorial Desk Contact" : "Kontak Redaksi"}>
+<section class="c7-sidebar-card c7-sidebar-contact-card" aria-label={t.sidebar.static_contact_title}>
 	<div class="c7-sidebar-header">
 		<div class="c7-sidebar-header-left">
-			<h3 class="c7-sidebar-title">{isEn ? "Kontak Redaksi" : "Kontak Redaksi"}</h3>
+			<h3 class="c7-sidebar-title">{t.sidebar.static_contact_title}</h3>
 		</div>
 	</div>
 	<div class="c7-sidebar-contact-body">
 		<p class="c7-sidebar-contact-desc">
-			{isEn
-				? "Questions, tips, or formal correction requests regarding published reporting can be directed directly to our editorial team."
-				: "Pertanyaan, hak jawab, klarifikasi, atau permohonan koreksi pemberitaan dapat disampaikan langsung ke meja redaksi."}
+			{t.sidebar.static_contact_desc}
 		</p>
 		<a href="mailto:redaksi@tujuhcahaya.com" class="c7-sidebar-email-link">
 			<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">

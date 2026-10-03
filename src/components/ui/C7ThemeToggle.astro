@@ -6,7 +6,7 @@
  * Pure SVG + GPU-accelerated CSS transitions with zero runtime dependencies.
  * Fully accessible with WCAG 2.1 touch target, dynamic aria-label & title.
  */
-import { type Locale, DEFAULT_LOCALE } from "../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation } from "../../i18n/utils";
 
 interface Props {
 	id?: string;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { id = "desktop", locale = DEFAULT_LOCALE, class: className = "" } = Astro.props;
-const isEn = locale === "en";
+const { t } = use7cTranslation(locale);
 const maskId = `c7-theme-mask-${id}`;
 ---
 
@@ -24,9 +24,9 @@ const maskId = `c7-theme-mask-${id}`;
 	class:list={["c7-theme-toggle", className]}
 	id={`c7-theme-toggle-${id}`}
 	data-c7-theme-toggle
-	aria-label={isEn ? "Switch to dark mode" : "Beralih ke mode gelap"}
+	aria-label={t.theme.switch_to_dark}
 	aria-pressed="false"
-	title={isEn ? "Toggle theme (Light / Dark)" : "Ganti tema (Terang / Gelap)"}
+	title={t.theme.toggle_theme}
 >
 	<svg
 		class="c7-theme-icon"

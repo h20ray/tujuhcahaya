@@ -95,7 +95,46 @@
     "lang_toggle_title": "Switch Language (ID / EN)",
     "lang_toggle_sub": "Switch site edition between Indonesian and English",
     "lang_toggle_badge": "Language Navigation",
-    "lang_toggle_toast": "Switching language edition..."
+    "lang_toggle_toast": "Switching language edition...",
+    "clear_input": "Clear input",
+    "close_palette": "Close Palette",
+    "radio_history": "Radio History",
+    "navigate": "Navigate",
+    "select": "Select",
+    "close": "Close",
+    "preview_apple_music": "Preview on Apple Music",
+    "preview_30s": "30s iTunes / Apple Music Preview",
+    "no_results": "No results found for \"{query}\"",
+    "no_results_hint": "Try searching for another topic, artist, or system command",
+    "searching": "Searching...",
+    "badge_story": "Story",
+    "badge_page": "Page",
+    "request_badge": "Request",
+    "radio_track": "Radio Track",
+    "recently_played": "Recently Played on Radio",
+    "sending_request": "Sending request for \"{title}\"...",
+    "failed_request": "Failed to submit request",
+    "preview_unavailable": "Preview not available on Apple Music",
+    "preview_failed": "Failed to play audio preview",
+    "results_stories": "Stories & News",
+    "results_pages": "Pages & Information",
+    "results_radio": "Radio Song Request Catalog",
+    "results_actions": "Commands & Actions",
+    "initial_prompt": "Type to search content or songs...",
+    "ago_minutes": "{minutes}m ago",
+    "request_success": "Request for \"{title}\" sent to broadcast queue!",
+    "actions": [
+      { "title": "Complete Archive", "subtitle": "Explore investigative journalism archive", "badge": "Archive" },
+      { "title": "Submit Op-Ed / Community Dispatch", "subtitle": "Publish your essay or field report on Tujuhcahaya", "badge": "Dispatch" },
+      { "title": "Rubrik: News & Investigative", "subtitle": "Hard news, politics, and current affairs", "badge": "News" },
+      { "title": "Rubrik: Tech & Future", "subtitle": "AI, developer tools, hardware, and privacy", "badge": "Tech" },
+      { "title": "Rubrik: Gaming & Culture", "subtitle": "Esports, reviews, game design, and gaming scene", "badge": "Game" },
+      { "title": "Rubrik: Music & Soundwaves", "subtitle": "Curated records, scene dispatches, reviews", "badge": "Music" },
+      { "title": "Rubrik: Culture & Heritage", "subtitle": "Heritage, urban culture, essays, and philosophy", "badge": "Culture" },
+      { "title": "Rubrik: Health & Wellness", "subtitle": "Medical science, mental health, and wellness", "badge": "Health" },
+      { "title": "About PT Tujuh Cahaya Media House", "subtitle": "Mission, editorial independence, and corporate structure", "badge": "Page" },
+      { "title": "Editorial Masthead & Journalists", "subtitle": "Authentic editorial board and contributing writers", "badge": "Masthead" }
+    ]
   },
   "sidebar": {
     "topics_title": "Trending Topics",
@@ -107,7 +146,17 @@
     "newsletter_button": "Subscribe",
     "newsletter_success": "Thank you! Confirmation email sent.",
     "search_title": "Search Stories",
-    "search_placeholder": "Search topics..."
+    "search_placeholder": "Search topics...",
+    "aria_label": "Article Sidebar",
+    "static_title": "Newsroom Pages",
+    "static_contact_title": "Editorial Desk Contact",
+    "static_contact_desc": "Questions, tips, or formal correction requests regarding published reporting can be directed directly to our editorial team.",
+    "static_nav_about_us": "About Us",
+    "static_nav_redaksi": "Editorial Board",
+    "static_nav_pedoman": "Cyber Guidelines",
+    "static_nav_privacy": "Privacy Policy",
+    "static_nav_terms": "Terms of Use",
+    "static_nav_submit": "Community Submit"
   },
   "author": {
     "articles_written": "Stories Written",
@@ -123,7 +172,10 @@
     "previous": "Previous",
     "next": "Next",
     "page_of_total": "Page {page} of {totalPages} ({total} Total)",
-    "aria_profile": "Author Profile"
+    "aria_profile": "Author Profile",
+    "aria_profile_named": "Author Profile: {name}",
+    "kicker_editorial": "OFFICIAL EDITORIAL",
+    "kicker_written_by": "WRITTEN BY"
   },
   "footer": {
     "tagline": "Independent digital media house exploring investigative journalism, emerging tech, urban culture, music, and contemporary Southeast Asian society.",
@@ -180,5 +232,51 @@
     "close_menu": "Close menu",
     "site_footer": "Site Footer",
     "breadcrumbs": "Page Breadcrumbs"
+  },
+  "common": {
+    "close": "Close",
+    "read": "Read",
+    "read_full_story": "Read Full Story",
+    "mark_as_read": "Mark as Read",
+    "already_read": "Already Read",
+    "source": "Source",
+    "active": "Active",
+    "story": "Story",
+    "page": "Page"
+  },
+  "scorebox": {
+    "verdict": "Editorial Verdict",
+    "badge": "7C Review",
+    "highly_recommended": "HIGHLY RECOMMENDED",
+    "recommended": "RECOMMENDED",
+    "skip": "SKIP FOR NOW"
+  },
+  "spectable": {
+    "title": "Technical Specifications",
+    "default_source": "7C Media Lab testing data"
+  },
+  "isometric": {
+    "aria_label": "Tujuhcahaya 7-Section Layered Architecture — click any layer to inspect",
+    "layer": "Layer",
+    "sections": [
+      { "generic": "Section 01 • Studio & Hub", "name": "Tujuhcahaya Media Lab", "shortLeft": "LAB", "shortRight": "CREATIVE STUDIO & LAB", "count": "Studio & Hub", "desc": "Independent media lab, creative content research hub, and digital architecture foundation of Tujuhcahaya.", "slug": "about-us" },
+      { "generic": "Section 02 • Lifestyle & Health", "name": "Health & Wellness", "shortLeft": "HEALTH", "shortRight": "LIFESTYLE & SCIENCE", "count": "600+ Stories", "desc": "Evidence-based health insights, physical and mental well-being, and modern living wellness without preachiness.", "slug": "kesehatan" },
+      { "generic": "Section 03 • Arts & Pop Culture", "name": "Pop Culture & Urban Arts", "shortLeft": "CULTURE", "shortRight": "CULTURE & ESSAYS", "count": "200+ Stories", "desc": "Urban cultural phenomena, contemporary art, local heritage, and evolving social dynamics of modern society.", "slug": "budaya" },
+      { "generic": "Section 04 • Music & Sound", "name": "Music & Soundscapes", "shortLeft": "MUSIC", "shortRight": "AUDIO & ENTERTAINMENT", "count": "3.5k+ Stories", "desc": "Curated music releases, critical album reviews, independent and mainstream artist profiles, and audio culture.", "slug": "musik" },
+      { "generic": "Section 05 • Future & Innovation", "name": "Technology & Innovation", "shortLeft": "TECH", "shortRight": "INNOVATION & HARDWARE", "count": "3.5k+ Stories", "desc": "Artificial intelligence, frontier hardware breakthroughs, open-source software, and global digital paradigms.", "slug": "tech" },
+      { "generic": "Section 06 • Interactive & Play", "name": "Video Games & Esports", "shortLeft": "GAME", "shortRight": "ESPORTS & INDUSTRY", "count": "4k+ Stories", "desc": "In-depth video game reviews, interactive entertainment industry analysis, esports strategy, and gaming culture.", "slug": "game" },
+      { "generic": "Section 07 • Journalism", "name": "Newsroom & Dispatches", "shortLeft": "NEWS", "shortRight": "CRITICAL JOURNALISM", "count": "4k+ Stories", "desc": "Breaking reports, essential public policy analysis, social issues, and rigorous investigative journalism.", "slug": "berita" }
+    ]
+  },
+  "dispatch": {
+    "already_read": "Already Read",
+    "mark_as_read": "Mark as Read",
+    "close_preview": "Close preview (Esc)",
+    "close_esc": "Close (Esc)"
+  },
+  "theme": {
+    "switch_to_dark": "Switch to dark mode",
+    "switch_to_light": "Switch to light mode",
+    "toggle_theme": "Toggle theme (Light / Dark)"
   }
 }

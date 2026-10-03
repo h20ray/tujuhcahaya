@@ -90,6 +90,40 @@ export interface PaletteDict {
 	lang_toggle_sub: string;
 	lang_toggle_badge: string;
 	lang_toggle_toast: string;
+	clear_input: string;
+	close_palette: string;
+	radio_history: string;
+	navigate: string;
+	select: string;
+	close: string;
+	preview_apple_music: string;
+	preview_30s: string;
+	no_results: string;
+	no_results_hint: string;
+	searching: string;
+	badge_story: string;
+	badge_page: string;
+	request_badge: string;
+	radio_track: string;
+	recently_played: string;
+	sending_request: string;
+	failed_request: string;
+	preview_unavailable: string;
+	preview_failed: string;
+	results_stories: string;
+	results_pages: string;
+	results_radio: string;
+	results_actions: string;
+	initial_prompt: string;
+	ago_minutes: string;
+	request_success: string;
+	actions: PaletteActionDict[];
+}
+
+export interface PaletteActionDict {
+	title: string;
+	subtitle: string;
+	badge: string;
 }
 
 export interface SidebarDict {
@@ -103,6 +137,16 @@ export interface SidebarDict {
 	newsletter_success: string;
 	search_title: string;
 	search_placeholder: string;
+	aria_label: string;
+	static_title: string;
+	static_contact_title: string;
+	static_contact_desc: string;
+	static_nav_about_us: string;
+	static_nav_redaksi: string;
+	static_nav_pedoman: string;
+	static_nav_privacy: string;
+	static_nav_terms: string;
+	static_nav_submit: string;
 }
 
 export interface AuthorDict {
@@ -120,6 +164,9 @@ export interface AuthorDict {
 	next: string;
 	page_of_total: string;
 	aria_profile: string;
+	aria_profile_named: string;
+	kicker_editorial: string;
+	kicker_written_by: string;
 }
 
 export interface FooterDict {
@@ -182,6 +229,60 @@ export interface A11yDict {
 	breadcrumbs: string;
 }
 
+export interface CommonDict {
+	close: string;
+	read: string;
+	read_full_story: string;
+	mark_as_read: string;
+	already_read: string;
+	source: string;
+	active: string;
+	story: string;
+	page: string;
+}
+
+export interface ScoreboxDict {
+	verdict: string;
+	badge: string;
+	highly_recommended: string;
+	recommended: string;
+	skip: string;
+}
+
+export interface SpectableDict {
+	title: string;
+	default_source: string;
+}
+
+export interface IsometricSectionDict {
+	generic: string;
+	name: string;
+	shortLeft: string;
+	shortRight: string;
+	count: string;
+	desc: string;
+	slug: string;
+}
+
+export interface IsometricDict {
+	aria_label: string;
+	layer: string;
+	sections: IsometricSectionDict[];
+}
+
+export interface DispatchDict {
+	already_read: string;
+	mark_as_read: string;
+	close_preview: string;
+	close_esc: string;
+}
+
+export interface ThemeDict {
+	switch_to_dark: string;
+	switch_to_light: string;
+	toggle_theme: string;
+}
+
 export interface C7TranslationSchema {
 	nav: NavDict;
 	pillars: PillarsDict;
@@ -194,4 +295,10 @@ export interface C7TranslationSchema {
 	submission: SubmissionDict;
 	errors: ErrorsDict;
 	a11y: A11yDict;
+	common: CommonDict;
+	scorebox: ScoreboxDict;
+	spectable: SpectableDict;
+	isometric: IsometricDict;
+	dispatch: DispatchDict;
+	theme: ThemeDict;
 }
