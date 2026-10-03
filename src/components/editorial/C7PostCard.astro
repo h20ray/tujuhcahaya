@@ -1,6 +1,7 @@
 ---
 import C7Badge from "../ui/C7Badge.astro";
 import { format7cCompactDate, C7_DEFAULT_FEATURED_IMAGE } from "../../lib/7c-cms";
+import { type Locale, DEFAULT_LOCALE, get7cLocalizedPath } from "../../i18n/utils";
 
 interface Props {
 	title: string;
@@ -10,6 +11,7 @@ interface Props {
 	category?: string | null;
 	publishedAt?: string | null;
 	class?: string;
+	locale?: Locale;
 }
 
 const {
@@ -20,25 +22,31 @@ const {
 	category = "Berita",
 	publishedAt,
 	class: className = "",
+	locale = DEFAULT_LOCALE,
 } = Astro.props;
 
-const dateFormatted = format7cCompactDate(publishedAt || undefined);
+const dateFormatted = format7cCompactDate(publishedAt || undefined, locale);
 const effectiveThumbnail = thumbnail || C7_DEFAULT_FEATURED_IMAGE;
+// Strip any accidental leading "en/" or "/" from slug before localizing
+const cleanSlug = slug.replace(/^(\/?en\/|\/)/, "");
+const postUrl = get7cLocalizedPath(`/${cleanSlug}`, locale);
+const categorySlug = category ? category.toLowerCase() : "berita";
+const categoryUrl = get7cLocalizedPath(`/category/${categorySlug}`, locale);
 ---
 
 <article class={`c7-card ${className}`}>
-	<a href={`/${slug}`} class="c7-card-media" tabindex="-1" aria-hidden="true">
+	<a href={postUrl} class="c7-card-media" tabindex="-1" aria-hidden="true">
 		<img src={effectiveThumbnail} alt={title} loading="lazy" />
 	</a>
 
 	<div class="c7-card-body">
 		<div class="c7-card-meta">
-			{category && <C7Badge label={category} pillar={category} href={`/category/${category.toLowerCase()}`} />}
+			{category && <C7Badge label={category} pillar={category} href={categoryUrl} />}
 			{dateFormatted && <time datetime={publishedAt || undefined} class="c7-card-date">{dateFormatted}</time>}
 		</div>
 
 		<h3 class="c7-card-title">
-			<a href={`/${slug}`}>{title}</a>
+			<a href={postUrl}>{title}</a>
 		</h3>
 
 		{excerpt && <p class="c7-card-excerpt">{excerpt}</p>}

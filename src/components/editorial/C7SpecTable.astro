@@ -6,6 +6,8 @@
  * and PC components. Styled with 7C Hairline Grid and MD3X contrast roles.
  */
 
+import { type Locale, DEFAULT_LOCALE } from "../../i18n/utils";
+
 interface SpecItem {
 	label: string;
 	value: string;
@@ -17,14 +19,21 @@ interface Props {
 	specs: SpecItem[];
 	source?: string;
 	class?: string;
+	locale?: Locale;
 }
 
 const {
-	title = "Spesifikasi Teknis",
+	title: propTitle,
 	specs = [],
-	source = "Data lab redaksi Tujuhcahaya",
+	source: propSource,
 	class: className = "",
+	locale = DEFAULT_LOCALE,
 } = Astro.props;
+
+const isEn = locale === "en";
+
+const title = propTitle || (isEn ? "Technical Specifications" : "Spesifikasi Teknis");
+const source = propSource !== undefined ? propSource : (isEn ? "7C Media Lab testing data" : "Data lab redaksi Tujuhcahaya");
 ---
 
 <div class={`c7-spec-table-wrapper c7-hairline-box ${className}`} role="region" aria-label={title}>
@@ -46,7 +55,7 @@ const {
 
 	{source && (
 		<div class="c7-spec-footer">
-			<span>Sumber: {source}</span>
+			<span>{isEn ? "Source:" : "Sumber:"} {source}</span>
 		</div>
 	)}
 </div>

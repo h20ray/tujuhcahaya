@@ -1,0 +1,308 @@
+---
+/**
+ * C7AuthorView — Unified Author Profile & Articles View
+ *
+ * Adheres to 7C Monolith Guard (< 300 LOC) and provides full i18n support.
+ */
+
+import Base from "../../layouts/Base.astro";
+import { C7_AUTHORS } from "../../lib/7c-cms";
+import type { C7AuthorProfile } from "../../lib/7c-cms";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../i18n/utils";
+
+export interface FormattedAuthorPost {
+	id: string;
+	slug: string;
+	title: string;
+	formattedDate: string;
+	publishedAt?: string;
+	category: { label: string; slug: string };
+	preview: unknown;
+}
+
+interface Props {
+	locale?: Locale;
+	author: C7AuthorProfile;
+	posts: FormattedAuthorPost[];
+	total: number;
+	page: number;
+	totalPages: number;
+	hasMore: boolean;
+}
+
+const {
+	locale = DEFAULT_LOCALE,
+	author,
+	posts,
+	total,
+	page,
+	totalPages,
+	hasMore,
+} = Astro.props;
+
+const { t, format } = use7cTranslation(locale);
+const allAuthorSlugs = Object.keys(C7_AUTHORS);
+
+const pageTitle = format(t.author.page_title, { name: author.name });
+const pageDesc = author.bio || format(t.author.page_description, { name: author.name });
+const kicker = t.author.kicker;
+const countText = format(t.author.published_stories, { count: total.toLocaleString(locale === "en" ? "en-US" : "id-ID") });
+const subnavTitle = format(t.author.all_stories_by, { author: author.name.toUpperCase() });
+const authorBaseUrl = get7cLocalizedPath(`/author/${author.slug}`, locale);
+---
+
+<Base title={pageTitle} description={pageDesc}>
+	<div class="dispatch-archive-page">
+		<!-- Author Hero Profile Header -->
+		<section class="c7-author-profile-hero" aria-label={t.author.aria_profile}>
+			<div class="c7-author-hero-wrap">
+				<div class="c7-author-hero-avatar">
+					{author.avatarUrl ? (
+						<img
+							src={author.avatarUrl}
+							alt={author.name}
+							width="88"
+							height="88"
+							class="c7-hero-avatar-img"
+						/>
+					) : (
+						<div class="c7-hero-avatar-fallback" aria-hidden="true">
+							{author.name.slice(0, 2).toUpperCase()}
+						</div>
+					)}
+				</div>
+
+				<div class="c7-author-hero-info">
+					<div class="c7-author-hero-badges">
+						<span class="c7-hero-kicker">{kicker}</span>
+						<span class="c7-hero-role">{author.role}</span>
+						<span class="c7-hero-count">{countText}</span>
+					</div>
+
+					<h1 class="c7-author-hero-name">{author.name}</h1>
+
+					{author.bio && (
+						<p class="c7-author-hero-bio">{author.bio}</p>
+					)}
+				</div>
+			</div>
+		</section>
+
+		<!-- Sub-navigation: All Editorial Authors -->
+		<div class="dispatch-header">
+			<div class="dispatch-header-left">
+				<h2 class="dispatch-header-title">{subnavTitle}</h2>
+			</div>
+
+			<!-- Authors Filter Tabs -->
+			<div class="dispatch-category-filters" role="navigation" aria-label={t.author.browse_authors}>
+				{allAuthorSlugs.map((aSlug) => {
+					const aData = C7_AUTHORS[aSlug];
+					const isActive = aSlug === author.slug;
+					const authorUrl = get7cLocalizedPath(`/author/${aSlug}`, locale);
+					return (
+						<a
+							href={authorUrl}
+							class:list={["dispatch-filter-tab", { active: isActive }]}
+						>
+							{aData.name}
+						</a>
+					);
+				})}
+			</div>
+		</div>
+
+		<!-- Dispatch Table Rows -->
+		<div class="dispatch-table" role="feed" aria-label={subnavTitle}>
+			{posts.length === 0 ? (
+				<div class="dispatch-empty-state">
+					<p>{t.editorial.empty_state}</p>
+				</div>
+			) : (
+				posts.map((item) => {
+					const postUrl = get7cLocalizedPath(`/${item.slug}`, locale);
+					return (
+						<a
+							href={postUrl}
+							class="dispatch-row"
+							data-post-slug={item.slug}
+							data-astro-reload
+							data-dispatch-preview={JSON.stringify(item.preview)}
+						>
+							<!-- Status Circle -->
+							<div class="dispatch-bullet-wrapper" title={t.editorial.mark_as_read}>
+								<span class="dispatch-bullet" aria-hidden="true"></span>
+							</div>
+
+							<!-- Title -->
+							<span class="dispatch-title">
+								{item.title}
+							</span>
+
+							<!-- Category Pill -->
+							<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
+								<span>{item.category.label}</span>
+							</span>
+
+							<!-- Date Field -->
+							<time class="dispatch-date" datetime={item.publishedAt}>
+								{item.formattedDate}
+							</time>
+						</a>
+					);
+				})
+			)}
+		</div>
+
+		<!-- Pagination Footer -->
+		<div class="dispatch-footer">
+			<div class="dispatch-footer-meta">
+				<span class="dispatch-footer-dot" aria-hidden="true"></span>
+				<span>{author.name} • {format(t.author.page_of_total, { page, totalPages: totalPages || 1, total })}</span>
+			</div>
+
+			<div class="dispatch-pagination">
+				{page > 1 && (
+					<a href={`${authorBaseUrl}?page=${page - 1}`} class="dispatch-page-btn">
+						&larr; {t.author.previous}
+					</a>
+				)}
+				{hasMore && (
+					<a href={`${authorBaseUrl}?page=${page + 1}`} class="dispatch-page-btn primary">
+						{t.author.next} &rarr;
+					</a>
+				)}
+			</div>
+		</div>
+	</div>
+</Base>
+
+<style>
+	.dispatch-archive-page {
+		max-width: 100%;
+		padding: 2.5rem 1.5rem 5rem 1.5rem;
+		min-height: 80vh;
+	}
+
+	@media (min-width: 768px) {
+		.dispatch-archive-page {
+			padding: 3rem 2.5rem 6rem 2.5rem;
+		}
+	}
+
+	.c7-author-profile-hero {
+		background: var(--7c-sys-surface-container, #ffffff);
+		border-radius: 20px;
+		padding: 2rem;
+		margin-bottom: 2.5rem;
+		box-shadow: var(--7c-sys-elevation-1);
+	}
+
+	.c7-author-hero-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		align-items: flex-start;
+	}
+
+	@media (min-width: 640px) {
+		.c7-author-hero-wrap {
+			flex-direction: row;
+			align-items: center;
+			gap: 2rem;
+		}
+	}
+
+	.c7-author-hero-avatar {
+		flex-shrink: 0;
+	}
+
+	.c7-hero-avatar-img {
+		border-radius: 50%;
+		object-fit: cover;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	}
+
+	.c7-hero-avatar-fallback {
+		width: 88px;
+		height: 88px;
+		border-radius: 50%;
+		background: var(--7c-sys-primary, #0f172a);
+		color: #ffffff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		font-size: 1.75rem;
+	}
+
+	.c7-author-hero-badges {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.c7-hero-kicker {
+		font-family: var(--7c-sys-font-mono, monospace);
+		font-size: 0.7rem;
+		font-weight: 700;
+		color: var(--7c-sys-primary, #0f172a);
+		letter-spacing: 0.08em;
+	}
+
+	.c7-hero-role {
+		font-size: 0.8rem;
+		background: var(--7c-sys-surface-container-high, #f1f5f9);
+		padding: 0.2rem 0.6rem;
+		border-radius: 9999px;
+		font-weight: 500;
+		color: var(--7c-sys-on-surface-variant, #475569);
+	}
+
+	.c7-hero-count {
+		font-size: 0.8rem;
+		color: var(--7c-sys-on-surface-variant, #475569);
+	}
+
+	.c7-author-hero-name {
+		font-size: 1.75rem;
+		font-weight: 700;
+		color: var(--7c-sys-on-surface, #0f172a);
+		margin: 0 0 0.5rem 0;
+	}
+
+	.c7-author-hero-bio {
+		font-size: 0.95rem;
+		color: var(--7c-sys-on-surface-variant, #475569);
+		line-height: 1.6;
+		margin: 0;
+		max-width: 720px;
+	}
+
+	.dispatch-footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 1.5rem;
+		padding: 0.5rem 0;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.dispatch-footer-meta {
+		font-size: 0.85rem;
+		color: var(--7c-sys-on-surface-variant, #64748b);
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.dispatch-footer-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background-color: var(--7c-sys-primary, #0f172a);
+	}
+</style>

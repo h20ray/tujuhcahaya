@@ -4,25 +4,25 @@
  */
 import C7Badge from "../../ui/C7Badge.astro";
 import { get7cSidebarPosts, format7cCompactDate } from "../../../lib/7c-cms";
-import type { Locale } from "../../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../../i18n/utils";
 
 interface Props {
 	currentSlug?: string;
 	locale?: Locale;
 }
 
-const { currentSlug, locale = "id" } = Astro.props;
-const isEn = locale === "en";
+const { currentSlug, locale = DEFAULT_LOCALE } = Astro.props;
+const { t } = use7cTranslation(locale);
 
 const { posts: sidebarPosts } = await get7cSidebarPosts(currentSlug, 5, locale);
 ---
 
 {sidebarPosts.length > 0 && (
-	<section class="c7-sidebar-card" aria-label={isEn ? "Trending Stories" : "Liputan Terkini"}>
+	<section class="c7-sidebar-card" aria-label={t.sidebar.trending_title}>
 		<div class="c7-sidebar-header">
 			<div class="c7-sidebar-header-left">
 				<span class="c7-header-dot" aria-hidden="true"></span>
-				<h3 class="c7-sidebar-title">{isEn ? "Trending Stories" : "Liputan Terkini"}</h3>
+				<h3 class="c7-sidebar-title">{t.sidebar.trending_title}</h3>
 			</div>
 			<span class="c7-sidebar-badge">TOP 5</span>
 		</div>
@@ -30,8 +30,8 @@ const { posts: sidebarPosts } = await get7cSidebarPosts(currentSlug, 5, locale);
 		<ol class="c7-ranked-list">
 			{sidebarPosts.map((entry, idx) => {
 				const postSlug = entry.data?.slug || entry.id;
-				const postTitle = entry.data?.title || "Liputan Terkini";
-				const postCat = entry.data?.terms?.category?.[0]?.label || "Berita";
+				const postTitle = entry.data?.title || t.editorial.latest;
+				const postCat = entry.data?.terms?.category?.[0]?.label || t.pillars.berita.title;
 				const postCatSlug = entry.data?.terms?.category?.[0]?.slug || "berita";
 				const dateStr = format7cCompactDate(entry.data?.publishedAt, locale);
 				const rankStr = String(idx + 1).padStart(2, "0");
@@ -44,12 +44,12 @@ const { posts: sidebarPosts } = await get7cSidebarPosts(currentSlug, 5, locale);
 								<C7Badge
 									label={postCat}
 									pillar={postCatSlug}
-									href={isEn ? `/en/category/${postCatSlug}` : `/category/${postCatSlug}`}
+									href={get7cLocalizedPath(`/category/${postCatSlug}`, locale)}
 								/>
 								{dateStr && <time class="c7-rank-date">{dateStr}</time>}
 							</div>
 							<h4 class="c7-rank-title">
-								<a href={isEn ? `/en/${postSlug}` : `/${postSlug}`}>
+								<a href={get7cLocalizedPath(`/${postSlug}`, locale)}>
 									{postTitle}
 								</a>
 							</h4>

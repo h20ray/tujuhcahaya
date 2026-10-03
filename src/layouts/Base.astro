@@ -44,11 +44,14 @@ const fullTitle = titleIncludesSiteName ? title : `${title} — ${siteTitle}`;
 const pageDescription = description ?? siteTagline;
 const menu = menuResult.data;
 
-import { get7cLocaleFromUrl } from "../i18n/utils";
+import { get7cLocaleFromUrl, use7cTranslation } from "../i18n/utils";
+import { get7cHreflangLinks } from "../lib/7c-seo";
 
 const currentPath = Astro.url.pathname;
 const locale = get7cLocaleFromUrl(Astro.url);
+const { t } = use7cTranslation(locale);
 const isHome = propIsHome ?? (currentPath === "/" || currentPath === "" || currentPath === "/en" || currentPath === "/en/");
+const hreflangLinks = !content ? get7cHreflangLinks(currentPath, Astro.url.origin) : [];
 
 const currentDateStr = new Date().toLocaleDateString(locale === "en" ? "en-US" : "id-ID", {
 	weekday: "long",
@@ -96,6 +99,11 @@ const pageCtx = createPublicPageContext({
 		<link rel="preconnect" href="https://media.xlocal.id" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+		<!-- Multilingual Hreflang Alternates for Static / Taxonomy Routes -->
+		{!content && hreflangLinks.map((item) => (
+			<link rel={item.rel} hreflang={item.hreflang} href={item.href} />
+		))}
+
 		<EmDashHead page={pageCtx} />
 		<ClientRouter />
 
@@ -119,7 +127,7 @@ const pageCtx = createPublicPageContext({
 
 		<!-- WCAG 2.4.1 Skip to Main Content Link -->
 		<a href="#main-content" class="c7-skip-link skip-link">
-			{locale === "en" ? "Skip to main content" : "Lewati ke konten utama"}
+			{t.a11y.skip_to_content}
 		</a>
 
 		<!-- 7C Resizable Navbar (Centered Dynamic Pill with Frosted Blur & News Mega Menu) -->
@@ -138,15 +146,15 @@ const pageCtx = createPublicPageContext({
 		<!-- 7C Radio Player Bottom Spacer (Prevents footer and content clipping) -->
 		<div class="c7-radio-bottom-spacer" aria-hidden="true" transition:persist="c7-radio-spacer"></div>
 
-		<script>
+		<script data-search-label={t.a11y.search_articles}>
 			function setupInteractions() {
 				// Mobile Menu Drawer Handler
 				const mobileMenuToggle = document.getElementById("c7-mobile-menu-toggle");
 				const mobileDrawer = document.getElementById("c7-mobile-drawer");
-				const openIcon = mobileMenuToggle?.querySelector(".c7-menu-open-icon") as HTMLElement | null;
-				const closeIcon = mobileMenuToggle?.querySelector(".c7-menu-close-icon") as HTMLElement | null;
+				const openIcon = mobileMenuToggle?.querySelector(".c7-menu-open-icon");
+				const closeIcon = mobileMenuToggle?.querySelector(".c7-menu-close-icon");
 
-				function toggleMobileDrawer(open?: boolean) {
+				function toggleMobileDrawer(open) {
 					if (!mobileDrawer || !mobileMenuToggle) return;
 					const shouldOpen = open !== undefined ? open : mobileDrawer.hidden;
 					mobileDrawer.hidden = !shouldOpen;
@@ -178,9 +186,11 @@ const pageCtx = createPublicPageContext({
 				// Ensure search input has an accessible label for screen readers
 				function checkSearchInputLabel() {
 					const searchInputs = document.querySelectorAll(".emdash-live-search-input");
+					const scriptEl = document.currentScript;
+					const labelText = scriptEl?.dataset.searchLabel || "Search articles or stories";
 					searchInputs.forEach((input) => {
 						if (!input.getAttribute("aria-label")) {
-							input.setAttribute("aria-label", "Cari artikel atau liputan");
+							input.setAttribute("aria-label", labelText);
 						}
 					});
 				}
@@ -203,7 +213,7 @@ const pageCtx = createPublicPageContext({
 		<C7RadioPlayer client:only="react" transition:persist="c7-radio-player" />
 
 		<!-- 7C Dispatch Article Preview Slide-over Drawer -->
-		<C7DispatchDrawer />
+		<C7DispatchDrawer locale={locale} />
 
 		<!-- 7C Theme Controller (ClientRouter Lifecycle & Persistence) -->
 		<script src="../scripts/7c-theme.ts"></script>

@@ -2,14 +2,15 @@
 /**
  * C7SidebarTopics — Trending / article topic chips
  */
-import type { Locale } from "../../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../../i18n/utils";
 
 interface Props {
 	tags?: Array<{ id?: string; label: string; slug: string }>;
 	locale?: Locale;
 }
 
-const { tags = [], locale = "id" } = Astro.props;
+const { tags = [], locale = DEFAULT_LOCALE } = Astro.props;
+const { t } = use7cTranslation(locale);
 const isEn = locale === "en";
 
 const defaultTopics = isEn
@@ -33,22 +34,23 @@ const defaultTopics = isEn
 	  ];
 
 const displayTags = tags.length > 0 ? tags : defaultTopics;
+const heading = tags.length > 0 ? t.sidebar.topics_related : t.sidebar.topics_title;
 ---
 
-<section class="c7-sidebar-card" aria-label={isEn ? "Hot Topics" : "Topik Populer"}>
+<section class="c7-sidebar-card" aria-label={heading}>
 	<div class="c7-sidebar-header">
 		<div class="c7-sidebar-header-left">
 			<span class="c7-header-dot" aria-hidden="true"></span>
-			<h3 class="c7-sidebar-title">{isEn ? (tags.length > 0 ? "Article Topics" : "Trending Topics") : (tags.length > 0 ? "Topik Terkait" : "Topik Populer")}</h3>
+			<h3 class="c7-sidebar-title">{heading}</h3>
 		</div>
 	</div>
 	<div class="c7-tags-cloud">
-		{displayTags.map((t) => (
+		{displayTags.map((tagItem) => (
 			<a
-				href={isEn ? `/en/tag/${t.slug}` : `/tag/${t.slug}`}
+				href={get7cLocalizedPath(`/tag/${tagItem.slug}`, locale)}
 				class="c7-topic-chip"
 			>
-				#{t.label}
+				#{tagItem.label}
 			</a>
 		))}
 	</div>

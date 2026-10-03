@@ -2,43 +2,42 @@
 /**
  * C7SidebarPillars — 7C editorial pillars
  */
-import type { Locale } from "../../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../../i18n/utils";
 
 interface Props {
 	categorySlug?: string;
 	locale?: Locale;
 }
 
-const { categorySlug, locale = "id" } = Astro.props;
-const isEn = locale === "en";
+const { categorySlug, locale = DEFAULT_LOCALE } = Astro.props;
+const { t } = use7cTranslation(locale);
 
 const pillars = [
-	{ slug: "berita", label: "Berita & Investigasi", pillar: "berita" },
-	{ slug: "tech", label: "Teknologi & Sains", pillar: "tech" },
-	{ slug: "game", label: "Esports & Gaming", pillar: "game" },
-	{ slug: "musik", label: "Musik & Nada", pillar: "musik" },
-	{ slug: "budaya", label: "Seni & Kultur Pop", pillar: "budaya" },
-	{ slug: "kesehatan", label: "Kesehatan & Hidup", pillar: "kesehatan" },
-	{ slug: "lab", label: "Lab & Eksperimen", pillar: "lab" },
+	{ slug: "berita", label: t.pillars.berita.title, pillar: "berita" },
+	{ slug: "tech", label: t.pillars.tech.title, pillar: "tech" },
+	{ slug: "game", label: t.pillars.game.title, pillar: "game" },
+	{ slug: "musik", label: t.pillars.musik.title, pillar: "musik" },
+	{ slug: "budaya", label: t.pillars.budaya.title, pillar: "budaya" },
+	{ slug: "kesehatan", label: t.pillars.kesehatan.title, pillar: "kesehatan" },
 ];
 ---
 
-<section class="c7-sidebar-card" aria-label={isEn ? "Editorial" : "Editorial"}>
+<section class="c7-sidebar-card" aria-label={t.footer.pillars_title}>
 	<div class="c7-sidebar-header">
 		<div class="c7-sidebar-header-left">
 			<span class="c7-header-dot" aria-hidden="true"></span>
-			<h3 class="c7-sidebar-title">{isEn ? "Editorial" : "Rubrik Liputan"}</h3>
+			<h3 class="c7-sidebar-title">{t.footer.pillars_title}</h3>
 		</div>
 	</div>
 
-	<nav class="c7-pillars-nav" aria-label="Daftar Rubrik Liputan">
+	<nav class="c7-pillars-nav" aria-label={t.footer.pillars_title}>
 		<ul class="c7-pillars-list">
 			{pillars.map((p) => {
 				const isActive = categorySlug === p.slug;
 				return (
 					<li class="c7-pillar-item">
 						<a
-							href={isEn ? `/en/category/${p.slug}` : `/category/${p.slug}`}
+							href={get7cLocalizedPath(`/category/${p.slug}`, locale)}
 							class={`c7-pillar-link c7-pillar-${p.pillar} ${isActive ? "active" : ""}`}
 							aria-current={isActive ? "page" : undefined}
 						>

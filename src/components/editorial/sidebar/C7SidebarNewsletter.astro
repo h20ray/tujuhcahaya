@@ -2,36 +2,34 @@
 /**
  * C7SidebarNewsletter — 7C newsletter callout
  */
-import type { Locale } from "../../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation } from "../../../i18n/utils";
 
 interface Props {
 	locale?: Locale;
 }
 
-const { locale = "id" } = Astro.props;
-const isEn = locale === "en";
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const { t } = use7cTranslation(locale);
 ---
 
-<section class="c7-sidebar-card c7-sidebar-newsletter" aria-label={isEn ? "Newsletter" : "Buletin Redaksi"}>
-	<div class="c7-newsletter-badge">{isEn ? "Newsletter" : "Buletin Redaksi"}</div>
+<section class="c7-sidebar-card c7-sidebar-newsletter" aria-label={t.sidebar.newsletter_title}>
+	<div class="c7-newsletter-badge">{t.sidebar.newsletter_title}</div>
 	<h3 class="c7-newsletter-title">
-		{isEn ? "Weekly Curated Journalism" : "Jurnalisme Terkurasi Setiap Pekan"}
+		{t.sidebar.newsletter_desc.slice(0, 32)}...
 	</h3>
 	<p class="c7-newsletter-desc">
-		{isEn
-			? "Independent investigations, tech deep-dives, and modern culture directly in your inbox."
-			: "Investigasi independen, analisis mendalam teknologi, dan kultur pop langsung ke surel Anda."}
+		{t.sidebar.newsletter_desc}
 	</p>
 	<form class="c7-newsletter-form" action="#">
 		<input
 			type="email"
 			required
-			placeholder={isEn ? "name@email.com" : "nama@email.com"}
+			placeholder={t.sidebar.newsletter_placeholder}
 			class="c7-newsletter-input"
-			aria-label={isEn ? "Email address" : "Alamat email"}
+			aria-label={t.submission.email_label}
 		/>
 		<button type="submit" class="c7-newsletter-btn">
-			{isEn ? "Subscribe" : "Langganan"}
+			{t.sidebar.newsletter_button}
 		</button>
 	</form>
 </section>

@@ -1,0 +1,179 @@
+---
+/**
+ * C7ArchiveView — Unified Archive View for Posts, Categories, and Tags
+ *
+ * Adheres to 7C Monolith Guard (< 300 LOC) and provides full i18n support.
+ */
+
+import Base from "../../layouts/Base.astro";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../i18n/utils";
+
+export interface FormattedArchivePost {
+	slug: string;
+	title: string;
+	category: { label: string; slug: string };
+	formattedDate: string;
+	publishedAt?: string | Date | null;
+	author: { name: string; avatarUrl?: string | null };
+	preview: unknown;
+	editTitle?: Record<string, unknown>;
+}
+
+interface Props {
+	locale?: Locale;
+	pageTitle: string;
+	pageDescription: string;
+	headerTitle: string;
+	headerBadge?: string;
+	activeSlug?: string;
+	posts: FormattedArchivePost[];
+	nextCursor?: string;
+	categoryFilter?: string;
+	tagFilter?: string;
+}
+
+const {
+	locale = DEFAULT_LOCALE,
+	pageTitle,
+	pageDescription,
+	headerTitle,
+	headerBadge,
+	activeSlug,
+	posts,
+	nextCursor,
+	categoryFilter,
+	tagFilter,
+} = Astro.props;
+
+const { t } = use7cTranslation(locale);
+const prefix = locale === "en" ? "/en" : "";
+
+const filterPillars = [
+	{ slug: "all", label: t.editorial.all, url: `${prefix}/posts` },
+	{ slug: "tech", label: t.pillars.tech.title, url: `${prefix}/category/tech` },
+	{ slug: "game", label: t.pillars.game.title, url: `${prefix}/category/game` },
+	{ slug: "berita", label: t.pillars.berita.title, url: `${prefix}/category/berita` },
+	{ slug: "musik", label: t.pillars.musik.title, url: `${prefix}/category/musik` },
+	{ slug: "budaya", label: t.pillars.budaya.title, url: `${prefix}/category/budaya` },
+	{ slug: "kesehatan", label: t.pillars.kesehatan.title, url: `${prefix}/category/kesehatan` },
+];
+
+const badgeText = headerBadge || t.editorial.articles_count;
+---
+
+<Base title={pageTitle} description={pageDescription}>
+	<div class="dispatch-archive-page">
+		<!-- Header of Archive Dispatch Table -->
+		<div class="dispatch-header">
+			<div class="dispatch-header-left">
+				<h1 class="dispatch-header-title">{headerTitle}</h1>
+				<span class="dispatch-count-badge">{badgeText}</span>
+			</div>
+
+			<!-- Quick Category Filter Pills -->
+			<div class="dispatch-category-filters" role="navigation" aria-label={t.footer.pillars_title}>
+				{filterPillars.map((tab) => {
+					const isActive = activeSlug === tab.slug || (!activeSlug && tab.slug === "all");
+					return (
+						<a
+							href={tab.url}
+							class:list={["dispatch-filter-tab", { active: isActive }]}
+							aria-current={isActive ? "page" : undefined}
+						>
+							{tab.label}
+						</a>
+					);
+				})}
+			</div>
+		</div>
+
+		<!-- Dispatch Table Rows -->
+		<div class="dispatch-table" role="feed" aria-label={headerTitle}>
+			{posts.length === 0 ? (
+				<div class="dispatch-empty-state">
+					<p>{t.editorial.empty_state}</p>
+				</div>
+			) : (
+				posts.map((item) => {
+					const postUrl = get7cLocalizedPath(`/${item.slug}`, locale);
+					const isoDate = item.publishedAt ? new Date(item.publishedAt).toISOString() : "";
+
+					return (
+						<a
+							href={postUrl}
+							class="dispatch-row"
+							data-post-slug={item.slug}
+							data-astro-reload
+							data-dispatch-preview={JSON.stringify(item.preview)}
+						>
+							<!-- Status Circle -->
+							<div class="dispatch-bullet-wrapper" title={t.editorial.mark_as_read}>
+								<span class="dispatch-bullet" aria-hidden="true"></span>
+							</div>
+
+							<!-- Article Title (Truncated) -->
+							<span class="dispatch-title" {...item.editTitle}>
+								{item.title}
+							</span>
+
+							<!-- Category Pill -->
+							<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
+								<span>{item.category.label}</span>
+							</span>
+
+							<!-- Author Pill -->
+							<span class="dispatch-author-pill">
+								<span class="dispatch-author-avatar" aria-hidden="true">
+									<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+										<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+										<circle cx="12" cy="7" r="4"></circle>
+									</svg>
+								</span>
+								<span class="dispatch-author-name">{item.author.name}</span>
+							</span>
+
+							<!-- Date Field -->
+							<time class="dispatch-date" datetime={isoDate}>
+								{item.formattedDate}
+							</time>
+						</a>
+					);
+				})
+			)}
+		</div>
+
+		<!-- Auto-load Sentinel & Infinite Scroll Controller -->
+		<div
+			id="dispatch-load-sentinel"
+			class="dispatch-load-sentinel"
+			data-next-cursor={nextCursor || ""}
+			data-locale={locale}
+			data-category={categoryFilter || ""}
+			data-tag={tagFilter || ""}
+		>
+			<div class="dispatch-loading-indicator" style="display: none;">
+				<span class="dispatch-loading-spinner" aria-hidden="true"></span>
+				<span>{t.editorial.loading_next}</span>
+			</div>
+			<div class="dispatch-end-message" style={!nextCursor ? "display: block;" : "display: none;"}>
+				<span>{t.editorial.all_loaded}</span>
+			</div>
+			<noscript>
+				{nextCursor && (
+					<a
+						href={`${prefix}/posts?cursor=${encodeURIComponent(nextCursor)}`}
+						class="dispatch-page-btn"
+					>
+						<span>{t.editorial.next_page}</span>
+						<span aria-hidden="true">&rarr;</span>
+					</a>
+				)}
+			</noscript>
+		</div>
+	</div>
+
+	<script>
+		import { initPostsAutoload } from "../../scripts/7c-posts-autoload";
+		initPostsAutoload();
+	</script>
+</Base>

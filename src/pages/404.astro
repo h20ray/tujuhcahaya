@@ -1,30 +1,36 @@
 ---
 import Base from "../layouts/Base.astro";
 import { resolve7cLegacyUrl } from "../lib/7c-url-guardian";
+import { get7cLocaleFromUrl, use7cTranslation, get7cLocalizedPath } from "../i18n/utils";
 
 const legacyMatch = resolve7cLegacyUrl(Astro.url.pathname, Astro.url.searchParams);
 if (legacyMatch) {
 	return Astro.redirect(legacyMatch.destination, legacyMatch.status);
 }
+
+const locale = get7cLocaleFromUrl(Astro.url);
+const { t } = use7cTranslation(locale);
+const homeUrl = get7cLocalizedPath("/", locale);
+const archiveUrl = get7cLocalizedPath("/posts", locale);
 ---
 
-<Base title="Halaman Tidak Ditemukan (404)">
+<Base title={`${t.errors.title_404} (404)`}>
 	<div style="text-align: center; padding: 5rem 1rem; max-width: 600px; margin: 0 auto;">
 		<span style="font-size: 5rem; font-weight: 700; color: var(--7c-sys-primary); line-height: 1; display: block; margin-bottom: 1rem;">
 			404
 		</span>
 		<h1 style="font-size: 1.85rem; font-weight: 600; margin-bottom: 1rem; color: var(--7c-sys-on-surface);">
-			Halaman Tidak Ditemukan
+			{t.errors.title_404}
 		</h1>
 		<p style="color: var(--7c-sys-on-surface-variant); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6;">
-			Maaf, artikel atau halaman yang Anda cari mungkin telah dipindahkan, dihapus, atau alamat URL yang Anda masukkan keliru.
+			{t.errors.desc_404}
 		</p>
 		<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-			<a href="/" class="c7-btn-primary" style="padding: 0.75rem 1.5rem; border-radius: 9999px; text-decoration: none;">
-				&larr; Kembali ke Beranda
+			<a href={homeUrl} class="c7-btn-primary" style="padding: 0.75rem 1.5rem; border-radius: 9999px; text-decoration: none;">
+				&larr; {t.errors.back_to_home}
 			</a>
-			<a href="/posts" class="pagination-btn" style="padding: 0.75rem 1.5rem; text-decoration: none;">
-				Jelajahi Arsip Artikel &rarr;
+			<a href={archiveUrl} class="pagination-btn" style="padding: 0.75rem 1.5rem; text-decoration: none;">
+				{t.errors.explore_archive} &rarr;
 			</a>
 		</div>
 	</div>

@@ -5,13 +5,13 @@ import {
 	getTermsForEntries,
 	decodeSlug,
 } from "emdash";
-import C7ArchiveView from "../../components/views/C7ArchiveView.astro";
-import { resolve7cAuthor, format7cCompactDate } from "../../lib/7c-cms";
-import type { C7PostData } from "../../lib/7c-cms";
-import { build7cDispatchPreview } from "../../lib/7c-dispatch";
-import { use7cTranslation } from "../../i18n/utils";
+import C7ArchiveView from "../../../components/views/C7ArchiveView.astro";
+import { resolve7cAuthor, format7cCompactDate } from "../../../lib/7c-cms";
+import type { C7PostData } from "../../../lib/7c-cms";
+import { build7cDispatchPreview } from "../../../lib/7c-dispatch";
+import { use7cTranslation } from "../../../i18n/utils";
 
-const locale = "id";
+const locale = "en";
 const { t } = use7cTranslation(locale);
 const slug = decodeSlug(Astro.params.slug);
 
@@ -50,7 +50,7 @@ const categoriesByEntry = await getTermsForEntries(
 
 const formattedPosts = posts.map((post) => {
 	const cats = categoriesByEntry.get(post.data.id) ?? [];
-	const firstCategory = cats[0] ?? { label: "Berita", slug: "berita" };
+	const firstCategory = cats[0] ?? { label: "News", slug: "berita" };
 	const formattedDate = format7cCompactDate(post.data.publishedAt, locale);
 	const postData = (post.data as unknown) as C7PostData;
 	const authorProfile = resolve7cAuthor(
@@ -73,10 +73,10 @@ const formattedPosts = posts.map((post) => {
 
 <C7ArchiveView
 	locale={locale}
-	pageTitle={`Topik: #${term.label} — ${t.nav.archive}`}
-	pageDescription={`Kumpulan liputan dan artikel seputar tag #${term.label} di Tujuhcahaya.`}
-	headerTitle={`${t.nav.archive.toUpperCase()} — #${term.label.toUpperCase()}`}
-	headerBadge="Topik Tag"
+	pageTitle={`Topic: #${term.label} — ${t.topbar.dispatch_live}`}
+	pageDescription={`Curated stories and investigative dispatches tagged #${term.label} on Tujuhcahaya.`}
+	headerTitle={`${t.topbar.dispatch_live} — #${term.label.toUpperCase()}`}
+	headerBadge="Topic Tag"
 	posts={formattedPosts}
 	nextCursor={nextCursor}
 	tagFilter={term.slug}

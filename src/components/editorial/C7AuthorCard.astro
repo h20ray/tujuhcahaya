@@ -1,6 +1,6 @@
 ---
 import type { C7AuthorProfile } from "../../lib/7c-cms";
-import type { Locale } from "../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation } from "../../i18n/utils";
 
 interface Props {
 	author: C7AuthorProfile;
@@ -10,10 +10,11 @@ interface Props {
 
 const {
 	author,
-	locale = "id",
+	locale = DEFAULT_LOCALE,
 	class: className = "",
 } = Astro.props;
 
+const { t } = use7cTranslation(locale);
 const isEn = locale === "en";
 const initials = author.name
 	? author.name
@@ -75,7 +76,7 @@ const initials = author.name
 		<div class="c7-author-footer">
 			{!author.isEditorialFallback ? (
 				<a href={author.archiveUrl} class="c7-author-archive-link">
-					<span>{isEn ? `All stories by ${author.name}` : `Semua tulisan oleh ${author.name}`}</span>
+					<span>{t.author.view_all_by} {author.name}</span>
 					<svg
 						class="c7-author-arrow-icon"
 						width="14"
@@ -93,15 +94,15 @@ const initials = author.name
 			) : (
 				<div class="c7-author-editorial-links">
 					<a href={isEn ? "/en/redaksi" : "/redaksi"}>
-						{isEn ? "Editorial Board" : "Susunan Redaksi"}
+						{t.footer.editorial_team}
 					</a>
 					<span class="sep" aria-hidden="true">&bull;</span>
 					<a href={isEn ? "/en/pedoman-media-siber" : "/pedoman-media-siber"}>
-						{isEn ? "Cyber Media Guidelines" : "Pedoman Media Siber"}
+						{t.footer.cyber_guidelines}
 					</a>
 					<span class="sep" aria-hidden="true">&bull;</span>
 					<a href={isEn ? "/en/about-us" : "/about-us"}>
-						{isEn ? "About Us" : "Tentang Kami"}
+						{t.footer.about}
 					</a>
 				</div>
 			)}

@@ -7,6 +7,8 @@
  * 1px hairline divider, and dynamic chromatic verdict accenting.
  */
 
+import { type Locale, DEFAULT_LOCALE, use7cTranslation } from "../../i18n/utils";
+
 interface Props {
 	score: number;
 	verdict?: string;
@@ -16,18 +18,32 @@ interface Props {
 	productName?: string;
 	badge?: string;
 	class?: string;
+	locale?: Locale;
 }
 
 const {
 	score,
-	verdict = score >= 8.5 ? "SANGAT DIREKOMENDASIKAN" : score >= 7.0 ? "LAYAK BELI" : "SKIP DULU",
+	verdict: propVerdict,
 	summary = "",
 	pros = [],
 	cons = [],
-	productName = "Putusan Redaksi",
-	badge = "Review Tujuhcahaya",
+	productName: propProductName,
+	badge: propBadge,
 	class: className = "",
+	locale = DEFAULT_LOCALE,
 } = Astro.props;
+
+const { t } = use7cTranslation(locale);
+const isEn = locale === "en";
+
+const verdict = propVerdict || (score >= 8.5
+	? (isEn ? "HIGHLY RECOMMENDED" : "SANGAT DIREKOMENDASIKAN")
+	: score >= 7.0
+	? (isEn ? "RECOMMENDED" : "LAYAK BELI")
+	: (isEn ? "SKIP FOR NOW" : "SKIP DULU"));
+
+const productName = propProductName || (isEn ? "Editorial Verdict" : "Putusan Redaksi");
+const badge = propBadge || (isEn ? "7C Review" : "Review Tujuhcahaya");
 
 // Format score to 1 decimal place (e.g. 8.5)
 const formattedScore = Number(score).toFixed(1);
@@ -40,7 +56,7 @@ const scoreTierClass = score >= 8.5
 	: "tier-amber";
 ---
 
-<aside class={`c7-scorebox c7-hairline-box ${scoreTierClass} ${className}`} aria-label={`Skor Review: ${formattedScore} - ${productName}`}>
+<aside class={`c7-scorebox c7-hairline-box ${scoreTierClass} ${className}`} aria-label={`Review: ${formattedScore} - ${productName}`}>
 	<!-- Header Bar -->
 	<div class="c7-scorebox-header">
 		<div class="c7-scorebox-meta">
@@ -55,7 +71,7 @@ const scoreTierClass = score >= 8.5
 
 	<!-- Verdict Banner -->
 	<div class="c7-scorebox-verdict-banner">
-		<div class="verdict-label">Putusan Akhir:</div>
+		<div class="verdict-label">{t.editorial.score_verdict}:</div>
 		<div class="verdict-value">{verdict}</div>
 	</div>
 
@@ -72,7 +88,7 @@ const scoreTierClass = score >= 8.5
 						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
 							<polyline points="20 6 9 17 4 12"></polyline>
 						</svg>
-						<span>Kelebihan</span>
+						<span>{t.editorial.score_pros}</span>
 					</div>
 					<ul class="col-list">
 						{pros.map((item) => (
@@ -89,7 +105,7 @@ const scoreTierClass = score >= 8.5
 							<line x1="18" y1="6" x2="6" y2="18"></line>
 							<line x1="6" y1="6" x2="18" y2="18"></line>
 						</svg>
-						<span>Kekurangan</span>
+						<span>{t.editorial.score_cons}</span>
 					</div>
 					<ul class="col-list">
 						{cons.map((item) => (

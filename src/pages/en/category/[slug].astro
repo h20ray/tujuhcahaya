@@ -4,11 +4,11 @@ import {
 	getEmDashCollection,
 	decodeSlug,
 } from "emdash";
-import Base from "../../../layouts/Base.astro";
-import { use7cTranslation } from "../../../i18n/utils";
-import { format7cCompactDate, resolve7cAuthor } from "../../../lib/7c-cms";
+import C7ArchiveView from "../../../components/views/C7ArchiveView.astro";
+import { resolve7cAuthor, format7cCompactDate } from "../../../lib/7c-cms";
 import type { C7PostData } from "../../../lib/7c-cms";
 import { build7cDispatchPreview } from "../../../lib/7c-dispatch";
+import { use7cTranslation } from "../../../i18n/utils";
 
 const locale = "en";
 const { t } = use7cTranslation(locale);
@@ -45,125 +45,29 @@ const formattedPosts = posts.map((post) => {
 	const postData = (post.data as unknown) as C7PostData;
 	const authorProfile = resolve7cAuthor(
 		postData.byline || postData.primaryBylineId || postData.primary_byline_id || null,
-		"en",
+		locale,
 	);
 	const cat = { label: term.label, slug: term.slug };
 	return {
-		post,
+		slug: post.data?.slug || post.id,
+		title: post.data.title,
 		category: cat,
 		formattedDate,
+		publishedAt: post.data.publishedAt,
 		author: authorProfile,
-		slug: post.data?.slug || post.id,
-		preview: build7cDispatchPreview(post, cat, "en"),
+		preview: build7cDispatchPreview(post, cat, locale),
+		editTitle: post.edit?.title,
 	};
 });
 ---
 
-<Base
-	title={`Category: ${term.label} — Editorial Dispatch`}
-	description={`Curated features, critical analyses, and stories on ${term.label} from Tujuhcahaya.`}
->
-	<div class="dispatch-archive-page">
-		<!-- Header of Archive Dispatch Table -->
-		<div class="dispatch-header">
-			<div class="dispatch-header-left">
-				<h1 class="dispatch-header-title">EDITORIAL DISPATCH — {term.label.toUpperCase()}</h1>
-				<span class="dispatch-count-badge">Category</span>
-			</div>
-
-			<!-- Quick Category Filter Pills -->
-			<div class="dispatch-category-filters" role="navigation" aria-label="Category Filters">
-				<a href="/en/posts" class="dispatch-filter-tab">{t.editorial.all}</a>
-				<a href="/en/category/tech" class={`dispatch-filter-tab ${term.slug === "tech" ? "active" : ""}`}>Tech</a>
-				<a href="/en/category/game" class={`dispatch-filter-tab ${term.slug === "game" ? "active" : ""}`}>Gaming</a>
-				<a href="/en/category/berita" class={`dispatch-filter-tab ${term.slug === "berita" ? "active" : ""}`}>News</a>
-				<a href="/en/category/musik" class={`dispatch-filter-tab ${term.slug === "musik" ? "active" : ""}`}>Music</a>
-				<a href="/en/category/budaya" class={`dispatch-filter-tab ${term.slug === "budaya" ? "active" : ""}`}>Culture</a>
-				<a href="/en/category/kesehatan" class={`dispatch-filter-tab ${term.slug === "kesehatan" ? "active" : ""}`}>Health</a>
-			</div>
-		</div>
-
-		<!-- Dispatch Table Rows -->
-		<div class="dispatch-table" role="feed" aria-label={`Editorial Feed for ${term.label}`}>
-			{formattedPosts.length === 0 ? (
-				<div class="dispatch-empty-state">
-					<p>No stories found in this category yet.</p>
-				</div>
-			) : (
-				formattedPosts.map((item) => (
-					<a
-						href={`/en/${item.slug}`}
-						class="dispatch-row"
-						data-post-slug={item.slug}
-						data-astro-reload
-						data-dispatch-preview={JSON.stringify(item.preview)}
-					>
-						<!-- Status Circle (Hollow circle, transforms to check mark when read and persisted in localStorage) -->
-						<div class="dispatch-bullet-wrapper" title="Toggle read status">
-							<span class="dispatch-bullet" aria-hidden="true"></span>
-						</div>
-
-						<!-- Article Title (Truncated) -->
-						<span class="dispatch-title" {...item.post.edit?.title}>
-							{item.post.data.title}
-						</span>
-
-						<!-- Category Pill (Dotless & Clean) -->
-						<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
-							<span>{item.category.label}</span>
-						</span>
-
-						<!-- Author Pill (Real Editorial Author, Zero X button) -->
-						<span class="dispatch-author-pill">
-							<span class="dispatch-author-avatar" aria-hidden="true">
-								<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-									<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-									<circle cx="12" cy="7" r="4"></circle>
-								</svg>
-							</span>
-							<span class="dispatch-author-name">{item.author.name}</span>
-						</span>
-
-						<!-- Date Field (Right-aligned) -->
-						<time class="dispatch-date" datetime={item.post.data.publishedAt ? new Date(item.post.data.publishedAt).toISOString() : ""}>
-							{item.formattedDate}
-						</time>
-					</a>
-				))
-			)}
-		</div>
-
-		<!-- Auto-load Sentinel & Infinite Scroll Controller -->
-		<div
-			id="dispatch-load-sentinel"
-			class="dispatch-load-sentinel"
-			data-next-cursor={nextCursor || ""}
-			data-locale="en"
-			data-category={term.slug}
-		>
-			<div class="dispatch-loading-indicator" style="display: none;">
-				<span class="dispatch-loading-spinner" aria-hidden="true"></span>
-				<span>Loading next stories...</span>
-			</div>
-			<div class="dispatch-end-message" style={!nextCursor ? "display: block;" : "display: none;"}>
-				<span>All stories in {term.label} loaded.</span>
-			</div>
-			<noscript>
-				{nextCursor && (
-					<a
-						href={`/en/category/${term.slug}?cursor=${encodeURIComponent(nextCursor)}`}
-						class="dispatch-page-btn"
-					>
-						<span>Next Page</span>
-						<span aria-hidden="true">&rarr;</span>
-					</a>
-				)}
-			</noscript>
-		</div>
-	</div>
-
-	<script>
-		import { initPostsAutoload } from "../../../scripts/7c-posts-autoload";
-		initPostsAutoload();
-	</script>
-</Base>
+<C7ArchiveView
+	locale={locale}
+	pageTitle={`Category: ${term.label} — ${t.topbar.dispatch_live}`}
+	pageDescription={`Curated investigative journalism and stories in ${term.label} from Tujuhcahaya.`}
+	headerTitle={`${t.topbar.dispatch_live} — ${term.label.toUpperCase()}`}
+	activeSlug={term.slug}
+	posts={formattedPosts}
+	nextCursor={nextCursor}
+	categoryFilter={term.slug}
+/>

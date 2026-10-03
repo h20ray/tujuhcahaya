@@ -1,11 +1,15 @@
 ---
 import { getEmDashCollection, getTermsForEntries } from "emdash";
-import Base from "../../layouts/Base.astro";
-import { resolve7cAuthor } from "../../lib/7c-cms";
+import C7ArchiveView from "../../components/views/C7ArchiveView.astro";
+import { resolve7cAuthor, format7cCompactDate } from "../../lib/7c-cms";
 import type { C7PostData } from "../../lib/7c-cms";
 import { build7cDispatchPreview } from "../../lib/7c-dispatch";
+import { use7cTranslation } from "../../i18n/utils";
 
+const locale = "id";
+const { t } = use7cTranslation(locale);
 const cursor = Astro.url.searchParams.get("cursor") || undefined;
+
 const {
 	entries: posts,
 	cacheHint,
@@ -30,132 +34,31 @@ const categoriesByEntry = await getTermsForEntries(
 const formattedPosts = posts.map((post) => {
 	const cats = categoriesByEntry.get(post.data.id) ?? [];
 	const firstCategory = cats[0] ?? { label: "Berita", slug: "berita" };
-	const formattedDate = post.data.publishedAt
-		? new Date(post.data.publishedAt).toLocaleDateString("id-ID", {
-				day: "numeric",
-				month: "short",
-		  })
-		: "";
+	const formattedDate = format7cCompactDate(post.data.publishedAt, locale);
 	const postData = (post.data as unknown) as C7PostData;
 	const authorProfile = resolve7cAuthor(
 		postData.byline || postData.primaryBylineId || postData.primary_byline_id || null,
-		"id",
+		locale,
 	);
 	return {
-		post,
+		slug: post.data?.slug || post.id,
+		title: post.data.title,
 		category: firstCategory,
 		formattedDate,
+		publishedAt: post.data.publishedAt,
 		author: authorProfile,
-		slug: post.data?.slug || post.id,
-		preview: build7cDispatchPreview(post, firstCategory, "id"),
+		preview: build7cDispatchPreview(post, firstCategory, locale),
+		editTitle: post.edit?.title,
 	};
 });
 ---
 
-<Base
-	title="Semua Artikel — Arsip Liputan"
-	description="Arsip seluruh artikel, liputan, dan berita terkini dari Tujuhcahaya Media House."
->
-	<div class="dispatch-archive-page">
-		<!-- Header of Archive Dispatch Table -->
-		<div class="dispatch-header">
-			<div class="dispatch-header-left">
-				<h1 class="dispatch-header-title">ARSIP LIPUTAN</h1>
-				<span class="dispatch-count-badge">16k+ Artikel</span>
-			</div>
-
-			<!-- Quick Category Filter Pills -->
-			<div class="dispatch-category-filters" role="navigation" aria-label="Filter Kategori">
-				<a href="/posts" class="dispatch-filter-tab active" aria-current="page">Semua</a>
-				<a href="/category/game" class="dispatch-filter-tab">Game</a>
-				<a href="/category/tech" class="dispatch-filter-tab">Tech</a>
-				<a href="/category/berita" class="dispatch-filter-tab">Berita</a>
-				<a href="/category/musik" class="dispatch-filter-tab">Musik</a>
-				<a href="/category/budaya" class="dispatch-filter-tab">Budaya</a>
-				<a href="/category/kesehatan" class="dispatch-filter-tab">Kesehatan</a>
-			</div>
-		</div>
-
-		<!-- Dispatch Table Rows -->
-		<div class="dispatch-table" role="feed" aria-label="Daftar Liputan Terkini">
-			{formattedPosts.length === 0 ? (
-				<div class="dispatch-empty-state">
-					<p>Belum ada artikel yang diterbitkan.</p>
-				</div>
-			) : (
-				formattedPosts.map((item) => (
-					<a
-						href={`/${item.slug}`}
-						class="dispatch-row"
-						data-post-slug={item.slug}
-						data-astro-reload
-						data-dispatch-preview={JSON.stringify(item.preview)}
-					>
-						<!-- Status Circle (Hollow circle, transforms to check mark when read and persisted in localStorage) -->
-						<div class="dispatch-bullet-wrapper" title="Tandai status baca (Klik untuk ubah)">
-							<span class="dispatch-bullet" aria-hidden="true"></span>
-						</div>
-
-						<!-- Article Title (Truncated) -->
-						<span class="dispatch-title" {...item.post.edit.title}>
-							{item.post.data.title}
-						</span>
-
-						<!-- Category Pill (Dotless & Clean) -->
-						<span class={`dispatch-cat-pill cat-${item.category.slug || "default"}`}>
-							<span>{item.category.label}</span>
-						</span>
-
-						<!-- Author Pill (Real Editorial Author, Zero X button) -->
-						<span class="dispatch-author-pill">
-							<span class="dispatch-author-avatar" aria-hidden="true">
-								<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-									<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-									<circle cx="12" cy="7" r="4"></circle>
-								</svg>
-							</span>
-							<span class="dispatch-author-name">{item.author.name}</span>
-						</span>
-
-						<!-- Date Field (Right-aligned) -->
-						<time class="dispatch-date" datetime={item.post.data.publishedAt?.toISOString() || ""}>
-							{item.formattedDate}
-						</time>
-					</a>
-				))
-			)}
-		</div>
-
-		<!-- Auto-load Sentinel & Infinite Scroll Controller -->
-		<div
-			id="dispatch-load-sentinel"
-			class="dispatch-load-sentinel"
-			data-next-cursor={nextCursor || ""}
-			data-locale="id"
-		>
-			<div class="dispatch-loading-indicator" style="display: none;">
-				<span class="dispatch-loading-spinner" aria-hidden="true"></span>
-				<span>Memuat liputan berikutnya...</span>
-			</div>
-			<div class="dispatch-end-message" style={!nextCursor ? "display: block;" : "display: none;"}>
-				<span>Seluruh arsip liputan telah dimuat.</span>
-			</div>
-			<noscript>
-				{nextCursor && (
-					<a
-						href={`/posts?cursor=${encodeURIComponent(nextCursor)}`}
-						class="dispatch-page-btn"
-					>
-						<span>Halaman Berikutnya</span>
-						<span aria-hidden="true">&rarr;</span>
-					</a>
-				)}
-			</noscript>
-		</div>
-	</div>
-
-	<script>
-		import { initPostsAutoload } from "../../scripts/7c-posts-autoload";
-		initPostsAutoload();
-	</script>
-</Base>
+<C7ArchiveView
+	locale={locale}
+	pageTitle={`Semua Artikel — ${t.nav.archive}`}
+	pageDescription="Arsip seluruh artikel, liputan, dan berita terkini dari Tujuhcahaya Media House."
+	headerTitle={t.nav.archive.toUpperCase()}
+	activeSlug="all"
+	posts={formattedPosts}
+	nextCursor={nextCursor}
+/>

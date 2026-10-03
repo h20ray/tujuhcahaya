@@ -7,37 +7,37 @@
 
 import { getCurrentTheme, setTheme } from "../../scripts/7c-theme";
 import type { C7CommandAction, C7CommandPaletteActionContext } from "./C7CommandPaletteTypes";
+import { use7cTranslation, type Locale } from "../../i18n/utils";
 
 export function buildDefaultActions(ctx: C7CommandPaletteActionContext): C7CommandAction[] {
 	const { prefix, isEn, idPath, enPath, close, showToast } = ctx;
+	const locale: Locale = isEn ? "en" : "id";
+	const { t } = use7cTranslation(locale);
 
 	return [
 		{
 			type: "action",
 			id: "theme-toggle",
-			title: isEn ? "Toggle Dark / Light Theme" : "Beralih Tema Gelap / Terang",
-			subtitle:
-				isEn
-					? "Switch visual appearance between OLED dark & crisp light"
-					: "Ganti tampilan antara mode gelap pekat OLED dan terang",
-			badge: isEn ? "System Action" : "Aksi Sistem",
+			title: t.palette.theme_toggle_title,
+			subtitle: t.palette.theme_toggle_sub,
+			badge: t.palette.theme_toggle_badge,
 			handler: () => {
 				const current = getCurrentTheme();
 				setTheme(current === "dark" ? "light" : "dark");
-				showToast(isEn ? "Theme switched successfully" : "Mode tema berhasil dialihkan.");
+				showToast(t.palette.theme_toggle_toast);
 			},
 		},
 		{
 			type: "action",
 			id: "radio-toggle",
-			title: isEn ? "Play / Pause 7C Radio Stream" : "Putar / Jeda Siaran Radio Tujuhcahaya",
-			subtitle: isEn ? "Toggle live 24/7 audio broadcast" : "Kendalikan pemutaran siaran langsung 24/7",
-			badge: isEn ? "Radio Control" : "Kontrol Radio",
+			title: t.palette.radio_toggle_title,
+			subtitle: t.palette.radio_toggle_sub,
+			badge: t.palette.radio_toggle_badge,
 			handler: () => {
 				const dockPlayBtn = document.querySelector(".c7-dock-play-btn") as HTMLButtonElement | null;
 				if (dockPlayBtn) {
 					dockPlayBtn.click();
-					showToast(isEn ? "Radio playback toggled" : "Status siaran radio dialihkan.");
+					showToast(t.palette.radio_toggle_toast);
 				} else {
 					window.dispatchEvent(new KeyboardEvent("keydown", { code: "Space" }));
 				}
@@ -46,12 +46,9 @@ export function buildDefaultActions(ctx: C7CommandPaletteActionContext): C7Comma
 		{
 			type: "action",
 			id: "lyrics-open",
-			title: isEn ? "Open Broadcast Lyrics Drawer" : "Buka Panel Lirik Siaran Lagu",
-			subtitle:
-				isEn
-					? "View synchronized karaoke lyrics for current song"
-					: "Tampilkan lirik sinkron karaoke untuk lagu yang mengudara",
-			badge: isEn ? "Lyrics Drawer" : "Lirik Lagu",
+			title: t.palette.lyrics_open_title,
+			subtitle: t.palette.lyrics_open_sub,
+			badge: t.palette.lyrics_open_badge,
 			handler: () => {
 				close();
 				const lyricsBtn = document.querySelector(".c7-dock-lyrics-btn") as HTMLButtonElement | null;
@@ -67,7 +64,7 @@ export function buildDefaultActions(ctx: C7CommandPaletteActionContext): C7Comma
 		},
 		{
 			type: "nav",
-			url: `${prefix}/kirim-tulisan`,
+			url: isEn ? "/en/submit" : "/kirim-tulisan",
 			title: isEn ? "Submit Op-Ed / Community Dispatch" : "Kirim Naskah Opini & Gagasan",
 			subtitle: isEn ? "Publish your essay or field report on Tujuhcahaya" : "Kirim tulisan, resensi, atau pandangan kritis Anda ke redaksi",
 			badge: isEn ? "Dispatch" : "Opini",
@@ -131,9 +128,9 @@ export function buildDefaultActions(ctx: C7CommandPaletteActionContext): C7Comma
 		{
 			type: "nav",
 			url: isEn ? idPath : enPath,
-			title: isEn ? "Switch Language to Bahasa Indonesia" : "Ganti Bahasa ke English (EN)",
-			subtitle: isEn ? "Beralih membaca situs ke edisi Bahasa Indonesia" : "Switch reading experience to international English edition",
-			badge: isEn ? "Bahasa ID" : "English EN",
+			title: t.palette.lang_toggle_title,
+			subtitle: t.palette.lang_toggle_sub,
+			badge: t.palette.lang_toggle_badge,
 		},
 	];
 }

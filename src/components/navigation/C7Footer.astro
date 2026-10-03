@@ -1,13 +1,14 @@
 ---
 import C7Logo from "../ui/C7Logo.astro";
 import C7FooterSubbar from "./C7FooterSubbar.astro";
-import { type Locale, DEFAULT_LOCALE } from "../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation } from "../../i18n/utils";
 
 interface Props {
 	locale?: Locale;
 }
 
 const { locale = DEFAULT_LOCALE } = Astro.props;
+const { t } = use7cTranslation(locale);
 const isEn = locale === "en";
 const prefix = isEn ? "/en" : "";
 ---
@@ -16,7 +17,7 @@ const prefix = isEn ? "/en" : "";
 	class="c7-uni-footer"
 	id="footer-standard"
 	role="contentinfo"
-	aria-label={isEn ? "Site Footer" : "Footer Situs"}
+	aria-label={t.a11y.site_footer}
 >
 	<div class="c7-uni-footer-main">
 		<!-- Section 1: Logo -->
@@ -32,38 +33,38 @@ const prefix = isEn ? "/en" : "";
 		</div>
 
 		<!-- Section 2: Main Links (blog.google style) -->
-		<nav class="c7-uni-footer-nav" aria-label={isEn ? "Footer Navigation" : "Navigasi Footer"}>
+		<nav class="c7-uni-footer-nav" aria-label={t.footer.footer_nav}>
 			<ul class="c7-uni-footer-links">
 				<li class="c7-uni-link-item">
 					<a href={`${prefix}/privacy-policy`} class="c7-uni-link">
-						{isEn ? "Privacy" : "Privasi"}
+						{t.footer.privacy}
 					</a>
 				</li>
 				<li class="c7-uni-link-item">
 					<a href={`${prefix}/terms-of-use`} class="c7-uni-link">
-						{isEn ? "Terms" : "Ketentuan Layanan"}
+						{t.footer.terms}
 					</a>
 				</li>
 				<li class="c7-uni-link-item">
 					<a href={`${prefix}/pedoman-media-siber`} class="c7-uni-link">
-						{isEn ? "Cyber Guidelines" : "Pedoman Media Siber"}
+						{t.footer.cyber_guidelines}
 					</a>
 				</li>
 				<li class="c7-uni-link-item">
 					<a href={`${prefix}/about-us`} class="c7-uni-link">
-						{isEn ? "About" : "Tentang Kami"}
+						{t.footer.about}
 					</a>
 				</li>
 				<li class="c7-uni-link-item">
 					<a href={`${prefix}/redaksi`} class="c7-uni-link">
-						{isEn ? "Masthead" : "Susunan Redaksi"}
+						{t.footer.editorial_team}
 					</a>
 				</li>
 			</ul>
 		</nav>
 
 		<!-- Section 3: Social Networks (low-emphasis icon buttons) -->
-		<ul class="c7-uni-footer-socials" aria-label={isEn ? "Social Channels" : "Media Sosial Resmi"}>
+		<ul class="c7-uni-footer-socials" aria-label={t.footer.social_channels}>
 			<li class="c7-uni-social-item">
 				<a
 					href="https://www.instagram.com/tujuhcahayahub"

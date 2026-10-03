@@ -3,10 +3,41 @@
     "home": "Beranda",
     "archive": "Arsip Liputan",
     "about": "Tentang Kami",
+    "news": "Liputan",
     "search_placeholder": "Cari 16.700+ artikel...",
     "mode": "Mode",
     "mode_dark": "Ganti ke mode gelap",
-    "mode_light": "Ganti ke mode terang"
+    "mode_light": "Ganti ke mode terang",
+    "mobile_menu_open": "Buka menu navigasi",
+    "mobile_menu_close": "Tutup menu navigasi",
+    "search_command": "Pencarian & Command Palette (Ctrl+K)",
+    "search_tooltip": "Cari liputan, navigasi, request radio (Ctrl+K / ⌘K)"
+  },
+  "pillars": {
+    "berita": {
+      "title": "Berita",
+      "desc": "Investigasi, hard news & peristiwa"
+    },
+    "tech": {
+      "title": "Tech",
+      "desc": "AI, gadget, software & masa depan"
+    },
+    "game": {
+      "title": "Game",
+      "desc": "Esports, review & kultur gaming"
+    },
+    "musik": {
+      "title": "Musik",
+      "desc": "Rilisan, kurasi nada & resensi"
+    },
+    "budaya": {
+      "title": "Budaya",
+      "desc": "Seni, sejarah, tradisi & esai"
+    },
+    "kesehatan": {
+      "title": "Kesehatan",
+      "desc": "Riset medis, sains & gaya hidup"
+    }
   },
   "topbar": {
     "brand_tagline": "TUJUHCAHAYA MEDIA HOUSE",
@@ -23,7 +54,76 @@
     "latest": "Liputan Terkini",
     "empty_state": "Belum ada artikel pada rubrik ini.",
     "back_to_home": "Kembali ke Beranda",
-    "page_not_found": "Halaman Tidak Ditemukan"
+    "page_not_found": "Halaman Tidak Ditemukan",
+    "read_next": "Baca Selanjutnya: Liputan Terkait",
+    "reading_progress": "Progres Membaca",
+    "score_verdict": "Skor Akhir",
+    "score_pros": "Kelebihan",
+    "score_cons": "Kekurangan",
+    "table_spec": "Spesifikasi",
+    "table_value": "Keterangan",
+    "mark_as_read": "Tandai status baca (Klik untuk ubah)",
+    "loading_next": "Memuat liputan berikutnya...",
+    "all_loaded": "Seluruh liputan telah dimuat.",
+    "next_page": "Halaman Berikutnya",
+    "share_label": "Bagikan:",
+    "copy_label": "Salin",
+    "copied_label": "Disalin!",
+    "topics_label": "Topik Terkait:",
+    "related_title": "Baca Juga: Liputan Terkait",
+    "aria_breadcrumbs": "Navigasi Jejak Halaman"
+  },
+  "palette": {
+    "placeholder": "Cari liputan, halaman, lagu radio, atau aksi cepat...",
+    "aria_label": "Pencarian & Perintah",
+    "quick_search": "Pencarian Cepat",
+    "section_posts": "Liputan & Artikel",
+    "section_pages": "Rubrik & Halaman",
+    "section_actions": "Perintah & Tindakan",
+    "section_radio": "Request Lagu Radio",
+    "theme_toggle_title": "Beralih Tema Gelap / Terang",
+    "theme_toggle_sub": "Ganti tampilan antara mode gelap pekat OLED dan terang",
+    "theme_toggle_badge": "Aksi Sistem",
+    "theme_toggle_toast": "Mode tema berhasil dialihkan.",
+    "radio_toggle_title": "Putar / Jeda Siaran Radio Tujuhcahaya",
+    "radio_toggle_sub": "Kendalikan pemutaran siaran langsung 24/7",
+    "radio_toggle_badge": "Kontrol Radio",
+    "radio_toggle_toast": "Status siaran radio dialihkan.",
+    "lyrics_open_title": "Buka Panel Lirik Siaran Lagu",
+    "lyrics_open_sub": "Tampilkan lirik sinkron karaoke untuk lagu yang mengudara",
+    "lyrics_open_badge": "Lirik Lagu",
+    "lang_toggle_title": "Beralih Bahasa (ID / EN)",
+    "lang_toggle_sub": "Ganti edisi bahasa antara Bahasa Indonesia dan English",
+    "lang_toggle_badge": "Navigasi Bahasa",
+    "lang_toggle_toast": "Mengalihkan edisi bahasa..."
+  },
+  "sidebar": {
+    "topics_title": "Topik Populer",
+    "topics_related": "Topik Terkait",
+    "trending_title": "Liputan Terpopuler",
+    "newsletter_title": "Buletin Redaksi",
+    "newsletter_desc": "Kurasi jurnalisme mendalam, kultur pop, dan lanskap teknologi dikirim langsung ke surel Anda.",
+    "newsletter_placeholder": "nama@email.com",
+    "newsletter_button": "Langganan",
+    "newsletter_success": "Terima kasih! Surel konfirmasi telah dikirim.",
+    "search_title": "Cari Artikel",
+    "search_placeholder": "Ketik topik..."
+  },
+  "author": {
+    "articles_written": "Artikel Ditulis",
+    "about_author": "Tentang Penulis",
+    "view_all_by": "Lihat Semua Liputan oleh",
+    "browse_authors": "Jurnalis & Kontributor Lainnya",
+    "default_bio": "Jurnalis dan kontributor di Tujuhcahaya Media House.",
+    "page_title": "{name} — Penulis di Tujuhcahaya",
+    "page_description": "Kumpulan artikel, liputan investigatif, dan tulisan oleh {name} di Tujuhcahaya.",
+    "kicker": "PROFIL JURNALIS",
+    "published_stories": "{count} Artikel Terbit",
+    "all_stories_by": "SEMUA LIPUTAN OLEH {author}",
+    "previous": "Sebelumnya",
+    "next": "Selanjutnya",
+    "page_of_total": "Halaman {page} dari {totalPages} ({total} Total)",
+    "aria_profile": "Profil Penulis"
   },
   "footer": {
     "tagline": "Media house digital independen yang mengeksplorasi jurnalisme investigatif, teknologi, kultur urban, musik, dan dinamika sosial masyarakat modern.",
@@ -33,7 +133,52 @@
     "editorial_team": "Susunan Redaksi",
     "cyber_guidelines": "Pedoman Media Siber",
     "privacy": "Kebijakan Privasi",
+    "terms": "Ketentuan Layanan",
     "contact": "Hubungi Redaksi",
-    "copyright": "PT Tujuh Cahaya Media House. Hak Cipta Dilindungi Undang-Undang."
+    "copyright": "Tujuhcahaya. Hak Cipta Dilindungi Undang-Undang.",
+    "built_with": "Dibangun dengan",
+    "with_love": "dengan cinta",
+    "social_channels": "Media Sosial Resmi",
+    "footer_nav": "Navigasi Footer"
+  },
+  "submission": {
+    "title": "Ruang Kirim Tulisan",
+    "tagline": "Portal Kontribusi Pembaca Tujuhcahaya",
+    "desc": "Ruang terbuka bagi pembaca untuk mengirim opini, ulasan teknologi, resensi musik, atau esai santai.",
+    "name_label": "Nama Lengkap / Penulis",
+    "name_placeholder": "Nama lengkap kamu",
+    "email_label": "Alamat Surel (Email)",
+    "phone_label": "Nomor WhatsApp / Kontak (Opsional)",
+    "category_label": "Rubrik Pilihan",
+    "categories": [
+      { "value": "opini", "label": "Opini & Budaya" },
+      { "value": "tech", "label": "Gadget & Teknologi" },
+      { "value": "game", "label": "Game & Esports" },
+      { "value": "musik", "label": "Musik & Pop" }
+    ],
+    "title_label": "Judul Naskah",
+    "title_placeholder": "Judul tulisan kamu",
+    "content_label": "Naskah / Gagasan Lengkap",
+    "content_placeholder": "Tuliskan naskah atau argumen esai Anda di sini...",
+    "submit_btn": "Kirim Naskah ke Redaksi",
+    "submitting": "Mengirim naskah...",
+    "success_title": "Naskah Berhasil Terkirim!",
+    "success_msg": "Terima kasih telah berkontribusi. Redaksi akan meninjau naskah Anda dalam 3-5 hari kerja.",
+    "send_another": "Kirim Naskah Lain",
+    "error_required": "Mohon isi semua kolom bertanda bintang (Nama, Email, Judul, dan Naskah)."
+  },
+  "errors": {
+    "title_404": "Halaman Tidak Ditemukan",
+    "desc_404": "Maaf, artikel atau halaman yang Anda cari mungkin telah dipindahkan, dihapus, atau alamat URL yang Anda masukkan keliru.",
+    "back_to_home": "Kembali ke Beranda",
+    "explore_archive": "Jelajahi Arsip Artikel"
+  },
+  "a11y": {
+    "skip_to_content": "Lewati ke konten utama",
+    "search_articles": "Cari artikel atau liputan",
+    "toggle_menu": "Buka menu navigasi",
+    "close_menu": "Tutup menu",
+    "site_footer": "Footer Situs",
+    "breadcrumbs": "Navigasi Rekam Jejak"
   }
 }

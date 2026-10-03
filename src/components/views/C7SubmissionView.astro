@@ -1,0 +1,272 @@
+---
+/**
+ * C7SubmissionView — Unified Submission View for Reader Pitches & Manuscripts
+ *
+ * Adheres to 7C Monolith Guard (< 300 LOC) and provides full i18n support.
+ */
+
+import Base from "../../layouts/Base.astro";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../i18n/utils";
+
+interface Props {
+	locale?: Locale;
+	submissionStatus: "idle" | "success" | "rejected";
+	feedbackMessage?: string;
+	submittedData: {
+		name: string;
+		email: string;
+		phone: string;
+		category: string;
+		title: string;
+		content: string;
+	};
+}
+
+const {
+	locale = DEFAULT_LOCALE,
+	submissionStatus,
+	feedbackMessage,
+	submittedData,
+} = Astro.props;
+
+const { t } = use7cTranslation(locale);
+const submitPath = get7cLocalizedPath("/kirim-tulisan", locale);
+---
+
+<Base
+	title={`${t.submission.title} — ${t.topbar.brand_tagline}`}
+	description={t.submission.desc}
+>
+	<div class="c7-submission-container">
+		<!-- Simple Header -->
+		<header class="c7-submission-header">
+			<span class="c7-header-kicker">{t.submission.tagline.toUpperCase()}</span>
+			<h1 class="c7-header-title">{t.submission.title}</h1>
+			<p class="c7-header-desc">
+				{t.submission.desc}
+			</p>
+		</header>
+
+		<!-- Feedback Messages -->
+		{submissionStatus === "success" && (
+			<div class="c7-alert success c7-hairline-box" role="status">
+				<h3 class="alert-title">{t.submission.success_title}</h3>
+				<p>{feedbackMessage || t.submission.success_msg}</p>
+				<div style="margin-top: 1.5rem;">
+					<a href={submitPath} class="c7-submit-btn c7-hairline-box" style="display: inline-block; text-decoration: none;">
+						{t.submission.send_another}
+					</a>
+				</div>
+			</div>
+		)}
+
+		{submissionStatus === "rejected" && (
+			<div class="c7-alert error c7-hairline-box" role="alert">
+				<p>{feedbackMessage || t.submission.error_required}</p>
+			</div>
+		)}
+
+		<!-- Simple Form -->
+		{submissionStatus !== "success" && (
+			<form method="POST" class="c7-submission-form c7-hairline-box">
+				<div class="form-grid">
+					<div class="form-group">
+						<label for="name" class="form-label">{t.submission.name_label} <span class="required">*</span></label>
+						<input type="text" id="name" name="name" required value={submittedData.name} class="c7-input" placeholder={t.submission.name_placeholder} />
+					</div>
+
+					<div class="form-group">
+						<label for="email" class="form-label">{t.submission.email_label} <span class="required">*</span></label>
+						<input type="email" id="email" name="email" required value={submittedData.email} class="c7-input" placeholder="name@email.com" />
+					</div>
+				</div>
+
+				<div class="form-grid">
+					<div class="form-group">
+						<label for="category" class="form-label">{t.submission.category_label} <span class="required">*</span></label>
+						<select id="category" name="category" class="c7-input">
+							{t.submission.categories.map((c) => (
+								<option value={c.value} selected={submittedData.category === c.value}>
+									{c.label}
+								</option>
+							))}
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="phone" class="form-label">{t.submission.phone_label}</label>
+						<input type="text" id="phone" name="phone" value={submittedData.phone} class="c7-input" placeholder="+62..." />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="title" class="form-label">{t.submission.title_label} <span class="required">*</span></label>
+					<input type="text" id="title" name="title" required value={submittedData.title} class="c7-input" placeholder={t.submission.title_placeholder} />
+				</div>
+
+				<div class="form-group">
+					<label for="content" class="form-label">{t.submission.content_label} <span class="required">*</span></label>
+					<textarea id="content" name="content" required rows="12" class="c7-input c7-textarea" placeholder={t.submission.content_placeholder}>{submittedData.content}</textarea>
+				</div>
+
+				<div class="form-actions">
+					<button type="submit" class="c7-submit-btn c7-hairline-box">
+						{t.submission.submit_btn} &rarr;
+					</button>
+				</div>
+			</form>
+		)}
+	</div>
+</Base>
+
+<style>
+	.c7-submission-container {
+		max-width: 680px;
+		margin: 0 auto;
+		padding: 2.5rem 1rem 5rem 1rem;
+	}
+
+	.c7-submission-header {
+		margin-bottom: 2rem;
+		text-align: center;
+	}
+
+	.c7-header-kicker {
+		font-family: var(--7c-sys-font-mono, monospace);
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		color: var(--7c-sys-primary, #0f172a);
+		display: block;
+		margin-bottom: 0.5rem;
+	}
+
+	.c7-header-title {
+		font-size: 1.85rem;
+		font-weight: 600;
+		color: var(--7c-sys-on-surface, #0f172a);
+		letter-spacing: -0.02em;
+		margin: 0 0 0.75rem 0;
+	}
+
+	.c7-header-desc {
+		font-size: 0.95rem;
+		color: var(--7c-sys-on-surface-variant, #475569);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.c7-submission-form {
+		background: var(--7c-sys-surface-container, #ffffff);
+		border-radius: 16px;
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.form-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.25rem;
+	}
+
+	@media (min-width: 640px) {
+		.form-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.form-label {
+		font-size: 0.85rem;
+		font-weight: 500;
+		color: var(--7c-sys-on-surface, #0f172a);
+	}
+
+	.required {
+		color: #ef4444;
+	}
+
+	.c7-input {
+		width: 100%;
+		padding: 0.75rem 1rem;
+		background: var(--7c-sys-surface, #ffffff);
+		border: 1px solid var(--7c-sys-outline-variant, #cbd5e1);
+		border-radius: 8px;
+		font-size: 0.9rem;
+		color: var(--7c-sys-on-surface, #0f172a);
+		font-family: inherit;
+		outline: none;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.c7-input:focus {
+		border-color: var(--7c-sys-primary, #0f172a);
+		box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+	}
+
+	.c7-textarea {
+		resize: vertical;
+		min-height: 200px;
+		line-height: 1.6;
+	}
+
+	.form-actions {
+		display: flex;
+		justify-content: flex-end;
+		margin-top: 0.5rem;
+	}
+
+	.c7-submit-btn {
+		background: var(--7c-sys-primary, #0f172a);
+		color: var(--7c-sys-on-primary, #ffffff);
+		border: none;
+		border-radius: 8px;
+		padding: 0.85rem 1.75rem;
+		font-size: 0.9rem;
+		font-weight: 600;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		transition: background-color 0.2s ease, transform 0.1s ease;
+	}
+
+	.c7-submit-btn:hover {
+		background: var(--7c-sys-primary-hover, #1e293b);
+	}
+
+	.c7-submit-btn:active {
+		transform: scale(0.98);
+	}
+
+	.c7-alert {
+		border-radius: 12px;
+		padding: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.c7-alert.success {
+		background: var(--7c-sys-success-container);
+		border-color: var(--7c-sys-on-success-container);
+		color: var(--7c-sys-success);
+	}
+
+	.c7-alert.error {
+		background: var(--7c-sys-error-container);
+		border-color: var(--7c-sys-on-error-container);
+		color: var(--7c-sys-error);
+	}
+
+	.alert-title {
+		margin: 0 0 0.5rem 0;
+		font-size: 1.1rem;
+		font-weight: 600;
+	}
+</style>

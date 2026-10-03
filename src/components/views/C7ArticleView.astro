@@ -1,0 +1,326 @@
+---
+/**
+ * C7ArticleView — Unified Article / Static Page Detail View
+ *
+ * Adheres to 7C Monolith Guard by centralizing the detail template
+ * used by both Indonesian and English editions.
+ */
+
+import { Image } from "emdash/ui";
+import C7PortableText from "../editorial/C7PortableText.astro";
+import Base from "../../layouts/Base.astro";
+import C7Badge from "../ui/C7Badge.astro";
+import C7PostCard from "../editorial/C7PostCard.astro";
+import C7PostSidebar from "../editorial/C7PostSidebar.astro";
+import C7AuthorCard from "../editorial/C7AuthorCard.astro";
+import {
+	calc7cReadingTime,
+	format7cDate,
+	resolve7cFeaturedImage,
+	resolve7cAuthor,
+} from "../../lib/7c-cms";
+import type { C7PostData } from "../../lib/7c-cms";
+import { get7cLocalizedPath, type Locale, use7cTranslation } from "../../i18n/utils";
+import "../../styles/7c-article-view.css";
+
+interface Props {
+	entry: any;
+	slug: string;
+	locale: Locale;
+	relatedPosts: any[];
+	collection: "posts" | "pages";
+	seo: {
+		title: string;
+		pageTitle?: string | null;
+		description?: string | null;
+		canonical?: string | null;
+	};
+	image?: string | null;
+}
+
+interface TermLike {
+	slug: string;
+	label: string;
+}
+
+const { entry, slug, locale, relatedPosts, collection, seo, image } = Astro.props;
+const { t } = use7cTranslation(locale);
+const prefix = locale === "en" ? "/en" : "";
+const isPost = collection === "posts";
+
+const tags: TermLike[] = entry.data.terms?.tag ?? [];
+const categories: TermLike[] = entry.data.terms?.category ?? [];
+const readingTimeMin = calc7cReadingTime(entry.data.content);
+const formattedDate = format7cDate(entry.data.publishedAt, locale);
+const heroImage = resolve7cFeaturedImage(entry.data.featured_image, entry.data.title);
+const ogImage = image || heroImage.url;
+const authorProfile = resolve7cAuthor(((entry.data as unknown) as C7PostData).byline || null, locale);
+const authorName = authorProfile.name;
+
+const archiveUrl = `${prefix}/posts`;
+const homeUrl = locale === "en" ? "/en" : "/";
+---
+
+<Base
+	title={seo.title}
+	pageTitle={seo.pageTitle}
+	description={seo.description}
+	canonical={seo.canonical}
+	image={ogImage}
+	content={{ collection, id: entry.data.id, slug }}
+>
+	<div id="reading-progress-bar" aria-hidden="true"></div>
+
+	<div class="article-container">
+		{isPost ? (
+			<article class="single-article" data-single-post-slug={slug}>
+				<nav class="c7-breadcrumb" aria-label={t.editorial.aria_breadcrumbs}>
+					<a href={homeUrl} class="c7-breadcrumb-link">{t.nav.home}</a>
+					<svg class="c7-breadcrumb-sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+						<polyline points="9 18 15 12 9 6"></polyline>
+					</svg>
+					{categories.length > 0 ? (
+						<>
+							<a href={get7cLocalizedPath(`/category/${categories[0].slug}`, locale)} class="c7-breadcrumb-link">{categories[0].label}</a>
+							<svg class="c7-breadcrumb-sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+								<polyline points="9 18 15 12 9 6"></polyline>
+							</svg>
+						</>
+					) : (
+						<>
+							<a href={archiveUrl} class="c7-breadcrumb-link">{t.nav.archive}</a>
+							<svg class="c7-breadcrumb-sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+								<polyline points="9 18 15 12 9 6"></polyline>
+							</svg>
+						</>
+					)}
+					<span class="c7-breadcrumb-current" aria-current="page">
+						{entry.data.title}
+					</span>
+				</nav>
+
+				{categories.length > 0 && (
+					<div class="c7-article-categories">
+						{categories.map((c) => (
+							<C7Badge label={c.label} pillar={c.slug} href={get7cLocalizedPath(`/category/${c.slug}`, locale)} />
+						))}
+					</div>
+				)}
+
+				<h1 class="article-title" {...entry.edit?.title}>
+					{entry.data.title}
+				</h1>
+
+				<div class="c7-article-meta-bar">
+					<div class="c7-meta-left">
+						{formattedDate && (
+							<div class="c7-meta-item">
+								<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+									<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+									<line x1="16" y1="2" x2="16" y2="6"></line>
+									<line x1="8" y1="2" x2="8" y2="6"></line>
+									<line x1="3" y1="10" x2="21" y2="10"></line>
+								</svg>
+								<time datetime={entry.data.publishedAt ? new Date(entry.data.publishedAt).toISOString() : ""}>
+									{formattedDate}
+								</time>
+							</div>
+						)}
+						<div class="c7-meta-item">
+							<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+								<circle cx="12" cy="12" r="10"></circle>
+								<polyline points="12 6 12 12 16 14"></polyline>
+							</svg>
+							<span>{readingTimeMin} {t.editorial.read_time}</span>
+						</div>
+						<div class="c7-meta-item c7-meta-author">
+							<span class="c7-author-dot" aria-hidden="true"></span>
+							<a href={authorProfile.archiveUrl} class="c7-author-header-link">{authorName}</a>
+						</div>
+					</div>
+
+					<div class="c7-share-group" aria-label={t.editorial.share_label}>
+						<span class="c7-share-label">{t.editorial.share_label}</span>
+						<button type="button" class="c7-share-btn" id="c7-copy-link-btn" title={t.editorial.copy_label} aria-label={t.editorial.copy_label}>
+							<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+								<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+								<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+							</svg>
+							<span id="c7-copy-status">{t.editorial.copy_label}</span>
+						</button>
+						<a
+							href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(entry.data.title)}&url=${encodeURIComponent(Astro.url.href)}`}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="c7-share-btn"
+							title="X"
+							aria-label="X"
+						>
+							<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+								<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+							</svg>
+						</a>
+						<a
+							href={`https://api.whatsapp.com/send?text=${encodeURIComponent(entry.data.title + " " + Astro.url.href)}`}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="c7-share-btn"
+							title="WhatsApp"
+							aria-label="WhatsApp"
+						>
+							<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+								<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<figure class="article-featured-image" {...(entry.data.featured_image ? entry.edit?.featured_image : {})}>
+					{entry.data.featured_image ? (
+						<Image
+							image={entry.data.featured_image}
+							width={1024}
+							height={576}
+							priority
+							class="c7-article-featured-hero"
+						/>
+					) : (
+						<img
+							src={heroImage.url}
+							alt={heroImage.alt}
+							width="1024"
+							height="576"
+							loading="eager"
+							decoding="async"
+							class="c7-featured-fallback-img"
+						/>
+					)}
+					{entry.data.featured_image?.alt && (
+						<figcaption>{entry.data.featured_image.alt}</figcaption>
+					)}
+				</figure>
+
+				<div class="article-body c7-prose prose" {...entry.edit?.content}>
+					<C7PortableText value={entry.data.content} />
+				</div>
+
+				{tags.length > 0 && (
+					<div class="c7-article-tags">
+						<span class="c7-tags-label">{t.editorial.topics_label}</span>
+						<div class="c7-tags-list">
+							{tags.map((tag) => (
+								<a href={get7cLocalizedPath(`/tag/${tag.slug}`, locale)} class="c7-tag-pill">
+									#{tag.label}
+								</a>
+							))}
+						</div>
+					</div>
+				)}
+
+				<C7AuthorCard author={authorProfile} locale={locale} />
+
+				{relatedPosts.length > 0 && (
+					<section class="c7-related-section" aria-label={t.editorial.read_next}>
+						<div class="c7-related-header">
+							<h3 class="c7-related-title">{t.editorial.read_next}</h3>
+						</div>
+						<div class="c7-related-grid">
+							{relatedPosts.map((p) => {
+								const pSlug = p.data?.slug || p.id;
+								const pCat = p.data?.terms?.category?.[0]?.label || t.pillars.berita.title;
+								const pThumb = resolve7cFeaturedImage(p.data?.featured_image, p.data?.title || "Tujuhcahaya").url;
+								return (
+									<C7PostCard
+										title={p.data?.title || ""}
+										slug={pSlug}
+										category={pCat}
+										publishedAt={typeof p.data?.publishedAt === "string" ? p.data.publishedAt : null}
+										thumbnail={pThumb}
+										locale={locale}
+									/>
+								);
+							})}
+						</div>
+					</section>
+				)}
+			</article>
+		) : (
+			<article class="single-page" data-static-slug={slug}>
+				<nav class="c7-breadcrumb" aria-label={t.editorial.aria_breadcrumbs}>
+					<a href={homeUrl} class="c7-breadcrumb-link">{t.nav.home}</a>
+					<svg class="c7-breadcrumb-sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+						<polyline points="9 18 15 12 9 6"></polyline>
+					</svg>
+					<span class="c7-breadcrumb-current" aria-current="page">
+						{entry.data.title}
+					</span>
+				</nav>
+
+				<h1 class="article-title" {...entry.edit?.title}>
+					{entry.data.title}
+				</h1>
+
+				<div class="article-body c7-prose prose" {...entry.edit?.content}>
+					<C7PortableText value={entry.data.content} />
+				</div>
+			</article>
+		)}
+
+		<C7PostSidebar
+			currentSlug={slug}
+			categorySlug={categories[0]?.slug}
+			tags={tags}
+			locale={locale}
+			isStaticPage={!isPost}
+		/>
+	</div>
+
+	<script is:inline data-copied-label={t.editorial.copied_label}>
+		const scriptEl = document.currentScript;
+		const copiedLabel = scriptEl?.dataset.copiedLabel || "Copied!";
+
+		function updateReadingProgress() {
+			const scrollEl = document.body.scrollHeight > document.body.clientHeight ? document.body : document.documentElement;
+			const winScroll = scrollEl.scrollTop;
+			const height = scrollEl.scrollHeight - scrollEl.clientHeight;
+			const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+			const bar = document.getElementById("reading-progress-bar");
+			if (bar) bar.style.width = scrolled + "%";
+		}
+		window.addEventListener("scroll", updateReadingProgress, { passive: true });
+		document.body?.addEventListener("scroll", updateReadingProgress, { passive: true });
+
+		const copyBtn = document.getElementById("c7-copy-link-btn");
+		const copyStatus = document.getElementById("c7-copy-status");
+		if (copyBtn && copyStatus) {
+			copyBtn.addEventListener("click", async () => {
+				try {
+					await navigator.clipboard.writeText(window.location.href);
+					const prev = copyStatus.textContent;
+					copyStatus.textContent = copiedLabel;
+					copyBtn.style.color = "var(--7c-sys-primary)";
+					setTimeout(() => {
+						copyStatus.textContent = prev;
+						copyBtn.style.color = "";
+					}, 2000);
+				} catch (err) {
+					console.error("Failed to copy link:", err);
+				}
+			});
+		}
+
+		try {
+			const rawPath = window.location.pathname;
+			const localSlug = rawPath.replace(/^\/en\//, "").replace(/^\//, "").replace(/\/$/, "");
+			if (localSlug) {
+				const raw = localStorage.getItem("c7_read_articles");
+				const list = raw ? JSON.parse(raw) : [];
+				const set = new Set(Array.isArray(list) ? list : []);
+				if (!set.has(localSlug)) {
+					set.add(localSlug);
+					localStorage.setItem("c7_read_articles", JSON.stringify(Array.from(set)));
+				}
+			}
+		} catch (e) {}
+	</script>
+</Base>

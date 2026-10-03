@@ -56,7 +56,7 @@ const enPath = get7cLocalizedPath(currentPath, "en");
 
 // Shortened 7C Navigation Contract: "News" (Mega Menu), "Tentang Kami"
 const defaultNavItems: NavItem[] = [
-	{ name: "News", link: `${prefix}/category/berita`, isMegaMenu: true },
+	{ name: t.nav.news, link: `${prefix}/category/berita`, isMegaMenu: true },
 	{ name: t.nav.about, link: `${prefix}/about-us` },
 ];
 
@@ -67,44 +67,44 @@ const hasCustomActions = actions && actions.length > 0;
 const pillars = [
 	{
 		id: "berita",
-		title: locale === "en" ? "News" : "Berita",
+		title: t.pillars.berita.title,
 		url: `${prefix}/category/berita`,
-		desc: locale === "en" ? "Investigative & hard news" : "Investigasi, hard news & peristiwa",
+		desc: t.pillars.berita.desc,
 		color: "var(--7c-pillar-berita)",
 	},
 	{
 		id: "tech",
-		title: "Tech",
+		title: t.pillars.tech.title,
 		url: `${prefix}/category/tech`,
-		desc: locale === "en" ? "AI, gadgets & software" : "AI, gadget, software & masa depan",
+		desc: t.pillars.tech.desc,
 		color: "var(--7c-pillar-tech)",
 	},
 	{
 		id: "game",
-		title: "Game",
+		title: t.pillars.game.title,
 		url: `${prefix}/category/game`,
-		desc: locale === "en" ? "Esports & gaming industry" : "Esports, review & kultur gaming",
+		desc: t.pillars.game.desc,
 		color: "var(--7c-pillar-game)",
 	},
 	{
 		id: "musik",
-		title: locale === "en" ? "Music" : "Musik",
+		title: t.pillars.musik.title,
 		url: `${prefix}/category/musik`,
-		desc: locale === "en" ? "Curated tracks & releases" : "Rilisan, kurasi nada & resensi",
+		desc: t.pillars.musik.desc,
 		color: "var(--7c-pillar-musik)",
 	},
 	{
 		id: "budaya",
-		title: locale === "en" ? "Culture" : "Budaya",
+		title: t.pillars.budaya.title,
 		url: `${prefix}/category/budaya`,
-		desc: locale === "en" ? "Arts, heritage & essays" : "Seni, sejarah, tradisi & esai",
+		desc: t.pillars.budaya.desc,
 		color: "var(--7c-pillar-budaya)",
 	},
 	{
 		id: "kesehatan",
-		title: locale === "en" ? "Health" : "Kesehatan",
+		title: t.pillars.kesehatan.title,
 		url: `${prefix}/category/kesehatan`,
-		desc: locale === "en" ? "Medical science & wellness" : "Riset medis, sains & gaya hidup",
+		desc: t.pillars.kesehatan.desc,
 		color: "var(--7c-pillar-kesehatan)",
 	},
 ];
@@ -192,8 +192,8 @@ import "./C7ResizableNavbar.css";
 						type="button"
 						class="c7-rn-icon-btn c7-rn-search-btn"
 						id="c7-command-palette-trigger"
-						aria-label={locale === "en" ? "Search & Command Palette (Ctrl+K)" : "Pencarian & Command Palette (Ctrl+K)"}
-						title={locale === "en" ? "Search stories, destinations, radio request (Ctrl+K / ⌘K)" : "Cari liputan, navigasi, request radio (Ctrl+K / ⌘K)"}
+						aria-label={t.nav.search_command}
+						title={t.nav.search_tooltip}
 						data-palette-trigger
 					>
 						<svg
@@ -251,8 +251,8 @@ import "./C7ResizableNavbar.css";
 				<button
 					type="button"
 					class="c7-rn-icon-btn c7-rn-search-btn"
-					aria-label={locale === "en" ? "Search & Command Palette" : "Pencarian & Command Palette"}
-					title={locale === "en" ? "Search & Command Palette" : "Pencarian & Command Palette"}
+					aria-label={t.nav.search_command}
+					title={t.nav.search_tooltip}
 					data-palette-trigger
 				>
 					<svg
@@ -278,7 +278,7 @@ import "./C7ResizableNavbar.css";
 				<button
 					class="c7-rn-mobile-toggle"
 					type="button"
-					aria-label={locale === "en" ? "Toggle navigation menu" : "Buka menu navigasi"}
+					aria-label={t.a11y.toggle_menu}
 					aria-expanded="false"
 					aria-controls={menuId}
 				>
@@ -336,7 +336,7 @@ import "./C7ResizableNavbar.css";
 					<line x1="21" y1="21" x2="16.65" y2="16.65" />
 				</svg>
 				<LiveSearch
-					placeholder={locale === "en" ? "Search stories..." : "Cari liputan..."}
+					placeholder={t.nav.search_placeholder}
 					collections={["posts", "pages"]}
 					class="c7-live-search"
 					inputClass="c7-search-input"
@@ -344,11 +344,11 @@ import "./C7ResizableNavbar.css";
 				/>
 			</div>
 
-			<nav class="c7-rn-mobile-nav-items" aria-label="Navigasi Mobile">
+			<nav class="c7-rn-mobile-nav-items" aria-label={t.a11y.breadcrumbs}>
 				<div class="c7-rn-mobile-news-group">
 					<div class="c7-rn-mobile-group-header">
 						<span class="c7-rn-pulse-dot" aria-hidden="true"></span>
-						<span>{locale === "en" ? "NEWS & CHANNELS" : "RUBRIK & KANAL LIPUTAN"}</span>
+						<span>{t.footer.pillars_title.toUpperCase()}</span>
 					</div>
 					<div class="c7-rn-mobile-pillars-grid">
 						{pillars.map((pillar) => (
@@ -364,8 +364,8 @@ import "./C7ResizableNavbar.css";
 					<span>{t.nav.about}</span>
 					<span class="c7-rn-mobile-arrow" aria-hidden="true">&rarr;</span>
 				</a>
-				<a class="c7-rn-mobile-link" href={`${prefix}/kirim-tulisan`}>
-					<span>{locale === "en" ? "Submit Dispatch" : "Kirim Tulisan"}</span>
+				<a class="c7-rn-mobile-link" href={locale === "en" ? "/en/submit" : "/kirim-tulisan"}>
+					<span>{t.submission.title}</span>
 					<span class="c7-rn-mobile-arrow" aria-hidden="true">&rarr;</span>
 				</a>
 			</nav>

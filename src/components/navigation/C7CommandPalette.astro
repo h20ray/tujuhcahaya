@@ -12,13 +12,14 @@
  *
  * Note: Zero arrow icons utilized in UI to avoid generic AI-slop visual tropes.
  */
-import { type Locale, DEFAULT_LOCALE, get7cLocalizedPath } from "../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, get7cLocalizedPath, use7cTranslation } from "../../i18n/utils";
 
 interface Props {
 	locale?: Locale;
 }
 
 const { locale = DEFAULT_LOCALE } = Astro.props;
+const { t } = use7cTranslation(locale);
 const isEn = locale === "en";
 const prefix = isEn ? "/en" : "";
 const idPath = get7cLocalizedPath(Astro.url.pathname, "id");
@@ -37,7 +38,7 @@ import "./C7CommandPalette.css";
 >
   <div class="c7-cp-backdrop" data-cp-backdrop></div>
 
-  <div class="c7-cp-dialog" role="dialog" aria-modal="true" aria-label={isEn ? "Command Palette" : "Pencarian & Perintah"}>
+  <div class="c7-cp-dialog" role="dialog" aria-modal="true" aria-label={t.palette.aria_label}>
     <!-- Top Search Bar -->
     <div class="c7-cp-header">
       <div class="c7-cp-input-wrap">
@@ -51,7 +52,7 @@ import "./C7CommandPalette.css";
           role="searchbox"
           class="c7-cp-input"
           data-cp-input
-          placeholder={isEn ? "Search stories, destinations, radio songs, or actions..." : "Cari liputan, halaman, lagu radio, atau aksi cepat..."}
+          placeholder={t.palette.placeholder}
           autocomplete="off"
           autocorrect="off"
           spellcheck="false"
@@ -66,16 +67,16 @@ import "./C7CommandPalette.css";
           </svg>
         </button>
 
-        <kbd class="c7-cp-esc-badge" data-cp-close title="Tutup Palette">ESC</kbd>
+        <kbd class="c7-cp-esc-badge" data-cp-close title={isEn ? "Close Palette" : "Tutup Palette"}>ESC</kbd>
       </div>
 
-      <div class="c7-cp-tabs" role="tablist" aria-label="Filter Kategori">
-        <button type="button" class="c7-cp-tab active" data-cp-tab="all" role="tab" aria-selected="true">{isEn ? "All" : "Semua"}</button>
-        <button type="button" class="c7-cp-tab" data-cp-tab="posts" role="tab" aria-selected="false">{isEn ? "Stories" : "Liputan"}</button>
-        <button type="button" class="c7-cp-tab" data-cp-tab="pages" role="tab" aria-selected="false">{isEn ? "Pages" : "Halaman"}</button>
-        <button type="button" class="c7-cp-tab" data-cp-tab="request" role="tab" aria-selected="false">{isEn ? "Song Request" : "Request Lagu"}</button>
+      <div class="c7-cp-tabs" role="tablist" aria-label={t.footer.pillars_title}>
+        <button type="button" class="c7-cp-tab active" data-cp-tab="all" role="tab" aria-selected="true">{t.editorial.all}</button>
+        <button type="button" class="c7-cp-tab" data-cp-tab="posts" role="tab" aria-selected="false">{t.palette.section_posts}</button>
+        <button type="button" class="c7-cp-tab" data-cp-tab="pages" role="tab" aria-selected="false">{t.palette.section_pages}</button>
+        <button type="button" class="c7-cp-tab" data-cp-tab="request" role="tab" aria-selected="false">{t.palette.section_radio}</button>
         <button type="button" class="c7-cp-tab" data-cp-tab="history" role="tab" aria-selected="false">{isEn ? "Radio History" : "Riwayat Siaran"}</button>
-        <button type="button" class="c7-cp-tab" data-cp-tab="actions" role="tab" aria-selected="false">{isEn ? "Quick Actions" : "Aksi Cepat"}</button>
+        <button type="button" class="c7-cp-tab" data-cp-tab="actions" role="tab" aria-selected="false">{t.palette.section_actions}</button>
       </div>
     </div>
 
@@ -94,11 +95,11 @@ import "./C7CommandPalette.css";
       </div>
       <div class="c7-cp-footer-hints">
         <span class="c7-cp-hint-item">
-          <kbd class="c7-cp-kbd">?</kbd><kbd class="c7-cp-kbd">?</kbd>
+          <kbd class="c7-cp-kbd">&uarr;</kbd><kbd class="c7-cp-kbd">&darr;</kbd>
           <span>{isEn ? "Navigate" : "Navigasi"}</span>
         </span>
         <span class="c7-cp-hint-item">
-          <kbd class="c7-cp-kbd">?</kbd>
+          <kbd class="c7-cp-kbd">&crarr;</kbd>
           <span>{isEn ? "Select" : "Pilih"}</span>
         </span>
         <span class="c7-cp-hint-item">

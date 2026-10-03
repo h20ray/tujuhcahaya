@@ -1,16 +1,14 @@
 ---
 /**
  * Ruang Kirim Tulisan — Portal Kontribusi Pembaca Tujuhcahaya
- *
- * Ruang terbuka bagi pembaca untuk mengirim opini, ulasan, atau esai santai.
  */
 
-import Base from "../layouts/Base.astro";
+import C7SubmissionView from "../components/views/C7SubmissionView.astro";
 import { save7cSubmission } from "../lib/7c-submissions.js";
 import { send7cSubmissionNotification } from "../lib/7c-notifications.js";
 
 let submissionStatus: "idle" | "success" | "rejected" = "idle";
-let feedbackMessages: string[] = [];
+let feedbackMessage = "";
 let submittedData = {
 	name: "",
 	email: "",
@@ -34,7 +32,7 @@ if (Astro.request.method === "POST") {
 
 		if (!submittedData.name || !submittedData.email || !submittedData.title || !submittedData.content) {
 			submissionStatus = "rejected";
-			feedbackMessages = ["Mohon isi semua kolom bertanda bintang (Nama, Email, Judul, dan Naskah)."];
+			feedbackMessage = "Mohon isi semua kolom bertanda bintang (Nama, Email, Judul, dan Naskah).";
 		} else {
 			// 1. Save to EmDash ec_submissions table
 			const saveResult = await save7cSubmission({
@@ -60,252 +58,18 @@ if (Astro.request.method === "POST") {
 			});
 
 			submissionStatus = "success";
-			feedbackMessages = [
-				`Terima kasih, Bung/Non ${submittedData.name}! Naskahmu ("${submittedData.title}") sudah mendarat di meja redaksi Tujuhcahaya. Tim kurasi kami akan membaca dan mengabarimu lewat email (${submittedData.email}) dalam waktu 3–5 hari kerja.`,
-			];
+			feedbackMessage = `Terima kasih, Bung/Non ${submittedData.name}! Naskahmu ("${submittedData.title}") sudah mendarat di meja redaksi Tujuhcahaya. Tim kurasi kami akan membaca dan mengabarimu lewat email (${submittedData.email}) dalam waktu 3–5 hari kerja.`;
 		}
 	} catch (e) {
 		submissionStatus = "rejected";
-		feedbackMessages = ["Terjadi kendala saat menyimpan naskah. Silakan coba lagi sebentar lagi."];
+		feedbackMessage = "Terjadi kendala saat menyimpan naskah. Silakan coba lagi sebentar lagi.";
 	}
 }
 ---
 
-<Base
-	title="Kirim Tulisan — Tujuhcahaya"
-	description="Kirimkan opini, esai santai, kritik teknologi, atau ulasan game kamu ke Redaksi Tujuhcahaya."
->
-	<div class="c7-submission-container">
-		<!-- Simple Header -->
-		<header class="c7-submission-header">
-			<span class="c7-header-kicker">KOLOM PEMBACA</span>
-			<h1 class="c7-header-title">Kirim Tulisan ke Tujuhcahaya</h1>
-			<p class="c7-header-desc">
-				Punya cerita menarik, keresahan soal gadget dan game, atau esai santai tentang fenomena sekitar? Kirimkan naskahmu ke redaksi kami. Panjang naskah santai saja, sekitar 700 sampai 1.200 kata.
-			</p>
-		</header>
-
-		<!-- Feedback Messages -->
-		{submissionStatus === "success" && (
-			<div class="c7-alert success c7-hairline-box" role="status">
-				<h3 class="alert-title">Naskah Diterima</h3>
-				<p>{feedbackMessages[0]}</p>
-			</div>
-		)}
-
-		{submissionStatus === "rejected" && (
-			<div class="c7-alert error c7-hairline-box" role="alert">
-				<p>{feedbackMessages[0]}</p>
-			</div>
-		)}
-
-		<!-- Simple Form -->
-		{submissionStatus !== "success" && (
-			<form method="POST" class="c7-submission-form c7-hairline-box">
-				<div class="form-grid">
-					<div class="form-group">
-						<label for="name" class="form-label">Nama Lengkap / Nama Pena <span class="required">*</span></label>
-						<input type="text" id="name" name="name" required value={submittedData.name} class="c7-input" placeholder="Nama kamu" />
-					</div>
-
-					<div class="form-group">
-						<label for="email" class="form-label">Alamat Email <span class="required">*</span></label>
-						<input type="email" id="email" name="email" required value={submittedData.email} class="c7-input" placeholder="email@kamu.com" />
-					</div>
-				</div>
-
-				<div class="form-grid">
-					<div class="form-group">
-						<label for="category" class="form-label">Rubrik <span class="required">*</span></label>
-						<select id="category" name="category" class="c7-input">
-							<option value="opini" selected={submittedData.category === "opini"}>Opini & Budaya</option>
-							<option value="tech" selected={submittedData.category === "tech"}>Gadget & Teknologi</option>
-							<option value="game" selected={submittedData.category === "game"}>Game & Esports</option>
-							<option value="musik" selected={submittedData.category === "musik"}>Musik & Pop</option>
-						</select>
-					</div>
-
-					<div class="form-group">
-						<label for="phone" class="form-label">Nomor WhatsApp / Kontak <span class="optional">(opsional)</span></label>
-						<input type="text" id="phone" name="phone" value={submittedData.phone} class="c7-input" placeholder="0812xxxxxxx" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="title" class="form-label">Judul Tulisan <span class="required">*</span></label>
-					<input type="text" id="title" name="title" required value={submittedData.title} class="c7-input" placeholder="Judul tulisan kamu" />
-				</div>
-
-				<div class="form-group">
-					<label for="content" class="form-label">Naskah Tulisan <span class="required">*</span></label>
-					<textarea id="content" name="content" required rows="12" class="c7-input c7-textarea" placeholder="Tuliskan naskah lengkapmu di sini...">{submittedData.content}</textarea>
-				</div>
-
-				<div class="form-actions">
-					<button type="submit" class="c7-submit-btn c7-hairline-box">
-						Kirim Naskah &rarr;
-					</button>
-				</div>
-			</form>
-		)}
-	</div>
-</Base>
-
-<style>
-	.c7-submission-container {
-		max-width: 680px;
-		margin: 0 auto;
-		padding: 2.5rem 1rem 5rem 1rem;
-	}
-
-	.c7-submission-header {
-		margin-bottom: 2rem;
-		text-align: center;
-	}
-
-	.c7-header-kicker {
-		font-family: var(--7c-sys-font-mono, monospace);
-		font-size: 0.75rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		color: var(--7c-sys-primary, #0f172a);
-		display: block;
-		margin-bottom: 0.5rem;
-	}
-
-	.c7-header-title {
-		font-size: 1.85rem;
-		font-weight: 600;
-		color: var(--7c-sys-on-surface, #0f172a);
-		letter-spacing: -0.02em;
-		margin: 0 0 0.75rem 0;
-		line-height: 1.25;
-	}
-
-	.c7-header-desc {
-		font-size: 0.98rem;
-		line-height: 1.6;
-		color: var(--7c-sys-on-surface-variant, #475569);
-		margin: 0;
-	}
-
-	.c7-submission-form {
-		padding: 1.75rem;
-		background: var(--7c-sys-surface-container, #ffffff);
-	}
-
-	.form-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1.25rem;
-		margin-bottom: 1.25rem;
-	}
-
-	@media (max-width: 600px) {
-		.form-grid {
-			grid-template-columns: 1fr;
-			gap: 1rem;
-		}
-	}
-
-	.form-group {
-		margin-bottom: 1.25rem;
-	}
-
-	.form-label {
-		display: block;
-		font-size: 0.8125rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.04em;
-		color: var(--7c-sys-on-surface, #1e293b);
-		margin-bottom: 0.45rem;
-	}
-
-	.required {
-		color: #dc2626;
-	}
-
-	.c7-input {
-		width: 100%;
-		padding: 0.75rem 0.9rem;
-		font-family: inherit;
-		font-size: 0.9375rem;
-		background: var(--7c-sys-surface-container-high);
-		border: none;
-		border-radius: 12px;
-		color: var(--7c-sys-on-surface);
-		box-shadow: var(--7c-sys-elevation-0);
-		transition: box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease;
-		box-sizing: border-box;
-	}
-
-	.c7-input:focus,
-	.c7-textarea:focus {
-		outline: none;
-		background: var(--7c-sys-surface-container-lowest);
-		box-shadow: 0 0 0 3px rgba(213, 0, 0, 0.12), var(--7c-sys-elevation-2);
-	}
-
-	:global([data-theme="dark"]) .c7-input:focus,
-	:global([data-theme="dark"]) .c7-textarea:focus {
-		background: var(--7c-sys-surface-container-low);
-		box-shadow: 0 0 0 3px rgba(255, 82, 82, 0.18), var(--7c-sys-elevation-2);
-	}
-
-	.c7-textarea {
-		line-height: 1.6;
-		resize: vertical;
-	}
-
-	.form-actions {
-		display: flex;
-		justify-content: flex-end;
-		margin-top: 1.5rem;
-	}
-
-	.c7-submit-btn {
-		padding: 0.85rem 1.85rem;
-		background: var(--7c-sys-primary, #0f172a);
-		color: var(--7c-sys-on-primary, #ffffff);
-		font-weight: 600;
-		font-size: 0.9375rem;
-		border-radius: 8px;
-		cursor: pointer;
-		transition: opacity 0.15s ease, box-shadow 0.15s ease;
-		border: none;
-	}
-
-	.c7-submit-btn:hover {
-		opacity: 0.92;
-	}
-
-	.c7-submit-btn:focus-visible {
-		outline: none;
-		box-shadow: var(--7c-sys-focus-ring);
-	}
-
-	.c7-alert {
-		padding: 1.25rem 1.5rem;
-		margin-bottom: 1.75rem;
-		border-radius: 8px;
-	}
-
-	.c7-alert.success {
-		background: rgba(34, 197, 94, 0.1);
-		border-left: 4px solid #16a34a;
-		color: var(--7c-sys-on-surface);
-	}
-
-	.c7-alert.error {
-		background: rgba(239, 68, 68, 0.1);
-		border-left: 4px solid #dc2626;
-		color: var(--7c-sys-on-surface);
-	}
-
-	.alert-title {
-		font-size: 1rem;
-		font-weight: 600;
-		margin: 0 0 0.35rem 0;
-	}
-</style>
+<C7SubmissionView
+	locale="id"
+	submissionStatus={submissionStatus}
+	feedbackMessage={feedbackMessage}
+	submittedData={submittedData}
+/>

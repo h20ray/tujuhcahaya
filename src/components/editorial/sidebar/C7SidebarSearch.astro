@@ -2,20 +2,21 @@
 /**
  * C7SidebarSearch — Quick search widget
  */
-import type { Locale } from "../../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation } from "../../../i18n/utils";
 
 interface Props {
 	locale?: Locale;
 }
 
-const { locale = "id" } = Astro.props;
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const { t } = use7cTranslation(locale);
 const isEn = locale === "en";
 ---
 
-<section class="c7-sidebar-card c7-sidebar-search-card" aria-label={isEn ? "Search" : "Pencarian"}>
-	<form method="get" action={isEn ? "/en/search" : "/search"} class="c7-search-form" role="search">
+<section class="c7-sidebar-card c7-sidebar-search-card" aria-label={t.sidebar.search_title}>
+	<form method="get" action={isEn ? "/en/posts" : "/posts"} class="c7-search-form" role="search">
 		<label for="c7-sidebar-search-input" class="sr-only">
-			{isEn ? "Search Tujuhcahaya" : "Cari di Tujuhcahaya"}
+			{t.sidebar.search_title}
 		</label>
 		<div class="c7-search-input-wrapper">
 			<svg class="c7-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
@@ -26,11 +27,11 @@ const isEn = locale === "en";
 				type="search"
 				id="c7-sidebar-search-input"
 				name="q"
-				placeholder={isEn ? "Search articles, topics..." : "Cari liputan, topik, rubrik..."}
+				placeholder={t.sidebar.search_placeholder}
 				class="c7-search-input"
 				autocomplete="off"
 			/>
-			<kbd class="c7-search-kbd" title="Tekan Ctrl+K atau Cmd+K untuk cari cepat">⌘K</kbd>
+			<kbd class="c7-search-kbd" title="Ctrl+K / Cmd+K">⌘K</kbd>
 		</div>
 	</form>
 </section>

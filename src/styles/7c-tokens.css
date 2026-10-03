@@ -30,6 +30,14 @@
   --7c-sys-tertiary-container: #eddcff;
   --7c-sys-on-tertiary-container: #280057;
 
+  /* MD3X Semantic Status Roles (Light Mode) */
+  --7c-sys-success: #166534;
+  --7c-sys-success-container: #f0fdf4;
+  --7c-sys-on-success-container: #14532d;
+  --7c-sys-error: #991b1b;
+  --7c-sys-error-container: #fef2f2;
+  --7c-sys-on-error-container: #7f1d1d;
+
   /* MD3X Surface Containers (5-Tier Tonal Elevation - Light Mode) */
   --7c-sys-surface-container-lowest: #ffffff;
   --7c-sys-surface-container-low: #f8fafc;
@@ -163,6 +171,14 @@
   --7c-sys-on-tertiary: #21005d;
   --7c-sys-tertiary-container: #4f13a0;
   --7c-sys-on-tertiary-container: #eddcff;
+
+  /* MD3X Semantic Status Roles (Dark OLED Mode) */
+  --7c-sys-success: #86efac;
+  --7c-sys-success-container: #052e16;
+  --7c-sys-on-success-container: #bbf7d0;
+  --7c-sys-error: #fca5a5;
+  --7c-sys-error-container: #450a0a;
+  --7c-sys-on-error-container: #fecaca;
 
   /* MD3X Surface Containers (5-Tier Tonal Elevation - Dark OLED Mode) */
   --7c-sys-surface-container-lowest: #050608; /* Deep OLED Obsidian */

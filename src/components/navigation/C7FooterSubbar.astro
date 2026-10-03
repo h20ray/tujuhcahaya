@@ -1,12 +1,12 @@
 ---
-import { type Locale } from "../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation } from "../../i18n/utils";
 
 interface Props {
 	locale?: Locale;
 }
 
-const { locale: _locale } = Astro.props;
-void _locale;
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const { t } = use7cTranslation(locale);
 const currentYear = new Date().getFullYear();
 ---
 
@@ -14,11 +14,11 @@ const currentYear = new Date().getFullYear();
 <div class="c7-uni-footer-subbar">
 	<div class="c7-uni-subbar-inner">
 		<div class="c7-uni-subbar-left">
-			<span class="c7-uni-copy">&copy; {currentYear} Tujuhcahaya. All Rights Reserved.</span>
+			<span class="c7-uni-copy">&copy; {currentYear} {t.footer.copyright}</span>
 		</div>
 		<div class="c7-uni-subbar-right">
 			<span class="c7-uni-credit">
-				Built using <a href="https://emdashcms.com/" target="_blank" rel="noopener noreferrer" class="c7-emdash-link">EmDash</a> with <span class="c7-heart" aria-hidden="true">&#x2764;&#xfe0f;</span>
+				{t.footer.built_with} <a href="https://emdashcms.com/" target="_blank" rel="noopener noreferrer" class="c7-emdash-link">EmDash</a> {t.footer.with_love} <span class="c7-heart" aria-hidden="true">&#x2764;&#xfe0f;</span>
 			</span>
 		</div>
 	</div>

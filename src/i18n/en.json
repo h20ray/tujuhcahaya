@@ -3,10 +3,41 @@
     "home": "Home",
     "archive": "Story Archive",
     "about": "About Us",
+    "news": "Stories",
     "search_placeholder": "Search 16,700+ stories...",
     "mode": "Mode",
     "mode_dark": "Switch to dark mode",
-    "mode_light": "Switch to light mode"
+    "mode_light": "Switch to light mode",
+    "mobile_menu_open": "Open navigation menu",
+    "mobile_menu_close": "Close navigation menu",
+    "search_command": "Search & Command Palette (Ctrl+K)",
+    "search_tooltip": "Search stories, destinations, radio request (Ctrl+K / ⌘K)"
+  },
+  "pillars": {
+    "berita": {
+      "title": "News",
+      "desc": "Investigative & hard news"
+    },
+    "tech": {
+      "title": "Tech",
+      "desc": "AI, gadgets & software"
+    },
+    "game": {
+      "title": "Game",
+      "desc": "Esports & gaming industry"
+    },
+    "musik": {
+      "title": "Music",
+      "desc": "Curated tracks & releases"
+    },
+    "budaya": {
+      "title": "Culture",
+      "desc": "Arts, heritage & essays"
+    },
+    "kesehatan": {
+      "title": "Health",
+      "desc": "Medical science & wellness"
+    }
   },
   "topbar": {
     "brand_tagline": "TUJUHCAHAYA MEDIA HOUSE",
@@ -23,7 +54,76 @@
     "latest": "Latest Stories",
     "empty_state": "No stories found in this section.",
     "back_to_home": "Back to Home",
-    "page_not_found": "Page Not Found"
+    "page_not_found": "Page Not Found",
+    "read_next": "Read Next: Related Stories",
+    "reading_progress": "Reading Progress",
+    "score_verdict": "Overall Score",
+    "score_pros": "Pros",
+    "score_cons": "Cons",
+    "table_spec": "Specification",
+    "table_value": "Details",
+    "mark_as_read": "Toggle read status",
+    "loading_next": "Loading next stories...",
+    "all_loaded": "All stories loaded.",
+    "next_page": "Next Page",
+    "share_label": "Share:",
+    "copy_label": "Copy",
+    "copied_label": "Copied!",
+    "topics_label": "Related Topics:",
+    "related_title": "Read Next: Related Stories",
+    "aria_breadcrumbs": "Page Breadcrumbs"
+  },
+  "palette": {
+    "placeholder": "Search stories, destinations, radio songs, or actions...",
+    "aria_label": "Command Palette",
+    "quick_search": "Quick Search",
+    "section_posts": "Stories & Articles",
+    "section_pages": "Sections & Pages",
+    "section_actions": "Commands & Actions",
+    "section_radio": "Radio Song Request",
+    "theme_toggle_title": "Toggle Dark / Light Theme",
+    "theme_toggle_sub": "Switch visual appearance between OLED dark & crisp light",
+    "theme_toggle_badge": "System Action",
+    "theme_toggle_toast": "Theme switched successfully.",
+    "radio_toggle_title": "Play / Pause 7C Radio Stream",
+    "radio_toggle_sub": "Toggle live 24/7 audio broadcast",
+    "radio_toggle_badge": "Radio Control",
+    "radio_toggle_toast": "Radio playback toggled.",
+    "lyrics_open_title": "Open Broadcast Lyrics Drawer",
+    "lyrics_open_sub": "View synchronized karaoke lyrics for current song",
+    "lyrics_open_badge": "Lyrics Drawer",
+    "lang_toggle_title": "Switch Language (ID / EN)",
+    "lang_toggle_sub": "Switch site edition between Indonesian and English",
+    "lang_toggle_badge": "Language Navigation",
+    "lang_toggle_toast": "Switching language edition..."
+  },
+  "sidebar": {
+    "topics_title": "Trending Topics",
+    "topics_related": "Article Topics",
+    "trending_title": "Top Stories",
+    "newsletter_title": "Editorial Dispatch",
+    "newsletter_desc": "Curated investigative journalism, tech breakdowns, and cultural dispatches straight to your inbox.",
+    "newsletter_placeholder": "name@email.com",
+    "newsletter_button": "Subscribe",
+    "newsletter_success": "Thank you! Confirmation email sent.",
+    "search_title": "Search Stories",
+    "search_placeholder": "Search topics..."
+  },
+  "author": {
+    "articles_written": "Stories Written",
+    "about_author": "About the Author",
+    "view_all_by": "View all stories by",
+    "browse_authors": "Other Journalists & Contributors",
+    "default_bio": "Journalist and contributor at Tujuhcahaya Media House.",
+    "page_title": "{name} — Journalist & Contributor at Tujuhcahaya",
+    "page_description": "Collection of articles, investigative dispatches, and reports by {name} at Tujuhcahaya.",
+    "kicker": "JOURNALIST PROFILE",
+    "published_stories": "{count} Published Stories",
+    "all_stories_by": "ALL STORIES BY {author}",
+    "previous": "Previous",
+    "next": "Next",
+    "page_of_total": "Page {page} of {totalPages} ({total} Total)",
+    "aria_profile": "Author Profile"
   },
   "footer": {
     "tagline": "Independent digital media house exploring investigative journalism, emerging tech, urban culture, music, and contemporary Southeast Asian society.",
@@ -33,7 +133,52 @@
     "editorial_team": "Editorial Board",
     "cyber_guidelines": "Cyber Media Guidelines",
     "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
     "contact": "Contact Desk",
-    "copyright": "PT Tujuh Cahaya Media House. All rights reserved."
+    "copyright": "Tujuhcahaya. All Rights Reserved.",
+    "built_with": "Built using",
+    "with_love": "with",
+    "social_channels": "Social Channels",
+    "footer_nav": "Footer Navigation"
+  },
+  "submission": {
+    "title": "Pitch a Story",
+    "tagline": "Global Editorial Submissions",
+    "desc": "Tujuhcahaya accepts pitches and essays on tech culture, video game critiques, and socio-digital observations.",
+    "name_label": "Full Name / Byline",
+    "name_placeholder": "Your full name",
+    "email_label": "Email Address",
+    "phone_label": "WhatsApp / Contact Phone (Optional)",
+    "category_label": "Preferred Section",
+    "categories": [
+      { "value": "tech", "label": "Tech Culture & Future" },
+      { "value": "game", "label": "Gaming & Esports" },
+      { "value": "culture", "label": "Arts & Society" },
+      { "value": "music", "label": "Music & Releases" }
+    ],
+    "title_label": "Headline / Story Title",
+    "title_placeholder": "Headline of your story or pitch",
+    "content_label": "Manuscript / Pitch Content",
+    "content_placeholder": "Write your full manuscript, outline, or pitch here...",
+    "submit_btn": "Submit to Editorial Desk",
+    "submitting": "Submitting...",
+    "success_title": "Submission Successfully Received!",
+    "success_msg": "Thank you for contributing. Our editorial desk will review your submission within 3-5 business days.",
+    "send_another": "Submit Another Pitch",
+    "error_required": "Please fill in all required fields (Name, Email, Title, and Manuscript/Pitch)."
+  },
+  "errors": {
+    "title_404": "Page Not Found",
+    "desc_404": "Sorry, the story or page you are looking for may have been moved, removed, or the URL address was typed incorrectly.",
+    "back_to_home": "Back to Home",
+    "explore_archive": "Browse Story Archive"
+  },
+  "a11y": {
+    "skip_to_content": "Skip to main content",
+    "search_articles": "Search articles or stories",
+    "toggle_menu": "Toggle navigation menu",
+    "close_menu": "Close menu",
+    "site_footer": "Site Footer",
+    "breadcrumbs": "Page Breadcrumbs"
   }
 }
