@@ -227,6 +227,8 @@ export interface A11yDict {
 	close_menu: string;
 	site_footer: string;
 	breadcrumbs: string;
+	open_live_chat: string;
+	live_chat_title: string;
 }
 
 export interface CommonDict {

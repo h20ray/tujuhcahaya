@@ -132,7 +132,7 @@
       { "title": "Rubrik: Music & Soundwaves", "subtitle": "Curated records, scene dispatches, reviews", "badge": "Music" },
       { "title": "Rubrik: Culture & Heritage", "subtitle": "Heritage, urban culture, essays, and philosophy", "badge": "Culture" },
       { "title": "Rubrik: Health & Wellness", "subtitle": "Medical science, mental health, and wellness", "badge": "Health" },
-      { "title": "About PT Tujuh Cahaya Media House", "subtitle": "Mission, editorial independence, and corporate structure", "badge": "Page" },
+      { "title": "About Tujuhcahaya", "subtitle": "Mission, editorial independence, and newsroom guidelines", "badge": "Page" },
       { "title": "Editorial Masthead & Journalists", "subtitle": "Authentic editorial board and contributing writers", "badge": "Masthead" }
     ]
   },
@@ -231,7 +231,9 @@
     "toggle_menu": "Toggle navigation menu",
     "close_menu": "Close menu",
     "site_footer": "Site Footer",
-    "breadcrumbs": "Page Breadcrumbs"
+    "breadcrumbs": "Page Breadcrumbs",
+    "open_live_chat": "Open live chat",
+    "live_chat_title": "Live Chat"
   },
   "common": {
     "close": "Close",

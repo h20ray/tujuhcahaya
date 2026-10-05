@@ -9,6 +9,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { c7EditorialGuard } from "./src/plugins/c7-editorial-guard.js";
 import { c7Notifications } from "./src/plugins/c7-notifications.js";
 import { c7RadioPlugin } from "@tujuhcahaya/radio-player";
+import { c7LiveChatPlugin } from "@tujuhcahaya/live-chat";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -59,7 +60,7 @@ export default defineConfig({
 			},
 		},
 		ssr: {
-			noExternal: ["@tujuhcahaya/radio-player", "lucide-react"],
+			noExternal: ["@tujuhcahaya/radio-player", "@tujuhcahaya/live-chat", "lucide-react"],
 		},
 	},
 	integrations: [
@@ -67,7 +68,7 @@ export default defineConfig({
 		emdash({
 			database: sqlite({ url: "file:./data.db" }),
 			storage: storageDriver,
-			plugins: [c7EditorialGuard(), c7Notifications(), c7RadioPlugin()],
+			plugins: [c7EditorialGuard(), c7Notifications(), c7RadioPlugin(), c7LiveChatPlugin()],
 		}),
 	],
 	devToolbar: { enabled: false },

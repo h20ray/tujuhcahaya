@@ -231,7 +231,9 @@
     "toggle_menu": "Buka menu navigasi",
     "close_menu": "Tutup menu",
     "site_footer": "Footer Situs",
-    "breadcrumbs": "Navigasi Rekam Jejak"
+    "breadcrumbs": "Navigasi Rekam Jejak",
+    "open_live_chat": "Buka obrolan siaran langsung",
+    "live_chat_title": "Obrolan Siaran"
   },
   "common": {
     "close": "Tutup",
