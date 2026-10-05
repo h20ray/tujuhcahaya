@@ -7,7 +7,6 @@ import C7CommandPalette from "../components/navigation/C7CommandPalette.astro";
 import C7Footer from "../components/navigation/C7Footer.astro";
 import { resolveStarterSiteIdentity } from "../utils/site-identity";
 import { C7RadioPlayer } from "@tujuhcahaya/radio-player/client";
-import C7LiveChat from "@tujuhcahaya/live-chat/astro";
 import "@tujuhcahaya/live-chat/styles.css";
 import C7DispatchDrawer from "../components/editorial/C7DispatchDrawer.astro";
 import { ClientRouter } from "astro:transitions";
@@ -202,30 +201,6 @@ const pageCtx = createPublicPageContext({
 			// Run on initial page load and on every View Transitions page swap
 			document.addEventListener("astro:page-load", setupInteractions);
 
-			// 7C Live Chat Drawer Toggle (persistent panel across navigation)
-			function setupChatToggle() {
-				const toggle = document.getElementById("c7-chat-toggle");
-				const panel = document.getElementById("c7-chat-panel");
-				if (!toggle || !panel || toggle.dataset.c7ChatBound === "true") return;
-				toggle.dataset.c7ChatBound = "true";
-
-				const setOpen = (open) => {
-					panel.hidden = !open;
-					toggle.setAttribute("aria-expanded", open ? "true" : "false");
-				};
-
-				toggle.addEventListener("click", () => setOpen(panel.hidden));
-
-				window.addEventListener("keydown", (e) => {
-					if (e.key === "Escape" && !panel.hidden) {
-						setOpen(false);
-						toggle.focus();
-					}
-				});
-			}
-
-			document.addEventListener("astro:page-load", setupChatToggle);
-
 			// Reset body scroll position on View Transitions page swap
 			document.addEventListener("astro:after-swap", () => {
 				document.body.scrollTop = 0;
@@ -235,36 +210,8 @@ const pageCtx = createPublicPageContext({
 		<!-- 7C Bespoke Command Palette (Fullscreen Keyboard-Driven Search & Actions) -->
 		<C7CommandPalette locale={locale} />
 
-		<!-- 7C Radio Player Floating Dock (Persistent across page navigation) -->
+		<!-- 7C Radio Player Floating Dock (Persistent across page navigation, contains integrated Live Chat) -->
 		<C7RadioPlayer client:only="react" transition:persist="c7-radio-player" />
-
-		<!-- 7C Live Chat Drawer (Persistent across page navigation) -->
-		<button
-			type="button"
-			class="c7-chat-toggle"
-			id="c7-chat-toggle"
-			aria-controls="c7-chat-panel"
-			aria-expanded="false"
-			aria-label={t.a11y.open_live_chat}
-			transition:persist="c7-chat-toggle"
-		>
-			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-				<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-			</svg>
-			<span>{t.a11y.live_chat_title}</span>
-		</button>
-		<div
-			class="c7-chat-panel"
-			id="c7-chat-panel"
-			hidden
-			transition:persist="c7-chat-panel"
-		>
-			<C7LiveChat
-				roomId="utama"
-				title={t.a11y.live_chat_title}
-				stationName={siteTitle}
-			/>
-		</div>
 
 		<!-- 7C Dispatch Article Preview Slide-over Drawer -->
 		<C7DispatchDrawer locale={locale} />
@@ -275,58 +222,3 @@ const pageCtx = createPublicPageContext({
 		<EmDashBodyEnd page={pageCtx} />
 	</body>
 </html>
-
-<style>
-	/* 7C Live Chat Drawer (scoped to Base layout) */
-	.c7-chat-toggle {
-		position: fixed;
-		right: 1rem;
-		bottom: 8.5rem;
-		z-index: 45;
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		min-height: 44px;
-		padding: 0.5rem 0.9rem;
-		border: 1px solid var(--7c-sys-outline-variant, rgba(0, 0, 0, 0.12));
-		border-radius: 9999px;
-		background-color: var(--7c-sys-surface-container-high, #f8fafc);
-		color: var(--7c-sys-on-surface, #1e293b);
-		font-size: 0.8125rem;
-		font-weight: 700;
-		cursor: pointer;
-		box-shadow: 0 4px 16px -6px rgba(0, 0, 0, 0.18);
-	}
-
-	.c7-chat-toggle:focus-visible {
-		outline: 2px solid var(--7c-sys-primary);
-		outline-offset: 3px;
-	}
-
-	.c7-chat-panel {
-		position: fixed;
-		right: 1rem;
-		bottom: 12rem;
-		z-index: 46;
-		width: min(380px, calc(100vw - 2rem));
-		height: min(560px, 70vh);
-		overflow: hidden;
-		border-radius: 20px;
-	}
-
-	@media (max-width: 640px) {
-		.c7-chat-panel {
-			right: 0;
-			bottom: 0;
-			width: 100vw;
-			height: 75vh;
-			border-radius: 20px 20px 0 0;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.c7-chat-toggle {
-			transition: none;
-		}
-	}
-</style>

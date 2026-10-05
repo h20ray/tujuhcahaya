@@ -53,6 +53,9 @@ export default defineConfig({
 		plugins: [tailwindcss()],
 		resolve: {
 			dedupe: ["react", "react-dom", "lucide-react"],
+			alias: {
+				"@tujuhcahaya/live-chat/react": path.resolve(__dirname, "../plugins/tujuhcahaya-live-chat/dist/client/components/C7LiveChatPanel.js"),
+			},
 		},
 		server: {
 			fs: {
