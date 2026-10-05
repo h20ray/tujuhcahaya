@@ -6,6 +6,7 @@
 import C7IsometricStackLayout from "./isometric/C7IsometricStackLayout.astro";
 import C7IsometricGrid from "./isometric/C7IsometricGrid.astro";
 import C7IsometricCard from "./isometric/C7IsometricCard.astro";
+import { use7cTranslation } from "../../i18n/utils";
 
 interface Props {
 	lang?: "id" | "en";
@@ -13,117 +14,104 @@ interface Props {
 
 const { lang = Astro.url.pathname.startsWith("/en") ? "en" : "id" } = Astro.props;
 const isEn = lang === "en";
+const { t } = use7cTranslation(lang === "en" ? "en" : "id");
 
 const rubriks = [
 	{
 		key: "lab",
 		num: "01",
-		generic: isEn ? "Section 01 • Studio & Hub" : "Rubrik 01 • Studio & Hub",
-		name: "Tujuhcahaya Media Lab",
-		shortLeft: "LAB",
-		shortRight: "CREATIVE STUDIO & LAB",
-		desc: isEn
-			? "Independent media lab, creative content research hub, and digital architecture foundation of Tujuhcahaya."
-			: "Pusat eksplorasi media independen, riset konten kreatif, dan fondasi arsitektur digital Tujuhcahaya.",
+		generic: t.isometric.sections[0].generic,
+		name: t.isometric.sections[0].name,
+		shortLeft: t.isometric.sections[0].shortLeft,
+		shortRight: t.isometric.sections[0].shortRight,
+		desc: t.isometric.sections[0].desc,
 		accent: "var(--7c-pillar-lab, #94a3b8)",
 		stroke: "#475569",
-		count: isEn ? "Studio & Hub" : "Studio & Hub",
+		count: t.isometric.sections[0].count,
 		url: isEn ? "/en/about-us" : "/about-us",
 		y: 276,
 	},
 	{
 		key: "kesehatan",
 		num: "02",
-		generic: isEn ? "Section 02 • Lifestyle & Health" : "Rubrik 02 • Gaya Hidup",
-		name: isEn ? "Health & Wellness" : "Kesehatan & Kebugaran",
-		shortLeft: isEn ? "HEALTH" : "SEHAT",
-		shortRight: isEn ? "LIFESTYLE & SCIENCE" : "GAYA HIDUP & SAINS",
-		desc: isEn
-			? "Evidence-based health insights, physical and mental well-being, and modern living wellness without preachiness."
-			: "Informasi medis terpercaya, wawasan kebugaran fisik dan mental, serta tren hidup sehat tanpa menggurui.",
+		generic: t.isometric.sections[1].generic,
+		name: t.isometric.sections[1].name,
+		shortLeft: t.isometric.sections[1].shortLeft,
+		shortRight: t.isometric.sections[1].shortRight,
+		desc: t.isometric.sections[1].desc,
 		accent: "var(--7c-pillar-kesehatan, #2dd4bf)",
 		stroke: "#0d9488",
-		count: isEn ? "600+ Stories" : "600+ Liputan",
+		count: t.isometric.sections[1].count,
 		url: isEn ? "/en/category/kesehatan" : "/category/kesehatan",
 		y: 230,
 	},
 	{
 		key: "budaya",
 		num: "03",
-		generic: isEn ? "Section 03 • Arts & Pop Culture" : "Rubrik 03 • Seni & Kultur",
-		name: isEn ? "Pop Culture & Urban Arts" : "Seni & Budaya Pop",
-		shortLeft: isEn ? "CULTURE" : "BUDAYA",
-		shortRight: isEn ? "CULTURE & ESSAYS" : "KULTUR & NARASI",
-		desc: isEn
-			? "Urban cultural phenomena, contemporary art, local heritage, and evolving social dynamics of modern society."
-			: "Eksplorasi fenomena urban, warisan budaya lokal, seni visual, dan dinamika sosial masyarakat modern.",
+		generic: t.isometric.sections[2].generic,
+		name: t.isometric.sections[2].name,
+		shortLeft: t.isometric.sections[2].shortLeft,
+		shortRight: t.isometric.sections[2].shortRight,
+		desc: t.isometric.sections[2].desc,
 		accent: "var(--7c-pillar-budaya, #fbbf24)",
 		stroke: "#d97706",
-		count: isEn ? "200+ Stories" : "200+ Liputan",
+		count: t.isometric.sections[2].count,
 		url: isEn ? "/en/category/budaya" : "/category/budaya",
 		y: 184,
 	},
 	{
 		key: "musik",
 		num: "04",
-		generic: isEn ? "Section 04 • Music & Sound" : "Rubrik 04 • Audio & Hiburan",
-		name: isEn ? "Music & Soundscapes" : "Musik & Nada",
-		shortLeft: isEn ? "MUSIC" : "MUSIK",
-		shortRight: isEn ? "AUDIO & ENTERTAINMENT" : "AUDIO & HIBURAN",
-		desc: isEn
-			? "Curated music releases, critical album reviews, independent and mainstream artist profiles, and audio culture."
-			: "Kurasi rilisan musik terkini, ulasan album, profil musisi independen dan arus utama, serta tren audio global.",
+		generic: t.isometric.sections[3].generic,
+		name: t.isometric.sections[3].name,
+		shortLeft: t.isometric.sections[3].shortLeft,
+		shortRight: t.isometric.sections[3].shortRight,
+		desc: t.isometric.sections[3].desc,
 		accent: "var(--7c-pillar-musik, #a78bfa)",
 		stroke: "#7c3aed",
-		count: isEn ? "3.5k+ Stories" : "3.5k+ Liputan",
+		count: t.isometric.sections[3].count,
 		url: isEn ? "/en/category/musik" : "/category/musik",
 		y: 138,
 	},
 	{
 		key: "tech",
 		num: "05",
-		generic: isEn ? "Section 05 • Future & Innovation" : "Rubrik 05 • Masa Depan",
-		name: isEn ? "Technology & Innovation" : "Teknologi & Inovasi",
-		shortLeft: "TECH",
-		shortRight: isEn ? "INNOVATION & HARDWARE" : "INOVASI & GADGET",
-		desc: isEn
-			? "Artificial intelligence, frontier hardware breakthroughs, open-source software, and global digital paradigms."
-			: "Kecerdasan buatan, perangkat keras mutakhir, terobosan software, dan perkembangan ekosistem digital dunia.",
+		generic: t.isometric.sections[4].generic,
+		name: t.isometric.sections[4].name,
+		shortLeft: t.isometric.sections[4].shortLeft,
+		shortRight: t.isometric.sections[4].shortRight,
+		desc: t.isometric.sections[4].desc,
 		accent: "var(--7c-pillar-tech, #38bdf8)",
 		stroke: "#0369a1",
-		count: isEn ? "3.5k+ Stories" : "3.5k+ Liputan",
+		count: t.isometric.sections[4].count,
 		url: isEn ? "/en/category/tech" : "/category/tech",
 		y: 92,
 	},
 	{
 		key: "game",
 		num: "06",
-		generic: isEn ? "Section 06 • Interactive & Play" : "Rubrik 06 • Interaktif",
-		name: isEn ? "Video Games & Esports" : "Video Game & Esports",
-		shortLeft: "GAME",
-		shortRight: isEn ? "ESPORTS & INDUSTRY" : "ESPORTS & INDUSTRI",
-		desc: isEn
-			? "In-depth video game reviews, interactive entertainment industry analysis, esports strategy, and gaming culture."
-			: "Review game konsol dan PC, perkembangan industri game global, strategi esports, dan komunitas gamer.",
+		generic: t.isometric.sections[5].generic,
+		name: t.isometric.sections[5].name,
+		shortLeft: t.isometric.sections[5].shortLeft,
+		shortRight: t.isometric.sections[5].shortRight,
+		desc: t.isometric.sections[5].desc,
 		accent: "var(--7c-pillar-game, #34d399)",
 		stroke: "#059669",
-		count: isEn ? "4k+ Stories" : "4k+ Liputan",
+		count: t.isometric.sections[5].count,
 		url: isEn ? "/en/category/game" : "/category/game",
 		y: 46,
 	},
 	{
 		key: "berita",
 		num: "07",
-		generic: isEn ? "Section 07 • Journalism" : "Rubrik 07 • Jurnalisme",
-		name: isEn ? "Newsroom & Dispatches" : "Berita & Newsroom",
-		shortLeft: isEn ? "NEWS" : "BERITA",
-		shortRight: isEn ? "CRITICAL JOURNALISM" : "JURNALISME AKTUAL",
-		desc: isEn
-			? "Breaking reports, essential public policy analysis, social issues, and rigorous investigative journalism."
-			: "Laporan berita terhangat, isu kebijakan esensial, peristiwa sosial, dan investigasi mendalam berintegritas.",
+		generic: t.isometric.sections[6].generic,
+		name: t.isometric.sections[6].name,
+		shortLeft: t.isometric.sections[6].shortLeft,
+		shortRight: t.isometric.sections[6].shortRight,
+		desc: t.isometric.sections[6].desc,
 		accent: "var(--7c-pillar-berita, #ff5252)",
 		stroke: "#be123c",
-		count: isEn ? "4k+ Stories" : "4k+ Liputan",
+		count: t.isometric.sections[6].count,
 		url: isEn ? "/en/category/berita" : "/category/berita",
 		y: 0,
 	},
@@ -142,7 +130,8 @@ const serializedRubrikData = Object.fromEntries(
 	<C7IsometricGrid
 		rubriks={rubriks}
 		serializedRubrikData={serializedRubrikData}
-		isEn={isEn}
+		ariaLabel={t.isometric.aria_label}
+		layerLabel={t.isometric.layer}
 	/>
 	<C7IsometricCard
 		name={defaultRubrik.name}

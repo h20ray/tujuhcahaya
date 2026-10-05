@@ -9,7 +9,7 @@ import C7SidebarTrending from "./sidebar/C7SidebarTrending.astro";
 import C7SidebarPillars from "./sidebar/C7SidebarPillars.astro";
 import C7SidebarNewsletter from "./sidebar/C7SidebarNewsletter.astro";
 import C7SidebarTopics from "./sidebar/C7SidebarTopics.astro";
-import type { Locale } from "../../i18n/utils";
+import { type Locale, use7cTranslation } from "../../i18n/utils";
 
 interface Props {
 	currentSlug?: string;
@@ -29,10 +29,10 @@ const {
 	isStaticPage = false,
 } = Astro.props;
 
-const isEn = locale === "en";
+const { t } = use7cTranslation(locale);
 ---
 
-<aside class={`c7-sidebar ${className}`} aria-label={isEn ? "Article Sidebar" : "Bilah Sisi Artikel"}>
+<aside class={`c7-sidebar ${className}`} aria-label={t.sidebar.aria_label}>
 	{isStaticPage && <C7SidebarStaticCard currentSlug={currentSlug} locale={locale} />}
 
 	<C7SidebarSearch locale={locale} />

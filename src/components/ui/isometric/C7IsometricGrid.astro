@@ -17,10 +17,11 @@ interface Rubrik {
 export interface Props {
 	rubriks: Rubrik[];
 	serializedRubrikData: Record<string, { n: string; d: string; url: string; accent: string }>;
-	isEn: boolean;
+	ariaLabel: string;
+	layerLabel: string;
 }
 
-const { rubriks, serializedRubrikData, isEn } = Astro.props;
+const { rubriks, serializedRubrikData, ariaLabel, layerLabel } = Astro.props;
 ---
 
 <div
@@ -33,7 +34,7 @@ const { rubriks, serializedRubrikData, isEn } = Astro.props;
 		class="cake-svg"
 		shape-rendering="geometricPrecision"
 		text-rendering="geometricPrecision"
-		aria-label={isEn ? "Tujuhcahaya 7-Section Layered Architecture — click any layer to inspect" : "Tujuh Lapis Cahaya Tujuhcahaya Media — klik lapisan mana saja untuk memisahkan"}
+		aria-label={ariaLabel}
 	>
 		<defs>
 			<!-- 7C Reusable Dimetric 2:1 Slab Geometry Template -->
@@ -58,7 +59,7 @@ const { rubriks, serializedRubrikData, isEn } = Astro.props;
 						role="button"
 						tabindex="0"
 						aria-pressed={isDefault ? "true" : "false"}
-						aria-label={`${p.name} (${isEn ? "Layer" : "Lapis"} ${p.num})`}
+						aria-label={`${p.name} (${layerLabel} ${p.num})`}
 						style={`transform: translate(0px, ${p.y}px); --layer-accent: ${p.accent}; --layer-stroke: ${p.stroke};`}
 					>
 						<g class="drop" style={`animation-delay: ${0.05 + index * 0.08}s`}>

@@ -1,6 +1,6 @@
 ---
 import type { C7AuthorProfile } from "../../lib/7c-cms";
-import { type Locale, DEFAULT_LOCALE, use7cTranslation } from "../../i18n/utils";
+import { type Locale, DEFAULT_LOCALE, use7cTranslation, format7cText } from "../../i18n/utils";
 
 interface Props {
 	author: C7AuthorProfile;
@@ -28,7 +28,7 @@ const initials = author.name
 
 <aside
 	class={`c7-author-card ${author.isEditorialFallback ? "c7-author-card--editorial" : ""} ${className}`}
-	aria-label={isEn ? `Author Profile: ${author.name}` : `Profil Penulis: ${author.name}`}
+	aria-label={format7cText(t.author.aria_profile_named, { name: author.name })}
 >
 	<div class="c7-author-avatar-wrap">
 		{author.avatarUrl ? (
@@ -56,8 +56,8 @@ const initials = author.name
 			<div class="c7-author-identity">
 				<span class="c7-author-kicker">
 					{author.isEditorialFallback
-						? (isEn ? "OFFICIAL EDITORIAL" : "REDAKSI RESMI")
-						: (isEn ? "WRITTEN BY" : "DITULIS OLEH")}
+						? t.author.kicker_editorial
+						: t.author.kicker_written_by}
 				</span>
 				<h3 class="c7-author-name">
 					<a href={author.archiveUrl}>{author.name}</a>

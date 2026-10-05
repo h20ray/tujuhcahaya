@@ -5,6 +5,7 @@
  */
 
 import type { C7PreviewTrack } from "./C7CommandPaletteTypes";
+import { use7cTranslation } from "../../i18n/utils";
 
 const TRACK_PREVIEW_ENDPOINT = "/_emdash/api/plugins/tujuhcahaya-radio/track-preview";
 const PREVIEW_TIMEOUT = 4500;
@@ -20,6 +21,10 @@ export class C7CommandPalettePreviewController {
 		this.#host = host;
 		this.#getLocale = getLocale;
 		this.#showToast = showToast;
+	}
+
+	#t() {
+		return use7cTranslation(this.#getLocale() === "en" ? "en" : "id").t;
 	}
 
 	async toggle(track: C7PreviewTrack, btn: HTMLButtonElement): Promise<void> {
@@ -64,10 +69,7 @@ export class C7CommandPalettePreviewController {
 
 			if (!previewUrl) {
 				this.#syncButtonsUI(key, false, false);
-				const isEn = this.#getLocale() === "en";
-				this.#showToast(
-					isEn ? "Preview not available on Apple Music" : "Pratinjau tidak tersedia di Apple Music"
-				);
+				this.#showToast(this.#t().palette.preview_unavailable);
 				return;
 			}
 
@@ -80,8 +82,7 @@ export class C7CommandPalettePreviewController {
 			this.#localPreviewAudio.onended = () => this.stop();
 			this.#localPreviewAudio.onerror = () => {
 				this.stop();
-				const isEn = this.#getLocale() === "en";
-				this.#showToast(isEn ? "Failed to play audio preview" : "Gagal memutar pratinjau audio");
+				this.#showToast(this.#t().palette.preview_failed);
 			};
 
 			window.dispatchEvent(new CustomEvent("c7-radio-duck", { detail: { source: "cp-preview" } }));

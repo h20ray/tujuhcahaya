@@ -10,6 +10,8 @@ import type {
 	RequestableSong,
 	SearchResultItem,
 } from "./C7CommandPaletteTypes";
+import type { PaletteDict } from "../../i18n/types";
+import { format7cText } from "../../i18n/utils";
 
 function escapeHtml(str: string): string {
 	return str
@@ -66,7 +68,7 @@ function historyFallbackIcon(): string {
 	</span>`;
 }
 
-function previewButton(title: string, artist: string, artwork: string, isEn: boolean): string {
+function previewButton(title: string, artist: string, artwork: string, t: PaletteDict): string {
 	return `<button
 		type="button"
 		class="c7-cp-preview-play-btn"
@@ -74,8 +76,8 @@ function previewButton(title: string, artist: string, artwork: string, isEn: boo
 		data-title="${encodeURIComponent(title)}"
 		data-artist="${encodeURIComponent(artist)}"
 		data-artwork="${encodeURIComponent(artwork)}"
-		aria-label="${isEn ? "Preview on Apple Music" : "Putar pratinjau Apple Music"}"
-		title="${isEn ? "30s iTunes / Apple Music Preview" : "Pratinjau lagu (iTunes / Apple Music)"}"
+		aria-label="${t.preview_apple_music}"
+		title="${t.preview_30s}"
 	>
 		<svg class="c7-cp-icon-play" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 			<polygon points="6 3 20 12 6 21 6 3"></polygon>
@@ -91,7 +93,7 @@ function previewButton(title: string, artist: string, artwork: string, isEn: boo
 	</button>`;
 }
 
-export function renderQuickActions(actions: C7CommandAction[], isEn: boolean): string {
+export function renderQuickActions(actions: C7CommandAction[], t: PaletteDict): string {
 	if (actions.length === 0) return "";
 
 	const itemsHtml = actions
@@ -110,30 +112,30 @@ export function renderQuickActions(actions: C7CommandAction[], isEn: boolean): s
 		.join("");
 
 	return `<div class="c7-cp-section">
-		<div class="c7-cp-section-title">${isEn ? "Quick Actions & Navigation" : "Aksi Cepat & Navigasi Utama"}</div>
+		<div class="c7-cp-section-title">${t.section_actions}</div>
 		${itemsHtml}
 	</div>`;
 }
 
-export function renderEmptyState(isEn: boolean, query?: string): string {
+export function renderEmptyState(t: PaletteDict, query?: string): string {
 	const q = query ? escapeHtml(query) : "";
 	return `<div class="c7-cp-empty">
-		<span>${isEn ? `No results found for "${q}"` : `Tidak ada hasil untuk "${q}"`}</span>
-		<p>${isEn ? "Try searching for another topic, artist, or system command" : "Coba kata kunci topik berita, musisi radio, atau perintah lain"}</p>
+		<span>${format7cText(t.no_results, { query: q })}</span>
+		<p>${t.no_results_hint}</p>
 	</div>`;
 }
 
-export function renderInitialPrompt(isEn: boolean): string {
+export function renderInitialPrompt(t: PaletteDict): string {
 	return `<div class="c7-cp-empty">
-		<span>${isEn ? "Type to search content or songs..." : "Ketik kata kunci untuk mencari konten atau lagu..."}</span>
+		<span>${t.initial_prompt}</span>
 	</div>`;
 }
 
-export function renderLoading(isEn: boolean): string {
-	return `<div class="c7-cp-loading"><span>${isEn ? "Searching..." : "Mencari..."}</span></div>`;
+export function renderLoading(t: PaletteDict): string {
+	return `<div class="c7-cp-loading"><span>${t.searching}</span></div>`;
 }
 
-export function renderPostsSection(posts: SearchResultItem[], prefix: string, isEn: boolean): string {
+export function renderPostsSection(posts: SearchResultItem[], prefix: string, t: PaletteDict): string {
 	if (posts.length === 0) return "";
 	const itemsHtml = posts
 		.map((item) => {
@@ -144,18 +146,18 @@ export function renderPostsSection(posts: SearchResultItem[], prefix: string, is
 					<span class="c7-cp-item-title">${escapeHtml(item.title)}</span>
 					<span class="c7-cp-item-subtitle">${escapeHtml(item.snippet || url)}</span>
 				</div>
-				<span class="c7-cp-badge">${isEn ? "Story" : "Liputan"}</span>
+				<span class="c7-cp-badge">${t.badge_story}</span>
 			</div>`;
 		})
 		.join("");
 
 	return `<div class="c7-cp-section">
-		<div class="c7-cp-section-title">${isEn ? "Stories & News" : "Liputan & Berita"}</div>
+		<div class="c7-cp-section-title">${t.results_stories}</div>
 		${itemsHtml}
 	</div>`;
 }
 
-export function renderPagesSection(pages: SearchResultItem[], prefix: string, isEn: boolean): string {
+export function renderPagesSection(pages: SearchResultItem[], prefix: string, t: PaletteDict): string {
 	if (pages.length === 0) return "";
 	const itemsHtml = pages
 		.map((item) => {
@@ -166,18 +168,18 @@ export function renderPagesSection(pages: SearchResultItem[], prefix: string, is
 					<span class="c7-cp-item-title">${escapeHtml(item.title)}</span>
 					<span class="c7-cp-item-subtitle">${escapeHtml(item.snippet || url)}</span>
 				</div>
-				<span class="c7-cp-badge">${isEn ? "Page" : "Halaman"}</span>
+				<span class="c7-cp-badge">${t.badge_page}</span>
 			</div>`;
 		})
 		.join("");
 
 	return `<div class="c7-cp-section">
-		<div class="c7-cp-section-title">${isEn ? "Pages & Information" : "Halaman & Informasi"}</div>
+		<div class="c7-cp-section-title">${t.results_pages}</div>
 		${itemsHtml}
 	</div>`;
 }
 
-export function renderSongRequestsSection(songs: RequestableSong[], isEn: boolean): string {
+export function renderSongRequestsSection(songs: RequestableSong[], t: PaletteDict): string {
 	if (songs.length === 0) return "";
 	const itemsHtml = songs
 		.map((song) => {
@@ -192,20 +194,20 @@ export function renderSongRequestsSection(songs: RequestableSong[], isEn: boolea
 					<span class="c7-cp-item-subtitle">${escapeHtml(song.artist)}${song.album ? ` • ${escapeHtml(song.album)}` : ""}</span>
 				</div>
 				<div class="c7-cp-item-actions">
-					${previewButton(song.title, song.artist, song.artworkUrl || "", isEn)}
-					<span class="c7-cp-badge request-btn">${isEn ? "Request" : "Request Lagu"}</span>
+					${previewButton(song.title, song.artist, song.artworkUrl || "", t)}
+					<span class="c7-cp-badge request-btn">${t.request_badge}</span>
 				</div>
 			</div>`;
 		})
 		.join("");
 
 	return `<div class="c7-cp-section">
-		<div class="c7-cp-section-title">${isEn ? "Radio Song Request Catalog" : "Katalog Permintaan Lagu Radio"}</div>
+		<div class="c7-cp-section-title">${t.results_radio}</div>
 		${itemsHtml}
 	</div>`;
 }
 
-export function renderHistorySection(tracks: HistorySong[], isEn: boolean): string {
+export function renderHistorySection(tracks: HistorySong[], t: PaletteDict): string {
 	if (tracks.length === 0) return "";
 	const itemsHtml = tracks
 		.map((track) => {
@@ -216,7 +218,7 @@ export function renderHistorySection(tracks: HistorySong[], isEn: boolean): stri
 			const playedMinAgo = track.playedAt
 				? Math.max(1, Math.round((Date.now() / 1000 - track.playedAt) / 60))
 				: 0;
-			const timeText = playedMinAgo > 0 ? (isEn ? `${playedMinAgo}m ago` : `${playedMinAgo} mnt lalu`) : "";
+			const timeText = playedMinAgo > 0 ? format7cText(t.ago_minutes, { minutes: playedMinAgo }) : "";
 
 			return `<div class="c7-cp-item" data-cp-item data-history-title="${encodeURIComponent(track.title)}" data-history-artist="${encodeURIComponent(track.artist)}" tabindex="-1" role="option">
 				${artwork}
@@ -225,20 +227,20 @@ export function renderHistorySection(tracks: HistorySong[], isEn: boolean): stri
 					<span class="c7-cp-item-subtitle">${escapeHtml(track.artist)}${timeText ? ` • ${timeText}` : ""}</span>
 				</div>
 				<div class="c7-cp-item-actions">
-					${previewButton(track.title, track.artist, track.artworkUrl || "", isEn)}
-					<span class="c7-cp-badge">${isEn ? "Radio Track" : "Siaran"}</span>
+					${previewButton(track.title, track.artist, track.artworkUrl || "", t)}
+					<span class="c7-cp-badge">${t.radio_track}</span>
 				</div>
 			</div>`;
 		})
 		.join("");
 
 	return `<div class="c7-cp-section">
-		<div class="c7-cp-section-title">${isEn ? "Recently Played on Radio" : "Baru Saja Mengudara di Radio"}</div>
+		<div class="c7-cp-section-title">${t.recently_played}</div>
 		${itemsHtml}
 	</div>`;
 }
 
-export function renderActionsSection(actions: C7CommandAction[], isEn: boolean): string {
+export function renderActionsSection(actions: C7CommandAction[], t: PaletteDict): string {
 	if (actions.length === 0) return "";
 	const itemsHtml = actions
 		.map((item) => {
@@ -256,14 +258,14 @@ export function renderActionsSection(actions: C7CommandAction[], isEn: boolean):
 		.join("");
 
 	return `<div class="c7-cp-section">
-		<div class="c7-cp-section-title">${isEn ? "Commands & Actions" : "Aksi & Perintah"}</div>
+		<div class="c7-cp-section-title">${t.results_actions}</div>
 		${itemsHtml}
 	</div>`;
 }
 
 export interface C7SearchRenderModel {
 	query: string;
-	isEn: boolean;
+	t: PaletteDict;
 	prefix: string;
 	postResults: SearchResultItem[];
 	pageResults: SearchResultItem[];
@@ -273,17 +275,17 @@ export interface C7SearchRenderModel {
 }
 
 export function renderSearchResults(model: C7SearchRenderModel): string {
-	const { query, isEn, prefix, postResults, pageResults, matchedSongs, matchedHistory, matchedActions } = model;
+	const { query, t, prefix, postResults, pageResults, matchedSongs, matchedHistory, matchedActions } = model;
 
 	let html = "";
-	html += renderPostsSection(postResults, prefix, isEn);
-	html += renderSongRequestsSection(matchedSongs, isEn);
-	html += renderHistorySection(matchedHistory, isEn);
-	html += renderPagesSection(pageResults, prefix, isEn);
-	html += renderActionsSection(matchedActions, isEn);
+	html += renderPostsSection(postResults, prefix, t);
+	html += renderSongRequestsSection(matchedSongs, t);
+	html += renderHistorySection(matchedHistory, t);
+	html += renderPagesSection(pageResults, prefix, t);
+	html += renderActionsSection(matchedActions, t);
 
 	if (!html) {
-		return renderEmptyState(isEn, query);
+		return renderEmptyState(t, query);
 	}
 
 	return html;

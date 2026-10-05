@@ -34,16 +34,15 @@ const {
 } = Astro.props;
 
 const { t } = use7cTranslation(locale);
-const isEn = locale === "en";
 
 const verdict = propVerdict || (score >= 8.5
-	? (isEn ? "HIGHLY RECOMMENDED" : "SANGAT DIREKOMENDASIKAN")
+	? t.scorebox.highly_recommended
 	: score >= 7.0
-	? (isEn ? "RECOMMENDED" : "LAYAK BELI")
-	: (isEn ? "SKIP FOR NOW" : "SKIP DULU"));
+	? t.scorebox.recommended
+	: t.scorebox.skip);
 
-const productName = propProductName || (isEn ? "Editorial Verdict" : "Putusan Redaksi");
-const badge = propBadge || (isEn ? "7C Review" : "Review Tujuhcahaya");
+const productName = propProductName || t.scorebox.verdict;
+const badge = propBadge || t.scorebox.badge;
 
 // Format score to 1 decimal place (e.g. 8.5)
 const formattedScore = Number(score).toFixed(1);

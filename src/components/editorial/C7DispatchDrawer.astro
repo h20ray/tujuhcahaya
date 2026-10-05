@@ -13,7 +13,6 @@ interface Props {
 
 const { locale = DEFAULT_LOCALE } = Astro.props;
 const { t } = use7cTranslation(locale);
-const isEn = locale === "en";
 ---
 
 <!-- Backdrop overlay -->
@@ -49,7 +48,7 @@ const isEn = locale === "en";
 						<polyline points="20 6 9 17 4 12"></polyline>
 					</svg>
 				</span>
-				<span id="c7-drawer-status-text">{isEn ? "Read" : "Sudah Dibaca"}</span>
+				<span id="c7-drawer-status-text">{t.common.already_read}</span>
 			</button>
 
 			<!-- Close Button -->
@@ -57,8 +56,8 @@ const isEn = locale === "en";
 				type="button"
 				id="c7-drawer-close"
 				class="c7-drawer-close-btn"
-				aria-label={isEn ? "Close preview (Esc)" : "Tutup pratinjau artikel (Esc)"}
-				title={isEn ? "Close (Esc)" : "Tutup (Esc)"}
+				aria-label={t.dispatch.close_preview}
+				title={t.dispatch.close_esc}
 			>
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
 					<line x1="18" y1="6" x2="6" y2="18"></line>
@@ -88,7 +87,7 @@ const isEn = locale === "en";
 	<!-- Sticky Action Bar / Read Full Post CTA -->
 	<div class="c7-drawer-footer">
 		<a href="#" id="c7-drawer-full-post" class="c7-drawer-cta-btn">
-			<span id="c7-drawer-cta-text">{isEn ? "Read Full Story" : "Baca Selengkapnya"}</span>
+			<span id="c7-drawer-cta-text">{t.common.read_full_story}</span>
 			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
 				<line x1="5" y1="12" x2="19" y2="12"></line>
 				<polyline points="12 5 19 12 12 19"></polyline>

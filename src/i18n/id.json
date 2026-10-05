@@ -95,7 +95,46 @@
     "lang_toggle_title": "Beralih Bahasa (ID / EN)",
     "lang_toggle_sub": "Ganti edisi bahasa antara Bahasa Indonesia dan English",
     "lang_toggle_badge": "Navigasi Bahasa",
-    "lang_toggle_toast": "Mengalihkan edisi bahasa..."
+    "lang_toggle_toast": "Mengalihkan edisi bahasa...",
+    "clear_input": "Hapus teks",
+    "close_palette": "Tutup Palette",
+    "radio_history": "Riwayat Siaran",
+    "navigate": "Navigasi",
+    "select": "Pilih",
+    "close": "Tutup",
+    "preview_apple_music": "Putar pratinjau Apple Music",
+    "preview_30s": "Pratinjau lagu (iTunes / Apple Music)",
+    "no_results": "Tidak ada hasil untuk \"{query}\"",
+    "no_results_hint": "Coba kata kunci topik berita, musisi radio, atau perintah lain",
+    "searching": "Mencari...",
+    "badge_story": "Liputan",
+    "badge_page": "Halaman",
+    "request_badge": "Request Lagu",
+    "radio_track": "Siaran",
+    "recently_played": "Baru Saja Mengudara di Radio",
+    "sending_request": "Mengirim permintaan lagu \"{title}\"...",
+    "failed_request": "Gagal mengirim permintaan lagu",
+    "preview_unavailable": "Pratinjau tidak tersedia di Apple Music",
+    "preview_failed": "Gagal memutar pratinjau audio",
+    "results_stories": "Liputan & Berita",
+    "results_pages": "Halaman & Informasi",
+    "results_radio": "Katalog Permintaan Lagu Radio",
+    "results_actions": "Aksi & Perintah",
+    "initial_prompt": "Ketik kata kunci untuk mencari konten atau lagu...",
+    "ago_minutes": "{minutes} mnt lalu",
+    "request_success": "Permintaan lagu \"{title}\" berhasil masuk ke antrean siaran Tujuhcahaya Radio!",
+    "actions": [
+      { "title": "Arsip Lengkap", "subtitle": "Jelajahi seluruh basis data investigasi dan liputan redaksi", "badge": "Arsip" },
+      { "title": "Kirim Naskah Opini & Gagasan", "subtitle": "Kirim tulisan, resensi, atau pandangan kritis Anda ke redaksi", "badge": "Opini" },
+      { "title": "Rubrik: Berita & Investigasi", "subtitle": "Kanal berita terkini, investigasi, dan peristiwa utama", "badge": "Berita" },
+      { "title": "Rubrik: Tech & Masa Depan", "subtitle": "Kanal kecerdasan buatan, gadget, software, dan teknologi", "badge": "Tech" },
+      { "title": "Rubrik: Game & Industri", "subtitle": "Kanal esports, ulasan permainan, dan industri kreatif gaming", "badge": "Game" },
+      { "title": "Rubrik: Musik & Nada", "subtitle": "Kanal rilisan musik baru, ulasan album, dan profil musisi", "badge": "Musik" },
+      { "title": "Rubrik: Budaya & Seni", "subtitle": "Kanal tradisi, kultur urban, esai budaya, dan sastra", "badge": "Budaya" },
+      { "title": "Rubrik: Kesehatan & Sains", "subtitle": "Kanal riset medis, kesehatan mental, dan pola hidup", "badge": "Kesehatan" },
+      { "title": "Tentang Kami (Profil Tujuhcahaya)", "subtitle": "Misi, independensi redaksi, dan badan hukum pengelola", "badge": "Profil" },
+      { "title": "Susunan Redaksi & Dewan Jurnalis", "subtitle": "Daftar pengurus dewan redaksi dan jurnalis autentik 7C", "badge": "Redaksi" }
+    ]
   },
   "sidebar": {
     "topics_title": "Topik Populer",
@@ -107,7 +146,17 @@
     "newsletter_button": "Langganan",
     "newsletter_success": "Terima kasih! Surel konfirmasi telah dikirim.",
     "search_title": "Cari Artikel",
-    "search_placeholder": "Ketik topik..."
+    "search_placeholder": "Ketik topik...",
+    "aria_label": "Bilah Sisi Artikel",
+    "static_title": "Halaman Redaksi",
+    "static_contact_title": "Kontak Redaksi",
+    "static_contact_desc": "Pertanyaan, hak jawab, klarifikasi, atau permohonan koreksi pemberitaan dapat disampaikan langsung ke meja redaksi.",
+    "static_nav_about_us": "Tentang Kami",
+    "static_nav_redaksi": "Susunan Redaksi",
+    "static_nav_pedoman": "Pedoman Media Siber",
+    "static_nav_privacy": "Kebijakan Privasi",
+    "static_nav_terms": "Syarat & Ketentuan",
+    "static_nav_submit": "Kirim Tulisan"
   },
   "author": {
     "articles_written": "Artikel Ditulis",
@@ -123,7 +172,10 @@
     "previous": "Sebelumnya",
     "next": "Selanjutnya",
     "page_of_total": "Halaman {page} dari {totalPages} ({total} Total)",
-    "aria_profile": "Profil Penulis"
+    "aria_profile": "Profil Penulis",
+    "aria_profile_named": "Profil Penulis: {name}",
+    "kicker_editorial": "REDAKSI RESMI",
+    "kicker_written_by": "DITULIS OLEH"
   },
   "footer": {
     "tagline": "Media house digital independen yang mengeksplorasi jurnalisme investigatif, teknologi, kultur urban, musik, dan dinamika sosial masyarakat modern.",
@@ -179,6 +231,54 @@
     "toggle_menu": "Buka menu navigasi",
     "close_menu": "Tutup menu",
     "site_footer": "Footer Situs",
-    "breadcrumbs": "Navigasi Rekam Jejak"
+    "breadcrumbs": "Navigasi Rekam Jejak",
+    "open_live_chat": "Buka obrolan siaran langsung",
+    "live_chat_title": "Obrolan Siaran"
+  },
+  "common": {
+    "close": "Tutup",
+    "read": "Baca",
+    "read_full_story": "Baca Selengkapnya",
+    "mark_as_read": "Tandai Dibaca",
+    "already_read": "Sudah Dibaca",
+    "source": "Sumber",
+    "active": "Aktif",
+    "story": "Liputan",
+    "page": "Halaman"
+  },
+  "scorebox": {
+    "verdict": "Putusan Redaksi",
+    "badge": "Review Tujuhcahaya",
+    "highly_recommended": "SANGAT DIREKOMENDASIKAN",
+    "recommended": "LAYAK BELI",
+    "skip": "SKIP DULU"
+  },
+  "spectable": {
+    "title": "Spesifikasi Teknis",
+    "default_source": "Data lab redaksi Tujuhcahaya"
+  },
+  "isometric": {
+    "aria_label": "Tujuh Lapis Cahaya Tujuhcahaya Media — klik lapisan mana saja untuk memisahkan",
+    "layer": "Lapis",
+    "sections": [
+      { "generic": "Rubrik 01 • Studio & Hub", "name": "Tujuhcahaya Media Lab", "shortLeft": "LAB", "shortRight": "CREATIVE STUDIO & LAB", "count": "Studio & Hub", "desc": "Pusat eksplorasi media independen, riset konten kreatif, dan fondasi arsitektur digital Tujuhcahaya.", "slug": "about-us" },
+      { "generic": "Rubrik 02 • Gaya Hidup", "name": "Kesehatan & Kebugaran", "shortLeft": "SEHAT", "shortRight": "GAYA HIDUP & SAINS", "count": "600+ Liputan", "desc": "Informasi medis terpercaya, wawasan kebugaran fisik dan mental, serta tren hidup sehat tanpa menggurui.", "slug": "kesehatan" },
+      { "generic": "Rubrik 03 • Seni & Kultur", "name": "Seni & Budaya Pop", "shortLeft": "BUDAYA", "shortRight": "KULTUR & NARASI", "count": "200+ Liputan", "desc": "Eksplorasi fenomena urban, warisan budaya lokal, seni visual, dan dinamika sosial masyarakat modern.", "slug": "budaya" },
+      { "generic": "Rubrik 04 • Audio & Hiburan", "name": "Musik & Nada", "shortLeft": "MUSIK", "shortRight": "AUDIO & HIBURAN", "count": "3.5k+ Liputan", "desc": "Kurasi rilisan musik terkini, ulasan album, profil musisi independen dan arus utama, serta tren audio global.", "slug": "musik" },
+      { "generic": "Rubrik 05 • Masa Depan", "name": "Teknologi & Inovasi", "shortLeft": "TECH", "shortRight": "INOVASI & GADGET", "count": "3.5k+ Liputan", "desc": "Kecerdasan buatan, perangkat keras mutakhir, terobosan software, dan perkembangan ekosistem digital dunia.", "slug": "tech" },
+      { "generic": "Rubrik 06 • Interaktif", "name": "Video Game & Esports", "shortLeft": "GAME", "shortRight": "ESPORTS & INDUSTRI", "count": "4k+ Liputan", "desc": "Review game konsol dan PC, perkembangan industri game global, strategi esports, dan komunitas gamer.", "slug": "game" },
+      { "generic": "Rubrik 07 • Jurnalisme", "name": "Berita & Newsroom", "shortLeft": "BERITA", "shortRight": "JURNALISME AKTUAL", "count": "4k+ Liputan", "desc": "Laporan berita terhangat, isu kebijakan esensial, peristiwa sosial, dan investigasi mendalam berintegritas.", "slug": "berita" }
+    ]
+  },
+  "dispatch": {
+    "already_read": "Sudah Dibaca",
+    "mark_as_read": "Tandai Dibaca",
+    "close_preview": "Tutup pratinjau artikel (Esc)",
+    "close_esc": "Tutup (Esc)"
+  },
+  "theme": {
+    "switch_to_dark": "Beralih ke mode gelap",
+    "switch_to_light": "Beralih ke mode terang",
+    "toggle_theme": "Ganti tema (Terang / Gelap)"
   }
 }
