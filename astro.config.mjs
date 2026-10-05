@@ -28,7 +28,7 @@ const storageDriver = process.env.S3_ACCESS_KEY_ID
 	  });
 
 export default defineConfig({
-	site: "https://tujuhcahaya.com",
+	site: "https://www.tujuhcahaya.com",
 	output: "server",
 	adapter: node({
 		mode: "standalone",
