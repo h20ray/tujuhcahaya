@@ -282,29 +282,17 @@
     "toggle_theme": "Toggle theme (Light / Dark)"
   },
   "live": {
-    "meta_title": "7Stream Live Studio — 24/7 Commercial-Free Music Stream & Community Chat",
-    "meta_description": "Tune in to 7Stream by Tujuhcahaya: 24/7 commercial-free music curation, real-time synchronized lyrics, on-air song request terminal, and live community studio chat.",
-    "page_title": "7Stream Live Studio",
-    "station_tagline": "24/7 Nonstop Commercial-Free Music Stream",
-    "badge_live": "ON AIR",
-    "badge_offline": "OFFLINE",
-    "badge_lossless": "Lossless 320 kbps Audio",
-    "listeners": "Live Listeners",
-    "now_playing": "Now Playing",
-    "up_next": "Up Next",
-    "tab_lyrics": "Song Lyrics",
-    "tab_request": "Request a Track",
-    "tab_chat": "Live Chat",
-    "tab_history": "Play History",
-    "lyrics_loading": "Synchronizing lyrics with broadcast...",
-    "lyrics_empty": "Lyrics are not available for this track yet.",
-    "request_subtitle": "Search Tujuhcahaya's music library to queue a track on-air.",
-    "history_empty": "No playback history recorded yet.",
-    "play": "Play Broadcast",
-    "pause": "Pause Broadcast",
-    "mute": "Mute Audio",
-    "unmute": "Unmute Audio",
-    "volume": "Sound Volume"
+    "meta_title": "7Stream — Tujuhcahaya Live Audio",
+    "meta_description": "24/7 continuous music stream by Tujuhcahaya.",
+    "title": "7Stream",
+    "tagline": "24/7 music stream.",
+    "play": "Play",
+    "pause": "Pause",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "volume": "Volume",
+    "tab_lyrics": "Lyrics",
+    "tab_request": "Request"
   }
 }
 
