@@ -33,6 +33,71 @@ export const C7LiveStudio: React.FC<C7LiveStudioProps> = ({
   const activeNowPlaying = syncedNowPlaying || fallbackNowPlaying;
   const colors = useArtworkColor(activeNowPlaying?.track?.artworkUrl);
 
+  const track = activeNowPlaying?.track;
+  const title = track?.title?.trim();
+  const artist = track?.artist?.trim();
+
+  // Reference track yang terakhir di-fetch
+  const lastTrackKeyRef = React.useRef<string>("");
+
+  const fetchLyrics = useCallback(
+    async (overrideTitle?: string, overrideArtist?: string) => {
+      const qTitle = overrideTitle || title;
+      const qArtist = overrideArtist || artist;
+      if (!qTitle || !qArtist) {
+        setLyricsText(null);
+        setIsLyricsLoading(false);
+        return;
+      }
+
+      const trackKey = `${qTitle}::${qArtist}`;
+      lastTrackKeyRef.current = trackKey;
+      setIsLyricsLoading(true);
+
+      try {
+        const res = await fetch(
+          `/_emdash/api/plugins/tujuhcahaya-radio/lyrics?title=${encodeURIComponent(qTitle)}&artist=${encodeURIComponent(qArtist)}&station=${encodeURIComponent(stationSlug)}`
+        );
+        if (!res.ok) throw new Error("Gagal mengambil lirik");
+        const raw = (await res.json()) as Record<string, unknown>;
+        let unwrapped: unknown = raw;
+        while (
+          unwrapped &&
+          typeof unwrapped === "object" &&
+          "data" in unwrapped &&
+          (unwrapped as { data: unknown }).data &&
+          typeof (unwrapped as { data: unknown }).data === "object"
+        ) {
+          unwrapped = (unwrapped as { data: Record<string, unknown> }).data;
+        }
+        const target = (unwrapped as Record<string, unknown>) ?? raw;
+        const lyrics = target.lyrics;
+
+        if (lastTrackKeyRef.current === trackKey) {
+          setLyricsText(typeof lyrics === "string" && lyrics.trim() ? lyrics : null);
+        }
+      } catch {
+        if (lastTrackKeyRef.current === trackKey) {
+          setLyricsText(null);
+        }
+      } finally {
+        if (lastTrackKeyRef.current === trackKey) {
+          setIsLyricsLoading(false);
+        }
+      }
+    },
+    [title, artist, stationSlug]
+  );
+
+  // Auto-fetch jika belum ada lirik atau saat track berganti
+  useEffect(() => {
+    if (!title || !artist) return;
+    const trackKey = `${title}::${artist}`;
+    if (lastTrackKeyRef.current !== trackKey && lyricsText === null && !isLyricsLoading) {
+      fetchLyrics(title, artist);
+    }
+  }, [title, artist, lyricsText, isLyricsLoading, fetchLyrics]);
+
   // 1. Sinkronisasi dua arah dengan engine radio global
   useEffect(() => {
     function handleStateSync(e: Event) {
@@ -113,6 +178,7 @@ export const C7LiveStudio: React.FC<C7LiveStudioProps> = ({
         accentColor={colors.textAccent}
         locale={locale}
         t={t}
+        onRetryLyrics={() => fetchLyrics()}
       />
     </div>
   );

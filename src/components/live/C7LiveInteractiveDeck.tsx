@@ -98,9 +98,9 @@ export const C7LiveInteractiveDeck: React.FC<C7LiveInteractiveDeckProps> = ({
       </div>
 
       {/* Tab Panels */}
-      <div className={`c7-live-pane ${activeTab === "chat" ? "c7-live-pane-chat" : ""}`}>
+      <div className={`c7-live-pane c7-live-pane-${activeTab}`}>
         {activeTab === "lyrics" && (
-          <div role="tabpanel" aria-label={t.tab_lyrics}>
+          <div role="tabpanel" aria-label={t.tab_lyrics} className="c7-live-tab-pane c7-live-tab-pane-lyrics">
             <C7LyricsView
               lyricsText={lyricsText}
               playedAt={track?.playedAt}
@@ -116,7 +116,7 @@ export const C7LiveInteractiveDeck: React.FC<C7LiveInteractiveDeckProps> = ({
         )}
 
         {activeTab === "request" && (
-          <div role="tabpanel" aria-label={t.tab_request}>
+          <div role="tabpanel" aria-label={t.tab_request} className="c7-live-tab-pane">
             <C7SongRequestPanel
               stationSlug={stationSlug}
               accentColor={accentColor}
@@ -125,7 +125,7 @@ export const C7LiveInteractiveDeck: React.FC<C7LiveInteractiveDeckProps> = ({
         )}
 
         {activeTab === "chat" && (
-          <div role="tabpanel" aria-label={t.tab_chat} style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+          <div role="tabpanel" aria-label={t.tab_chat} className="c7-live-tab-pane c7-live-tab-pane-chat">
             <C7LiveChatPanel
               stationName={nowPlaying?.station?.name || "7Stream"}
               accentColor={accentColor}
@@ -134,24 +134,31 @@ export const C7LiveInteractiveDeck: React.FC<C7LiveInteractiveDeckProps> = ({
         )}
 
         {activeTab === "history" && (
-          <div role="tabpanel" aria-label={t.tab_history}>
+          <div role="tabpanel" aria-label={t.tab_history} className="c7-live-tab-pane">
             {history.length > 0 ? (
-              <div className="c7-history-container">
-                <div className="c7-history-list">
+              <div className="c7-live-history-container">
+                <div className="c7-live-history-list">
                   {history.map((item, idx) => (
-                    <div key={`${item.title}-${item.playedAt || idx}`} className="c7-history-item">
-                      <img
-                        src={item.artworkUrl || "/favicon.svg"}
-                        alt={item.title}
-                        className="c7-history-art"
-                        loading="lazy"
-                      />
-                      <div className="c7-history-meta">
-                        <span className="c7-history-title">{item.title}</span>
-                        <span className="c7-history-artist">{item.artist}</span>
+                    <div
+                      key={`${item.title}-${item.playedAt || idx}`}
+                      className="c7-live-history-card"
+                    >
+                      <div className="c7-live-history-thumb">
+                        <img
+                          src={item.artworkUrl || "/favicon.svg"}
+                          alt={item.title}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="c7-live-history-meta">
+                        <span className="c7-live-history-title">{item.title}</span>
+                        <span className="c7-live-history-artist">
+                          {item.artist}
+                          {item.album ? ` • ${item.album}` : ""}
+                        </span>
                       </div>
                       {item.playedAt && (
-                        <span className="c7-history-time">
+                        <span className="c7-live-history-time">
                           {formatRelativeTime(item.playedAt, locale)}
                         </span>
                       )}

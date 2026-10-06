@@ -38,6 +38,7 @@ export const C7LiveHero: React.FC<C7LiveHeroProps> = ({
   const [isVolumeHovered, setIsVolumeHovered] = useState(false);
 
   const track = nowPlaying?.track;
+  const nextTrack = nowPlaying?.nextTrack;
   const isOnline = nowPlaying?.isOnline ?? true;
   const rawArtwork = track?.artworkUrl || "/favicon.svg";
   const title = track?.title || "Tujuhcahaya Radio";
@@ -117,6 +118,22 @@ export const C7LiveHero: React.FC<C7LiveHeroProps> = ({
               className="c7-live-track-artist"
               speedSec={12}
             />
+          )}
+
+          {/* Up Next Preview Pill */}
+          {nextTrack?.title && (
+            <div
+              className="c7-live-next-track"
+              aria-label={`${t.up_next}: ${nextTrack.title}${nextTrack.artist ? ` — ${nextTrack.artist}` : ""}`}
+            >
+              <span className="c7-live-next-tag">{t.up_next}</span>
+              <span className="c7-live-next-info">
+                <span className="c7-live-next-title">{nextTrack.title}</span>
+                {nextTrack.artist && (
+                  <span className="c7-live-next-artist"> — {nextTrack.artist}</span>
+                )}
+              </span>
+            </div>
           )}
 
           {/* Dynamic Controls: Play/Pause FAB + Dynamic Volume Cluster */}

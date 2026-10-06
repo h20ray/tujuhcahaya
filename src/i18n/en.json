@@ -295,7 +295,8 @@
     "pause": "Pause stream",
     "mute": "Mute audio",
     "unmute": "Unmute audio",
-    "volume": "Volume"
+    "volume": "Volume",
+    "up_next": "Up Next"
   }
 }
 

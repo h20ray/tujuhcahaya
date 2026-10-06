@@ -300,6 +300,7 @@ export interface LiveDict {
 	mute: string;
 	unmute: string;
 	volume: string;
+	up_next: string;
 }
 
 
