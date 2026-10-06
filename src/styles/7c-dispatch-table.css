@@ -127,6 +127,14 @@
   border-bottom: none;
 }
 
+.dispatch-archive-page .c7-breadcrumb {
+  padding: 1.15rem 1.25rem 0.65rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--7c-sys-outline-variant);
+  background-color: var(--7c-sys-surface-container-lowest, var(--color-bg));
+}
+
+
 .dispatch-pagination {
   display: flex;
   align-items: center;

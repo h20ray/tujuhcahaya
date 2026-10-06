@@ -280,15 +280,31 @@ button.c7-theme-toggle,
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  transition: color 0.15s ease;
+  padding: 0.2rem 0.4rem;
+  margin: -0.2rem -0.2rem;
+  border-radius: 0.25rem;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
 }
 
 .c7-breadcrumb-link:hover {
   color: var(--7c-sys-primary, var(--7c-sys-on-surface));
+  background-color: var(--7c-sys-surface-container-high, rgba(0, 0, 0, 0.04));
 }
 
 [data-theme="dark"] .c7-breadcrumb-link:hover {
   color: var(--7c-sys-primary, #ffffff);
+  background-color: var(--7c-sys-surface-container-highest, rgba(255, 255, 255, 0.08));
+}
+
+.c7-breadcrumb-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--7c-sys-surface, #ffffff), 0 0 0 4px var(--7c-sys-primary, #d50000);
+}
+
+[data-theme="dark"] .c7-breadcrumb-link:focus-visible {
+  box-shadow: 0 0 0 2px var(--7c-sys-surface, #0c0e14), 0 0 0 4px var(--7c-sys-primary, #ff897d);
 }
 
 .c7-breadcrumb-sep {
@@ -309,5 +325,7 @@ button.c7-theme-toggle,
   white-space: nowrap;
   display: inline-block;
   vertical-align: middle;
+  padding: 0.2rem 0;
 }
+
 

@@ -290,6 +290,7 @@
   height: 48px;
   padding: 0 0.85rem;
   border-radius: 9999px;
+  min-height: 48px;
 }
 
 [data-theme="dark"] .c7-live-player-card .c7-dock-volume-group {
@@ -297,6 +298,41 @@
   border: none;
   box-shadow: var(--c7-elevation-1);
 }
+
+@media (min-width: 768px) {
+  .c7-live-player-card .c7-volume-slider {
+    width: 6.5rem;
+  }
+}
+
+/* WCAG 2.4.7 Controls Focus-Visible Enforcement */
+.c7-live-player-controls .c7-radio-play-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--7c-sys-surface, #ffffff), 0 0 0 5px var(--c7-player-accent, var(--7c-sys-primary, #d50000));
+}
+
+[data-theme="dark"] .c7-live-player-controls .c7-radio-play-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--7c-sys-surface, #11141d), 0 0 0 5px var(--c7-player-accent, #ff897d);
+}
+
+.c7-live-player-card .c7-volume-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--7c-sys-surface, #ffffff), 0 0 0 4px var(--c7-player-accent, var(--7c-sys-primary, #d50000));
+}
+
+[data-theme="dark"] .c7-live-player-card .c7-volume-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--7c-sys-surface, #11141d), 0 0 0 4px var(--c7-player-accent, #ff897d);
+}
+
+.c7-live-player-card .c7-volume-slider:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--7c-sys-surface, #ffffff), 0 0 0 4px var(--c7-player-accent, var(--7c-sys-primary, #d50000));
+}
+
+[data-theme="dark"] .c7-live-player-card .c7-volume-slider:focus-visible {
+  box-shadow: 0 0 0 2px var(--7c-sys-surface, #11141d), 0 0 0 4px var(--c7-player-accent, #ff897d);
+}
+
 
 /* 4. Elevated Content Deck (Full Width, Continuous Flow, Zero Borderlines) */
 .c7-live-deck {
@@ -339,6 +375,8 @@
   align-items: center;
   gap: 0.45rem;
   padding: 0.65rem 1.25rem;
+  min-height: 44px;
+  box-sizing: border-box;
   border-radius: 9999px;
   background: transparent;
   color: var(--7c-sys-on-surface-variant);
@@ -358,16 +396,50 @@
   color: var(--7c-sys-on-surface);
 }
 
+.c7-live-tab:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--7c-sys-surface, #ffffff), 0 0 0 4.5px var(--c7-player-accent, var(--7c-sys-primary, #d50000));
+}
+
+[data-theme="dark"] .c7-live-tab:focus-visible {
+  box-shadow: 0 0 0 2px var(--7c-sys-surface, #11141d), 0 0 0 4.5px var(--c7-player-accent, #ff897d);
+}
+
 .c7-live-tab.is-active {
   background-color: var(--7c-sys-surface-container, #ffffff);
-  color: var(--7c-sys-primary, #d50000);
+  color: var(--c7-player-accent, var(--7c-sys-primary, #d50000));
   box-shadow: var(--c7-elevation-1);
 }
 
 [data-theme="dark"] .c7-live-tab.is-active {
   background-color: var(--7c-sys-surface-container-highest, #23293b);
-  color: #ff897d;
+  color: var(--c7-player-accent, #ff897d);
   box-shadow: var(--c7-elevation-1);
+}
+
+/* Count Badge (Mirrored from Plugin) */
+.c7-live-tab .c7-tab-count {
+  font-size: 0.68rem;
+  padding: 0.12rem 0.42rem;
+  border-radius: 9999px;
+  background-color: var(--7c-sys-surface-container-highest, rgba(0, 0, 0, 0.08));
+  color: var(--7c-sys-on-surface);
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.15rem;
+}
+
+[data-theme="dark"] .c7-live-tab .c7-tab-count {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.c7-live-tab.is-active .c7-tab-count {
+  background-color: var(--c7-player-accent, var(--7c-sys-primary, #d50000));
+  color: var(--c7-player-accent-fg, #ffffff);
 }
 
 /* 5. Tab Panes & Controlled Scroll Surfaces (Zero Conflict with Window Scroll) */
@@ -621,6 +693,9 @@
   flex-shrink: 0;
   background-color: var(--7c-sys-surface-container-highest, #e2e8f0);
   box-shadow: var(--c7-elevation-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 [data-theme="dark"] .c7-live-history-thumb {
@@ -632,6 +707,11 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.c7-history-fallback {
+  color: var(--7c-sys-on-surface-variant);
+  opacity: 0.45;
 }
 
 .c7-live-history-meta {
@@ -669,6 +749,13 @@
   font-variant-numeric: tabular-nums;
 }
 
+.c7-live-history-action {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 0.75rem;
+}
+
 .c7-history-empty {
   text-align: center;
   padding: 4rem 1rem;
@@ -676,3 +763,10 @@
   font-size: 1rem;
   margin: 0;
 }
+
+/* Breadcrumb inside Live Container */
+.c7-live-container .c7-breadcrumb {
+  margin-bottom: 0.25rem;
+  align-self: flex-start;
+}
+

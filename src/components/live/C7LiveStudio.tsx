@@ -149,6 +149,28 @@ export const C7LiveStudio: React.FC<C7LiveStudioProps> = ({
 
   return (
     <div className="c7-live-container">
+      {/* Semantic Breadcrumbs (MD3X Navigation Trail) */}
+      <nav className="c7-breadcrumb" aria-label={locale === "en" ? "Breadcrumb navigation" : "Navigasi Jejak Halaman"}>
+        <a href={locale === "en" ? "/en" : "/"} className="c7-breadcrumb-link">
+          {locale === "en" ? "Home" : "Beranda"}
+        </a>
+        <svg
+          className="c7-breadcrumb-sep"
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          aria-hidden="true"
+        >
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+        <span className="c7-breadcrumb-current" aria-current="page">
+          {t.title}
+        </span>
+      </nav>
+
       {/* Header Minimalis */}
       <header className="c7-live-header">
         <h1 className="c7-live-title">{t.title}</h1>

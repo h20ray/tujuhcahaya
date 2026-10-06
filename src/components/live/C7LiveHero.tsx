@@ -99,10 +99,13 @@ export const C7LiveHero: React.FC<C7LiveHeroProps> = ({
           <div className="c7-live-status-row">
             <span
               className={`c7-dock-status-dot ${isOnline ? "is-online" : "is-offline"}`}
-              title={isOnline ? "Live" : "Offline"}
+              aria-hidden="true"
             />
             <span className="c7-live-status-label">
               {nowPlaying?.station?.name || "Tujuhcahaya Radio"}
+            </span>
+            <span className="sr-only">
+              {isOnline ? " (Live Online)" : " (Offline)"}
             </span>
           </div>
 
@@ -200,6 +203,10 @@ export const C7LiveHero: React.FC<C7LiveHeroProps> = ({
                   onBlur={() => setIsVolumeHovered(false)}
                   className="c7-volume-slider"
                   aria-label={t.volume}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={Math.round((isMuted ? 0 : volume) * 100)}
+                  aria-valuetext={`${Math.round((isMuted ? 0 : volume) * 100)}%`}
                 />
               </div>
             </div>
