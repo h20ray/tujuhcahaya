@@ -282,17 +282,20 @@
     "toggle_theme": "Ganti tema (Terang / Gelap)"
   },
   "live": {
-    "meta_title": "7Stream — Live Audio Tujuhcahaya",
-    "meta_description": "Siaran musik Tujuhcahaya 24 jam tanpa jeda.",
+    "meta_title": "7Stream — Tujuhcahaya Live Radio",
+    "meta_description": "Musik 24 jam nonstop tanpa jeda dari Tujuhcahaya.",
     "title": "7Stream",
-    "tagline": "Musik 24 jam tanpa jeda.",
-    "play": "Putar",
-    "pause": "Jeda",
-    "mute": "Bisukan",
-    "unmute": "Bunyikan",
-    "volume": "Volume",
+    "subtitle": "Musik 24 jam tanpa jeda.",
     "tab_lyrics": "Lirik",
-    "tab_request": "Request"
+    "tab_request": "Request",
+    "tab_chat": "Obrolan",
+    "tab_history": "Riwayat",
+    "history_empty": "Belum ada riwayat pemutaran.",
+    "play": "Putar siaran",
+    "pause": "Jeda siaran",
+    "mute": "Senyapkan",
+    "unmute": "Aktifkan suara",
+    "volume": "Volume"
   }
 }
 

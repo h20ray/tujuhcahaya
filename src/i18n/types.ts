@@ -289,15 +289,19 @@ export interface LiveDict {
 	meta_title: string;
 	meta_description: string;
 	title: string;
-	tagline: string;
+	subtitle: string;
+	tab_lyrics: string;
+	tab_request: string;
+	tab_chat: string;
+	tab_history: string;
+	history_empty: string;
 	play: string;
 	pause: string;
 	mute: string;
 	unmute: string;
 	volume: string;
-	tab_lyrics: string;
-	tab_request: string;
 }
+
 
 export interface C7TranslationSchema {
 	nav: NavDict;

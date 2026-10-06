@@ -282,17 +282,20 @@
     "toggle_theme": "Toggle theme (Light / Dark)"
   },
   "live": {
-    "meta_title": "7Stream — Tujuhcahaya Live Audio",
+    "meta_title": "7Stream — Tujuhcahaya Live Radio",
     "meta_description": "24/7 continuous music stream by Tujuhcahaya.",
     "title": "7Stream",
-    "tagline": "24/7 music stream.",
-    "play": "Play",
-    "pause": "Pause",
-    "mute": "Mute",
-    "unmute": "Unmute",
-    "volume": "Volume",
+    "subtitle": "24/7 continuous music stream.",
     "tab_lyrics": "Lyrics",
-    "tab_request": "Request"
+    "tab_request": "Request",
+    "tab_chat": "Chat",
+    "tab_history": "History",
+    "history_empty": "No playback history yet.",
+    "play": "Play stream",
+    "pause": "Pause stream",
+    "mute": "Mute audio",
+    "unmute": "Unmute audio",
+    "volume": "Volume"
   }
 }
 

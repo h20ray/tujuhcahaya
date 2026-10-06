@@ -1,7 +1,8 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { use7cTranslation } from "../../i18n/utils";
-import { C7LivePlayer } from "../../components/live/C7LivePlayer";
+import { C7LiveStudio } from "../../components/live/C7LiveStudio";
+import "../../styles/c7-live.css";
 
 const locale = "en";
 const { t } = use7cTranslation(locale);
@@ -10,19 +11,46 @@ const canonicalUrl = "https://www.tujuhcahaya.com/en/live";
 const radioStationJsonLd = {
 	"@context": "https://schema.org",
 	"@type": "RadioStation",
-	"name": "7Stream",
+	"name": "7Stream Tujuhcahaya",
 	"url": canonicalUrl,
 	"description": t.live.meta_description,
 	"broadcastDisplayName": "Tujuhcahaya Radio",
-	"inLanguage": "en"
+	"inLanguage": "en",
+	"parentOrganization": {
+		"@type": "NewsMediaOrganization",
+		"name": "Tujuhcahaya",
+		"url": "https://www.tujuhcahaya.com"
+	}
+};
+
+const breadcrumbJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": t.nav.home,
+			"item": "https://www.tujuhcahaya.com/en"
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": t.live.title,
+			"item": canonicalUrl
+		}
+	]
 };
 ---
 
 <Base
 	title={t.live.meta_title}
+	pageTitle={t.live.title}
 	description={t.live.meta_description}
 	canonical={canonicalUrl}
 >
 	<script type="application/ld+json" set:html={JSON.stringify(radioStationJsonLd)} />
-	<C7LivePlayer client:load t={t.live} />
+	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+
+	<C7LiveStudio client:load locale="en" t={t.live} />
 </Base>
