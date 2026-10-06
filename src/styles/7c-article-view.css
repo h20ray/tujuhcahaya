@@ -1,43 +1,5 @@
 /* 7C Article View — Article / Static Page Detail Styles */
 
-.c7-breadcrumb {
-	font-size: 0.8125rem;
-	color: var(--7c-sys-on-surface-variant);
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 0.45rem;
-	margin-bottom: 1.25rem;
-}
-
-.c7-breadcrumb-link {
-	color: var(--7c-sys-on-surface-variant);
-	text-decoration: none;
-	transition: color 0.15s ease;
-}
-
-.c7-breadcrumb-link:hover {
-	color: var(--7c-sys-on-surface);
-}
-
-[data-theme="dark"] .c7-breadcrumb-link:hover {
-	color: #ffffff;
-}
-
-.c7-breadcrumb-sep {
-	opacity: 0.45;
-	flex-shrink: 0;
-}
-
-.c7-breadcrumb-current {
-	color: var(--7c-sys-on-surface);
-	font-weight: 600;
-	max-width: 320px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
 .c7-article-categories {
 	display: flex;
 	gap: 0.5rem;
