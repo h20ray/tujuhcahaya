@@ -13,7 +13,7 @@ export interface StarterSiteIdentitySettings {
 }
 
 const DEFAULT_SITE_TITLE = "Tujuhcahaya";
-const DEFAULT_SITE_TAGLINE = "Don't worry, we're just getting started!";
+const DEFAULT_SITE_TAGLINE = "Liputan mendalam, perspektif segar kultur pop, teknologi, musik, dan warta independen.";
 
 export function resolveStarterSiteIdentity(settings?: StarterSiteIdentitySettings) {
 	return {

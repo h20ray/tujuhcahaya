@@ -126,6 +126,139 @@ export async function get7cContentHreflang(
 }
 
 /**
- * 7C Bespoke Generator Signature
+ * 7C Bespoke Generator Signature & Canonical Origin
  */
 export const C7_GENERATOR_SIGNATURE = "7C Digital Engine (Astro + EmDash)";
+export const C7_CANONICAL_ORIGIN = "https://www.tujuhcahaya.com";
+
+/**
+ * Resolve strict, absolute canonical URL matching 7C standards
+ */
+export function resolve7cCanonicalUrl(path: string, customCanonical?: string | null): string {
+	if (customCanonical && /^https?:\/\//i.test(customCanonical)) {
+		try {
+			const parsed = new URL(customCanonical);
+			return `${C7_CANONICAL_ORIGIN}${parsed.pathname === "/" ? "" : parsed.pathname.replace(/\/$/, "")}`;
+		} catch {
+			return customCanonical;
+		}
+	}
+
+	const cleanPath = path.replace(/[?#].*$/, "").replace(/\/$/, "") || "";
+	return `${C7_CANONICAL_ORIGIN}${cleanPath}`;
+}
+
+/**
+ * Generate Schema.org BreadcrumbList JSON-LD
+ */
+export function build7cBreadcrumbsJsonLd(items: Array<{ name: string; url: string }>) {
+	return {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": items.map((item, idx) => ({
+			"@type": "ListItem",
+			"position": idx + 1,
+			"name": item.name,
+			"item": item.url.startsWith("http") ? item.url : `${C7_CANONICAL_ORIGIN}${item.url}`,
+		})),
+	};
+}
+
+/**
+ * Generate Schema.org NewsArticle JSON-LD
+ */
+export function build7cArticleJsonLd(params: {
+	title: string;
+	description?: string | null;
+	url: string;
+	imageUrl?: string | null;
+	datePublished?: string | null;
+	dateModified?: string | null;
+	authorName: string;
+	authorUrl?: string | null;
+	authorRole?: string | null;
+	category?: string | null;
+}) {
+	const canonicalUrl = resolve7cCanonicalUrl(params.url);
+	const image = params.imageUrl || `${C7_CANONICAL_ORIGIN}/images/default-featured-image.png`;
+
+	return {
+		"@context": "https://schema.org",
+		"@type": "NewsArticle",
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": canonicalUrl,
+		},
+		"headline": params.title,
+		"description": params.description || undefined,
+		"image": [image],
+		"datePublished": params.datePublished ? new Date(params.datePublished).toISOString() : undefined,
+		"dateModified": params.dateModified
+			? new Date(params.dateModified).toISOString()
+			: params.datePublished
+			? new Date(params.datePublished).toISOString()
+			: undefined,
+		"articleSection": params.category || undefined,
+		"author": {
+			"@type": "Person",
+			"name": params.authorName,
+			"url": params.authorUrl ? (params.authorUrl.startsWith("http") ? params.authorUrl : `${C7_CANONICAL_ORIGIN}${params.authorUrl}`) : undefined,
+			"jobTitle": params.authorRole || undefined,
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Tujuhcahaya",
+			"url": C7_CANONICAL_ORIGIN,
+			"logo": {
+				"@type": "ImageObject",
+				"url": `${C7_CANONICAL_ORIGIN}/logo.svg`,
+			},
+		},
+	};
+}
+
+/**
+ * Generate Schema.org FAQPage JSON-LD
+ */
+export function build7cFaqJsonLd(faqs: Array<{ question: string; answer: string }>) {
+	return {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": faqs.map((faq) => ({
+			"@type": "Question",
+			"name": faq.question,
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": faq.answer,
+			},
+		})),
+	};
+}
+
+/**
+ * Generate Schema.org Person JSON-LD
+ */
+export function build7cPersonJsonLd(author: {
+	name: string;
+	role?: string | null;
+	bio?: string | null;
+	avatarUrl?: string | null;
+	archiveUrl?: string | null;
+	websiteUrl?: string | null;
+}) {
+	return {
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": author.name,
+		"jobTitle": author.role || undefined,
+		"description": author.bio || undefined,
+		"image": author.avatarUrl || undefined,
+		"url": author.archiveUrl ? `${C7_CANONICAL_ORIGIN}${author.archiveUrl}` : undefined,
+		"sameAs": author.websiteUrl ? [author.websiteUrl] : undefined,
+		"worksFor": {
+			"@type": "Organization",
+			"name": "Tujuhcahaya",
+			"url": C7_CANONICAL_ORIGIN,
+		},
+	};
+}

@@ -23,7 +23,8 @@ const { byline, author, posts, total, totalPages, hasMore } = await get7cPostsBy
 
 // If byline not in database and not a known author
 if (!byline && author.isEditorialFallback && rawSlug !== "redaksi") {
-	return Astro.redirect("/404");
+	Astro.response.status = 404;
+	return Astro.rewrite("/404");
 }
 
 const formattedPosts = posts.map((post) => {

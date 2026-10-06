@@ -1,0 +1,14 @@
+# Tujuhcahaya Robots Configuration
+# https://www.tujuhcahaya.com
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: *
+Allow: /
+Disallow: /_emdash/admin/
+Disallow: /wp-admin/
+Disallow: /api/
+
+# Master Sitemap Index
+Sitemap: https://www.tujuhcahaya.com/sitemap.xml

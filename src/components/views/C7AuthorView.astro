@@ -9,6 +9,7 @@ import Base from "../../layouts/Base.astro";
 import { C7_AUTHORS } from "../../lib/7c-cms";
 import type { C7AuthorProfile } from "../../lib/7c-cms";
 import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../i18n/utils";
+import { build7cPersonJsonLd, build7cBreadcrumbsJsonLd } from "../../lib/7c-seo";
 
 export interface FormattedAuthorPost {
 	id: string;
@@ -49,10 +50,42 @@ const kicker = t.author.kicker;
 const countText = format(t.author.published_stories, { count: total.toLocaleString(locale === "en" ? "en-US" : "id-ID") });
 const subnavTitle = format(t.author.all_stories_by, { author: author.name.toUpperCase() });
 const authorBaseUrl = get7cLocalizedPath(`/author/${author.slug}`, locale);
+const homeUrl = locale === "en" ? "/en" : "/";
+
+const breadcrumbItems = [
+	{ name: t.nav.home, url: homeUrl },
+	{ name: t.nav.archive, url: get7cLocalizedPath("/posts", locale) },
+	{ name: author.name, url: Astro.url.pathname },
+];
+const breadcrumbsJsonLd = build7cBreadcrumbsJsonLd(breadcrumbItems);
+const personJsonLd = build7cPersonJsonLd({
+	name: author.name,
+	role: author.role,
+	bio: author.bio,
+	avatarUrl: author.avatarUrl,
+	archiveUrl: author.archiveUrl,
+	websiteUrl: author.websiteUrl,
+});
 ---
 
 <Base title={pageTitle} description={pageDesc}>
+	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbsJsonLd)} />
+	<script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+
 	<div class="dispatch-archive-page">
+		<!-- Accessible Breadcrumb -->
+		<nav class="c7-breadcrumb" aria-label={t.editorial.aria_breadcrumbs} style="margin-bottom: 1.25rem;">
+			<a href={homeUrl} class="c7-breadcrumb-link">{t.nav.home}</a>
+			<svg class="c7-breadcrumb-sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+				<polyline points="9 18 15 12 9 6"></polyline>
+			</svg>
+			<a href={get7cLocalizedPath("/posts", locale)} class="c7-breadcrumb-link">{t.nav.archive}</a>
+			<svg class="c7-breadcrumb-sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+				<polyline points="9 18 15 12 9 6"></polyline>
+			</svg>
+			<span class="c7-breadcrumb-current" aria-current="page">{author.name}</span>
+		</nav>
+
 		<!-- Author Hero Profile Header -->
 		<section class="c7-author-profile-hero" aria-label={t.author.aria_profile}>
 			<div class="c7-author-hero-wrap">

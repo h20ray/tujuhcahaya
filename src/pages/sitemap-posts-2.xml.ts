@@ -1,8 +1,8 @@
 import type { APIRoute } from "astro";
 import { generate7cPostsSitemap } from "../lib/7c-feeds";
 
-export const GET: APIRoute = async ({ site, url }) => {
-	const siteUrl = site?.toString() || url.origin || "https://tujuhcahaya.com";
+export const GET: APIRoute = async ({ site }) => {
+	const siteUrl = site?.toString().replace(/\/$/, "") || "https://www.tujuhcahaya.com";
 	// Chunk 2: posts 10,001 to 20,000+
 	const xml = generate7cPostsSitemap(siteUrl, 10000, 10000);
 

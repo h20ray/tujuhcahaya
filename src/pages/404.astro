@@ -12,6 +12,9 @@ const locale = get7cLocaleFromUrl(Astro.url);
 const { t } = use7cTranslation(locale);
 const homeUrl = get7cLocalizedPath("/", locale);
 const archiveUrl = get7cLocalizedPath("/posts", locale);
+
+// Strictly return HTTP 404 status code (prevents Soft 404 penalties)
+Astro.response.status = 404;
 ---
 
 <Base title={`${t.errors.title_404} (404)`}>

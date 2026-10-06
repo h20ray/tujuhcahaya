@@ -1,0 +1,168 @@
+---
+/**
+ * C7FaqSection — MD3X Editorial FAQ Accordion & FAQPage Schema
+ *
+ * Provides accessible, expandable FAQ details for editorial submissions
+ * and automatically emits Schema.org/FAQPage JSON-LD.
+ */
+import { build7cFaqJsonLd } from "../../lib/7c-seo";
+import type { Locale } from "../../i18n/utils";
+
+interface FaqItem {
+	question: string;
+	answer: string;
+}
+
+interface Props {
+	locale?: Locale;
+	title?: string;
+	items?: FaqItem[];
+	class?: string;
+}
+
+const {
+	locale = "id",
+	title = locale === "en" ? "Frequently Asked Questions" : "Pertanyaan yang Sering Diajukan",
+	items: customItems,
+	class: className = "",
+} = Astro.props;
+
+const defaultFaqsId: FaqItem[] = [
+	{
+		question: "Berapa lama proses kurasi dan peninjauan naskah?",
+		answer: "Tim kurasi redaksi Tujuhcahaya meninjau setiap naskah masuk dalam waktu 3–5 hari kerja. Anda akan menerima pemberitahuan resmi mengenai status naskah lewat email yang didaftarkan.",
+	},
+	{
+		question: "Apakah artikel yang terbit di Tujuhcahaya mendapatkan honorarium?",
+		answer: "Ya. Setiap tulisan opini, esai kultur pop, ulasan musik, dan laporan mendalam yang lolos seleksi dan terbit berhak mendapatkan honorarium sesuai standar kepenulisan Tujuhcahaya.",
+	},
+	{
+		question: "Tema dan isu apa saja yang diprioritaskan Tujuhcahaya?",
+		answer: "Kami menyukai perspektif segar seputar budaya digital, teknologi, musik, video game, dinamika perkotaan, seni arus bawah, dan kritik sosial berbobot tanpa pretensi kaku.",
+	},
+	{
+		question: "Apakah naskah boleh dikirimkan ke media lain secara bersamaan?",
+		answer: "Naskah harus orisinal dan belum pernah diterbitkan di media massa lain. Jika dalam 5 hari kerja tidak mendapat kabar penerimaan, penulis berhak mengirimkan karya tersebut ke media lain.",
+	},
+];
+
+const defaultFaqsEn: FaqItem[] = [
+	{
+		question: "How long does the manuscript review process take?",
+		answer: "Tujuhcahaya editors review all incoming submissions within 3–5 business days. You will receive an official status update via your submitted email address.",
+	},
+	{
+		question: "Are contributors paid for published pieces?",
+		answer: "Yes. All accepted op-eds, cultural essays, music reviews, and in-depth dispatches receive compensation following Tujuhcahaya contributor rates.",
+	},
+	{
+		question: "What topics does Tujuhcahaya prioritize?",
+		answer: "We focus on fresh perspectives on technology, digital culture, indie music, gaming, urban phenomena, and contemporary social discourse.",
+	},
+	{
+		question: "Can manuscripts be submitted simultaneously to other publications?",
+		answer: "Submissions must be original and unpublished elsewhere. If you do not hear back within 5 business days, you are entirely free to pitch your piece to other platforms.",
+	},
+];
+
+const faqs = customItems || (locale === "en" ? defaultFaqsEn : defaultFaqsId);
+const jsonLd = build7cFaqJsonLd(faqs);
+---
+
+<section class={`c7-faq-section ${className}`} aria-labelledby="c7-faq-heading">
+	<h2 id="c7-faq-heading" class="c7-faq-heading">{title}</h2>
+
+	<div class="c7-faq-list">
+		{faqs.map((faq, idx) => (
+			<details class="c7-faq-item" open={idx === 0}>
+				<summary class="c7-faq-summary">
+					<span class="c7-faq-question">{faq.question}</span>
+					<span class="c7-faq-icon" aria-hidden="true">+</span>
+				</summary>
+				<div class="c7-faq-body">
+					<p>{faq.answer}</p>
+				</div>
+			</details>
+		))}
+	</div>
+
+	<!-- Schema.org FAQPage Structured Data -->
+	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</section>
+
+<style>
+	.c7-faq-section {
+		margin-top: 3.5rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--7c-sys-outline-variant);
+	}
+
+	.c7-faq-heading {
+		font-family: var(--7c-font-display);
+		font-size: 1.4rem;
+		font-weight: 600;
+		color: var(--7c-sys-on-surface);
+		margin-bottom: 1.5rem;
+	}
+
+	.c7-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+
+	.c7-faq-item {
+		border: 1px solid var(--7c-sys-outline-variant);
+		border-radius: 14px;
+		background: var(--7c-sys-surface-container-low);
+		overflow: hidden;
+		transition: background-color 0.2s ease, border-color 0.2s ease;
+	}
+
+	.c7-faq-item[open] {
+		background: var(--7c-sys-surface-container);
+		border-color: var(--7c-sys-outline);
+	}
+
+	.c7-faq-summary {
+		padding: 1.1rem 1.35rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		cursor: pointer;
+		font-family: var(--7c-font-display);
+		font-size: 1rem;
+		font-weight: 500;
+		color: var(--7c-sys-on-surface);
+		list-style: none;
+		user-select: none;
+	}
+
+	.c7-faq-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.c7-faq-icon {
+		font-size: 1.3rem;
+		font-weight: 400;
+		color: var(--7c-sys-primary);
+		transition: transform 0.2s ease;
+		line-height: 1;
+	}
+
+	.c7-faq-item[open] .c7-faq-icon {
+		transform: rotate(45deg);
+	}
+
+	.c7-faq-body {
+		padding: 0 1.35rem 1.15rem 1.35rem;
+		color: var(--7c-sys-on-surface-variant);
+		font-size: 0.92rem;
+		line-height: 1.6;
+	}
+
+	.c7-faq-body p {
+		margin: 0;
+	}
+</style>

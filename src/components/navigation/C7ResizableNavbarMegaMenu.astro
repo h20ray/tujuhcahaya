@@ -37,7 +37,7 @@ const { pillars, prefix, megaMenuId, locale } = Astro.props;
 	</div>
 
 	<div class="c7-rn-mega-footer">
-		<a href={`${prefix}/kirim-tulisan`} class="c7-rn-mega-footer-link">
+		<a href={locale === "en" ? "/en/submit" : "/kirim-tulisan"} class="c7-rn-mega-footer-link">
 			<span>{locale === "en" ? "Submit Op-Ed / Dispatch" : "Kirim Naskah Opini"}</span>
 		</a>
 		<a href={`${prefix}/posts`} class="c7-rn-mega-footer-link">

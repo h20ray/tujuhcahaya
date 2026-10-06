@@ -4,7 +4,7 @@
 
 import type { Resolved7cImage } from "./7c-cms-types";
 
-export const C7_DEFAULT_FEATURED_IMAGE = "/images/default-featured-image.png";
+export const C7_DEFAULT_FEATURED_IMAGE = "/images/default-featured-image.webp";
 
 /**
  * Resolve post featured image with fallback to 7C branded placeholder

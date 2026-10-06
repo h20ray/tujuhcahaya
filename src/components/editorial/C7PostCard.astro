@@ -36,7 +36,14 @@ const categoryUrl = get7cLocalizedPath(`/category/${categorySlug}`, locale);
 
 <article class={`c7-card ${className}`}>
 	<a href={postUrl} class="c7-card-media" tabindex="-1" aria-hidden="true">
-		<img src={effectiveThumbnail} alt={title} loading="lazy" />
+		<img
+			src={effectiveThumbnail}
+			alt={title || "Liputan Tujuhcahaya"}
+			width="400"
+			height="225"
+			loading="lazy"
+			decoding="async"
+		/>
 	</a>
 
 	<div class="c7-card-body">

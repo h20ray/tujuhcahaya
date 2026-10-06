@@ -1,0 +1,80 @@
+---
+/**
+ * C7Block — Heading Hierarchy Guardian for Portable Text
+ *
+ * Guarantees strict single-H1 page hierarchy:
+ * Any author-entered 'h1' block is automatically demoted to 'h2'
+ * to preserve document outline semantics and SEO compliance.
+ */
+import type { BlockProps } from "astro-portabletext/types";
+
+type TextAlignedNode = BlockProps["node"] & { textAlign?: string };
+type Props = Omit<BlockProps, "node"> & { node: TextAlignedNode };
+
+const props = Astro.props as Props;
+const { node, index: _index, isInline: _isInline, ...attrs } = props;
+
+const styleIs = (style: string) => style === node.style;
+
+function getAlignClass(align?: string): string {
+	if (align === "center") return "has-text-align-center";
+	if (align === "right") return "has-text-align-right";
+	if (align === "justify") return "has-text-align-justify";
+	return "";
+}
+
+const alignClass = getAlignClass(node.textAlign);
+---
+
+{
+	/* Single H1 Guard: demote h1 to h2 */
+	styleIs("h1") ? (
+		<h2 class={alignClass} {...attrs}>
+			<slot />
+		</h2>
+	) : styleIs("h2") ? (
+		<h2 class={alignClass} {...attrs}>
+			<slot />
+		</h2>
+	) : styleIs("h3") ? (
+		<h3 class={alignClass} {...attrs}>
+			<slot />
+		</h3>
+	) : styleIs("h4") ? (
+		<h4 class={alignClass} {...attrs}>
+			<slot />
+		</h4>
+	) : styleIs("h5") ? (
+		<h5 class={alignClass} {...attrs}>
+			<slot />
+		</h5>
+	) : styleIs("h6") ? (
+		<h6 class={alignClass} {...attrs}>
+			<slot />
+		</h6>
+	) : styleIs("blockquote") ? (
+		<blockquote class={alignClass} {...attrs}>
+			<slot />
+		</blockquote>
+	) : styleIs("normal") ? (
+		<p class={alignClass} {...attrs}>
+			<slot />
+		</p>
+	) : (
+		<p class={alignClass} {...attrs}>
+			<slot />
+		</p>
+	)
+}
+
+<style>
+	.has-text-align-center {
+		text-align: center;
+	}
+	.has-text-align-right {
+		text-align: right;
+	}
+	.has-text-align-justify {
+		text-align: justify;
+	}
+</style>

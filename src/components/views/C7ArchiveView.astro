@@ -7,6 +7,7 @@
 
 import Base from "../../layouts/Base.astro";
 import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../i18n/utils";
+import { build7cBreadcrumbsJsonLd } from "../../lib/7c-seo";
 
 export interface FormattedArchivePost {
 	slug: string;
@@ -59,10 +60,40 @@ const filterPillars = [
 ];
 
 const badgeText = headerBadge || t.editorial.articles_count;
+const homeUrl = locale === "en" ? "/en" : "/";
+const archiveUrl = `${prefix}/posts`;
+
+const breadcrumbItems = [
+	{ name: t.nav.home, url: homeUrl },
+	{ name: t.nav.archive, url: archiveUrl },
+	...(activeSlug && activeSlug !== "all" ? [{ name: headerTitle, url: Astro.url.pathname }] : []),
+];
+const breadcrumbsJsonLd = build7cBreadcrumbsJsonLd(breadcrumbItems);
 ---
 
 <Base title={pageTitle} description={pageDescription}>
+	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbsJsonLd)} />
+
 	<div class="dispatch-archive-page">
+		<!-- Accessible Breadcrumb -->
+		<nav class="c7-breadcrumb" aria-label={t.editorial.aria_breadcrumbs} style="margin-bottom: 1.25rem;">
+			<a href={homeUrl} class="c7-breadcrumb-link">{t.nav.home}</a>
+			<svg class="c7-breadcrumb-sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+				<polyline points="9 18 15 12 9 6"></polyline>
+			</svg>
+			{activeSlug && activeSlug !== "all" ? (
+				<>
+					<a href={archiveUrl} class="c7-breadcrumb-link">{t.nav.archive}</a>
+					<svg class="c7-breadcrumb-sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+						<polyline points="9 18 15 12 9 6"></polyline>
+					</svg>
+					<span class="c7-breadcrumb-current" aria-current="page">{headerTitle}</span>
+				</>
+			) : (
+				<span class="c7-breadcrumb-current" aria-current="page">{t.nav.archive}</span>
+			)}
+		</nav>
+
 		<!-- Header of Archive Dispatch Table -->
 		<div class="dispatch-header">
 			<div class="dispatch-header-left">

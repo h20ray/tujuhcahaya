@@ -6,6 +6,7 @@
  */
 
 import Base from "../../layouts/Base.astro";
+import C7FaqSection from "../ui/C7FaqSection.astro";
 import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../i18n/utils";
 
 interface Props {
@@ -116,6 +117,7 @@ const submitPath = get7cLocalizedPath("/kirim-tulisan", locale);
 				</div>
 			</form>
 		)}
+		<C7FaqSection locale={locale} />
 	</div>
 </Base>
 

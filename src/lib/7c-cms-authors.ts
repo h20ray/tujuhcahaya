@@ -24,8 +24,8 @@ export const C7_AUTHORS: Record<
 		roleId: "Founder & Pemimpin Umum",
 		roleEn: "Founder & Publisher",
 		avatarUrl: "https://media.xlocal.id/tujuhcahaya/uploads/2025/09/cropped-IMG_20250331_000108_788.avif",
-		bioId: "CEO, influencer, public figure, engineer, scientist, adalah contoh nama-nama pekerjaan orang.",
-		bioEn: "CEO, influencer, public figure, engineer, scientist, adalah contoh nama-nama pekerjaan orang.",
+		bioId: "Founder dan Pemimpin Umum Tujuhcahaya. Berfokus pada arsitektur media digital kontemporer, kurasi jurnalisme independen, dan konvergensi teknologi kreatif.",
+		bioEn: "Founder and Publisher at Tujuhcahaya. Focused on contemporary digital media architecture, independent journalism curation, and creative technology convergence.",
 	},
 	elangelano: {
 		name: "Elang Elano",

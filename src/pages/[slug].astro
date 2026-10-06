@@ -7,13 +7,15 @@ import {
 } from "emdash";
 import { resolveStarterSiteIdentity } from "../utils/site-identity";
 import { resolve7cLegacyUrl } from "../lib/7c-url-guardian";
+import { C7_CANONICAL_ORIGIN } from "../lib/7c-seo";
 import { get7cRelatedPosts } from "../lib/7c-cms";
 import C7ArticleView from "../components/views/C7ArticleView.astro";
 
 const slug = decodeSlug(Astro.params.slug);
 
 if (!slug) {
-	return Astro.redirect("/404");
+	Astro.response.status = 404;
+	return Astro.rewrite("/404");
 }
 
 let isPost = true;
@@ -31,7 +33,8 @@ if (!entry) {
 	if (legacyMatch) {
 		return Astro.redirect(legacyMatch.destination, legacyMatch.status);
 	}
-	return Astro.redirect("/404");
+	Astro.response.status = 404;
+	return Astro.rewrite("/404");
 }
 
 if (Astro.cache?.enabled && cacheHint) {
@@ -42,8 +45,11 @@ const { siteTitle } = resolveStarterSiteIdentity(await getSiteSettings());
 
 const seo = getSeoMeta(entry, {
 	siteTitle,
-	siteUrl: Astro.url.origin,
+	siteUrl: C7_CANONICAL_ORIGIN,
 	path: Astro.url.pathname.replace(/\/$/, ""),
+	defaultDescription: (typeof entry.data.excerpt === "string" && entry.data.excerpt.trim())
+		? entry.data.excerpt.trim()
+		: `${entry.data.title} — Liputan mendalam, perspektif segar kultur pop, teknologi, dan musik di Tujuhcahaya.`,
 });
 
 const categories = entry.data.terms?.category ?? [];

@@ -24,7 +24,7 @@ function getDb(): sqlite3.DatabaseSync {
 /**
  * Generate standard RSS 2.0 feed for the latest 50 articles
  */
-export function generate7cRssFeed(siteUrl: string = "https://tujuhcahaya.com"): string {
+export function generate7cRssFeed(siteUrl: string = "https://www.tujuhcahaya.com"): string {
 	const db = getDb();
 	const base = siteUrl.replace(/\/$/, "");
 
@@ -89,7 +89,7 @@ ${itemsXml}
 /**
  * Generate Master Sitemap Index XML referencing chunked sub-sitemaps
  */
-export function generate7cSitemapIndex(siteUrl: string = "https://tujuhcahaya.com"): string {
+export function generate7cSitemapIndex(siteUrl: string = "https://www.tujuhcahaya.com"): string {
 	const base = siteUrl.replace(/\/$/, "");
 	const nowIso = new Date().toISOString();
 
@@ -117,7 +117,7 @@ export function generate7cSitemapIndex(siteUrl: string = "https://tujuhcahaya.co
 /**
  * Generate Sitemap for Core Editorial & Static Pages
  */
-export function generate7cPagesSitemap(siteUrl: string = "https://tujuhcahaya.com"): string {
+export function generate7cPagesSitemap(siteUrl: string = "https://www.tujuhcahaya.com"): string {
 	const db = getDb();
 	const base = siteUrl.replace(/\/$/, "");
 	const nowIso = new Date().toISOString();
@@ -177,7 +177,7 @@ ${urls.join("\n")}
 /**
  * Generate Sitemap for Taxonomies (Categories and Tags)
  */
-export function generate7cTaxonomiesSitemap(siteUrl: string = "https://tujuhcahaya.com"): string {
+export function generate7cTaxonomiesSitemap(siteUrl: string = "https://www.tujuhcahaya.com"): string {
 	const db = getDb();
 	const base = siteUrl.replace(/\/$/, "");
 	const nowIso = new Date().toISOString();
@@ -224,7 +224,7 @@ ${urls.join("\n")}
  * Generate Chunked Posts Sitemap (e.g. 1-10000, 10001+)
  */
 export function generate7cPostsSitemap(
-	siteUrl: string = "https://tujuhcahaya.com",
+	siteUrl: string = "https://www.tujuhcahaya.com",
 	offset: number = 0,
 	limit: number = 10000
 ): string {

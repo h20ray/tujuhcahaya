@@ -21,6 +21,7 @@ import {
 } from "../../lib/7c-cms";
 import type { C7PostData } from "../../lib/7c-cms";
 import { get7cLocalizedPath, type Locale, use7cTranslation } from "../../i18n/utils";
+import { build7cBreadcrumbsJsonLd, build7cArticleJsonLd } from "../../lib/7c-seo";
 import "../../styles/7c-article-view.css";
 
 interface Props {
@@ -59,6 +60,28 @@ const authorName = authorProfile.name;
 
 const archiveUrl = `${prefix}/posts`;
 const homeUrl = locale === "en" ? "/en" : "/";
+
+const breadcrumbItems = [
+	{ name: t.nav.home, url: homeUrl },
+	...(categories.length > 0
+		? [{ name: categories[0].label, url: get7cLocalizedPath(`/category/${categories[0].slug}`, locale) }]
+		: [{ name: t.nav.archive, url: archiveUrl }]),
+	{ name: entry.data.title, url: Astro.url.pathname },
+];
+const breadcrumbsJsonLd = build7cBreadcrumbsJsonLd(breadcrumbItems);
+
+const articleJsonLd = isPost ? build7cArticleJsonLd({
+	title: entry.data.title,
+	description: seo.description,
+	url: Astro.url.pathname,
+	imageUrl: ogImage,
+	datePublished: entry.data.publishedAt,
+	dateModified: entry.data.updatedAt || entry.data.publishedAt,
+	authorName: authorName,
+	authorUrl: authorProfile.archiveUrl,
+	authorRole: authorProfile.role,
+	category: categories[0]?.label,
+}) : null;
 ---
 
 <Base
@@ -69,6 +92,12 @@ const homeUrl = locale === "en" ? "/en" : "/";
 	image={ogImage}
 	content={{ collection, id: entry.data.id, slug }}
 >
+	<!-- Structured Data: Breadcrumbs & NewsArticle -->
+	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbsJsonLd)} />
+	{articleJsonLd && (
+		<script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+	)}
+
 	<div id="reading-progress-bar" aria-hidden="true"></div>
 
 	<div class="article-container">

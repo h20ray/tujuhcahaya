@@ -14,6 +14,7 @@ import { PortableText, type PortableTextProps } from "emdash/ui";
 import C7ScoreBox from "./C7ScoreBox.astro";
 import C7SpecTable from "./C7SpecTable.astro";
 import C7PullQuote from "./C7PullQuote.astro";
+import C7Block from "./C7Block.astro";
 
 interface Props {
 	value: unknown;
@@ -24,6 +25,7 @@ interface Props {
 const { value, components = {}, class: className = "" } = Astro.props;
 
 const customComponents = {
+	block: C7Block,
 	type: {
 		scoreBox: C7ScoreBox,
 		specTable: C7SpecTable,
