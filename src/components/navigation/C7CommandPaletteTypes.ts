@@ -67,8 +67,11 @@ export interface C7CommandPaletteActionContext {
 	showToast: (message: string, isError?: boolean) => void;
 }
 
+import type { AudioPreviewManager } from "@tujuhcahaya/radio-player/client";
+
 declare global {
 	interface Window {
-		c7AudioPreview?: { toggle: (track: C7PreviewTrack) => void };
+		c7AudioPreview?: AudioPreviewManager;
 	}
 }
+

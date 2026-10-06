@@ -126,9 +126,11 @@ export function generate7cPagesSitemap(siteUrl: string = "https://www.tujuhcahay
 		const staticRoutes = [
 			{ path: "/", priority: "1.0", changefreq: "hourly" },
 			{ path: "/posts", priority: "0.9", changefreq: "hourly" },
+			{ path: "/live", priority: "0.9", changefreq: "hourly" },
 			{ path: "/kirim-tulisan", priority: "0.8", changefreq: "monthly" },
 			{ path: "/en", priority: "0.8", changefreq: "daily" },
 			{ path: "/en/posts", priority: "0.7", changefreq: "daily" },
+			{ path: "/en/live", priority: "0.8", changefreq: "hourly" },
 			{ path: "/en/submit", priority: "0.7", changefreq: "monthly" },
 		];
 

@@ -280,5 +280,31 @@
     "switch_to_dark": "Beralih ke mode gelap",
     "switch_to_light": "Beralih ke mode terang",
     "toggle_theme": "Ganti tema (Terang / Gelap)"
+  },
+  "live": {
+    "meta_title": "7Stream Live Studio — Musik Streaming 24 Jam Nonstop & Obrolan Siaran",
+    "meta_description": "Dengarkan 7Stream Tujuhcahaya: musik streaming 24 jam nonstop tanpa iklan, lirik karaoke otomatis tersinkronisasi, request lagu on-air, dan live chat studio komunitas.",
+    "page_title": "7Stream Live Studio",
+    "station_tagline": "Musik Streaming 24 Jam Nonstop Tanpa Iklan",
+    "badge_live": "SEDANG MENGUDARA",
+    "badge_offline": "SIARAN SELESAI",
+    "badge_lossless": "Audio Jernih 320 kbps",
+    "listeners": "Pendengar Aktif",
+    "now_playing": "Sedang Mengudara",
+    "up_next": "Segera Mengudara",
+    "tab_lyrics": "Lirik Lagu",
+    "tab_request": "Request Lagu",
+    "tab_chat": "Obrolan Siaran",
+    "tab_history": "Riwayat Putar",
+    "lyrics_loading": "Menyelaraskan lirik dengan siaran...",
+    "lyrics_empty": "Lirik belum tersedia untuk lagu ini.",
+    "request_subtitle": "Cari lagu favorit di katalog musik Tujuhcahaya untuk dimasukkan ke antrean siaran.",
+    "history_empty": "Belum ada riwayat pemutaran tercatat.",
+    "play": "Putar Siaran",
+    "pause": "Jeda Siaran",
+    "mute": "Bisukan Audio",
+    "unmute": "Nyalakan Audio",
+    "volume": "Volume Suara"
   }
 }
+

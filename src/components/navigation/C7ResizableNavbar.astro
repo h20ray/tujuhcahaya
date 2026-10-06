@@ -54,11 +54,13 @@ const currentPath = propCurrentPath ?? Astro.url.pathname;
 const idPath = get7cLocalizedPath(currentPath, "id");
 const enPath = get7cLocalizedPath(currentPath, "en");
 
-// Shortened 7C Navigation Contract: "News" (Mega Menu), "Tentang Kami"
+// Shortened 7C Navigation Contract: "News" (Mega Menu), "Live", "Tentang Kami"
 const defaultNavItems: NavItem[] = [
 	{ name: t.nav.news, link: `${prefix}/category/berita`, isMegaMenu: true },
+	{ name: "Live", link: `${prefix}/live` },
 	{ name: t.nav.about, link: `${prefix}/about-us` },
 ];
+
 
 const resolvedNavItems = customNavItems && customNavItems.length > 0 ? customNavItems : defaultNavItems;
 const hasCustomActions = actions && actions.length > 0;
@@ -360,6 +362,10 @@ import "./C7ResizableNavbar.css";
 					</div>
 				</div>
 
+				<a class="c7-rn-mobile-link" href={`${prefix}/live`}>
+					<span>Live</span>
+					<span class="c7-rn-mobile-arrow" aria-hidden="true">&rarr;</span>
+				</a>
 				<a class="c7-rn-mobile-link" href={`${prefix}/about-us`}>
 					<span>{t.nav.about}</span>
 					<span class="c7-rn-mobile-arrow" aria-hidden="true">&rarr;</span>

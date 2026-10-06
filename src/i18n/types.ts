@@ -285,6 +285,32 @@ export interface ThemeDict {
 	toggle_theme: string;
 }
 
+export interface LiveDict {
+	meta_title: string;
+	meta_description: string;
+	page_title: string;
+	station_tagline: string;
+	badge_live: string;
+	badge_offline: string;
+	badge_lossless: string;
+	listeners: string;
+	now_playing: string;
+	up_next: string;
+	tab_lyrics: string;
+	tab_request: string;
+	tab_chat: string;
+	tab_history: string;
+	lyrics_loading: string;
+	lyrics_empty: string;
+	request_subtitle: string;
+	history_empty: string;
+	play: string;
+	pause: string;
+	mute: string;
+	unmute: string;
+	volume: string;
+}
+
 export interface C7TranslationSchema {
 	nav: NavDict;
 	pillars: PillarsDict;
@@ -303,4 +329,6 @@ export interface C7TranslationSchema {
 	isometric: IsometricDict;
 	dispatch: DispatchDict;
 	theme: ThemeDict;
+	live: LiveDict;
 }
+

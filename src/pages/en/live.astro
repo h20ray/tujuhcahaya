@@ -1,0 +1,86 @@
+---
+import Base from "../../layouts/Base.astro";
+import { use7cTranslation } from "../../i18n/utils";
+import { C7LiveStudio } from "../../components/live/C7LiveStudio";
+import "../../styles/c7-live.css";
+
+const locale = "en";
+const { t } = use7cTranslation(locale);
+
+const canonicalUrl = "https://www.tujuhcahaya.com/en/live";
+
+const radioStationJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "RadioStation",
+	"name": "7Stream Tujuhcahaya",
+	"url": canonicalUrl,
+	"description": t.live.meta_description,
+	"broadcastDisplayName": "Tujuhcahaya Radio",
+	"inLanguage": "en",
+	"parentOrganization": {
+		"@type": "NewsMediaOrganization",
+		"name": "Tujuhcahaya",
+		"url": "https://www.tujuhcahaya.com"
+	}
+};
+
+const breadcrumbJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": t.nav.home,
+			"item": "https://www.tujuhcahaya.com/en"
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": t.live.page_title,
+			"item": canonicalUrl
+		}
+	]
+};
+---
+
+<Base
+	title={t.live.meta_title}
+	pageTitle={t.live.page_title}
+	description={t.live.meta_description}
+	canonical={canonicalUrl}
+>
+	<script type="application/ld+json" set:html={JSON.stringify(radioStationJsonLd)} />
+	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+
+	<div class="c7-live-page-wrapper">
+		<!-- Page Header & Badges -->
+		<header class="c7-live-header">
+			<nav class="c7-live-breadcrumb" aria-label={t.a11y.breadcrumbs}>
+				<a href="/en">{t.nav.home}</a>
+				<span aria-hidden="true">/</span>
+				<span aria-current="page">{t.live.page_title}</span>
+			</nav>
+
+			<div class="c7-live-headline-row">
+				<div>
+					<h1 class="c7-live-page-title">{t.live.page_title}</h1>
+					<p class="c7-live-tagline">{t.live.station_tagline}</p>
+				</div>
+
+				<div class="c7-live-meta-badges">
+					<div class="c7-live-badge-onair">
+						<span class="c7-live-pulse-dot" aria-hidden="true"></span>
+						<span>{t.live.badge_live}</span>
+					</div>
+					<div class="c7-live-badge-lossless">
+						<span>{t.live.badge_lossless}</span>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<!-- 7Stream Live Studio Hub -->
+		<C7LiveStudio client:load locale="en" t={t.live} />
+	</div>
+</Base>
