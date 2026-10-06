@@ -293,6 +293,7 @@
     "history_empty": "Belum ada riwayat pemutaran.",
     "play": "Putar siaran",
     "pause": "Jeda siaran",
+    "connecting": "Menghubungkan ke siaran...",
     "mute": "Senyapkan",
     "unmute": "Aktifkan suara",
     "volume": "Volume",

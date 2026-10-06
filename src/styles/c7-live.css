@@ -275,12 +275,50 @@
   }
 }
 
-/* Elevated Play FAB (Large) */
+/* Elevated Play FAB (Large) — Auto-Adaptive MD3X Elevated Action */
 .c7-live-player-controls .c7-radio-play-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 52px;
   height: 52px;
   border-radius: 9999px;
+  background-color: var(--c7-player-accent, var(--7c-sys-primary, #d50000));
+  color: var(--c7-player-accent-fg, #ffffff);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
   box-shadow: var(--c7-elevation-2);
+  line-height: 0;
+  padding: 0;
+  transition:
+    transform 0.18s cubic-bezier(0.2, 0, 0, 1),
+    background-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.18s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.c7-live-player-controls .c7-radio-play-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: var(--c7-elevation-3);
+}
+
+.c7-live-player-controls .c7-radio-play-btn:active:not(:disabled) {
+  transform: scale(0.95);
+  box-shadow: var(--c7-elevation-1);
+}
+
+.c7-live-player-controls .c7-radio-play-btn.is-loading,
+.c7-live-player-controls .c7-radio-play-btn:disabled {
+  opacity: 0.92;
+  cursor: wait;
+}
+
+@media (max-width: 640px) {
+  .c7-live-player-controls .c7-radio-play-btn {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .c7-live-player-card .c7-dock-volume-group {

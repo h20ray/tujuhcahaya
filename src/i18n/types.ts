@@ -297,6 +297,7 @@ export interface LiveDict {
 	history_empty: string;
 	play: string;
 	pause: string;
+	connecting: string;
 	mute: string;
 	unmute: string;
 	volume: string;

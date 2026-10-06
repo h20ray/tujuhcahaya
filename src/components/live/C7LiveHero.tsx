@@ -18,6 +18,7 @@ interface C7LiveHeroProps {
   isLoading: boolean;
   isMuted: boolean;
   volume: number;
+  locale?: string;
   t: LiveDict;
   onTogglePlay: () => void;
   onToggleMute: () => void;
@@ -30,6 +31,7 @@ export const C7LiveHero: React.FC<C7LiveHeroProps> = ({
   isLoading,
   isMuted,
   volume,
+  locale = "id",
   t,
   onTogglePlay,
   onToggleMute,
@@ -61,7 +63,7 @@ export const C7LiveHero: React.FC<C7LiveHeroProps> = ({
 
   return (
     <section
-      className="c7-live-player-card"
+      className={`c7-live-player-card ${isPlaying ? "is-playing" : "is-idle"} ${isLoading ? "is-loading" : ""}`}
       style={
         {
           "--c7-player-accent": colors.accent,
@@ -143,15 +145,29 @@ export const C7LiveHero: React.FC<C7LiveHeroProps> = ({
           <div className="c7-live-player-controls">
             <button
               type="button"
-              className="c7-radio-play-btn"
+              className={`c7-radio-play-btn ${isPlaying ? "is-playing" : "is-idle"} ${isLoading ? "is-loading" : ""}`}
               onClick={onTogglePlay}
               disabled={isLoading}
-              style={{
-                backgroundColor: colors.accent,
-                color: colors.accentForeground,
-              }}
-              aria-label={isPlaying ? t.pause : t.play}
-              title={isPlaying ? t.pause : t.play}
+              style={
+                {
+                  "--c7-player-accent": colors.accent,
+                  "--c7-player-accent-fg": colors.accentForeground,
+                } as React.CSSProperties
+              }
+              aria-label={
+                isLoading
+                  ? (t.connecting || (locale === "en" ? "Connecting to stream..." : "Menghubungkan ke siaran..."))
+                  : isPlaying
+                    ? t.pause
+                    : t.play
+              }
+              title={
+                isLoading
+                  ? (t.connecting || (locale === "en" ? "Connecting to stream..." : "Menghubungkan ke siaran..."))
+                  : isPlaying
+                    ? t.pause
+                    : t.play
+              }
             >
               {isLoading ? (
                 <C7Spinner size={20} color="currentColor" strokeWidth={2.4} />

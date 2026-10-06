@@ -293,6 +293,7 @@
     "history_empty": "No playback history yet.",
     "play": "Play stream",
     "pause": "Pause stream",
+    "connecting": "Connecting to stream...",
     "mute": "Mute audio",
     "unmute": "Unmute audio",
     "volume": "Volume",
