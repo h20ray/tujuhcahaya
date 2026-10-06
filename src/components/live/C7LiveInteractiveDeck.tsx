@@ -111,6 +111,7 @@ export const C7LiveInteractiveDeck: React.FC<C7LiveInteractiveDeckProps> = ({
               title={track?.title}
               artist={track?.artist}
               artworkUrl={track?.artworkUrl}
+              disableWheelHijack={true}
             />
           </div>
         )}
