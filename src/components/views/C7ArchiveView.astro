@@ -7,7 +7,7 @@
 
 import Base from "../../layouts/Base.astro";
 import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../i18n/utils";
-import { build7cBreadcrumbsJsonLd } from "../../lib/7c-seo";
+import { build7cBreadcrumbsJsonLd, safeJsonLd } from "../../lib/7c-seo";
 
 export interface FormattedArchivePost {
 	slug: string;
@@ -72,7 +72,7 @@ const breadcrumbsJsonLd = build7cBreadcrumbsJsonLd(breadcrumbItems);
 ---
 
 <Base title={pageTitle} description={pageDescription}>
-	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbsJsonLd)} />
+	<script type="application/ld+json" set:html={safeJsonLd(breadcrumbsJsonLd)} />
 
 	<div class="dispatch-archive-page">
 		<!-- Accessible Breadcrumb -->

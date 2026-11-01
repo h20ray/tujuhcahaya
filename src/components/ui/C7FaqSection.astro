@@ -5,7 +5,7 @@
  * Provides accessible, expandable FAQ details for editorial submissions
  * and automatically emits Schema.org/FAQPage JSON-LD.
  */
-import { build7cFaqJsonLd } from "../../lib/7c-seo";
+import { build7cFaqJsonLd, safeJsonLd } from "../../lib/7c-seo";
 import type { Locale } from "../../i18n/utils";
 
 interface FaqItem {
@@ -87,7 +87,7 @@ const jsonLd = build7cFaqJsonLd(faqs);
 	</div>
 
 	<!-- Schema.org FAQPage Structured Data -->
-	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+	<script type="application/ld+json" set:html={safeJsonLd(jsonLd)} />
 </section>
 
 <style>

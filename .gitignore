@@ -33,3 +33,16 @@ uploads/
 .mcp.json
 .DS_Store
 Thumbs.db
+
+# Deployment scripts & outbox artifacts
+scripts/outbox/
+scripts/publish_remote.py
+scripts/publish-outbox-to-live.py
+scripts/apply-posts-payload.mjs
+scripts/temp-*.json
+scripts/inspect_*.py
+scripts/fix_*.py
+scripts/verify_*.py
+scripts/fetch_*.py
+scripts/test_*.py
+*.webp

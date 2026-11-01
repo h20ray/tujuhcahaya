@@ -331,3 +331,11 @@ export function build7cHomeJsonLd(locale: string = "id") {
 		},
 	];
 }
+
+
+/**
+ * Safely serialize data to JSON-LD, escaping angle brackets to prevent </script> injection (XSS)
+ */
+export function safeJsonLd(data: unknown): string {
+	return JSON.stringify(data).replace(/</g, "\\u003c");
+}

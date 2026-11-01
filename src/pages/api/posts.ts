@@ -90,10 +90,10 @@ export const GET: APIRoute = async ({ url }) => {
 			},
 		);
 	} catch (err) {
+		console.error("[7C API /api/posts Error]:", err);
 		return new Response(
 			JSON.stringify({
 				error: "Failed to fetch posts",
-				message: err instanceof Error ? err.message : String(err),
 			}),
 			{
 				status: 500,

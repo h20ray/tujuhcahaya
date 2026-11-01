@@ -21,7 +21,7 @@ import {
 } from "../../lib/7c-cms";
 import type { C7PostData } from "../../lib/7c-cms";
 import { get7cLocalizedPath, type Locale, use7cTranslation } from "../../i18n/utils";
-import { build7cBreadcrumbsJsonLd, build7cArticleJsonLd } from "../../lib/7c-seo";
+import { build7cBreadcrumbsJsonLd, build7cArticleJsonLd, safeJsonLd } from "../../lib/7c-seo";
 import "../../styles/7c-article-view.css";
 
 interface Props {
@@ -93,9 +93,9 @@ const articleJsonLd = isPost ? build7cArticleJsonLd({
 	content={{ collection, id: entry.data.id, slug }}
 >
 	<!-- Structured Data: Breadcrumbs & NewsArticle -->
-	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbsJsonLd)} />
+	<script type="application/ld+json" set:html={safeJsonLd(breadcrumbsJsonLd)} />
 	{articleJsonLd && (
-		<script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+		<script type="application/ld+json" set:html={safeJsonLd(articleJsonLd)} />
 	)}
 
 	<div id="reading-progress-bar" aria-hidden="true"></div>

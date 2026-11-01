@@ -9,7 +9,7 @@ import Base from "../../layouts/Base.astro";
 import { C7_AUTHORS } from "../../lib/7c-cms";
 import type { C7AuthorProfile } from "../../lib/7c-cms";
 import { type Locale, DEFAULT_LOCALE, use7cTranslation, get7cLocalizedPath } from "../../i18n/utils";
-import { build7cPersonJsonLd, build7cBreadcrumbsJsonLd } from "../../lib/7c-seo";
+import { build7cPersonJsonLd, build7cBreadcrumbsJsonLd, safeJsonLd } from "../../lib/7c-seo";
 
 export interface FormattedAuthorPost {
 	id: string;
@@ -69,8 +69,8 @@ const personJsonLd = build7cPersonJsonLd({
 ---
 
 <Base title={pageTitle} description={pageDesc}>
-	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbsJsonLd)} />
-	<script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+	<script type="application/ld+json" set:html={safeJsonLd(breadcrumbsJsonLd)} />
+	<script type="application/ld+json" set:html={safeJsonLd(personJsonLd)} />
 
 	<div class="dispatch-archive-page">
 		<!-- Accessible Breadcrumb -->

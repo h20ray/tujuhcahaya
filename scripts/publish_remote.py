@@ -175,11 +175,20 @@ import os
 with open('__REMOTE_DATA_TMP__', 'r') as f:
     p = json.load(f)
 
-# 1. R2 Upload for real image if provided
-ENDPOINT = 'https://3a81de3772c2c3e88ecf74ec261f552f.r2.cloudflarestorage.com'
-BUCKET = 'xlocal'
-KEY_ID = '76526b31875de9f2cb388dbddedd4322'
-SECRET = '98aa77d6b5e3319c63b57954fcb26687f40ac8112e0ea2898d1fde3697d6b69d'
+# 1. R2 Upload credentials from environment or remote .env
+env_file = '/var/www/vhosts/tujuhcahaya.com/emdash/.env'
+env_vars = {}
+if os.path.exists(env_file):
+    with open(env_file, 'r', encoding='utf-8') as ef:
+        for line in ef:
+            if '=' in line and not line.strip().startswith('#'):
+                k, v = line.strip().split('=', 1)
+                env_vars[k.strip()] = v.strip().strip('"').strip("'")
+
+ENDPOINT = os.environ.get('S3_ENDPOINT') or env_vars.get('S3_ENDPOINT', 'https://3a81de3772c2c3e88ecf74ec261f552f.r2.cloudflarestorage.com')
+BUCKET = os.environ.get('S3_BUCKET') or env_vars.get('S3_BUCKET', 'xlocal')
+KEY_ID = os.environ.get('S3_ACCESS_KEY_ID') or env_vars.get('S3_ACCESS_KEY_ID')
+SECRET = os.environ.get('S3_SECRET_ACCESS_KEY') or env_vars.get('S3_SECRET_ACCESS_KEY')
 
 featured_image_obj = None
 raw_url = p.get('rawImageUrl', '').strip()
