@@ -13,13 +13,19 @@ def generate_id():
     prefix = "01" + "".join(random.choice(chars) for _ in range(24))
     return prefix
 
-def generate_slug(title):
+def generate_slug(title, max_len=65):
     import re
     base = title.lower().strip()
     base = re.sub(r'[^a-z0-9\s-]', '', base)
     base = re.sub(r'\s+', '-', base)
     base = re.sub(r'-+', '-', base)
-    return base[:70].strip('-')
+    if len(base) > max_len:
+        last_hyphen = base.rfind('-', 0, max_len)
+        if last_hyphen > 25:
+            base = base[:last_hyphen]
+        else:
+            base = base[:max_len]
+    return base.strip('-')
 
 def parse_inline_spans(text):
     import re
@@ -198,33 +204,103 @@ if raw_url and raw_url.startswith('http'):
     except Exception as e:
         print(f"[R2 Warning] Could not fetch/convert {raw_url}: {e}")
 
-# Fallback: if WebP not created or too small, generate MD3X branded card via Sharp
+# Fallback: if WebP not created or too small, generate MD3X branded dark editorial card via Sharp
 if not os.path.exists(webp_tmp) or os.path.getsize(webp_tmp) < 1000:
     try:
-        title_esc = p['title'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
-        cat_upper = "__CATEGORY_SLUG__".upper()
+        import html
+        raw_title = p.get('title', 'Tujuhcahaya Warta')
+        raw_excerpt = p.get('excerpt', 'Liputan independen game, teknologi dan kultur digital terkini.')
+        cat_slug = "__CATEGORY_SLUG__".lower()
+        cat_upper = cat_slug.upper()
+
+        # Word-wrap title into max 3 lines (around 32-34 chars per line)
+        words = raw_title.split()
+        lines = []
+        curr = []
+        curr_len = 0
+        for w in words:
+            if curr_len + len(w) + (1 if curr else 0) <= 34:
+                curr.append(w)
+                curr_len += len(w) + (1 if curr else 0)
+            else:
+                if curr:
+                    lines.append(" ".join(curr))
+                curr = [w]
+                curr_len = len(w)
+        if curr:
+            lines.append(" ".join(curr))
+        lines = lines[:3]
+
+        # Category colors
+        if "game" in cat_slug:
+            glow_color = "#e60012"
+            pill_border = "#e60012"
+            pill_text = "#ff4d4d"
+        elif "musik" in cat_slug:
+            glow_color = "#10b981"
+            pill_border = "#10b981"
+            pill_text = "#34d399"
+        else:
+            glow_color = "#3b82f6"
+            pill_border = "#3b82f6"
+            pill_text = "#60a5fa"
+
+        y_start = 245 if len(lines) <= 2 else 215
+        line_height = 54
+        title_svg = ""
+        for i, l in enumerate(lines):
+            title_svg += f'<text x="110" y="{y_start + i * line_height}" font-family="DejaVu Sans, Arial, sans-serif" font-size="42" font-weight="bold" fill="#f8fafc">{html.escape(l)}</text>\\n'
+
+        # Subtitle (single line, max 70 chars)
+        sub_y = y_start + len(lines) * line_height + 40
+        sub_text = (raw_excerpt[:70] + "...") if len(raw_excerpt) > 70 else raw_excerpt
+        sub_svg = f'<text x="110" y="{sub_y}" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="500" fill="#94a3b8">{html.escape(sub_text)}</text>'
+
         svg_code = f'''<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="50%" stop-color="#1e1b4b"/>
-      <stop offset="100%" stop-color="#090d16"/>
+      <stop offset="0%" stop-color="#0b0f19"/>
+      <stop offset="40%" stop-color="#141927"/>
+      <stop offset="100%" stop-color="#050810"/>
     </linearGradient>
+    <radialGradient id="glow-primary" cx="88%" cy="12%" r="48%">
+      <stop offset="0%" stop-color="{glow_color}" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-ambient" cx="12%" cy="88%" r="42%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
   </defs>
+
   <rect width="100%" height="100%" fill="url(#bg)"/>
-  <rect x="80" y="80" width="1040" height="515" rx="24" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/>
-  <text x="120" y="150" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#f43f5e" letter-spacing="4">&#8226; TUJUHCAHAYA {cat_upper}</text>
-  <foreignObject x="120" y="200" width="960" height="280">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: system-ui, sans-serif; font-size: 46px; font-weight: 800; color: #f8fafc; line-height: 1.25;">
-      {title_esc}
-    </div>
-  </foreignObject>
-  <text x="120" y="530" font-family="system-ui, sans-serif" font-size="20" font-weight="500" fill="#94a3b8">tujuhcahaya.com &#8226; Editorial Radar</text>
+  <rect width="100%" height="100%" fill="url(#glow-primary)"/>
+  <rect width="100%" height="100%" fill="url(#glow-ambient)"/>
+
+  <!-- Frosted card container -->
+  <rect x="70" y="70" width="1060" height="535" rx="28" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1.5"/>
+
+  <!-- Category Pill -->
+  <rect x="110" y="115" width="230" height="38" rx="19" fill="{pill_border}" fill-opacity="0.15" stroke="{pill_border}" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="130" y="140" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="700" fill="{pill_text}" letter-spacing="2">&#9679; TUJUHCAHAYA {cat_upper}</text>
+
+  <!-- Title lines -->
+  {title_svg}
+
+  <!-- Subtitle -->
+  {sub_svg}
+
+  <!-- Divider line -->
+  <line x1="110" y1="465" x2="1090" y2="465" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+
+  <!-- Footer -->
+  <text x="110" y="525" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="600" fill="#f43f5e">&#9679; Tujuhcahaya</text>
+  <text x="270" y="525" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#64748b">&#8226; Warta Independen Game, Teknologi &amp; Kultur Pop Digital</text>
 </svg>'''
         svg_tmp = f"/tmp/{slug}_card.svg"
         with open(svg_tmp, 'w', encoding='utf-8') as sf:
             sf.write(svg_code)
-        os.system(f"cd /var/www/vhosts/tujuhcahaya.com/emdash && node -e \\"require('sharp')('{svg_tmp}').resize(1200, 675).webp({{quality: 90}}).toFile('{webp_tmp}')\\"")
+        os.system(f"cd /var/www/vhosts/tujuhcahaya.com/emdash && node -e \\"require('sharp')('{svg_tmp}').resize(1200, 675).webp({{quality: 92}}).toFile('{webp_tmp}')\\"")
         os.system(f"rm -f {svg_tmp}")
     except Exception as e:
         print(f"[Card Fallback Warning]: {e}")

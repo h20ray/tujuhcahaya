@@ -19,14 +19,23 @@ export function generateId() {
 	return `01${timestamp}${random}`.slice(0, 26);
 }
 
-export function generateSlug(title) {
-	return title
+export function generateSlug(title, maxLen = 65) {
+	let slug = title
 		.toLowerCase()
 		.trim()
 		.replace(/[^a-z0-9\s-]/g, "")
 		.replace(/\s+/g, "-")
-		.replace(/-+/g, "-")
-		.slice(0, 70);
+		.replace(/-+/g, "-");
+
+	if (slug.length > maxLen) {
+		const lastHyphen = slug.lastIndexOf("-", maxLen);
+		if (lastHyphen > 25) {
+			slug = slug.slice(0, lastHyphen);
+		} else {
+			slug = slug.slice(0, maxLen);
+		}
+	}
+	return slug.replace(/-+$/, "").replace(/^-+/, "");
 }
 
 /**
