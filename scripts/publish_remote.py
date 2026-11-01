@@ -27,77 +27,197 @@ def generate_slug(title, max_len=65):
             base = base[:max_len]
     return base.strip('-')
 
-def parse_inline_spans(text):
-    import re
-    link_regex = re.compile(r'\[([^\]]+)\]\(([^)]+)\)')
+import re
+import uuid
+
+def parse_inline_markdown(text):
+    """
+    Parses inline markdown: [link](url), **bold**, *italic*, `code` into PortableText spans and markDefs
+    """
+    pattern = re.compile(
+        r'(?P<link>\[(?P<link_text>[^\]]+)\]\((?P<link_url>[^)]+)\))|'
+        r'(?P<bold>\*\*(?P<bold_text>[^*]+)\*\*)|'
+        r'(?P<italic>(?<!\*)\*(?P<italic_text>[^*]+)\*(?!\*))|'
+        r'(?P<code>`(?P<code_text>[^`]+)`)'
+    )
+
     spans = []
     mark_defs = []
-    last_index = 0
+    last_idx = 0
     link_idx = 0
 
-    for m in link_regex.finditer(text):
+    for m in pattern.finditer(text):
         start, end = m.span()
-        if start > last_index:
+        if start > last_idx:
             spans.append({
                 "_type": "span",
-                "_key": f"spn-{len(spans)}-{hashlib.md5(str(time.time()).encode()).hexdigest()[:6]}",
-                "text": text[last_index:start]
+                "_key": f"spn-{len(spans)}-{uuid.uuid4().hex[:6]}",
+                "text": text[last_idx:start],
+                "marks": []
             })
-        mark_key = f"lnk-{link_idx}"
-        link_idx += 1
-        mark_defs.append({
-            "_key": mark_key,
-            "_type": "link",
-            "href": m.group(2)
-        })
-        spans.append({
-            "_type": "span",
-            "_key": f"spn-{len(spans)}-{hashlib.md5(str(time.time()).encode()).hexdigest()[:6]}",
-            "text": m.group(1),
-            "marks": [mark_key]
-        })
-        last_index = end
 
-    if last_index < len(text):
+        if m.group("link"):
+            link_url = m.group("link_url")
+            link_text = m.group("link_text")
+            mark_key = f"lnk-{link_idx}"
+            link_idx += 1
+            mark_defs.append({
+                "_key": mark_key,
+                "_type": "link",
+                "href": link_url
+            })
+            
+            sub_spans, _ = parse_inline_markdown(link_text)
+            for s in sub_spans:
+                s["marks"] = list(set(s.get("marks", []) + [mark_key]))
+                spans.append(s)
+
+        elif m.group("bold"):
+            bold_text = m.group("bold_text")
+            sub_spans, sub_defs = parse_inline_markdown(bold_text)
+            for d in sub_defs:
+                mark_defs.append(d)
+            for s in sub_spans:
+                s["marks"] = list(set(s.get("marks", []) + ["strong"]))
+                spans.append(s)
+
+        elif m.group("italic"):
+            italic_text = m.group("italic_text")
+            sub_spans, sub_defs = parse_inline_markdown(italic_text)
+            for d in sub_defs:
+                mark_defs.append(d)
+            for s in sub_spans:
+                s["marks"] = list(set(s.get("marks", []) + ["em"]))
+                spans.append(s)
+
+        elif m.group("code"):
+            code_text = m.group("code_text")
+            spans.append({
+                "_type": "span",
+                "_key": f"spn-{len(spans)}-{uuid.uuid4().hex[:6]}",
+                "text": code_text,
+                "marks": ["code"]
+            })
+
+        last_idx = end
+
+    if last_idx < len(text):
         spans.append({
             "_type": "span",
-            "_key": f"spn-{len(spans)}-{hashlib.md5(str(time.time()).encode()).hexdigest()[:6]}",
-            "text": text[last_index:]
+            "_key": f"spn-{len(spans)}-{uuid.uuid4().hex[:6]}",
+            "text": text[last_idx:],
+            "marks": []
         })
 
     if not spans:
         spans.append({
             "_type": "span",
-            "_key": "spn-0",
-            "text": text
+            "_key": f"spn-{len(spans)}-{uuid.uuid4().hex[:6]}",
+            "text": text,
+            "marks": []
         })
 
     return spans, mark_defs
 
+def parse_inline_spans(text):
+    return parse_inline_markdown(text)
+
 def prose_to_portable_text(body_text):
-    paragraphs = [p.strip() for p in body_text.split('\n\n') if p.strip()]
+    if not body_text:
+        return []
+
     blocks = []
-    import uuid
-    for i, p in enumerate(paragraphs):
-        k = f"blk-{i}-{uuid.uuid4().hex[:8]}"
-        style = "normal"
-        raw_text = p
+    sections = [s.strip() for s in re.split(r'\n\s*\n', body_text) if s.strip()]
 
-        if p.startswith("### "):
-            style = "h3"
-            raw_text = p[4:]
-        elif p.startswith("## "):
-            style = "h2"
-            raw_text = p[3:]
+    for i, sec in enumerate(sections):
+        lines = [line.strip() for line in sec.split('\n') if line.strip()]
 
-        spans, mark_defs = parse_inline_spans(raw_text)
-        blocks.append({
-            "_type": "block",
-            "_key": k,
-            "style": style,
-            "markDefs": mark_defs,
-            "children": spans
-        })
+        for j, line in enumerate(lines):
+            k = f"blk-{i}-{j}-{uuid.uuid4().hex[:6]}"
+
+            if line.startswith("### "):
+                raw = line[4:].strip()
+                spans, mark_defs = parse_inline_markdown(raw)
+                blocks.append({
+                    "_type": "block",
+                    "_key": k,
+                    "style": "h3",
+                    "markDefs": mark_defs,
+                    "children": spans
+                })
+            elif line.startswith("## "):
+                raw = line[3:].strip()
+                spans, mark_defs = parse_inline_markdown(raw)
+                blocks.append({
+                    "_type": "block",
+                    "_key": k,
+                    "style": "h2",
+                    "markDefs": mark_defs,
+                    "children": spans
+                })
+            elif line.startswith("> "):
+                raw = line[2:].strip()
+                spans, mark_defs = parse_inline_markdown(raw)
+                blocks.append({
+                    "_type": "block",
+                    "_key": k,
+                    "style": "blockquote",
+                    "markDefs": mark_defs,
+                    "children": spans
+                })
+            elif re.match(r'^!\[([^\]]*)\]\(([^)]+)\)$', line):
+                img_m = re.match(r'^!\[([^\]]*)\]\(([^)]+)\)$', line)
+                alt = img_m.group(1)
+                url = img_m.group(2)
+                blocks.append({
+                    "_type": "image",
+                    "_key": f"img-{uuid.uuid4().hex[:8]}",
+                    "asset": {
+                        "_type": "reference",
+                        "_ref": f"ast-{uuid.uuid4().hex[:8]}",
+                        "url": url
+                    },
+                    "alt": alt,
+                    "caption": alt,
+                    "width": 1200,
+                    "height": 675
+                })
+            elif re.match(r'^\d+\.\s+(.*)$', line):
+                list_m = re.match(r'^\d+\.\s+(.*)$', line)
+                raw = list_m.group(1)
+                spans, mark_defs = parse_inline_markdown(raw)
+                blocks.append({
+                    "_type": "block",
+                    "_key": k,
+                    "style": "normal",
+                    "listItem": "number",
+                    "level": 1,
+                    "markDefs": mark_defs,
+                    "children": spans
+                })
+            elif re.match(r'^[-*]\s+(.*)$', line):
+                list_m = re.match(r'^[-*]\s+(.*)$', line)
+                raw = list_m.group(1)
+                spans, mark_defs = parse_inline_markdown(raw)
+                blocks.append({
+                    "_type": "block",
+                    "_key": k,
+                    "style": "normal",
+                    "listItem": "bullet",
+                    "level": 1,
+                    "markDefs": mark_defs,
+                    "children": spans
+                })
+            else:
+                spans, mark_defs = parse_inline_markdown(line)
+                blocks.append({
+                    "_type": "block",
+                    "_key": k,
+                    "style": "normal",
+                    "markDefs": mark_defs,
+                    "children": spans
+                })
+
     return blocks
 
 def publish_payload_to_remote(payload):
@@ -133,7 +253,21 @@ def publish_payload_to_remote(payload):
     slug = payload.get('slug') or generate_slug(title)
     now = time.strftime('%Y-%m-%dT%H:%M:%S.000Z', time.gmtime())
 
-    portable_text = payload.get('portableTextContent') or prose_to_portable_text(content)
+    def needs_portable_text_repair(pt):
+        if not pt or not isinstance(pt, list):
+            return True
+        for b in pt:
+            if isinstance(b, dict) and b.get('_type') == 'block':
+                for c in b.get('children', []):
+                    txt = c.get('text', '')
+                    if '**' in txt or re.search(r'^\d+\.\s+', txt) or '\n' in txt:
+                        return True
+        return False
+
+    portable_text = payload.get('portableTextContent')
+    if not portable_text or (content and needs_portable_text_repair(portable_text)):
+        if content:
+            portable_text = prose_to_portable_text(content)
 
     cat_map = {
         'game': '0100MUM5DONZB130AD96E61946',

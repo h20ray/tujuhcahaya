@@ -11,6 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { execSync } from "node:child_process";
+import { marked } from "marked";
 import { validate7cEditorial } from "../src/lib/7c-editorial-guard.ts";
 
 export function generateId() {
@@ -39,89 +40,246 @@ export function generateSlug(title, maxLen = 65) {
 }
 
 /**
- * Parse inline markdown links [anchor text](url) into PortableText spans and markDefs
+ * Helper to traverse marked tokens and generate PortableText spans and markDefs
  */
-export function parseInlineSpans(text) {
-	const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+export function parseTokensToSpans(tokens) {
 	const spans = [];
 	const markDefs = [];
-	let lastIndex = 0;
-	let match;
-	let linkIdx = 0;
+	const extractedImages = [];
+	let linkCounter = 0;
 
-	while ((match = linkRegex.exec(text)) !== null) {
-		if (match.index > lastIndex) {
-			spans.push({
-				_type: "span",
-				_key: `spn-${spans.length}-${crypto.randomBytes(3).toString("hex")}`,
-				text: text.slice(lastIndex, match.index)
-			});
+	function traverse(tokenList, activeMarks = []) {
+		for (const t of tokenList) {
+			if (t.type === "text") {
+				if (t.tokens && t.tokens.length > 0) {
+					traverse(t.tokens, activeMarks);
+				} else {
+					spans.push({
+						_type: "span",
+						_key: `spn-${spans.length}-${crypto.randomBytes(3).toString("hex")}`,
+						text: t.text || t.raw || "",
+						marks: [...activeMarks]
+					});
+				}
+			} else if (t.type === "strong") {
+				const nextMarks = activeMarks.includes("strong") ? activeMarks : [...activeMarks, "strong"];
+				if (t.tokens && t.tokens.length > 0) {
+					traverse(t.tokens, nextMarks);
+				} else {
+					spans.push({
+						_type: "span",
+						_key: `spn-${spans.length}-${crypto.randomBytes(3).toString("hex")}`,
+						text: t.text || "",
+						marks: nextMarks
+					});
+				}
+			} else if (t.type === "em") {
+				const nextMarks = activeMarks.includes("em") ? activeMarks : [...activeMarks, "em"];
+				if (t.tokens && t.tokens.length > 0) {
+					traverse(t.tokens, nextMarks);
+				} else {
+					spans.push({
+						_type: "span",
+						_key: `spn-${spans.length}-${crypto.randomBytes(3).toString("hex")}`,
+						text: t.text || "",
+						marks: nextMarks
+					});
+				}
+			} else if (t.type === "codespan") {
+				spans.push({
+					_type: "span",
+					_key: `spn-${spans.length}-${crypto.randomBytes(3).toString("hex")}`,
+					text: t.text || "",
+					marks: activeMarks.includes("code") ? [...activeMarks] : [...activeMarks, "code"]
+				});
+			} else if (t.type === "del") {
+				const nextMarks = activeMarks.includes("strike-through") ? activeMarks : [...activeMarks, "strike-through"];
+				if (t.tokens && t.tokens.length > 0) {
+					traverse(t.tokens, nextMarks);
+				} else {
+					spans.push({
+						_type: "span",
+						_key: `spn-${spans.length}-${crypto.randomBytes(3).toString("hex")}`,
+						text: t.text || "",
+						marks: nextMarks
+					});
+				}
+			} else if (t.type === "link") {
+				const markKey = `lnk-${linkCounter++}`;
+				markDefs.push({
+					_key: markKey,
+					_type: "link",
+					href: t.href
+				});
+				const nextMarks = [...activeMarks, markKey];
+				if (t.tokens && t.tokens.length > 0) {
+					traverse(t.tokens, nextMarks);
+				} else {
+					spans.push({
+						_type: "span",
+						_key: `spn-${spans.length}-${crypto.randomBytes(3).toString("hex")}`,
+						text: t.text || "",
+						marks: nextMarks
+					});
+				}
+			} else if (t.type === "image") {
+				extractedImages.push({
+					_type: "image",
+					_key: `img-${extractedImages.length}-${crypto.randomBytes(3).toString("hex")}`,
+					asset: {
+						_type: "reference",
+						_ref: `ast-${crypto.randomBytes(4).toString("hex")}`,
+						url: t.href
+					},
+					alt: t.text || "",
+					caption: t.title || t.text || "",
+					width: 1200,
+					height: 675
+				});
+			} else if (t.raw) {
+				spans.push({
+					_type: "span",
+					_key: `spn-${spans.length}-${crypto.randomBytes(3).toString("hex")}`,
+					text: t.raw,
+					marks: [...activeMarks]
+				});
+			}
 		}
-		const markKey = `lnk-${linkIdx++}`;
-		markDefs.push({
-			_key: markKey,
-			_type: "link",
-			href: match[2]
-		});
-		spans.push({
-			_type: "span",
-			_key: `spn-${spans.length}-${crypto.randomBytes(3).toString("hex")}`,
-			text: match[1],
-			marks: [markKey]
-		});
-		lastIndex = linkRegex.lastIndex;
 	}
 
-	if (lastIndex < text.length) {
-		spans.push({
-			_type: "span",
-			_key: `spn-${spans.length}-${crypto.randomBytes(3).toString("hex")}`,
-			text: text.slice(lastIndex)
-		});
-	}
+	traverse(tokens);
+	return { spans, markDefs, extractedImages };
+}
 
+/**
+ * Parse inline markdown (bold, italic, links, code) into PortableText spans and markDefs
+ */
+export function parseInlineSpans(text) {
+	if (!text) return { spans: [], markDefs: [] };
+	const tokens = marked.lexer(text, { gfm: true });
+	const inlineTokens = [];
+	for (const t of tokens) {
+		if (t.tokens) inlineTokens.push(...t.tokens);
+		else inlineTokens.push(t);
+	}
+	const { spans, markDefs } = parseTokensToSpans(inlineTokens);
 	if (spans.length === 0) {
 		spans.push({
 			_type: "span",
 			_key: `spn-0-${crypto.randomBytes(3).toString("hex")}`,
-			text: text
+			text: text,
+			marks: []
 		});
 	}
-
 	return { spans, markDefs };
 }
 
 /**
- * Convert standard markdown/prose text into EmDash-compatible PortableText with link support
+ * Convert standard markdown/prose text into EmDash-compatible PortableText AST:
+ * Supports headings, bold/italic, lists (numbered/bullet), blockquotes, code blocks, and in-body images.
  */
 export function proseToPortableText(bodyText) {
-	const paragraphs = bodyText.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+	if (!bodyText || typeof bodyText !== "string") return [];
+
+	const tokens = marked.lexer(bodyText, { gfm: true });
 	const blocks = [];
 
-	for (let i = 0; i < paragraphs.length; i++) {
-		const p = paragraphs[i];
+	for (let i = 0; i < tokens.length; i++) {
+		const token = tokens[i];
 		const key = `blk-${i}-${crypto.randomBytes(4).toString("hex")}`;
 
-		let style = "normal";
-		let rawText = p;
-
-		if (p.startsWith("### ")) {
-			style = "h3";
-			rawText = p.replace(/^###\s+/, "");
-		} else if (p.startsWith("## ")) {
-			style = "h2";
-			rawText = p.replace(/^##\s+/, "");
+		if (token.type === "heading") {
+			const style = token.depth <= 2 ? "h2" : token.depth === 3 ? "h3" : "h4";
+			const { spans, markDefs } = parseTokensToSpans(token.tokens || []);
+			blocks.push({
+				_type: "block",
+				_key: key,
+				style,
+				markDefs,
+				children: spans.length > 0 ? spans : [{ _type: "span", _key: `spn-${crypto.randomBytes(3).toString("hex")}`, text: token.text, marks: [] }]
+			});
+		} else if (token.type === "paragraph") {
+			// If paragraph consists solely of an image: ![alt](url)
+			if (token.tokens?.length === 1 && token.tokens[0].type === "image") {
+				const img = token.tokens[0];
+				blocks.push({
+					_type: "image",
+					_key: `img-${crypto.randomBytes(4).toString("hex")}`,
+					asset: {
+						_type: "reference",
+						_ref: `ast-${crypto.randomBytes(4).toString("hex")}`,
+						url: img.href
+					},
+					alt: img.text || "",
+					caption: img.title || img.text || "",
+					width: 1200,
+					height: 675
+				});
+			} else {
+				const { spans, markDefs, extractedImages } = parseTokensToSpans(token.tokens || []);
+				for (const imgBlock of extractedImages) {
+					blocks.push(imgBlock);
+				}
+				if (spans.length > 0 && spans.some(s => s.text.trim().length > 0)) {
+					blocks.push({
+						_type: "block",
+						_key: key,
+						style: "normal",
+						markDefs,
+						children: spans
+					});
+				}
+			}
+		} else if (token.type === "list") {
+			const listItemType = token.ordered ? "number" : "bullet";
+			for (let j = 0; j < token.items.length; j++) {
+				const item = token.items[j];
+				const itemTokens = [];
+				if (item.tokens) {
+					for (const it of item.tokens) {
+						if (it.type === "text" && it.tokens) {
+							itemTokens.push(...it.tokens);
+						} else if (it.type === "paragraph" && it.tokens) {
+							itemTokens.push(...it.tokens);
+						} else if (it.tokens) {
+							itemTokens.push(...it.tokens);
+						} else {
+							itemTokens.push(it);
+						}
+					}
+				}
+				const { spans, markDefs } = parseTokensToSpans(itemTokens.length > 0 ? itemTokens : [{ type: "text", text: item.text }]);
+				blocks.push({
+					_type: "block",
+					_key: `blk-${i}-${j}-${crypto.randomBytes(3).toString("hex")}`,
+					style: "normal",
+					listItem: listItemType,
+					level: 1,
+					markDefs,
+					children: spans.length > 0 ? spans : [{ _type: "span", _key: `spn-${crypto.randomBytes(3).toString("hex")}`, text: item.text, marks: [] }]
+				});
+			}
+		} else if (token.type === "blockquote") {
+			for (const inner of token.tokens || []) {
+				if (inner.type === "paragraph") {
+					const { spans, markDefs } = parseTokensToSpans(inner.tokens || []);
+					blocks.push({
+						_type: "block",
+						_key: `blk-${crypto.randomBytes(4).toString("hex")}`,
+						style: "blockquote",
+						markDefs,
+						children: spans.length > 0 ? spans : [{ _type: "span", _key: `spn-${crypto.randomBytes(3).toString("hex")}`, text: inner.text, marks: [] }]
+					});
+				}
+			}
+		} else if (token.type === "code") {
+			blocks.push({
+				_type: "code",
+				_key: `cod-${crypto.randomBytes(4).toString("hex")}`,
+				code: token.text,
+				language: token.lang || ""
+			});
 		}
-
-		const { spans, markDefs } = parseInlineSpans(rawText);
-
-		blocks.push({
-			_type: "block",
-			_key: key,
-			style,
-			markDefs,
-			children: spans
-		});
 	}
 
 	return blocks;
