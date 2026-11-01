@@ -10,5 +10,6 @@ Disallow: /_emdash/admin/
 Disallow: /wp-admin/
 Disallow: /api/
 
-# Master Sitemap Index
+# Master Sitemap Index & Google News Feed
 Sitemap: https://www.tujuhcahaya.com/sitemap.xml
+Sitemap: https://www.tujuhcahaya.com/sitemap-news.xml

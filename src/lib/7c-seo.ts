@@ -262,3 +262,72 @@ export function build7cPersonJsonLd(author: {
 		},
 	};
 }
+
+
+/**
+ * Generate comprehensive Schema.org WebSite and NewsMediaOrganization JSON-LD
+ * Directly correlates website identity with Google Knowledge Graph
+ */
+export function build7cHomeJsonLd(locale: string = "id") {
+	const isEn = locale === "en";
+	const siteDescription = isEn
+		? "Independent digital news publication providing in-depth journalism, critical analysis, and fresh perspectives across gaming, technology, music, and pop culture."
+		: "Media warta independen menyajikan liputan mendalam, perspektif segar kultur digital, game, teknologi, musik, serta ulasan kritis tanpa kompromi.";
+
+	return [
+		{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"@id": `${C7_CANONICAL_ORIGIN}/#website`,
+			"url": C7_CANONICAL_ORIGIN,
+			"name": "Tujuhcahaya",
+			"alternateName": ["Tujuhcahaya Media", "7C", "Tujuhcahaya.com"],
+			"description": siteDescription,
+			"publisher": {
+				"@id": `${C7_CANONICAL_ORIGIN}/#organization`,
+			},
+			"inLanguage": ["id-ID", "en-US"],
+			"potentialAction": {
+				"@type": "SearchAction",
+				"target": {
+					"@type": "EntryPoint",
+					"urlTemplate": `${C7_CANONICAL_ORIGIN}/arsip?q={search_term_string}`,
+				},
+				"query-input": "required name=search_term_string",
+			},
+		},
+		{
+			"@context": "https://schema.org",
+			"@type": ["NewsMediaOrganization", "Organization"],
+			"@id": `${C7_CANONICAL_ORIGIN}/#organization`,
+			"name": "Tujuhcahaya",
+			"alternateName": ["Tujuhcahaya Media", "PT Tujuh Cahaya"],
+			"url": C7_CANONICAL_ORIGIN,
+			"logo": {
+				"@type": "ImageObject",
+				"@id": `${C7_CANONICAL_ORIGIN}/#logo`,
+				"url": `${C7_CANONICAL_ORIGIN}/favicon.svg`,
+				"caption": "Tujuhcahaya Logo",
+			},
+			"image": `${C7_CANONICAL_ORIGIN}/favicon.svg`,
+			"description": siteDescription,
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "Jl. Pekunden Timur No.37, RT.004/RW.003, Pekunden",
+				"addressLocality": "Semarang Tengah",
+				"addressRegion": "Jawa Tengah",
+				"postalCode": "50134",
+				"addressCountry": "ID",
+			},
+			"telephone": "+62-811-2909-418",
+			"sameAs": [
+				"https://www.youtube.com/@tujuhcahaya",
+				"https://play.google.com/store/apps/dev?id=7877239077333671206",
+			],
+			"publishingPrinciples": `${C7_CANONICAL_ORIGIN}/pedoman-media-siber`,
+			"actionableFeedbackPolicy": `${C7_CANONICAL_ORIGIN}/tentang-kami`,
+			"diversityPolicy": `${C7_CANONICAL_ORIGIN}/redaksi`,
+			"ethicsPolicy": `${C7_CANONICAL_ORIGIN}/pedoman-media-siber`,
+		},
+	];
+}

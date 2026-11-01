@@ -46,7 +46,7 @@ const pageDescription = description ?? siteTagline;
 const menu = menuResult.data;
 
 import { get7cLocaleFromUrl, use7cTranslation } from "../i18n/utils";
-import { get7cHreflangLinks, resolve7cCanonicalUrl, C7_CANONICAL_ORIGIN } from "../lib/7c-seo";
+import { get7cHreflangLinks, resolve7cCanonicalUrl, C7_CANONICAL_ORIGIN, build7cHomeJsonLd } from "../lib/7c-seo";
 
 const currentPath = Astro.url.pathname;
 const locale = get7cLocaleFromUrl(Astro.url);
@@ -119,6 +119,10 @@ const pageCtx = createPublicPageContext({
 		))}
 
 		<EmDashHead page={pageCtx} />
+
+		{isHome && (
+			<script type="application/ld+json" set:html={JSON.stringify(build7cHomeJsonLd(locale))} />
+		)}
 		<ClientRouter />
 
 		<script is:inline>

@@ -72,7 +72,7 @@ export function generate7cRssFeed(siteUrl: string = "https://www.tujuhcahaya.com
      xmlns:atom="http://www.w3.org/2005/Atom"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>Tujuhcahaya — Media House &amp; Creative Studio</title>
+    <title>Tujuhcahaya — Media Independen Game, Teknologi &amp; Musik</title>
     <link>${base}</link>
     <description>Liputan mendalam, perspektif segar kultur pop, teknologi, musik, dan warta independen.</description>
     <language>id-ID</language>
@@ -257,6 +257,55 @@ export function generate7cPostsSitemap(
 		return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.join("\n")}
+</urlset>`;
+	} finally {
+		db.close();
+	}
+}
+
+
+/**
+ * Generate Google News XML Sitemap for fresh news articles
+ */
+export function generate7cGoogleNewsSitemap(siteUrl: string = "https://www.tujuhcahaya.com"): string {
+	const db = getDb();
+	const base = siteUrl.replace(/\/$/, "");
+
+	try {
+		const posts = db.prepare(`
+			SELECT title, slug, published_at
+			FROM ec_posts
+			WHERE status = 'published' AND published_at IS NOT NULL
+			ORDER BY published_at DESC
+			LIMIT 100;
+		`).all() as Array<{
+			title: string;
+			slug: string;
+			published_at: string;
+		}>;
+
+		const itemsXml = posts
+			.map((p) => {
+				const postUrl = `${base}/${p.slug}`;
+				const pubDate = new Date(p.published_at).toISOString();
+				return `  <url>
+    <loc>${postUrl}</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Tujuhcahaya</news:name>
+        <news:language>id</news:language>
+      </news:publication>
+      <news:publication_date>${pubDate}</news:publication_date>
+      <news:title>${escapeXml(p.title)}</news:title>
+    </news:news>
+  </url>`;
+			})
+			.join("\n");
+
+		return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+${itemsXml}
 </urlset>`;
 	} finally {
 		db.close();

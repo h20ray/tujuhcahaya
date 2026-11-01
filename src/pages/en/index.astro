@@ -43,8 +43,9 @@ const heroNewsList = posts.map((post) => {
 ---
 
 <Base
-	title={`${t.topbar.dispatch_live} — ${siteTitle}`}
-	description={t.footer.tagline}
+	title="Tujuhcahaya — Independent Media on Gaming, Tech & Music"
+	description="Independent digital publication providing in-depth journalism, critical analysis, and fresh perspectives across gaming, technology, music, and pop culture."
+	isHome={true}
 >
 	<!-- HERO SECTION: English Curated Dispatch -->
 	<section class="hero-split" data-active-tab="dispatch" aria-label="Tujuhcahaya Profile & Highlights">
@@ -79,7 +80,8 @@ const heroNewsList = posts.map((post) => {
 
 		<!-- Left Column: Linear-Style Editorial Dispatch Table -->
 		<div class="hero-left-pane" id="hero-left-pane-en" role="tabpanel" aria-labelledby="hero-tab-dispatch-en">
-			<h1 class="sr-only">Tujuhcahaya — Media House &amp; Creative Studio</h1>
+			<h1 class="sr-only">Tujuhcahaya — Independent Media on Gaming, Tech &amp; Music</h1>
+			<p class="sr-only">Independent digital publication providing in-depth journalism, critical analysis, and fresh perspectives across gaming, technology, music, and pop culture.</p>
 
 			<!-- Header Bar of Dispatch Table -->
 			<div class="dispatch-header">
@@ -129,7 +131,7 @@ const heroNewsList = posts.map((post) => {
 			<!-- Dispatch Bottom Bar -->
 			<div class="dispatch-footer">
 				<div class="dispatch-footer-meta">
-					<span>Media House &amp; Creative Studio</span>
+					<span>Independent Media on Gaming, Tech &amp; Music</span>
 				</div>
 				<a href="/en/posts" class="dispatch-footer-cta">
 					<span>{t.nav.archive}</span>
