@@ -7,6 +7,7 @@
   border-bottom: 1px solid var(--color-border);
   background-color: var(--color-card-subtle);
   font-size: 0.8125rem;
+  min-width: 0;
 }
 
 .dispatch-header-left {
@@ -184,6 +185,8 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-width: 0;
+  width: 100%;
 }
 
 /* 7C Dynamic Smart Fill (Auto-expands rows to fill vertical void seamlessly) */
@@ -201,6 +204,9 @@
   min-height: 35px;
   max-height: 48px;
   border-bottom: 1px dashed var(--color-border);
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dispatch-table.smart-filled .dispatch-row.is-visible.is-last-visible,
@@ -218,6 +224,9 @@
   text-decoration: none;
   color: inherit;
   position: relative;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dispatch-row:hover {

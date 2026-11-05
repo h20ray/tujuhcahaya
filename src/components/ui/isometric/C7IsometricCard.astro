@@ -38,6 +38,8 @@ const { name, desc, url, accent } = Astro.props;
 		justify-content: center;
 		transition: opacity 160ms ease, transform 160ms ease, border-color 0.2s ease, background-color 0.2s ease;
 		min-height: 105px;
+		box-sizing: border-box;
+		min-width: 0;
 	}
 
 	:global([data-theme="dark"]) .cake-detail {

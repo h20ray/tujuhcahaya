@@ -8,6 +8,7 @@
   background-color: var(--color-card-subtle);
   font-size: 0.75rem;
   color: var(--color-text-muted);
+  min-width: 0;
 }
 
 .dispatch-footer-meta {

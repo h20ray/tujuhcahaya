@@ -9,6 +9,7 @@
   position: relative;
   overflow: hidden;
   contain: content;
+  min-width: 0;
 }
 
 [data-theme="dark"] .hero-right-pane {
@@ -90,6 +91,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  min-width: 0;
 }
 
 .isometric-wrapper {
@@ -99,6 +101,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 0;
 }
 
 .stack-caption {

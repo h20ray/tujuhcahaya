@@ -113,7 +113,7 @@ button.c7-theme-toggle,
 /* Hero Section (Desktop: 60% Left Dispatch Feed, 40% Right 3D Isometric Stack | Mobile: 100dvh Fit with Segmented Tab Switcher) */
 .hero-split {
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
   border-bottom: 1px solid var(--color-border);
   background-color: var(--color-bg);
 }
@@ -259,6 +259,8 @@ button.c7-theme-toggle,
   border-right: 1px solid var(--color-border);
   background-color: var(--color-bg);
   min-height: 520px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 /* ==========================================================================
