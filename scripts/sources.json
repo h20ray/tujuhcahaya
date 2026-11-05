@@ -1,0 +1,116 @@
+{
+  "updatedAt": "2026-11-05T17:12:00+07:00",
+  "description": "Daftar sumber berita (feeds) resmi Tujuhcahaya untuk 3 pilar editorial utama.",
+  "authors": {
+    "elang": {
+      "name": "Elang Elano",
+      "category": "tech",
+      "byline": "0100MUNS3DJPCA4539BDBEB12A",
+      "beat": "Teknologi, Gadget, AI & Privasi Digital"
+    },
+    "andoru": {
+      "name": "Andoru Ray",
+      "category": "game",
+      "byline": "0100MUNS3DJL68FA69B26FACE9",
+      "beat": "Game, Industri Gaming & Pop Culture"
+    },
+    "nina": {
+      "name": "Margaretha Nina",
+      "category": "musik",
+      "byline": "0100MUNS3DJOA35D985DFFDBA0",
+      "beat": "Musik, Gigs, Budaya Urban & Gaya Hidup"
+    }
+  },
+  "sources": [
+    {
+      "name": "Antara Tekno",
+      "category": "tech",
+      "author": "Elang Elano",
+      "url": "https://www.antaranews.com/rss/tekno.xml",
+      "lang": "id",
+      "enabled": true,
+      "description": "Rilis regulasi pemerintah, data siber, dan peluncuran gadget resmi di Indonesia."
+    },
+    {
+      "name": "The Verge",
+      "category": "tech",
+      "author": "Elang Elano",
+      "url": "https://www.theverge.com/rss/index.xml",
+      "lang": "en",
+      "enabled": true,
+      "description": "Kabar gadget konsumen global, Big Tech, AI, dan fenomena media sosial."
+    },
+    {
+      "name": "Ars Technica",
+      "category": "tech",
+      "author": "Elang Elano",
+      "url": "https://feeds.arstechnica.com/arstechnica/index",
+      "lang": "en",
+      "enabled": true,
+      "description": "Deep-dive hardware, Linux, sistem operasi, dan celah keamanan siber."
+    },
+    {
+      "name": "PC Gamer",
+      "category": "game",
+      "author": "Andoru Ray",
+      "url": "https://www.pcgamer.com/rss/",
+      "lang": "en",
+      "enabled": true,
+      "description": "Berita game PC, update Steam, modding, hardware GPU, dan skandal industri."
+    },
+    {
+      "name": "Polygon",
+      "category": "game",
+      "author": "Andoru Ray",
+      "url": "https://www.polygon.com/rss/index.xml",
+      "lang": "en",
+      "enabled": true,
+      "description": "Esai budaya pop, rilisan konsol, anime, dan fenomena komunitas gaming."
+    },
+    {
+      "name": "Portal Pemprov Jateng",
+      "category": "musik",
+      "author": "Margaretha Nina",
+      "url": "https://jatengprov.go.id/feed/",
+      "lang": "id",
+      "enabled": true,
+      "description": "Kabar daerah, kebijakan publik, event seni budaya, dan fenomena sosial Jawa Tengah."
+    },
+    {
+      "name": "Antara Hiburan",
+      "category": "musik",
+      "author": "Margaretha Nina",
+      "url": "https://www.antaranews.com/rss/hiburan.xml",
+      "lang": "id",
+      "enabled": true,
+      "description": "Kabar resmi industri hiburan, musik nasional, profil musisi, dan rilisan karya tanah air (dilengkapi foto asli)."
+    },
+    {
+      "name": "Google News (Musik Indonesia)",
+      "category": "musik",
+      "author": "Margaretha Nina",
+      "url": "https://news.google.com/rss/search?q=musik+indonesia+when:3d&hl=id&gl=ID&ceid=ID:id",
+      "lang": "id",
+      "enabled": true,
+      "description": "Agregator berita musik tanah air terkini dari berbagai media nasional (Kompas, Detik, Antara, Tirto, dll)."
+    },
+    {
+      "name": "Google News (Konser & Gigs)",
+      "category": "musik",
+      "author": "Margaretha Nina",
+      "url": "https://news.google.com/rss/search?q=konser+musik+OR+festival+musik+when:3d&hl=id&gl=ID&ceid=ID:id",
+      "lang": "id",
+      "enabled": true,
+      "description": "Kabar perhelatan konser, festival musik, panggung indie, dan dinamika promotor di Indonesia."
+    },
+    {
+      "name": "Google News (Tren & Gaya Hidup)",
+      "category": "musik",
+      "author": "Margaretha Nina",
+      "url": "https://news.google.com/rss/search?q=tren+anak+muda+OR+gaya+hidup+when:3d&hl=id&gl=ID&ceid=ID:id",
+      "lang": "id",
+      "enabled": true,
+      "description": "Sorotan fenomena tren urban, gaya hidup anak muda, subkultur kota, dan dinamika sosial warganet."
+    }
+  ]
+}

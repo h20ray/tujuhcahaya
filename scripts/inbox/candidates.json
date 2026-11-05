@@ -1,0 +1,337 @@
+{
+  "updatedAt": "2026-11-05T10:43:44.471Z",
+  "totalCandidates": 19,
+  "categories": {
+    "tech": [
+      {
+        "id": "f60040f5a4edf3f4",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "Nintendo’s designers strove for ‘elegance’ when remaking Ocarina of Time",
+        "link": "https://www.theverge.com/games/1026380/zelda-ocarina-of-time-interview-eiji-aonuma-hidemaro-fujibayashi",
+        "pubDate": "2026-11-04T12:21:58-05:00",
+        "snippet": "The Ocarina of Time remake on the Switch 2 smashes together the past and present. The game retains much of the original N64 experience while updating it with modern graphics and gameplay that make it feel contemporary. But the mingling of time periods also extends to the development team. While Ocarina's remake was led",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/NS2_TheLegendofZeldaOcarinaofTime_scrn_15_dce060.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "ed68293641667419",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "X says its updated web app is way faster",
+        "link": "https://www.theverge.com/tech/1027113/x-says-its-updated-web-app-is-way-faster",
+        "pubDate": "2026-11-04T19:25:12-05:00",
+        "snippet": "X is introducing a new version of its web app that it says is much faster than before, and it's now rolling out the updated app \"one country at a time\" for signed-in users. \"Open a profile on X.com over a slow connection,\" principal engineer Yagiz Nizipli said in a blog post about the changes. [&#8230;]",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/07/STK160_X_TWITTER_2__A.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "f11302ecebb56fae",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "Qualcomm is betting big on data centers as smartphone sales sink",
+        "link": "https://www.theverge.com/ai-artificial-intelligence/1026867/qualcomm-earnings-data-centers",
+        "pubDate": "2026-11-04T17:42:15-05:00",
+        "snippet": "With smartphone sales tanking by around 20 percent compared to 2025, Qualcomm is looking to data centers to help boost its bottom line. During its Q4 2026 earnings call, the company laid out its plans to make a splash in the AI data center business, through partnerships with companies like Amazon and Meta announced ear",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24007992/acastro_STK082_qualcomm_02.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "4abbba6a56687fa7",
+        "sourceName": "Ars Technica",
+        "category": "tech",
+        "lang": "en",
+        "title": "Mercedes-AMG GT 4-Door Coupe first drive: Where tech and fun collide",
+        "link": "https://arstechnica.com/cars/2026/11/mercedes-amg-gt-4-door-coupe-first-drive-where-tech-and-fun-collide/",
+        "pubDate": "Thu, 05 Nov 2026 09:00:13 +0000",
+        "snippet": "The spirit of AMG is alive via three axial flux electric motors.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/26C0344_001-1152x648.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "f1988aa1b6e14687",
+        "sourceName": "Ars Technica",
+        "category": "tech",
+        "lang": "en",
+        "title": "Nintendo's biggest ROM chip supplier is bowing out of the business",
+        "link": "https://arstechnica.com/gaming/2026/11/the-tech-memory-shortage-comes-for-nintendos-cartridge-supply-chain/",
+        "pubDate": "Wed, 04 Nov 2026 22:47:51 +0000",
+        "snippet": "And what that could mean for physical Switch game costs.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/switchcarts-1152x648.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "bafa818237bd53c0",
+        "sourceName": "Ars Technica",
+        "category": "tech",
+        "lang": "en",
+        "title": "Hackers exploited iOS and Android flaws to infect phones",
+        "link": "https://arstechnica.com/security/2026/11/hackers-exploited-ios-and-android-flaws-to-infect-phones/",
+        "pubDate": "Wed, 04 Nov 2026 22:26:49 +0000",
+        "snippet": "Researchers say group may have been Kremlin-sponsored in search of diplomatic targets.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2023/05/malware-1000x648.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      }
+    ],
+    "game": [
+      {
+        "id": "f47ddbd7f9aee47b",
+        "sourceName": "PC Gamer",
+        "category": "game",
+        "lang": "en",
+        "title": "Critical Role's upcoming series with Hololive gave Matt Mercer 'a deeper understanding and appreciation' for vtubers",
+        "link": "https://www.pcgamer.com/games/board-games/critical-roles-upcoming-series-with-hololive-gave-matt-mercer-a-deeper-understanding-and-appreciation-for-vtubers/",
+        "pubDate": "Thu, 05 Nov 2026 01:52:06 +0000",
+        "snippet": "Shattered Legends is a six-episode miniseries that will debut later this month.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/rPWcLihwLSBCYkDefAYJ7R-1920-80.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
+      {
+        "id": "e378e0b41a9689fc",
+        "sourceName": "PC Gamer",
+        "category": "game",
+        "lang": "en",
+        "title": "The Elder Scrolls 6 is reportedly more than two years away, and some fans are not coping well",
+        "link": "https://www.pcgamer.com/games/the-elder-scrolls/the-elder-scrolls-6-is-reportedly-more-than-two-years-away-and-some-fans-are-not-coping-well/",
+        "pubDate": "Thu, 05 Nov 2026 00:18:02 +0000",
+        "snippet": "Theories that Bethesda is hinting at an earlier launch are already surfacing, and a few of them are pretty good.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/2tZ8acjKKVc9o26nuhBAEi-1920-80.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
+      {
+        "id": "968272255b27f34b",
+        "sourceName": "PC Gamer",
+        "category": "game",
+        "lang": "en",
+        "title": "No GTA 6 November: Here's what you can play on PC instead",
+        "link": "https://www.pcgamer.com/games/november-games-2026/",
+        "pubDate": "Wed, 04 Nov 2026 23:37:01 +0000",
+        "snippet": "World of Warcraft: Forever, Warhammer Survivors, and a batch of fresh updates.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/uEeQBN2oCc55CcCkNVRYiQ-1920-80.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      }
+    ],
+    "musik": [
+      {
+        "id": "ce623215ef4f0712",
+        "sourceName": "Portal Pemprov Jateng",
+        "category": "musik",
+        "lang": "id",
+        "title": "Nemu informasi yang bikin panik? Tenang dulu!",
+        "link": "https://jatengprov.go.id/padhang-sinau/nemu-informasi-yang-bikin-panik-tenang-dulu/",
+        "pubDate": "Thu, 05 Nov 2026 09:12:35 +0000",
+        "snippet": "",
+        "imageUrl": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?q=80&w=1200&auto=format&fit=crop",
+        "galleryImages": [],
+        "isOriginalImage": false,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "91e6ba48eba9b203",
+        "sourceName": "Portal Pemprov Jateng",
+        "category": "musik",
+        "lang": "id",
+        "title": "PADHANG Dalam Sebulan Edisi Oktober 2026",
+        "link": "https://jatengprov.go.id/padhang-sinau/padhang-dalam-sebulan-edisi-oktober-2026/",
+        "pubDate": "Thu, 05 Nov 2026 09:11:04 +0000",
+        "snippet": "",
+        "imageUrl": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?q=80&w=1200&auto=format&fit=crop",
+        "galleryImages": [],
+        "isOriginalImage": false,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "5d5d5f70cb435b3c",
+        "sourceName": "Portal Pemprov Jateng",
+        "category": "musik",
+        "lang": "id",
+        "title": "MTQ dan Program Prioritas Nasional Kerek Ekonomi Jateng, Triwulan III Tumbuh 5,83 Persen",
+        "link": "https://jatengprov.go.id/publik/mtq-dan-program-prioritas-nasional-kerek-ekonomi-jateng-triwulan-iii-tumbuh-583-persen/",
+        "pubDate": "Thu, 05 Nov 2026 08:52:24 +0000",
+        "snippet": "SEMARANG &#8211; Perekonomian Jawa Tengah tumbuh sebesar 5,83 persen secara tahunan (year on year/yoy) pada Triwulan III 2026. Capaian tersebut ditopang sejumlah faktor, di antaranya penyelenggaraan Musabaqah Tilawatil Qur&#8217;an (MTQ) Nasional XXXI 2026 di Kota Semarang, serta akselerasi program prioritas nasional. ",
+        "imageUrl": "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS.jpg",
+        "galleryImages": [
+          "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS.jpg",
+          "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS2.jpg",
+          "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS3.jpg",
+          "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS4.jpg"
+        ],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "5bcff62ed56ba044",
+        "sourceName": "Google News (Musik Indonesia) [Pophariini]",
+        "category": "musik",
+        "lang": "id",
+        "title": "3 + 1 Masalah dalam Penulisan Musik Indonesia",
+        "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5jVXYyS0E2MzdqeDJJRzV0amZERnBla2k4ZF9QNElXbGRCT3l1ZTI0WHA1c0t2X1gwQnozNnZUTVhmWHduZVFxTEwtN2F1UnM5bzEzb0FwSzFrbWJBNTQ2MmxyUVM3Rl9vUFppVHRvOTNGcGM3V0VUNVc3aE5Gdw?oc=5",
+        "pubDate": "Thu, 05 Nov 2026 09:15:47 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE5jVXYyS0E2MzdqeDJJRzV0amZERnBla2k4ZF9QNElXbGRCT3l1ZTI0WHA1c0t2X1gwQnozNnZUTVhmWHduZVFxTEwtN2F1UnM5bzEzb0FwSzFrbWJBNTQ2MmxyUVM3Rl9vUFppVHRvOTNGcGM3V0VUNVc3aE5Gdw?oc=5\" target=\"_blank\">3 + 1 Masalah dalam Penulisan Musik Indonesia</a>&nbsp;&nbsp;<font color=\"#6f",
+        "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
+        "galleryImages": [],
+        "isOriginalImage": false,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "e593c61f1ff92331",
+        "sourceName": "Google News (Musik Indonesia) [ANTARA News Riau]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Raih AMI Awards 2026, Kunto Aji: Tanpa pendengar, saya bukan siapa-siapa",
+        "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOaklEeDdITUZsLXZqQ0JqNThPOERLVWZRSFAteTM1YXRNUXo5QzBSYlE1dVFnOXNGTW9JRk9FNjd3V01tZkxyWlduSlNfVnRYS0h0d0FHMEVvYi1RSlFHNG0tN0NVcWxtSkNkbWxzY0ZZSUlyVmduZS1HNXlBSXhFaER3bkJMcHBqS2k2NmdMNlN6aUpMNDM2NHdBWEZKRTZJUWkwaGotbnFTZExDMDlFcQ?oc=5",
+        "pubDate": "Thu, 05 Nov 2026 09:48:37 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxOaklEeDdITUZsLXZqQ0JqNThPOERLVWZRSFAteTM1YXRNUXo5QzBSYlE1dVFnOXNGTW9JRk9FNjd3V01tZkxyWlduSlNfVnRYS0h0d0FHMEVvYi1RSlFHNG0tN0NVcWxtSkNkbWxzY0ZZSUlyVmduZS1HNXlBSXhFaER3bkJMcHBqS2k2NmdMNlN6aUpMNDM2NHdBWEZKRTZJUWkwaGotbnFTZExDMDlFcQ?oc=5\" target=\"_blank\">Raih AMI ",
+        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+        "galleryImages": [],
+        "isOriginalImage": false,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "8a8c7c89caeee95a",
+        "sourceName": "Google News (Musik Indonesia) [Kompas.id]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Musisi Tumpahkan Keresahan di AMI Awards 2026",
+        "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOLURRODZrWTJWLUIyMkFuTnRLOWlBTTI1UFdEVVlLZ0pmUl8xNkZGRG1TUnBCV2VWU1pzaWxfM2gwMWIzZm41RDlCVHdRRlE4MVFNODhvSmlOckdSR01TRzJHSzIyZmVNb2RmanpvbGdsQ0FOY1N1WjAzRHNsZnlMUHJuekZ4U0pmS3lPVGkxb2lEYkNibTJfLXhMV1F1RHZIbVE?oc=5",
+        "pubDate": "Thu, 05 Nov 2026 07:15:03 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxOLURRODZrWTJWLUIyMkFuTnRLOWlBTTI1UFdEVVlLZ0pmUl8xNkZGRG1TUnBCV2VWU1pzaWxfM2gwMWIzZm41RDlCVHdRRlE4MVFNODhvSmlOckdSR01TRzJHSzIyZmVNb2RmanpvbGdsQ0FOY1N1WjAzRHNsZnlMUHJuekZ4U0pmS3lPVGkxb2lEYkNibTJfLXhMV1F1RHZIbVE?oc=5\" target=\"_blank\">Musisi Tumpahkan Keresahan d",
+        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+        "galleryImages": [],
+        "isOriginalImage": false,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "775eeb876dbb9375",
+        "sourceName": "Google News (Musik Indonesia) [Sumut Pos]",
+        "category": "musik",
+        "lang": "id",
+        "title": "AMI Awards 2026 Angkat Keberagaman Musik Nusantara, Hadirkan Empat Kategori Baru",
+        "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNcVNXaWVoWUZrbUg4NlpuOG53dy15bzhjaE94YTNkSDc1M3ZLRE9wZ2dMLXJlOURiWWdjNXdwUXJTNDg2eW1TNTdaNzlFT1A2aVVQTTRncG1XWnV3OUxNQmVyZFM1d295SFVzaVpCVXFRLXRiQ1dfTy1POFZIRDNNanFyZmpxWHpuSmdVZlA1T09vOThTNWwwT1dtWWJ2N1Y3YzhodHl2LUw3dE9zUW40c1hVZVBUc3pDOWExUWp3ZDhNYkJqNFZVT3ZkME7SAdIBQVVfeXFMTjFkaVhNRWFTR3JVb3hJTE1mazBDa2stUm1KVFNsbU5Sa0RwSU1lTGpWQkNtQjVPUjF3Z0UzbmFUa1o2LS04Z3RBUkxhOExZdDVqOUtEWG9NcTBBMklNVnJzZjdNNVVRaXR2dTNabmE1TXR1TFYtZ2pPdmNBSGdmZG1Ra2lLWGdKcDd1Ry03LXRFeVdfbldwaGxERloxTVJMSjN4YTBadGllMDhiTUQ4Vy1rVmowLXZyamY1a2MzV1ZCVWhtNUFMRlJTRlZBV2NSZE9R?oc=5",
+        "pubDate": "Thu, 05 Nov 2026 06:02:17 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxNcVNXaWVoWUZrbUg4NlpuOG53dy15bzhjaE94YTNkSDc1M3ZLRE9wZ2dMLXJlOURiWWdjNXdwUXJTNDg2eW1TNTdaNzlFT1A2aVVQTTRncG1XWnV3OUxNQmVyZFM1d295SFVzaVpCVXFRLXRiQ1dfTy1POFZIRDNNanFyZmpxWHpuSmdVZlA1T09vOThTNWwwT1dtWWJ2N1Y3YzhodHl2LUw3dE9zUW40c1hVZVBUc3pDOWExUWp3ZDhNYkJqNFZVT3",
+        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+        "galleryImages": [],
+        "isOriginalImage": false,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "51f41ed11f208287",
+        "sourceName": "Google News (Musik Indonesia) [Opsi.id]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Daftar Lengkap Pemenang AMI Awards 2026, Ajang Apresiasi 67 Kategori Musik Tanah Air",
+        "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPQUZiS3NWQlZIS2U4Wk1lTnJnR0pGZC1SaS1OSGNfMUJvMDdfakFHcFFYWVloMDZTZk1NVGRlSW1oUmZfci1CY0NvXzlUVG81SjliSU81VkFJRnFMMUtnWFdXS2lhQmpiX1FRRzhhR3A0SEVxZ3MyVnJkcUpHNElQSmc1MV95Vnd3dmYwdDNGdXFIZ0lqS2VkR2N5SHBYVFFuWVE?oc=5",
+        "pubDate": "Thu, 05 Nov 2026 08:51:45 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxPQUZiS3NWQlZIS2U4Wk1lTnJnR0pGZC1SaS1OSGNfMUJvMDdfakFHcFFYWVloMDZTZk1NVGRlSW1oUmZfci1CY0NvXzlUVG81SjliSU81VkFJRnFMMUtnWFdXS2lhQmpiX1FRRzhhR3A0SEVxZ3MyVnJkcUpHNElQSmc1MV95Vnd3dmYwdDNGdXFIZ0lqS2VkR2N5SHBYVFFuWVE?oc=5\" target=\"_blank\">Daftar Lengkap Pemenang AMI ",
+        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+        "galleryImages": [],
+        "isOriginalImage": false,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "29d70541fa9d3d2d",
+        "sourceName": "Google News (Musik Indonesia) [Tempo.co English]",
+        "category": "musik",
+        "lang": "id",
+        "title": "2026 AMI Awards: Complete List of Winners",
+        "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9tTk5SSm0zMVNJc2NaT1hUM0dGNDdKdHE0RDdJZEZuMDMxUDlsVVVGOHJLb3pOSVIyeFIwbWtiUEpxQ0NNT3U5dVljdFhQZVdUbUNJVF9TMGpMZGhMY0xoMXE2RFFrZGppQ3UxSkNyX0dwS3lvalhnbF85Z0JhZw?oc=5",
+        "pubDate": "Thu, 05 Nov 2026 08:38:48 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE9tTk5SSm0zMVNJc2NaT1hUM0dGNDdKdHE0RDdJZEZuMDMxUDlsVVVGOHJLb3pOSVIyeFIwbWtiUEpxQ0NNT3U5dVljdFhQZVdUbUNJVF9TMGpMZGhMY0xoMXE2RFFrZGppQ3UxSkNyX0dwS3lvalhnbF85Z0JhZw?oc=5\" target=\"_blank\">2026 AMI Awards: Complete List of Winners</a>&nbsp;&nbsp;<font color=\"#6f6f6f",
+        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+        "galleryImages": [],
+        "isOriginalImage": false,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "327b23d1a9c90189",
+        "sourceName": "Google News (Musik Indonesia) [Bloomberg Technoz]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Aksi Musisi Salam Tiga Jari di Acara AMI Awards",
+        "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNUksyRENsR3dFWVVGQk96bnFnQ0FqQWVKUjRBREZwMXNDMUtJaGo5OFVzZVAtVTZXX0Z0bllsNWc0UEFNNlVmNzY1VEdWUF9xWUJxMG04SE5FSlFFQmduclh6UEhxZWl5ckJVTFg1elE4cnlyTkx0S0JYSzJSZ0M5X1h2X1RqUGpiRkZjUVRXSnpBc2Q1QWktWlBzeHlxWklL?oc=5",
+        "pubDate": "Thu, 05 Nov 2026 04:35:05 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxNUksyRENsR3dFWVVGQk96bnFnQ0FqQWVKUjRBREZwMXNDMUtJaGo5OFVzZVAtVTZXX0Z0bllsNWc0UEFNNlVmNzY1VEdWUF9xWUJxMG04SE5FSlFFQmduclh6UEhxZWl5ckJVTFg1elE4cnlyTkx0S0JYSzJSZ0M5X1h2X1RqUGpiRkZjUVRXSnpBc2Q1QWktWlBzeHlxWklL?oc=5\" target=\"_blank\">Aksi Musisi Salam Tiga Jari di ",
+        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+        "galleryImages": [],
+        "isOriginalImage": false,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      }
+    ]
+  }
+}

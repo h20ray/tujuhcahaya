@@ -290,12 +290,14 @@ export function proseToPortableText(bodyText) {
  */
 export function resolveAuthorByline(category) {
 	const cat = (category || "").toLowerCase();
-	if (cat.includes("tech")) return "0100MUNS3DJPCA4539BDBEB12A"; // Elang Elano
-	if (cat.includes("musik") || cat.includes("music")) return "0100MUNS3DJOA35D985DFFDBA0"; // Margaretha Nina
-	if (cat.includes("game")) return "0100MUNS3DJL68FA69B26FACE9"; // Andoru Ray
-	if (cat.includes("kesehatan")) return "0100MUNS3DJQ06A12A6DABF37A"; // Rachel Patricia
-	if (cat.includes("budaya")) return "0100MUNS3DJSD97205CCB31353"; // Sarah Dilla
-	return "0100MUNS3DJT76BFD04713B98E"; // Hendra Tujuhcahaya (Pemimpin Redaksi)
+	if (cat.includes("tech") || cat.includes("teknologi") || cat.includes("gadget") || cat.includes("code") || cat.includes("ai")) {
+		return "0100MUNS3DJPCA4539BDBEB12A"; // Elang Elano
+	}
+	if (cat.includes("game") || cat.includes("gaming") || cat.includes("esport")) {
+		return "0100MUNS3DJL68FA69B26FACE9"; // Andoru Ray
+	}
+	// Seluruh liputan musik, budaya urban, seni, dan gaya hidup ke Nina
+	return "0100MUNS3DJOA35D985DFFDBA0"; // Margaretha Nina
 }
 
 /**
@@ -318,8 +320,22 @@ export async function autoPublishPost(payload, options = {}) {
 		throw new Error("Field wajib 'title' dan 'content' tidak boleh kosong.");
 	}
 
+	// 0. Circuit Breaker / Safety Pause Check
+	const pauseFile = path.resolve(process.cwd(), ".pause-auto-publish");
+	if (!options.bypassPause && (process.env.AUTO_PUBLISH_PAUSED === "true" || fs.existsSync(pauseFile))) {
+		console.warn("⚠️ [CIRCUIT BREAKER]: Auto-Publish sedang DIJEDA via .pause-auto-publish / AUTO_PUBLISH_PAUSED.");
+		return {
+			success: false,
+			paused: true,
+			message: "Auto-publish is paused for editorial pipeline revamp.",
+			slug: generateSlug(title),
+			title
+		};
+	}
+
 	// 1. Run 7C Editorial Quality Gate
-	const audit = validate7cEditorial(title, content, excerpt);
+	const cleanTags = (Array.isArray(tags) ? tags : []).filter(t => !["mojok", "malesbanget", "mbdc", "detik", "kompas"].includes(t.toLowerCase().trim()));
+	const audit = validate7cEditorial(title, content, excerpt, cleanTags);
 	const wordCount = content.trim().split(/\s+/).filter(Boolean).length;
 
 	// Check if qualified for published status
@@ -364,7 +380,7 @@ export async function autoPublishPost(payload, options = {}) {
 		title,
 		excerpt: cleanExcerpt,
 		category,
-		tags,
+		tags: cleanTags,
 		byline: authorBylineId,
 		featuredImage: featuredImageObj,
 		portableTextContent,
@@ -390,7 +406,7 @@ export async function autoPublishPost(payload, options = {}) {
 				content: portableTextContent,
 				featured_image: featuredImageObj,
 				category,
-				tags,
+				tags: cleanTags,
 				byline: authorBylineId,
 			});
 

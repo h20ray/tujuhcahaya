@@ -2,9 +2,11 @@
  * 7C Editorial Guard — Quality & Anti-AI Slop Validator
  *
  * Implements the guidelines established in EDITORIAL.md and .agent/rules/07-editorial-anti-slop.md:
- * - Scans headline for cheap emojis and generic clickbait
- * - Scans prose for blacklisted AI clichés
- * - Enforces anti-pedantic KBBI lookup (suggests natural tech slang)
+ * - Scans headline for cheap emojis, excessive length, and formulaic bot patterns
+ * - Scans prose for blacklisted AI clichés and preachy moralizing conclusions
+ * - Enforces anti-pedantic KBBI lookup (suggests natural tech/gaming slang)
+ * - Flags rigid copy-paste structural templates
+ * - Verifies real journalistic source attribution
  * - Flags thin content / placeholder text
  */
 
@@ -45,6 +47,48 @@ const BANNED_AI_CLICHES: Array<{ pattern: RegExp; message: string }> = [
 		pattern: /menjadi bukti nyata bahwa/i,
 		message: 'Frasa klise AI terdeteksi: "Menjadi bukti nyata bahwa".',
 	},
+	{
+		pattern: /sebuah langkah yang patut diapresiasi/i,
+		message: 'Frasa normatif AI terdeteksi: "Sebuah langkah yang patut diapresiasi". Jangan basa-basi PR humas.',
+	},
+	{
+		pattern: /membuka lembaran baru dalam/i,
+		message: 'Frasa hiperbolik AI terdeteksi: "Membuka lembaran baru dalam".',
+	},
+];
+
+const BANNED_HEADLINE_FORMULAS: Array<{ pattern: RegExp; message: string }> = [
+	{
+		pattern: /^(Bahaya|Tirani|Erosi|Dilema|Obsesi|Kematian|Standarisasi)\b.+:\s*Mengapa\b/i,
+		message: 'Pola judul formulaik robotik terdeteksi ("Bahaya/Tirani...: Mengapa..."). Judul Tujuhcahaya harus renyah, punya sikap, dan tidak terdengar seperti abstrak skripsi.',
+	},
+	{
+		pattern: /^Mengapa\b.+\bBisa Menjadi Bom Waktu\b/i,
+		message: 'Pola judul klise bombastis AI ("...Bom Waktu").',
+	},
+];
+
+const PREACHY_AI_ENDINGS: Array<{ pattern: RegExp; message: string }> = [
+	{
+		pattern: /selalu berakar pada kesadaran/i,
+		message: 'Penutup berceramah sok bijak ala AI terdeteksi: "...selalu berakar pada kesadaran". Tutup dengan punchline atau observasi tajam.',
+	},
+	{
+		pattern: /tidak ditentukan oleh seberapa.*melainkan/i,
+		message: 'Penutup retorika AI kontras palsu terdeteksi: "tidak ditentukan oleh... melainkan...". Tunjukkan realitas tanpa menggurui.',
+	},
+	{
+		pattern: /kembali kepada kesadaran kita/i,
+		message: 'Penutup moralistik AI terdeteksi: "...kembali kepada kesadaran kita".',
+	},
+	{
+		pattern: /tubuh manusia adalah keseimbangan.*bukan wadah/i,
+		message: 'Penutup ceramah medis kaku AI terdeteksi.',
+	},
+	{
+		pattern: /pada akhirnya,.*adalah tanggung jawab kita/i,
+		message: 'Penutup wejangan moral klise: "...pada akhirnya adalah tanggung jawab kita".',
+	},
 ];
 
 const PEDANTIC_KBBI_LOOKUP: Array<{ pattern: RegExp; preferred: string; original: string }> = [
@@ -58,13 +102,18 @@ const PEDANTIC_KBBI_LOOKUP: Array<{ pattern: RegExp; preferred: string; original
 
 const CHEAP_EMOJI_REGEX = /[\u{1F680}\u{1F525}\u{1F9E0}\u{1F449}\u{26A1}\u{1F4A5}\u{1F4AF}\u{2728}\u{1F389}\u{1F6A8}]/u;
 
+const SOURCE_ATTRIBUTION_REGEX = /(https?:\/\/|menurut|melansir|dikutip dari|laporan dari|dilansir dari|rilis resmi|mengumumkan bahwa|studi dari|riset dari)/i;
+
+const BANNED_TAGS = ["mojok", "malesbanget", "mbdc", "detik", "kompas", "kumparan", "tribun"];
+
 /**
- * Audit an article's title, body prose, and excerpt
+ * Audit an article's title, body prose, excerpt, and tags
  */
 export function validate7cEditorial(
 	title: string = "",
 	bodyText: string = "",
 	excerpt?: string,
+	tags: string[] = [],
 ): EditorialAuditResult {
 	const errors: string[] = [];
 	const warnings: string[] = [];
@@ -82,6 +131,19 @@ export function validate7cEditorial(
 		score -= 5;
 	}
 
+	if (title.length > 105) {
+		warnings.push(`Judul terlalu panjang (${title.length} karakter). Judul media online ideal 40-85 karakter agar tidak terpotong dan tidak membosankan.`);
+		score -= 10;
+	}
+
+	// Scan for formulaic robotic titles
+	for (const { pattern, message } of BANNED_HEADLINE_FORMULAS) {
+		if (pattern.test(title)) {
+			errors.push(message);
+			score -= 25;
+		}
+	}
+
 	// 2. Prose Blacklist Audit
 	for (const { pattern, message } of BANNED_AI_CLICHES) {
 		if (pattern.test(bodyText) || (excerpt && pattern.test(excerpt))) {
@@ -90,7 +152,15 @@ export function validate7cEditorial(
 		}
 	}
 
-	// 3. Anti-Pedantic KBBI Audit
+	// 3. Preachy AI Ending Audit
+	for (const { pattern, message } of PREACHY_AI_ENDINGS) {
+		if (pattern.test(bodyText)) {
+			errors.push(message);
+			score -= 20;
+		}
+	}
+
+	// 4. Anti-Pedantic KBBI Audit
 	for (const item of PEDANTIC_KBBI_LOOKUP) {
 		if (item.pattern.test(bodyText) || item.pattern.test(title)) {
 			suggestions.push(
@@ -100,7 +170,21 @@ export function validate7cEditorial(
 		}
 	}
 
-	// 4. Content Volume & Placeholder Audit
+	// 5. Formulaic Structural Blueprint Detection (Exact 3-bullet + 3-numbering pattern)
+	const bulletMatches = bodyText.match(/^[\*\-]\s+\*\*[^*]+\*\*:/gm) || [];
+	const numberMatches = bodyText.match(/^\d+\.\s+\*\*[^*]+\*\*:/gm) || [];
+	if (bulletMatches.length === 3 && numberMatches.length === 3) {
+		warnings.push("Struktur naskah terlalu mirip dengan template bot lama (persis 3 bullet + 3 nomor tebal). Variasikan gaya penyampaian secara luwes.");
+		score -= 15;
+	}
+
+	// 6. Source Attribution Check
+	if (!SOURCE_ATTRIBUTION_REGEX.test(bodyText)) {
+		warnings.push('Naskah belum mencantumkan atribusi sumber berita (misal: "melansir...", "dikutip dari...", atau tautan markdown ke sumber asli).');
+		score -= 10;
+	}
+
+	// 7. Content Volume & Placeholder Audit
 	const wordCount = bodyText.trim().split(/\s+/).filter(Boolean).length;
 	if (wordCount < 100) {
 		warnings.push(`Panjang artikel hanya ${wordCount} kata. Naskah berpotensi merupakan placeholder atau thin content.`);
@@ -110,6 +194,16 @@ export function validate7cEditorial(
 	if (/lorem ipsum/i.test(bodyText)) {
 		errors.push('Teks placeholder "Lorem Ipsum" masih tersisa di dalam badan artikel.');
 		score -= 25;
+	}
+
+	// 8. Banned External Brand Tags Audit
+	if (Array.isArray(tags)) {
+		for (const tag of tags) {
+			if (BANNED_TAGS.includes(tag.trim().toLowerCase())) {
+				errors.push(`Haram menggunakan nama media luar ("${tag}") sebagai tag artikel Tujuhcahaya. Gunakan tag topik substantif (misal: "Pendidikan", "Kebijakan Publik").`);
+				score -= 20;
+			}
+		}
 	}
 
 	return {

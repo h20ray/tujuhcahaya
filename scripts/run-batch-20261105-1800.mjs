@@ -2,132 +2,93 @@ import fs from "node:fs";
 import path from "node:path";
 import { autoPublishPost } from "./auto-publish.mjs";
 import { validate7cEditorial } from "../src/lib/7c-editorial-guard.ts";
+import { markAsSeen } from "./ingest-feeds.mjs";
 
 export const articles = [
   {
-    title: "Bahaya Pengabaian Dead-Letter Queue (DLQ) pada Arsitektur Event-Driven: Mengapa Pesan Racun (Poison Message) Mampu Melumpuhkan Seluruh Aliran Pemrosesan Konsumen Terdistribusi",
+    title: "Mengenal LIMS: Alat Sadap yang Bikin Presiden Prabowo Ikut Kena Kuping-kupingan",
     category: "tech",
     byline: "0100MUNS3DJPCA4539BDBEB12A", // Elang Elano
-    tags: ["Teknologi", "Arsitektur Sistem", "Event-Driven", "Message Queue", "Kafka", "Backend Engineering"],
-    imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop",
-    imageAlt: "Infrastruktur server terdistribusi pemrosesan antrean pesan berkecepatan tinggi",
-    excerpt: "Dalam arsitektur berbasis event, pesan dengan payload cacat atau poison message dapat memicu siklus retry tanpa akhir. Tanpa mekanisme isolasi Dead-Letter Queue (DLQ) yang disiplin, antrean konsumen akan terblokir total dan menguras sumber daya komputasi.",
-    content: `Dalam ekosistem mikroservis modern, arsitektur berbasis pesan (*event-driven architecture*) yang ditopang platform seperti Apache Kafka, RabbitMQ, atau AWS SQS telah menjadi standar de facto untuk memisahkan dependensi langsung antar-layanan (*decoupling*). Mengalirkan ribuan hingga jutaan pesan secara asinkron memungkinkan sistem menangani lonjakan beban trafik secara elastis tanpa membebani server backend utama.
+    tags: ["Teknologi", "Keamanan Siber", "Privasi Digital", "Penyadapan", "LIMS", "Prabowo"],
+    imageUrl: "https://img.antaranews.com/cache/800x533/2026/11/04/Bareskrim-Tetapkan-Tiga-Tersangka-Kasus-Dugaan-Penyadapan-Ilegal-031126-gp-4.jpg",
+    imageAlt: "Penyidik Bareskrim Polri saat merilis penetapan tersangka kasus dugaan penyadapan ilegal",
+    sourceUrl: "https://www.antaranews.com/berita/5832595/mengenal-lims-alat-yang-digunakan-untuk-menyadap-presiden-prabowo",
+    excerpt: "Selama ini rakyat jelata yang rajin diingatkan hati-hati menjaga data pribadi. Tapi begitu dengar kabar Presiden Prabowo disadap pakai LIMS, kita baru sadar: di depan alat sadap kelas dewa, status jenderal bintang empat pun tetap bisa tembus.",
+    content: `Kalau ada pelajaran paling berharga dari geger kasus penyadapan yang baru saja dibongkar Bareskrim Polri, itu adalah satu hal: ternyata di republik ini, status presiden pun nggak bikin HP kamu kebal dari kuping jahil.
 
-Namun, di balik keandalan pemrosesan asinkron tersebut, tersimpan kerapuhan fatal ketika tim rekayasa perangkat lunak mengabaikan perancangan penanganan kegagalan: ancaman pesan beracun (*poison message*). Ketika sebuah pesan dengan skema data abnormal, nilai null tak terduga, atau format biner korup dibaca oleh fungsi konsumen (*consumer worker*), ketiadaan antrean karantina terisolasi (*Dead-Letter Queue* / DLQ) dapat memicu kehancuran berantai yang melumpuhkan seluruh pipa pemrosesan data secara global.
+Kabar mengejutkan yang dirilis lewat [laporan Bareskrim di Antara](https://www.antaranews.com/berita/5832595/mengenal-lims-alat-yang-digunakan-untuk-menyadap-presiden-prabowo) menyebut bahwa Presiden Prabowo Subianto diduga ikut disadap menggunakan perangkat bernama LIMS (*Lawful Interception Management System*). Tiga orang tersangka sudah diciduk, termasuk operator dan mantan perwira. Publik pun langsung garuk-garuk kepala: barang apa sebenarnya si LIMS ini sampai bisa bikin orang nomor satu di Indonesia ikut kena rekam?
 
-## Anatomi Head-of-Line Blocking dan Badai Retry (Retry Storms)
+Di dunia telekomunikasi dan jaringan, LIMS sebenarnya bukan malware kaleng-kaleng yang dikirim via undangan pernikahan palsu berformat APK di WhatsApp. LIMS adalah sistem infrastruktur resmi tingkat operator telekomunikasi. Perangkat keras dan lunak ini dipasang langsung di pusat data penyedia seluler (*core network*) untuk memfasilitasi perintah penyadapan sah dari penegak hukum—seperti KPK, BIN, atau Polri.
 
-Memahami dampak destruktif pesan beracun menuntut evaluasi terhadap mekanisme pengakuan pesan (*acknowledgment loop*) pada broker data terdistribusi:
+Masalahnya, begitu alat sekuat ini dipegang oleh oknum tanpa pengawasan sistemik (*zero oversight*), ia berubah jadi senjata mata-mata paling mengerikan. LIMS bisa mencegat panggilan suara, membedah percakapan pesan, hingga melacak koordinat BTS secara *real-time* tanpa korban merasakan tanda-tanda keanehan di ponselnya. Tidak ada notifikasi mencurigakan, tidak ada baterai panas mendadak. Semua data tersedot halus dari level infrastruktur pusat.
 
-* **Penyumbatan Antrean Tunggal (*Head-of-Line Blocking*)**: Pada platform streaming log seperti Apache Kafka, pesan di dalam setiap partisi dibaca secara berurutan berdasarkan nomor urut (*offset*). Ketika pekerja konsumen menemui pesan korup yang melempar exception fatal tak tertangani (*unhandled error*), offset partisi tersebut tidak dapat dinaikkan (*uncommitted offset*). Pekerja terpaksa berhenti di titik koordinat tersebut, menahan jutaan pesan valid di belakangnya yang siap diproses, hingga antrean downstream mengalami kemacetan total.
-* **Badai Pemrosesan Ulang Tanpa Jeda (*Retry Storms*)**: Pada broker tipe antrean tradisional seperti RabbitMQ atau Amazon SQS, kegagalan pemrosesan tanpa strategi isolasi otomatis akan mengembalikan pesan ke antrean utama (*nack / requeue*). Pekerja konsumen akan langsung mengambil kembali pesan beracun yang sama dalam hitungan milidetik, gagal kembali, dan memutarnya berulang kali dalam lingkaran setan (*infinite retry loop*). Aktivitas sia-sia ini membakar kuota CPU server hingga 100%, memicu lonjakan latensi dramatis, dan membengkakkan tagihan infrastruktur cloud dalam waktu singkat.
-* **Penyamaran Akar Masalah Melalui Crash Pod Berulang**: Pada lingkungan kontainer seperti Kubernetes, kegagalan fatal yang memicu terminasi proses Node.js atau Go secara berulang akan mengubah status pod menjadi *CrashLoopBackOff*. Pola ini kerap mengecoh tim DevOps yang mengira masalah bersumber pada kehabisan memori (*OOM*) atau ketidakstabilan infrastruktur pod, padahal akar kekacauan murni berada pada satu payload pesan JSON cacat yang tersangkut di bibir antrean.
+Ironisnya, selama bertahun-tahun para pejabat kita paling hobi menasihati rakyat kecil agar "rajin ganti password" dan "jangan klik sembarangan" tiap kali ada kebocoran miliaran data kependudukan. Sekarang, saat Presiden mereka sendiri kena imbasnya, baru terlihat jelas betapa rentannya tata kelola keamanan digital kita ketika sistem pengawasan internal diserahkan pada asas saling percaya.
 
-## Pola Desain Isolasi DLQ dan Observabilitas Aktif
-
-Mencegah kelumpuhan pipa data menuntut penerapan pola isolasi antrean mati yang kokoh dan disiplin tata kelola kegagalan:
-
-1. **Batas Maksimal Percobaan Pengiriman (*Max Delivery Attempts*)**: Tetapkan ambang batas percobaan ulang yang ketat pada tingkat konfigurasi broker atau lapisan middleware konsumen (misalnya maksimal 3 hingga 5 kali percobaan). Jika sebuah pesan terus gagal diproses setelah melewati ambang batas tersebut, middleware wajib menghentikan pengiriman ulang ke antrean utama dan secara otomatis membelokkan pesan tersebut ke topik Dead-Letter Queue (DLQ) khusus.
-2. **Eksponensial Backoff Disertai Full Jitter Acak**: Jangan pernah mengeksekusi percobaan ulang secara langsung tanpa jeda. Terapkan algoritma *exponential backoff* dengan penambahan variasi waktu acak (*jitter*). Strategi ini memecah gelombang permintaan ulang (*thundering herd problem*) ke database eksternal atau dependensi API pihak ketiga yang mungkin sedang mengalami gangguan jaringan temporer.
-3. **Penyematan Header Konteks Kesalahan dan Pipeline Redrive**: Saat pesan dipindahkan ke DLQ, perkaya metadata pesan dengan header diagnostik: nama service konsumen, jejak tumpukan kesalahan (*stack trace*), stempel waktu kegagalan, dan jumlah percobaan yang telah dilakukan. Sediakan alat inspeksi internal yang memungkinkan tim teknis membedah payload cacat, memperbaiki skema validasi, dan melakukan dorong ulang (*redrive/replay*) pesan secara aman ke antrean utama setelah perbaikan bug diaplikasikan.
-
-Keandalan sistem terdistribusi tidak dinilai saat semua aliran data berjalan lancar, melainkan dari seberapa tangguh sistem mengisolasi data anomali tanpa mengorbankan jutaan transaksi normal lainnya.`
+Kalau presiden dengan protokol kawalan Paspampres dan staf sandi negara saja bisa disadap semudah itu, bayangkan betapa telanjangnya data obrolan kita yang cuma rakyat biasa langganan paket kuota malam.`
   },
   {
-    title: "Jebakan Mekanik Weapon Degradation yang Terlalu Agresif: Ketika Ketakutan Kehilangan Senjata Terbaik Memicu Hoarding dan Menghukum Eksperimentasi Pemain",
+    title: "The Elder Scrolls 6 Masih Dua Tahun Lagi: Ketika Fans Bethesda Mulai Halusinasi",
     category: "game",
     byline: "0100MUNS3DJL68FA69B26FACE9", // Andoru Ray
-    tags: ["Game", "Game Design", "Action RPG", "Mekanik Game", "User Experience", "Level Design"],
-    imageUrl: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop",
-    imageAlt: "Koleksi persenjataan pedang dan perlengkapan bertarung dalam permainan fantasi petualangan",
-    excerpt: "Penerapan mekanik ketahanan senjata yang terlalu rapuh kerap disalahartikan sebagai penambah kedalaman taktis. Pada kenyataannya, degradasi instan justru memicu sindrom penimbunan barang dan membunuh variasi gaya bertarung pemain.",
-    content: `Dalam perancangan game aksi dan petualangan bergenre RPG, desainer kerap mencari mekanisme untuk mendorong pemain beradaptasi dengan persenjataan yang beragam. Salah satu instrumen tertua yang sering digunakan untuk membatasi ketergantungan pemain pada satu senjata andalan adalah mekanik daya tahan senjata (*weapon degradation / durability*). Logika di balik sistem ini sekilas tampak masuk akal: dengan membuat senjata aus atau hancur setelah digunakan berulang kali, pemain dituntut berpikir taktis dalam mengelola perlengkapan perangnya.
+    tags: ["Game", "The Elder Scrolls 6", "Bethesda", "RPG", "Skyrim", "PC Gaming"],
+    imageUrl: "https://cdn.mos.cms.futurecdn.net/2tZ8acjKKVc9o26nuhBAEi-1920-80.jpg",
+    imageAlt: "Pemandangan pegunungan Tamriel dalam cuplikan pengumuman The Elder Scrolls 6",
+    sourceUrl: "https://www.pcgamer.com/games/the-elder-scrolls/the-elder-scrolls-6-is-reportedly-more-than-two-years-away-and-some-fans-are-not-coping-well/",
+    excerpt: "Todd Howard pertama kali mengumumkan The Elder Scrolls 6 pada 2018. Kini menjelang akhir 2026, kabar terbaru menyebut gamenya masih butuh minimal dua tahun lagi. Fans yang lelah menunggu mulai mencocoklogi bayangan awan di teaser.",
+    content: `Menjadi penggemar game buatan Bethesda itu butuh ketabahan setingkat pertapa di puncak Gunung Hrothgar. Pertama, kamu harus tahan banting dengan bug khas mesin fisika mereka yang doyan melempar gerobak ke langit. Kedua, kamu harus punya umur panjang luar biasa hanya untuk menunggu satu sekuel game dirilis.
 
-Namun, ketika angka durabilitas disetel terlalu ekstrem—di mana sebilah pedang legendaris atau senapan plasma mutakhir hancur hanya setelah menghabisi dua atau tiga musuh rendahan—mekanik ini bermutasi menjadi friksi psikologis yang menjengkelkan. Bukannya melahirkan improvisasi yang dinamis, kerapuhan ekstrem tersebut justru memicu kepanikan pemain untuk menimbun barang berharga (*resource hoarding*) dan mengikis keberanian bereksperimen di medan laga.
+Kabar paling anyar dari [laporan industri di PC Gamer](https://www.pcgamer.com/games/the-elder-scrolls/the-elder-scrolls-6-is-reportedly-more-than-two-years-away-and-some-fans-are-not-coping-well/) menegaskan kenyataan pahit yang sudah lama ditakuti komunitas: *The Elder Scrolls 6* diperkirakan masih berjarak lebih dari dua tahun ke depan. Artinya, kalau kita beruntung dan tidak ada drama penundaan internal, game ini paling cepat mendarat di tangan pemain pada akhir 2028 atau awal 2029.
 
-## Psikologi Kehilangan (Loss Aversion) dan Matinya Eksplorasi Taktis
+Sebagai pengingat bagi memori kolektif kita: *Skyrim* dirilis pada November 2011. Saat itu anak-anak SD yang pertama kali memanah lutut bandit di Whiterun sekarang mungkin sudah cicil KPR atau pusing mengurus akta kelahiran anak kedua. Sementara Bethesda? Selama 15 tahun terakhir mereka lebih sibuk merilis ulang *Skyrim* di setiap perangkat berlayar yang ada di muka bumi—dari PlayStation 4, Switch, sampai lelucon kulkas pintar—sebelum sempat-sempatnya bikin petualangan baru di Tamriel.
 
-Menganalisis dampak negatif degradasi senjata yang berlebihan menyingkap benturan mendasar antara niat desainer dan respon psikologis pemain:
+Reaksi fans di forum Reddit pun sudah masuk ke fase psikologis *denial* akut bercampur halusinasi. Setiap kali akun media sosial Bethesda mengunggah tangkapan layar langit gurun atau logo perayaan ulang tahun, para penggemar langsung membedah bayangan batu untuk mencari koordinat rilis tersembunyi. Beberapa bahkan yakin trailer berdurasi 30 detik dari ajang E3 2018 menyimpan pesan morse rahasia.
 
-* **Sindrom Sayang Digunakan (*Too Awesome to Use Syndrome*)**: Manusia memiliki kecenderungan kognitif alami untuk menghindari kehilangan (*loss aversion*) yang lebih kuat daripada kegembiraan meraih keuntungan. Ketika pemain mendapatkan senjata langka dengan visual menakjubkan dan statistik serangan tinggi, pengetahuan bahwa senjata tersebut akan musnah permanen dalam hitungan detik memicu rasa takut kehilangan. Akibatnya, senjata terhebat tersebut akan tersimpan abadi di pojok ransel inventaris untuk \"saat genting\" yang tidak pernah tiba, sementara sepanjang 90% durasi permainan pemain justru memukul musuh menggunakan ranting pohon atau senjata rongsokan.
-* **Gangguan Aliran Aksi (*Flow Disruption*) di Tengah Pertarungan**: Keasyikan game aksi bertumpu pada kelancaran eksekusi ritme serang dan menghindar. Ketika senjata tiba-tiba patah di tengah kombo sengit melawan bos, pemain dipaksa berhenti total, membuka antarmuka inventaris, dan memilih pengganti secara manual. Interupsi menu yang berulang-ulang ini merusak sensasi imersi, mengubah duel berdarah yang memacu adrenalin menjadi sesi pencarian barang di katalog belanja digital.
-* **Hukuman Tidak Adil bagi Gaya Bertarung Cepat (*Fast Attack Penalty*)**: Mekanik durabilitas berbasis jumlah tebasan (*hit-based reduction*) secara inheren mendiskriminasi gaya bermain senjata berkecepatan tinggi seperti belati (*daggers*) atau senjata otomatis. Senjata cepat yang mengandalkan akumulasi puluhan tebasan ringan akan kehilangan daya tahannya sepuluh kali lebih cepat dibanding senjata lambat berdaya hancur besar (*greatswords*), secara sewenang-wenang mematikan viabilitas arketipe karakter tertentu.
-
-## Transformasi Mekanik Menuju Pemberdayaan Pemain Bukan Hukuman
-
-Menciptakan sistem manajemen senjata yang kaya makna tanpa menyiksa pemain memerlukan peralihan paradigma dari hukuman menuju insentif terarah:
-
-1. **Degradasi Sebagai Penurunan Efisiensi Sementara (Model Monster Hunter)**: Singkirkan konsep senjata musnah permanen. Terapkan sistem ketajaman bertingkat (*sharpness meter*) seperti pada seri Monster Hunter. Ketika senjata tumpul akibat sering menghantam cangkang keras musuh, daya tembus dan kerusakannya menurun secara proporsional. Pemain diberi peluang taktis untuk mengasah kembali senjatanya menggunakan batu asah (*whetstone*) di sela celah serangan musuh, mengubah durabilitas menjadi momen manajemen risiko yang menegangkan alih-alih penghilangan aset.
-2. **Mekanisme Pengisian Daya Dinamis (*Recharge Cooldown*)**: Daripada melenyapkan senjata dari inventaris saat tenaganya habis, biarkan senjata memasuki fase pendinginan (*cooldown*) atau tidur magis. Mengisi ulang daya senjata dapat dikaitkan dengan aksi pertarungan yang sukses—misalnya melakukan parry sempurna, mengeksekusi serangan kritis, atau beristirahat di dekat api unggun pos pemeriksaan terdekat.
-3. **Konversi Senjata Rusak Menjadi Ledakan Pamungkas**: Jika desainer tetap mempertahankan mekanik kehancuran senjata, buatlah momen patahnya senjata sebagai peristiwa spektakuler yang menguntungkan pemain. Berikan jaminan bahwa tebasan terakhir sebelum sebuah senjata pecah akan menghasilkan kerusakan kritis berkali lipat (*guaranteed critical shatter strike*), melontarkan pecahan material yang membutakan musuh di sekitarnya. Dengan begitu, hilangnya sebuah senjata dirayakan sebagai aksi pamungkas yang heroik, bukan kepedihan yang disesali.
-
-Desain game interaktif yang memikat selalu mengutamakan pemberdayaan agensi pemain, membimbing mereka bersenang-senang dengan mekanik, bukan membelenggu mereka dengan kecemasan kehilangan barang virtual.`
+Todd Howard memang piawai melempar janji manis berbalut jargon "it just works". Tapi melihat proyek *Starfield* kemarin yang rasanya hampa seperti mi instan tanpa bumbu asin, wajar kalau ekspektasi komunitas mulai bercampur rasa cemas. Kita cuma berharap, saat game ini akhirnya rilis nanti, kita tidak perlu memainkannya lewat monitor ruang panti jompo.`
   },
   {
-    title: "Bahaya Mengonsumsi Obat Pereda Nyeri NSAID Jangka Panjang Tanpa Perlindungan Lambung: Mengapa Penghambatan Enzim COX-1 Merusak Mukosa Lambung dan Ginjal",
-    category: "kesehatan",
-    byline: "0100MUNS3DJQ06A12A6DABF37A", // Rachel Patricia
-    tags: ["Kesehatan", "Farmakologi", "NSAID", "Lambung", "Ginjal", "Kesehatan Medis"],
-    imageUrl: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=1200&auto=format&fit=crop",
-    imageAlt: "Berbagai kapsul dan obat tablet farmasi di atas permukaan laboratorium medis",
-    excerpt: "Mengandalkan obat antiinflamasi nonsteroid seperti ibuprofen atau asam mefenamat secara rutin tanpa pengawasan dokter menyimpan bahaya laten. Supresi enzim COX-1 mengikis pertahanan mukosa lambung dan memicu gangguan hemodinamik ginjal.",
-    content: `Rasa nyeri pada persendian, sakit gigi yang berdenyut, ketegangan otot punggung, hingga dismenore kram menstruasi sering kali membuat seseorang dengan mudah mengulurkan tangan ke kotak obat untuk mengambil obat antiinflamasi nonsteroid (*Nonsteroidal Anti-inflammatory Drugs* / NSAID). Golongan obat seperti ibuprofen, asam mefenamat, natrium diklofenak, meloksikam, hingga ketorolak sangat mudah diakses di apotek dan gerai obat bebas, menjadikannya andalan utama bagi masyarakat urban untuk membungkam sinyal rasa sakit dalam hitungan menit.
-
-Namun, di balik efektivitas analgesiknya yang instan, penggunaan NSAID secara mandiri, berulang-ulang, dan tanpa perlindungan mukosa lambung menyimpan bom waktu farmakologis yang serius. Penghambatan enzim kunci yang ditargetkan oleh obat-obatan ini tidak hanya memadamkan inflamasi di area cedera, melainkan turut melumpuhkan mekanisme pertahanan biokimiawi alami yang melindungi integritas dinding lambung serta kestabilan hemodinamik penyaringan ginjal.
-
-## Mekanisme Molekuler Supresi Prostaglandin dan Erosi Mukosa
-
-Untuk memahami mengapa analgesik dapat merusak organ dalam, kita harus meneliti jalur metabolisme asam arakidonat dan peran enzim siklooksigenase:
-
-* **Dualisme Enzim COX-1 dan COX-2**: Obat NSAID konvensional bekerja dengan memblokir enzim siklooksigenase (*cyclooxygenase* / COX). Enzim COX-2 adalah enzim terinduksi yang aktif saat terjadi peradangan, menghasilkan prostaglandin pemicu rasa sakit dan pembengkakan. Namun, sebagian besar NSAID non-selektif juga menghambat enzim COX-1 secara agresif. Enzim COX-1 adalah enzim fisiologis (*housekeeping enzyme*) yang bertugas penting dalam memproduksi prostaglandin protektif (PGE2 dan PGI2) di sepanjang saluran cerna dan mikrosirkulasi renal.
-* **Kerapuhan Pertahanan Mukosa Lambung**: Prostaglandin PGE2 di lambung berfungsi menstimulasi sekresi lapisan lendir glikoprotein yang tebal, memicu pelepasan ion bikarbonat penetral asam, serta melancarkan aliran darah ke sel-sel epitel mukosa lambung. Ketika produksi prostaglandin ini terhenti akibat supresi COX-1, dinding lambung kehilangan tameng pelindungnya. Asam hidroklorida pekat (HCl) dan enzim pepsin akan langsung mengikis dinding mukosa, memicu peradangan lambung akut (*erosive gastritis*), tukak lambung kronis, hingga pendarahan saluran cerna masif tanpa peringatan nyeri awal yang nyata.
-* **Ancaman Kerusakan Hemodinamik Ginjal (*Acute Kidney Injury*)**: Di dalam ginjal, prostaglandin berperan vital melebarkan arteriol aferen guna mempertahankan tekanan perfusi dan laju filtrasi glomerulus (*GFR*). Ketika sintesis prostaglandin ditekan oleh NSAID, terjadi vasokonstriksi mendadak pada arteriol aferen yang memotong suplai oksigen ke nefron ginjal. Kondisi ini memicu retensi cairan, lonjakan tekanan darah arteri, edema tungkai, hingga gagal ginjal akut (*acute tubular necrosis*) yang kerap diperparah jika pasien mengalami dehidrasi atau sedang mengonsumsi obat antihipertensi.
-
-## Protokol Aman Penggunaan Analgesik dan Strategi Gastroproteksi
-
-Mengelola rasa sakit tanpa mengorbankan integritas lambung dan fungsi renal menuntut kepatuhan pada protokol medis yang rasional:
-
-1. **Prinsip Dosis Terendah Efektif dalam Durasi Paling Singkat**: Jadikan NSAID sebagai obat penyelamat jangka pendek (*short-term rescue medication*), bukan terapi harian jangka panjang. Jangan pernah mengonsumsi NSAID melebihi 3 hingga 5 hari berturut-turut tanpa evaluasi dokter. Jika nyeri menetap, investigasi akar penyebab patologis nyeri tersebut ke dokter spesialis alih-alih terus menaikkan dosis obat secara mandiri.
-2. **Kewajiban Gastroproteksi pada Kelompok Berisiko Tinggi**: Individu berusia di atas 60 tahun, memiliki riwayat penyakit maag atau tukak lambung, serta pasien yang mengonsumsi obat antikoagulan atau kortikosteroid wajib mengombinasikan terapi NSAID dengan obat pelindung lambung. Dokter umumnya meresepkan golongan penghambat pompa proton (*Proton Pump Inhibitor* / PPI seperti omeprazol atau esomeprazol) atau analog prostaglandin sintetis (*misoprostol*) guna menjaga keutuhan sawar mukosa lambung.
-3. **Pertimbangkan Pilihan Analgesik Alternatif yang Lebih Ramah**: Untuk nyeri ringan hingga sedang tanpa komponen inflamasi bengkak yang hebat, prioritaskan parasetamol (*acetaminophen*) yang bekerja secara sentral di otak tanpa merusak mukosa lambung dan tidak memengaruhi aliran darah ginjal. Selain itu, pastikan tubuh terhidrasi secara optimal dengan minum air putih yang cukup saat mengonsumsi obat apa pun guna meringankan beban ekskresi ginjal.
-
-Kesehatan tubuh yang seimbang bukan sekadar tentang terbebas dari sensasi nyeri seketika, melainkan tentang kearifan merawat organ vital yang menopang kehidupan kita setiap harinya.`
-  },
-  {
-    title: "Bahaya Penggunaan De-Esser Berlebih pada Jalur Vokal: Mengapa Pemangkasan Sibilance Agresif Menghancurkan Karakter Konsonan Alami dan Menghasilkan Efek Pelat",
+    title: "Bob Dylan Pakai Hoodie Ketemu Paus: Puncak Tertinggi Kakek-Kakek Gak Mau Diatur",
     category: "musik",
-    byline: "0100MUNS3DJPWFDDBCE343C11A", // Margaretha Nina
-    tags: ["Musik", "Audio Engineering", "Mixing", "Vokal", "De-Esser", "Produksi Musik"],
-    imageUrl: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1200&auto=format&fit=crop",
-    imageAlt: "Mikrofon kondensor diafragma besar di dalam ruang studio rekaman audio profesional",
-    excerpt: "Menjinakkan desis sibilance frekuensi tinggi dengan menekan threshold de-esser terlalu dalam kerap menjadi bumerang. Reduksi gain berlebihan mengikis artikulasi konsonan alami penyanyi dan mengubah rekaman vokal menjadi kusam serta terdengar cadel.",
-    content: `Dalam penataan vokal profesional di era produksi musik modern, kejelasan artikulasi dan kemilau frekuensi tinggi (*high-end air*) pada rekaman vokal utama adalah tolok ukur penting agar suara penyanyi mampu menembus padatnya aransemen instrumen (*cutting through the mix*). Untuk mencapai karakter vokal modern yang renyah dan intim, para insinyur mixing kerap menerapkan boost frekuensi tinggi menggunakan equalizer analog, kompresi multi-tahap, hingga saturasi harmonik pita rekaman.
+    byline: "0100MUNS3DJOA35D985DFFDBA0", // Margaretha Nina
+    tags: ["Musik", "Bob Dylan", "Kultur Pop", "Vatikan", "Folk Rock", "Gaya Hidup"],
+    imageUrl: "https://media.pitchfork.com/photos/6aeb7f4436dc15f46c7d1de9/master/pass/GettyImages-2303509652%20(1).jpg",
+    imageAlt: "Bob Dylan mengenakan kupluk hoodie saat bersalaman dengan Paus di Vatikan",
+    sourceUrl: "https://pitchfork.com/story/bob-dylan-wearing-hoodie-meets-pope/",
+    excerpt: "Di saat semua tamu negara repot menyewa tuksedo sutra dan menata dasi kupu-kupu untuk sowan ke Vatikan, Bob Dylan datang menemui Paus dengan hoodie hitam santai. Sikap cuek bebek legendaris yang membuktikan jiwa rock 'n' roll tak bisa dibeli protokoler.",
+    content: `Ada dua jenis manusia saat diundang menghadiri audiensi resmi dengan pemimpin tertinggi Gereja Katolik di Vatikan: kelompok pertama yang panik menyetrika setelan jas wol terbaik mereka, dan kelompok kedua... yang namanya Bob Dylan.
 
-Namun, penguatan spektrum frekuensi atas tersebut secara tak terelakkan melipatgandakan energi bunyi desis frikatif (*sibilance*) dari huruf konsonan tajam seperti \"S\", \"T\", \"C\", dan \"Z\". Menghadapi desis yang menusuk telinga ini, reflek pertama banyak penata suara adalah memasang plugin *de-esser* dan menarik knob *threshold* ke bawah sedalam-dalamnya. Keputusan drastis ini adalah kesalahan fatal yang seketika melumpuhkan wibawa rekaman: vokal penyanyi kehilangan artikulasi alami, terdengar cadel (*lispy*), dan kehilangan keintiman emosional.
+Foto-foto yang diunggah [dokumentasi liputan Pitchfork](https://pitchfork.com/story/bob-dylan-wearing-hoodie-meets-pope/) seketika bikin gempar jagat musik dan media sosial pekan ini. Sang maestro folk legendaris peraih Nobel Sastra berusia 85 tahun itu tampak santai menyalami Paus Fransiskus dengan mengenakan jaket hoodie hitam bertudung, dipadu celana kasual dan sepasang sepatu bot tanpa kilap semir. 
 
-## Dinamika Akustik Frekuensi Sibilance dan Jebakan Threshold Statis
+Sementara para staf protokoler kepausan berdiri tegak dengan busana serba rapi dan kaku, Dylan melangkah seperti kakek-kakek yang baru saja mampir beli rokok lintingan di warung kelontong seberang gang. Tidak ada jas berdasi, tidak ada medali kehormatan yang disematkan di dada, apalagi ekspresi tegang takut salah tingkah.
 
-Memahami mengapa de-essing yang agresif menghancurkan kualitas vokal menuntut penelaahan terhadap sifat fisik gelombang vokal manusia:
+Momen ini adalah antitesis sempurna bagi budaya pencitraan karpet merah zaman sekarang. Di era musisi muda menyewa puluhan *fashion stylist* dan konsultan etiket hanya untuk tampil tiga menit di pesta gala, Bob Dylan mengingatkan kita pada esensi purba musik rock: ketulusan untuk menjadi diri sendiri tanpa peduli ekspektasi mata dunia.
 
-* **Energi Transien Alami Konsonan Frikatif**: Bunyi konsonan desis dihasilkan oleh gesekan turbulensi udara cepat di antara lidah dan gigi, memusatkan energi akustik frekuensi tinggi pada rentang 5 kHz hingga 9 kHz (pada wanita) dan 4 kHz hingga 7 kHz (pada pria). Konsonan ini secara inheren memiliki sifat transien yang sangat cepat dan tajam. Pemotongan gain yang membabi-buta di atas 6 dB pada wilayah ini akan meratakan seluruh transien awal konsonan, membuat kata-kata seperti \"selamat\" terdengar seperti \"thelamat\", menghilangkan kejelasan diksi kata bagi para pendengar.
-* **Jebakan Pengaturan Threshold Statis pada Penampilan Dinamis**: Penampilan penyanyi hebat selalu dipenuhi dinamika: bisikan lembut di bait verse berganti menjadi teriakan bertenaga penuh di chorus. Sebuah de-esser dengan threshold statis yang disetel untuk meredam sibilance keras saat chorus akan bekerja secara keliru saat bagian verse yang tenang. Begitu penyanyi melafalkan kata pelan, de-esser akan memangkas frekuensi atas yang rapuh, menciptakan efek suara yang mendadak terdengar kusam, mati, dan tertutup selimut.
-* **Degradasi Pemrosesan Broadband vs Masalah Fase Split-Band**: Banyak praktisi menggunakan de-esser bertipe pita lebar (*broadband*). Pada tipe ini, setiap kali desis terdeteksi, plugin menurunkan seluruh volume sinyal audio vokal secara utuh, menghasilkan efek penurunan volume yang terputus-putus (*pumping artifact*). Sebaliknya, de-esser bertipe *split-band* yang membagi sinyal menjadi dua pita frekuensi rentan memicu pergeseran fase (*phase shift*) di sekitar titik filter persilangan jika kompresor bekerja terlalu agresif.
+Dylan sudah menulis *Blowin' in the Wind* dan *Like a Rolling Stone* sebelum sebagian besar pejabat Vatikan hari ini dilahirkan. Bagi pria yang pernah menolak datang mengambil piala Nobel Sastra di Swedia hanya karena "ada jadwal manggung lain", jaket hoodie di depan Sri Paus bukanlah bentuk penghinaan, melainkan pernyataan bahwa kemanusiaan dan karya seni tidak pernah diukur dari seberapa licin dasi kupu-kupu yang melilit lehermu.`
+  },
+  {
+    title: "Ekonomi Jateng Naik 5,83 Persen Diklaim Berkat MTQ: Logika Anggaran yang Bikin Dompet Warga Garuk Kepala",
+    category: "musik",
+    byline: "0100MUNS3DJOA35D985DFFDBA0", // Margaretha Nina
+    tags: ["Jawa Tengah", "Ekonomi", "BPS", "MTQ", "Semarang", "Kebijakan Publik"],
+    imageUrl: "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS.jpg",
+    imageAlt: "Rilis resmi BPS terkait pertumbuhan ekonomi Jawa Tengah Triwulan III 2026",
+    sourceUrl: "https://jatengprov.go.id/publik/mtq-dan-program-prioritas-nasional-kerek-ekonomi-jateng-triwulan-iii-tumbuh-583-persen/",
+    excerpt: "BPS mencatat ekonomi Jawa Tengah tumbuh 5,83 persen pada Triwulan III 2026, ditopang perhelatan MTQ Nasional dan percepatan program nasional. Angka makro yang mentereng di kertas, tapi bikin buruh harian dan bakul pasar geleng-geleng kepala saat belanja beras.",
+    content: `Kalau Anda membaca siaran pers resmi birokrasi, Jawa Tengah rasanya seperti negeri dongeng yang ekonominya sedang melesat kencang tanpa hambatan.
 
-## Metodologi Presisi Pengendalian Sibilance Tanpa Mengorbankan Keintiman Vokal
+Data paling gres yang dipaparkan dalam [rilis resmi BPS Jawa Tengah](https://jatengprov.go.id/publik/mtq-dan-program-prioritas-nasional-kerek-ekonomi-jateng-triwulan-iii-tumbuh-583-persen/) mencatat bahwa pertumbuhan ekonomi provinsi ini menyentuh angka 5,83 persen secara tahunan (*year-on-year*) pada Triwulan III 2026. Angka yang melampaui rata-rata nasional itu langsung diklaim pejabat Pemprov sebagai buah manis dari penyelenggaraan Musabaqah Tilawatil Qur'an (MTQ) Nasional XXXI di Kota Semarang serta akselerasi proyek prioritas nasional.
 
-Meraih rekaman vokal yang jernih, mengkilap, dan bebas dari desis tajam tanpa mengubah penyanyi menjadi terdengar cadel menuntut pendekatan bertahap yang presisi:
+Tentu saja, kita patut bersyukur Semarang kebagian rezeki nomplok dari ribuan kafilah yang datang menginap di hotel berbintang dan memborong wingko babat serta lumpia matang. Sektor perhotelan dan transportasi jelas tersenyum lebar selama sepekan acara berlangsung.
 
-1. **Otomasi Gain Manual Transien Konsonan (*Clip Gain Automation*)**: Langkah terbaik dan paling transparan mengendalikan sibilance bukanlah mengandalkan plugin otomatis, melainkan melakukan pemotongan gain manual di timeline DAW. Potong klip pada setiap konsonan \"S\" yang terlalu menusuk sebelum sinyal vokal menyentuh kompresor dan equalizer, lalu turunkan volume klip individual tersebut sebesar 2 hingga 4 dB. Dengan menata transien di sumber awalnya, kompresor vokal utama tidak akan bereaksi berlebihan terhadap lonjakan desis.
-2. **Penyetelan Frekuensi Sidechain yang Terisolasi Ketat**: Saat menggunakan plugin de-esser, aktifkan fitur dengar filter (*listen / sidechain monitor*) untuk mengisolasi titik frekuensi resonansi paling menyengat secara akurat menggunakan filter bel sempit (*narrow notch*). Pastikan de-esser hanya aktif bekerja pada rentang nada yang bermasalah, dan batasi reduksi gain maksimal di angka -3 dB hingga -4 dB agar ekor konsonan alami tetap bernapas.
-3. **Penerapan Dynamic EQ Multi-Band Berkecepatan Lepas Cepat (*Fast Release*)**: Gunakan dynamic equalizer generasi modern yang dilengkapi fitur pemrosesan fase minimum atau fase linier bersih. Setel waktu pelepasan (*release time*) sangat singkat (di bawah 30 milidetik). Reaksi kompresi mikro yang cepat ini menjamin bahwa sesaat setelah bunyi desis konsonan berlalu, equalizer langsung membuka kembali spektrum frekuensi atas, menjaga kehangatan napas dan resonansi vokal tetap utuh di telinga pendengar.
+![Rilis Resmi BPS Terkait Pertumbuhan Ekonomi Jawa Tengah](https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS.jpg)
 
-Penataan vokal kelas wahid tidak pernah dicapai dengan memangkas habis seluruh detail transien yang hidup, melainkan dengan memahat frekuensi secara halus agar emosi dan kejernihan kata dapat bersinar sempurna.`
+Namun, ada jurang pemisah yang sangat menganga antara angka agregat makro di atas kertas grafik BPS dengan isi dompet buruh pabrik tekstil di Sukoharjo atau petani bawang di Brebes. Lonjakan ekonomi yang didorong oleh kegiatan seremoni tahunan dan kucuran proyek infrastruktur pusat bukanlah mesin kesejahteraan yang berakar di tanah. Begitu panggung MTQ dibongkar dan para pejabat kembali ke Jakarta, denyut ekonomi harian kembali berhadapan dengan realitas lama: upah minimum regional (UMR) yang masih tergolong paling ketat di Pulau Jawa dan harga bahan pokok yang enggan turun.
+
+Merayakan angka pertumbuhan 5,83 persen tentu sah-sah saja bagi laporan pertanggungjawaban gubernur di hadapan dewan. Tapi bagi rakyat kebanyakan yang tiap hari harus memutar otak membagi uang jajan anak dan bayar cicilan motor, kemakmuran itu baru benar-benar nyata kalau harga beras di warung kelontong ikut ramah di kantong.`
   }
 ];
 
 export async function main() {
-  console.log(`=== MEMULAI BATCH AUTO-PUBLISH HOURLY 18:00 WIB (5 NOV 2026) - ${articles.length} ARTIKEL ===\n`);
+  console.log(`=== MEMULAI BATCH AUTO-PUBLISH HOURLY 18:00 WIB (5 NOV 2026) - ${articles.length} ARTIKEL OTENTIK ===\n`);
   const results = [];
 
   for (let i = 0; i < articles.length; i++) {
@@ -135,9 +96,9 @@ export async function main() {
     console.log(`\n--- [${i + 1}/${articles.length}] Memvalidasi 7C Editorial Guard: "${art.title}" ---`);
 
     // 1. Audit 7C Editorial Guard
-    const audit = validate7cEditorial(art.title, art.content, art.excerpt);
+    const audit = validate7cEditorial(art.title, art.content, art.excerpt, art.tags);
     console.log(`Audit Score: ${audit.score}/100 | Valid: ${audit.valid}`);
-    if (!audit.valid) {
+    if (!audit.valid || audit.score < 80) {
       console.error("Ditolak oleh 7C Editorial Guard:", audit.errors);
       process.exit(1);
     }
@@ -155,6 +116,12 @@ export async function main() {
       remotePublished: res.remotePublished,
       url: res.url
     }, null, 2));
+
+    // 3. Tandai URL sumber asli sebagai sudah diproses di inbox
+    if (art.sourceUrl) {
+      markAsSeen(art.sourceUrl);
+    }
+
     results.push(res);
   }
 
