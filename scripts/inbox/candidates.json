@@ -1,66 +1,18 @@
 {
-  "updatedAt": "2026-11-05T10:43:44.471Z",
-  "totalCandidates": 19,
+  "updatedAt": "2026-11-05T17:58:56.464Z",
+  "totalCandidates": 25,
   "categories": {
     "tech": [
       {
-        "id": "f60040f5a4edf3f4",
-        "sourceName": "The Verge",
+        "id": "ff9a7840ecc21119",
+        "sourceName": "Antara Tekno",
         "category": "tech",
-        "lang": "en",
-        "title": "Nintendo’s designers strove for ‘elegance’ when remaking Ocarina of Time",
-        "link": "https://www.theverge.com/games/1026380/zelda-ocarina-of-time-interview-eiji-aonuma-hidemaro-fujibayashi",
-        "pubDate": "2026-11-04T12:21:58-05:00",
-        "snippet": "The Ocarina of Time remake on the Switch 2 smashes together the past and present. The game retains much of the original N64 experience while updating it with modern graphics and gameplay that make it feel contemporary. But the mingling of time periods also extends to the development team. While Ocarina's remake was led",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/NS2_TheLegendofZeldaOcarinaofTime_scrn_15_dce060.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
-        "id": "ed68293641667419",
-        "sourceName": "The Verge",
-        "category": "tech",
-        "lang": "en",
-        "title": "X says its updated web app is way faster",
-        "link": "https://www.theverge.com/tech/1027113/x-says-its-updated-web-app-is-way-faster",
-        "pubDate": "2026-11-04T19:25:12-05:00",
-        "snippet": "X is introducing a new version of its web app that it says is much faster than before, and it's now rolling out the updated app \"one country at a time\" for signed-in users. \"Open a profile on X.com over a slow connection,\" principal engineer Yagiz Nizipli said in a blog post about the changes. [&#8230;]",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/07/STK160_X_TWITTER_2__A.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
-        "id": "f11302ecebb56fae",
-        "sourceName": "The Verge",
-        "category": "tech",
-        "lang": "en",
-        "title": "Qualcomm is betting big on data centers as smartphone sales sink",
-        "link": "https://www.theverge.com/ai-artificial-intelligence/1026867/qualcomm-earnings-data-centers",
-        "pubDate": "2026-11-04T17:42:15-05:00",
-        "snippet": "With smartphone sales tanking by around 20 percent compared to 2025, Qualcomm is looking to data centers to help boost its bottom line. During its Q4 2026 earnings call, the company laid out its plans to make a splash in the AI data center business, through partnerships with companies like Amazon and Meta announced ear",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24007992/acastro_STK082_qualcomm_02.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
-        "id": "4abbba6a56687fa7",
-        "sourceName": "Ars Technica",
-        "category": "tech",
-        "lang": "en",
-        "title": "Mercedes-AMG GT 4-Door Coupe first drive: Where tech and fun collide",
-        "link": "https://arstechnica.com/cars/2026/11/mercedes-amg-gt-4-door-coupe-first-drive-where-tech-and-fun-collide/",
-        "pubDate": "Thu, 05 Nov 2026 09:00:13 +0000",
-        "snippet": "The spirit of AMG is alive via three axial flux electric motors.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/26C0344_001-1152x648.jpg",
+        "lang": "id",
+        "title": "Benarkah mode pesawat bisa percepat pengisian daya HP?",
+        "link": "https://www.antaranews.com/berita/5833071/benarkah-mode-pesawat-bisa-percepat-pengisian-daya-hp",
+        "pubDate": "Thu, 05 Nov 2026 09:50:19 +0700",
+        "snippet": "Mengaktifkan mode pesawat atau airplane mode biasanya dilakukan ketika seseorang berada di dalam pesawat. Namun, fitur ...",
+        "imageUrl": "https://img.antaranews.com/cache/800x533/2026/05/23/WhatsApp-Image-2026-05-22-at-22.09.38.jpeg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -69,15 +21,15 @@
         }
       },
       {
-        "id": "f1988aa1b6e14687",
-        "sourceName": "Ars Technica",
+        "id": "8683ae260bf48763",
+        "sourceName": "Antara Tekno",
         "category": "tech",
-        "lang": "en",
-        "title": "Nintendo's biggest ROM chip supplier is bowing out of the business",
-        "link": "https://arstechnica.com/gaming/2026/11/the-tech-memory-shortage-comes-for-nintendos-cartridge-supply-chain/",
-        "pubDate": "Wed, 04 Nov 2026 22:47:51 +0000",
-        "snippet": "And what that could mean for physical Switch game costs.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/switchcarts-1152x648.jpg",
+        "lang": "id",
+        "title": "Laptop tidak bisa terhubung ke Wi-Fi, apa penyebabnya?",
+        "link": "https://www.antaranews.com/berita/5832947/laptop-tidak-bisa-terhubung-ke-wi-fi-apa-penyebabnya",
+        "pubDate": "Thu, 05 Nov 2026 07:45:14 +0700",
+        "snippet": "Laptop yang tiba-tiba tidak bisa terhubung ke jaringan Wi-Fi tentu dapat mengganggu aktivitas, terutama ketika ...",
+        "imageUrl": "https://img.antaranews.com/cache/800x533/2023/08/11/wifia.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -86,15 +38,114 @@
         }
       },
       {
-        "id": "bafa818237bd53c0",
+        "id": "af6769607b8e3228",
+        "sourceName": "Antara Tekno",
+        "category": "tech",
+        "lang": "id",
+        "title": "Cara mengetahui HP disadap tanpa sepengetahuan pemiliknya",
+        "link": "https://www.antaranews.com/berita/5832475/cara-mengetahui-hp-disadap-tanpa-sepengetahuan-pemiliknya",
+        "pubDate": "Wed, 04 Nov 2026 21:43:50 +0700",
+        "snippet": "Ponsel pintar menyimpan berbagai informasi pribadi, mulai dari percakapan, foto, lokasi, hingga akses ke rekening dan ...",
+        "imageUrl": "https://img.antaranews.com/cache/800x533/2024/08/16/1001195287.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "51ff4c2f73a749d0",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "‘Total repudiation’: The blue wave is about to hit AI",
+        "link": "https://www.theverge.com/ai-artificial-intelligence/1026927/total-repudiation-the-blue-wave-is-about-to-hit-ai",
+        "pubDate": "2026-11-05T12:51:52-05:00",
+        "snippet": "On Tuesday night, Democrats made history as they took control of the House and the Senate, and a blue wave swept through traditionally red and swing states - with the nation's first Black woman governor elected in Georgia, the country's first Native American woman governor elected in New Mexico, and a Maine Senator ced",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/STK423_ELECTIONS2.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "cfc678dcec865845",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "Ember’s smallest self-heating mug is on sale for just $33",
+        "link": "https://www.theverge.com/gadgets/1027689/ember-cup-6-ounce-woot-kitchen-sale-deal",
+        "pubDate": "2026-11-05T12:34:23-05:00",
+        "snippet": "We’ve been fans of Ember’s temperature-controlled mugs for years, though given the price tag, we admit that they’re somewhat of a luxury purchase. Thankfully, if you&#8217;ve been looking for a more affordable option, Woot is selling the Ember Cup in black for $32.99 ($67 off) with a 90-day warranty through November 7t",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/embercupsixouncewithtea_c325e7.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "62fb5350f91d7d0d",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "TikTok launched a dedicated TikTok Shop app",
+        "link": "https://www.theverge.com/tech/1027772/tiktok-shop-app",
+        "pubDate": "2026-11-05T12:27:36-05:00",
+        "snippet": "TikTok has released a standalone app for TikTok Shop in a few countries, as spotted by social media consultant Matt Navarra. According to its App Store listing, the TikTok Shop app offers: - Personalized picks inspired by your interests - LIVE streams &#38; short videos to see products in action - App-only deals, free ",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/unnamed-4.png?quality=90&#038;strip=all&#038;crop=0,21.560786106033,100,38.439126001969",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "ea4fab3eac7cd5fb",
         "sourceName": "Ars Technica",
         "category": "tech",
         "lang": "en",
-        "title": "Hackers exploited iOS and Android flaws to infect phones",
-        "link": "https://arstechnica.com/security/2026/11/hackers-exploited-ios-and-android-flaws-to-infect-phones/",
-        "pubDate": "Wed, 04 Nov 2026 22:26:49 +0000",
-        "snippet": "Researchers say group may have been Kremlin-sponsored in search of diplomatic targets.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2023/05/malware-1000x648.jpg",
+        "title": "Motorola's new Signature 27 has it all if you can stomach the $1,600 price tag",
+        "link": "https://arstechnica.com/gadgets/2026/11/motorolas-new-signature-27-has-it-all-if-you-can-stomach-the-1600-price-tag/",
+        "pubDate": "Thu, 05 Nov 2026 13:00:56 +0000",
+        "snippet": "It has all the bells and whistles (and cameras).",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/signature27-1-1152x648.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "9e827dbe569b5563",
+        "sourceName": "Ars Technica",
+        "category": "tech",
+        "lang": "en",
+        "title": "Agility Robotics' Nasdaq debut invites scrutiny of humanoid robot market",
+        "link": "https://arstechnica.com/ai/2026/11/agility-robotics-nasdaq-debut-invites-scrutiny-of-humanoid-robot-market/",
+        "pubDate": "Thu, 05 Nov 2026 12:00:41 +0000",
+        "snippet": "US leader in deploying humanoid robots goes public on the Nasdaq stock exchange.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/Agility-Digit-5-humanoid-robots-at-work-1152x648.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "26e10ea8ea59f960",
+        "sourceName": "Ars Technica",
+        "category": "tech",
+        "lang": "en",
+        "title": "2026 iPad mini review: Maximizing the mini",
+        "link": "https://arstechnica.com/gadgets/2026/11/ipad-mini-2026-review-maximizing-the-mini/",
+        "pubDate": "Thu, 05 Nov 2026 12:00:01 +0000",
+        "snippet": "It's more compelling than ever, but also more expensive.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/20261104_095710-1152x648.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -105,15 +156,15 @@
     ],
     "game": [
       {
-        "id": "f47ddbd7f9aee47b",
+        "id": "e77644cb5f12aadd",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "Critical Role's upcoming series with Hololive gave Matt Mercer 'a deeper understanding and appreciation' for vtubers",
-        "link": "https://www.pcgamer.com/games/board-games/critical-roles-upcoming-series-with-hololive-gave-matt-mercer-a-deeper-understanding-and-appreciation-for-vtubers/",
-        "pubDate": "Thu, 05 Nov 2026 01:52:06 +0000",
-        "snippet": "Shattered Legends is a six-episode miniseries that will debut later this month.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/rPWcLihwLSBCYkDefAYJ7R-1920-80.jpg",
+        "title": "Rockstar drops a pile of new GTA 6 launch screenshots featuring dancers, combat dogs, and so many pores",
+        "link": "https://www.pcgamer.com/games/grand-theft-auto/rockstar-drops-a-pile-of-new-gta-6-launch-screenshots-featuring-dancers-combat-dogs-and-so-many-pores/",
+        "pubDate": "Thu, 05 Nov 2026 17:13:17 +0000",
+        "snippet": "In 39 new screenshots, Rockstar flaunts exciting new genres of Florida Man.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/wpPuo2HfzvoFR6Nf4gw3mc-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -122,15 +173,15 @@
         }
       },
       {
-        "id": "e378e0b41a9689fc",
+        "id": "adae2f8183221529",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "The Elder Scrolls 6 is reportedly more than two years away, and some fans are not coping well",
-        "link": "https://www.pcgamer.com/games/the-elder-scrolls/the-elder-scrolls-6-is-reportedly-more-than-two-years-away-and-some-fans-are-not-coping-well/",
-        "pubDate": "Thu, 05 Nov 2026 00:18:02 +0000",
-        "snippet": "Theories that Bethesda is hinting at an earlier launch are already surfacing, and a few of them are pretty good.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/2tZ8acjKKVc9o26nuhBAEi-1920-80.jpg",
+        "title": "Phantom Blade Zero review: Feel gud, not git gud",
+        "link": "https://www.pcgamer.com/games/action/phantom-blade-zero-review/",
+        "pubDate": "Thu, 05 Nov 2026 17:10:23 +0000",
+        "snippet": "A martial arts action epic with just a dash of Souls and Sekiro.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/rzqiZ2YapugCsRsSmm4xVg-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -139,15 +190,66 @@
         }
       },
       {
-        "id": "968272255b27f34b",
+        "id": "bdca950c57e5a2ce",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "No GTA 6 November: Here's what you can play on PC instead",
-        "link": "https://www.pcgamer.com/games/november-games-2026/",
-        "pubDate": "Wed, 04 Nov 2026 23:37:01 +0000",
-        "snippet": "World of Warcraft: Forever, Warhammer Survivors, and a batch of fresh updates.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/uEeQBN2oCc55CcCkNVRYiQ-1920-80.jpg",
+        "title": "PC Gamer magazine's new issue is on sale now: Metro 2039",
+        "link": "https://www.pcgamer.com/games/pc-gamer-magazines-new-issue-is-on-sale-now-metro-2039/",
+        "pubDate": "Thu, 05 Nov 2026 16:28:57 +0000",
+        "snippet": "Plus, StarCraft, Diablo 5, Masters of Albion, Warhammer Blood Bowl, Valor Mortis, Endless Legend 2, Guns of Eschaton, Nighthawks, and much more, too",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/6uR2ASAqLXhiXu4rvch8w9-1920-80.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
+      {
+        "id": "87e62d94d95b4949",
+        "sourceName": "Polygon",
+        "category": "game",
+        "lang": "en",
+        "title": "Mass Effect Studio’s Closure Is Getting Its Own Movie",
+        "link": "https://www.polygon.com/mass-effect-bioware-studio-closure/",
+        "pubDate": "Thu, 05 Nov 2026 17:43:19 GMT",
+        "snippet": "BioWare and the end of Mass Effect are getting a documentary film.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/10/mass-effect-universe.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
+      {
+        "id": "1becd43ba9b87fc4",
+        "sourceName": "Polygon",
+        "category": "game",
+        "lang": "en",
+        "title": "Nintendo Officially Addresses Switch 2 Price Hike Concerns",
+        "link": "https://www.polygon.com/nintendo-switch-2-price-increase-november-2026/",
+        "pubDate": "Thu, 05 Nov 2026 17:27:25 GMT",
+        "snippet": "Nintendo president Shuntaro Furukawa said the company isn't currently considering another Nintendo Switch 2 price increase.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/02/switch-2-third-party-partner-games-february-direct.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
+      {
+        "id": "ca48152287261522",
+        "sourceName": "Polygon",
+        "category": "game",
+        "lang": "en",
+        "title": "GTA 6 Officially Drops 36 New Screenshots Ahead of Launch",
+        "link": "https://www.polygon.com/gta-6-launch-update-screenshots-rockstar-games-nov-5/",
+        "pubDate": "Thu, 05 Nov 2026 17:17:12 GMT",
+        "snippet": "Rockstar Games has released a new look at Grand Theft Auto 6 on Nov. 5, with 36 new screenshots of Jason, Lucia, and Vice City.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/jason_and_lucia_15.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -158,55 +260,50 @@
     ],
     "musik": [
       {
-        "id": "ce623215ef4f0712",
-        "sourceName": "Portal Pemprov Jateng",
+        "id": "2a87158b2e0934bb",
+        "sourceName": "Antara Hiburan",
         "category": "musik",
         "lang": "id",
-        "title": "Nemu informasi yang bikin panik? Tenang dulu!",
-        "link": "https://jatengprov.go.id/padhang-sinau/nemu-informasi-yang-bikin-panik-tenang-dulu/",
-        "pubDate": "Thu, 05 Nov 2026 09:12:35 +0000",
-        "snippet": "",
-        "imageUrl": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?q=80&w=1200&auto=format&fit=crop",
+        "title": "Profil Patrick Stewart, pemeran profesor X yang wafat di usia 86",
+        "link": "https://www.antaranews.com/berita/5830419/profil-patrick-stewart-pemeran-profesor-x-yang-wafat-di-usia-86",
+        "pubDate": "Wed, 04 Nov 2026 08:12:11 +0700",
+        "snippet": "Aktor asal Inggris, Sir Patrick Stewart, meninggal dunia pada usia 86 tahun. Aktor yang dikenal luas melalui perannya ...",
+        "imageUrl": "https://img.antaranews.com/cache/800x533/2026/10/30/WhatsApp-Image-2026-10-30-at-07.39.46.jpeg",
         "galleryImages": [],
-        "isOriginalImage": false,
+        "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         }
       },
       {
-        "id": "91e6ba48eba9b203",
-        "sourceName": "Portal Pemprov Jateng",
+        "id": "e267c40046b11c9d",
+        "sourceName": "Antara Hiburan",
         "category": "musik",
         "lang": "id",
-        "title": "PADHANG Dalam Sebulan Edisi Oktober 2026",
-        "link": "https://jatengprov.go.id/padhang-sinau/padhang-dalam-sebulan-edisi-oktober-2026/",
-        "pubDate": "Thu, 05 Nov 2026 09:11:04 +0000",
-        "snippet": "",
-        "imageUrl": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?q=80&w=1200&auto=format&fit=crop",
+        "title": "Sinopsis film \"Laut Bercerita\" beserta jadwal tayangnya",
+        "link": "https://www.antaranews.com/berita/5792777/sinopsis-film-laut-bercerita-beserta-jadwal-tayangnya",
+        "pubDate": "Sat, 17 Oct 2026 08:48:11 +0700",
+        "snippet": "Film \"Laut Bercerita\" menjadi salah satu film Indonesia yang dinantikan pada Oktober 2026. Diadaptasi dari ...",
+        "imageUrl": "https://img.antaranews.com/cache/800x533/2026/10/02/THE-SEA_STILLS_01-OK_Credit-Pal-8-Pictures-2.jpg",
         "galleryImages": [],
-        "isOriginalImage": false,
+        "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         }
       },
       {
-        "id": "5d5d5f70cb435b3c",
-        "sourceName": "Portal Pemprov Jateng",
+        "id": "71cbe31891399827",
+        "sourceName": "Antara Hiburan",
         "category": "musik",
         "lang": "id",
-        "title": "MTQ dan Program Prioritas Nasional Kerek Ekonomi Jateng, Triwulan III Tumbuh 5,83 Persen",
-        "link": "https://jatengprov.go.id/publik/mtq-dan-program-prioritas-nasional-kerek-ekonomi-jateng-triwulan-iii-tumbuh-583-persen/",
-        "pubDate": "Thu, 05 Nov 2026 08:52:24 +0000",
-        "snippet": "SEMARANG &#8211; Perekonomian Jawa Tengah tumbuh sebesar 5,83 persen secara tahunan (year on year/yoy) pada Triwulan III 2026. Capaian tersebut ditopang sejumlah faktor, di antaranya penyelenggaraan Musabaqah Tilawatil Qur&#8217;an (MTQ) Nasional XXXI 2026 di Kota Semarang, serta akselerasi program prioritas nasional. ",
-        "imageUrl": "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS.jpg",
-        "galleryImages": [
-          "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS.jpg",
-          "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS2.jpg",
-          "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS3.jpg",
-          "https://jatengprov.go.id/wp-content/uploads/2026/11/Rilis-BPS4.jpg"
-        ],
+        "title": "Profil Doddy Katamsi, penyanyi rock yang wafat pada usia 59 tahun",
+        "link": "https://www.antaranews.com/berita/5788909/profil-doddy-katamsi-penyanyi-rock-yang-wafat-pada-usia-59-tahun",
+        "pubDate": "Thu, 15 Oct 2026 18:06:58 +0700",
+        "snippet": "Dunia musik Indonesia kehilangan salah satu penyanyi rock senior, Doddy Katamsi, yang dikabarkan meninggal dunia pada ...",
+        "imageUrl": "https://img.antaranews.com/cache/800x533/2014/03/2014031071.jpg",
+        "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
@@ -222,7 +319,25 @@
         "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5jVXYyS0E2MzdqeDJJRzV0amZERnBla2k4ZF9QNElXbGRCT3l1ZTI0WHA1c0t2X1gwQnozNnZUTVhmWHduZVFxTEwtN2F1UnM5bzEzb0FwSzFrbWJBNTQ2MmxyUVM3Rl9vUFppVHRvOTNGcGM3V0VUNVc3aE5Gdw?oc=5",
         "pubDate": "Thu, 05 Nov 2026 09:15:47 GMT",
         "snippet": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE5jVXYyS0E2MzdqeDJJRzV0amZERnBla2k4ZF9QNElXbGRCT3l1ZTI0WHA1c0t2X1gwQnozNnZUTVhmWHduZVFxTEwtN2F1UnM5bzEzb0FwSzFrbWJBNTQ2MmxyUVM3Rl9vUFppVHRvOTNGcGM3V0VUNVc3aE5Gdw?oc=5\" target=\"_blank\">3 + 1 Masalah dalam Penulisan Musik Indonesia</a>&nbsp;&nbsp;<font color=\"#6f",
-        "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
+        "imageUrl": "https://pophariini.com/wp-content/uploads/2021/06/og.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://pophariini.com/essay/3-1-masalah-dalam-penulisan-musik-indonesia/"
+      },
+      {
+        "id": "2543fa429afb0d71",
+        "sourceName": "Google News (Musik Indonesia) [ANTARA News]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Kemendikdasmen raih 2 penghargaan AMI Awards lewat lagu anak",
+        "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQa0wzQnRWVFBUSXVtazhoV0x2bXhiQkxEbjNKaDZPbzg4U3VkYkNIcVJvR0c0NVhyTU5Ra1BNOGIxYkFNcWg3MTNEQTBPNzdOQXVZbHRfYlpEczhDMG9udWRQZXpFMld2c2dUTWY1WXNiMVp4ZjZpM2lyN25tWi04N0xjdFZ4SGxUZi1uMHZDeFV2d0p3ckRUMHlCWUppdE9aNjIyc3gtRdIBpwFBVV95cUxQa0wzQnRWVFBUSXVtazhoV0x2bXhiQkxEbjNKaDZPbzg4U3VkYkNIcVJvR0c0NVhyTU5Ra1BNOGIxYkFNcWg3MTNEQTBPNzdOQXVZbHRfYlpEczhDMG9udWRQZXpFMld2c2dUTWY1WXNiMVp4ZjZpM2lyN25tWi04N0xjdFZ4SGxUZi1uMHZDeFV2d0p3ckRUMHlCWUppdE9aNjIyc3gtRQ?oc=5",
+        "pubDate": "Thu, 05 Nov 2026 13:11:53 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxQa0wzQnRWVFBUSXVtazhoV0x2bXhiQkxEbjNKaDZPbzg4U3VkYkNIcVJvR0c0NVhyTU5Ra1BNOGIxYkFNcWg3MTNEQTBPNzdOQXVZbHRfYlpEczhDMG9udWRQZXpFMld2c2dUTWY1WXNiMVp4ZjZpM2lyN25tWi04N0xjdFZ4SGxUZi1uMHZDeFV2d0p3ckRUMHlCWUppdE9aNjIyc3gtRdIBpwFBVV95cUxQa0wzQnRWVFBUSXVtazhoV0x2bXhiQk",
+        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
         "galleryImages": [],
         "isOriginalImage": false,
         "author": {
@@ -231,21 +346,40 @@
         }
       },
       {
-        "id": "e593c61f1ff92331",
-        "sourceName": "Google News (Musik Indonesia) [ANTARA News Riau]",
+        "id": "72baf16c02fc5163",
+        "sourceName": "Google News (Musik Indonesia) [radartvnews]",
         "category": "musik",
         "lang": "id",
-        "title": "Raih AMI Awards 2026, Kunto Aji: Tanpa pendengar, saya bukan siapa-siapa",
-        "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOaklEeDdITUZsLXZqQ0JqNThPOERLVWZRSFAteTM1YXRNUXo5QzBSYlE1dVFnOXNGTW9JRk9FNjd3V01tZkxyWlduSlNfVnRYS0h0d0FHMEVvYi1RSlFHNG0tN0NVcWxtSkNkbWxzY0ZZSUlyVmduZS1HNXlBSXhFaER3bkJMcHBqS2k2NmdMNlN6aUpMNDM2NHdBWEZKRTZJUWkwaGotbnFTZExDMDlFcQ?oc=5",
-        "pubDate": "Thu, 05 Nov 2026 09:48:37 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxOaklEeDdITUZsLXZqQ0JqNThPOERLVWZRSFAteTM1YXRNUXo5QzBSYlE1dVFnOXNGTW9JRk9FNjd3V01tZkxyWlduSlNfVnRYS0h0d0FHMEVvYi1RSlFHNG0tN0NVcWxtSkNkbWxzY0ZZSUlyVmduZS1HNXlBSXhFaER3bkJMcHBqS2k2NmdMNlN6aUpMNDM2NHdBWEZKRTZJUWkwaGotbnFTZExDMDlFcQ?oc=5\" target=\"_blank\">Raih AMI ",
-        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+        "title": "Tulus dan Idgitaf Borong Penghargaan AMI Awards 2026, Musik Indonesia Kembali Bersinar",
+        "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNVG5SVU5ac0QwdVM4NWJfWmZ4d1FvMG9tT2FqOTk0amZsVGZSTm9oNm9GcS1IWjVBRnZ2bUtweUpEeGZyR2w5ZllZRTVJZWFBSFlpWnFzQTdEaXcxWHJydGpSRzFqMm9HSTVMQlV2Zm9USzNuSzBlaVF6VVk2UkM5TlRrRWFIY2ZKM0tabTRYLVVGUXduNmRqS2dvYkp4T1ZTRTRMNDZkZEV4MjFRNlNVc3o0bWlUUE44WFVRbnZ5cnktcmvSAcMBQVVfeXFMTVRuUlVOWnNEMHVTODViX1pmeHdRbzBvbU9hajk5NGpmbFRmUk5vaDZvRnEtSFo1QUZ2dm1LcHlKRHhmckdsOWZZWUU1SWVhQUhZaVpxc0E3RGl3MVhycnRqUkcxajJvR0k1TEJVdmZvVEszbkswZWlRelVZNlJDOU5Ua0VhSGNmSjNLWm00WC1VRlF3bjZkaktnb2JKeE9WU0U0TDQ2ZGRFeDIxUTZTVXN6NG1pVFBOOFhVUW52eXJ5LXJr?oc=5",
+        "pubDate": "Thu, 05 Nov 2026 12:09:34 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxNVG5SVU5ac0QwdVM4NWJfWmZ4d1FvMG9tT2FqOTk0amZsVGZSTm9oNm9GcS1IWjVBRnZ2bUtweUpEeGZyR2w5ZllZRTVJZWFBSFlpWnFzQTdEaXcxWHJydGpSRzFqMm9HSTVMQlV2Zm9USzNuSzBlaVF6VVk2UkM5TlRrRWFIY2ZKM0tabTRYLVVGUXduNmRqS2dvYkp4T1ZTRTRMNDZkZEV4MjFRNlNVc3o0bWlUUE44WFVRbnZ5cnktcmvSAcMBQV",
+        "imageUrl": "https://radartv.disway.id/upload/2692404b6bbcf3fa162293d7d48d529a.jpeg",
         "galleryImages": [],
-        "isOriginalImage": false,
+        "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
+        },
+        "originalArticleUrl": "https://radartvnews.com/2026/11/05/tulus-dan-idgitaf-borong-penghargaan-ami-awards-2026-musik-indonesia-kembali-bersinar/?amp"
+      },
+      {
+        "id": "6d64e31234f81de5",
+        "sourceName": "Google News (Musik Indonesia) [Opsi.id]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Bassist Jazz Legendaris Harry Toledo Meninggal Dunia, Dunia Musik Indonesia Berduka",
+        "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPWEZPdUYwTXdlajQ2YVNsOEdIei1wdGFKNVVkMkdSZ0w5Slp0WGlhRzZaUHJsQVZ4NXc2NjNuSEVfTzUxVUVtXzlTZVRDTjRoTGtjRXNTUkJXWWd0Q0V4UEs4M1UxVGlLZXFzZXZ5b0hSVzAwQUpxZjhFTUdUdWNDUkNaSEkzWG4wU052bDdlaFlobGZpN09DQUo4elVEVVh5?oc=5",
+        "pubDate": "Thu, 05 Nov 2026 11:37:14 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxPWEZPdUYwTXdlajQ2YVNsOEdIei1wdGFKNVVkMkdSZ0w5Slp0WGlhRzZaUHJsQVZ4NXc2NjNuSEVfTzUxVUVtXzlTZVRDTjRoTGtjRXNTUkJXWWd0Q0V4UEs4M1UxVGlLZXFzZXZ5b0hSVzAwQUpxZjhFTUdUdWNDUkNaSEkzWG4wU052bDdlaFlobGZpN09DQUo4elVEVVh5?oc=5\" target=\"_blank\">Bassist Jazz Legendaris Harry T",
+        "imageUrl": "https://opsi.id/wp-content/uploads/2026/11/Harry-Toledo.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://opsi.id/bassist-jazz-legendaris-harry-toledo-meninggal-dunia-dunia-musik-indonesia-berduka/"
       },
       {
         "id": "8a8c7c89caeee95a",
@@ -256,13 +390,14 @@
         "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOLURRODZrWTJWLUIyMkFuTnRLOWlBTTI1UFdEVVlLZ0pmUl8xNkZGRG1TUnBCV2VWU1pzaWxfM2gwMWIzZm41RDlCVHdRRlE4MVFNODhvSmlOckdSR01TRzJHSzIyZmVNb2RmanpvbGdsQ0FOY1N1WjAzRHNsZnlMUHJuekZ4U0pmS3lPVGkxb2lEYkNibTJfLXhMV1F1RHZIbVE?oc=5",
         "pubDate": "Thu, 05 Nov 2026 07:15:03 GMT",
         "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxOLURRODZrWTJWLUIyMkFuTnRLOWlBTTI1UFdEVVlLZ0pmUl8xNkZGRG1TUnBCV2VWU1pzaWxfM2gwMWIzZm41RDlCVHdRRlE4MVFNODhvSmlOckdSR01TRzJHSzIyZmVNb2RmanpvbGdsQ0FOY1N1WjAzRHNsZnlMUHJuekZ4U0pmS3lPVGkxb2lEYkNibTJfLXhMV1F1RHZIbVE?oc=5\" target=\"_blank\">Musisi Tumpahkan Keresahan d",
-        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+        "imageUrl": "https://assetd.kompas.id/3m3o67xNthwsm0CokD1DV8klokw=/1024x683/smart/filters:format(webp):quality(80)/https://cdn-dam.kompas.id/photo/ori/2026/11/05/ed74e92b-5dce-491c-a294-663cc8ce21bb.jpg",
         "galleryImages": [],
-        "isOriginalImage": false,
+        "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
+        },
+        "originalArticleUrl": "https://www.kompas.id/artikel/musisi-tumpahkan-keresahan-di-ami-awards-2026?open_from=undefined_Page"
       },
       {
         "id": "775eeb876dbb9375",
@@ -273,64 +408,32 @@
         "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNcVNXaWVoWUZrbUg4NlpuOG53dy15bzhjaE94YTNkSDc1M3ZLRE9wZ2dMLXJlOURiWWdjNXdwUXJTNDg2eW1TNTdaNzlFT1A2aVVQTTRncG1XWnV3OUxNQmVyZFM1d295SFVzaVpCVXFRLXRiQ1dfTy1POFZIRDNNanFyZmpxWHpuSmdVZlA1T09vOThTNWwwT1dtWWJ2N1Y3YzhodHl2LUw3dE9zUW40c1hVZVBUc3pDOWExUWp3ZDhNYkJqNFZVT3ZkME7SAdIBQVVfeXFMTjFkaVhNRWFTR3JVb3hJTE1mazBDa2stUm1KVFNsbU5Sa0RwSU1lTGpWQkNtQjVPUjF3Z0UzbmFUa1o2LS04Z3RBUkxhOExZdDVqOUtEWG9NcTBBMklNVnJzZjdNNVVRaXR2dTNabmE1TXR1TFYtZ2pPdmNBSGdmZG1Ra2lLWGdKcDd1Ry03LXRFeVdfbldwaGxERloxTVJMSjN4YTBadGllMDhiTUQ4Vy1rVmowLXZyamY1a2MzV1ZCVWhtNUFMRlJTRlZBV2NSZE9R?oc=5",
         "pubDate": "Thu, 05 Nov 2026 06:02:17 GMT",
         "snippet": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxNcVNXaWVoWUZrbUg4NlpuOG53dy15bzhjaE94YTNkSDc1M3ZLRE9wZ2dMLXJlOURiWWdjNXdwUXJTNDg2eW1TNTdaNzlFT1A2aVVQTTRncG1XWnV3OUxNQmVyZFM1d295SFVzaVpCVXFRLXRiQ1dfTy1POFZIRDNNanFyZmpxWHpuSmdVZlA1T09vOThTNWwwT1dtWWJ2N1Y3YzhodHl2LUw3dE9zUW40c1hVZVBUc3pDOWExUWp3ZDhNYkJqNFZVT3",
-        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+        "imageUrl": "https://cdn-jjmn.jawapos.com/images/15/2026/11/05/ami-awards-2026-mengusung-tema-ruang-nada-nusantarainstagram-at-cretivox-MBJFn.webp",
         "galleryImages": [],
-        "isOriginalImage": false,
+        "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
+        },
+        "originalArticleUrl": "https://sumutpos.jawapos.com/infotainment/2611050016/ami-awards-2026-angkat-keberagaman-musik-nusantara-hadirkan-empat-kategori-baru"
       },
       {
-        "id": "51f41ed11f208287",
-        "sourceName": "Google News (Musik Indonesia) [Opsi.id]",
+        "id": "efb34ceac9db1cde",
+        "sourceName": "Google News (Musik Indonesia) [Kementerian Pariwisata]",
         "category": "musik",
         "lang": "id",
-        "title": "Daftar Lengkap Pemenang AMI Awards 2026, Ajang Apresiasi 67 Kategori Musik Tanah Air",
-        "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPQUZiS3NWQlZIS2U4Wk1lTnJnR0pGZC1SaS1OSGNfMUJvMDdfakFHcFFYWVloMDZTZk1NVGRlSW1oUmZfci1CY0NvXzlUVG81SjliSU81VkFJRnFMMUtnWFdXS2lhQmpiX1FRRzhhR3A0SEVxZ3MyVnJkcUpHNElQSmc1MV95Vnd3dmYwdDNGdXFIZ0lqS2VkR2N5SHBYVFFuWVE?oc=5",
-        "pubDate": "Thu, 05 Nov 2026 08:51:45 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxPQUZiS3NWQlZIS2U4Wk1lTnJnR0pGZC1SaS1OSGNfMUJvMDdfakFHcFFYWVloMDZTZk1NVGRlSW1oUmZfci1CY0NvXzlUVG81SjliSU81VkFJRnFMMUtnWFdXS2lhQmpiX1FRRzhhR3A0SEVxZ3MyVnJkcUpHNElQSmc1MV95Vnd3dmYwdDNGdXFIZ0lqS2VkR2N5SHBYVFFuWVE?oc=5\" target=\"_blank\">Daftar Lengkap Pemenang AMI ",
-        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+        "title": "Siaran Pers: Konser Ye Sedot 25 Ribu Penonton Asing, Indonesia Kian Diperhitungkan di Panggung Musik Dunia",
+        "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQZGhVZ3lVVUdySzYzRUl3NlhqTm0xeUtzNlZ5SmhCamZ4NWF6ODhoYVNHRlh6OW0tZXMwNXVrWXNKd0ptd0hjTjZZaU9QRFZqc3piMXh0Sy1JQy1OSVpNWkRfVERrRzFBN2JkdTJzRkdQNmk0RFpSUS1VX1dOMHY3dkdpSGV3XzBWamlBNThYSUZsV0tjR1lHNHFlRmlPaWN1X3hUQzZ4ejVfcl9HRVo2WnkxN3B6MGVFblhJdUQ4czNwdlE5bkF4Y2Jzdk5hSkNWZmJ0bGlRb2ZmOFQ4djBNYTdvLXE?oc=5",
+        "pubDate": "Wed, 04 Nov 2026 10:28:00 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMi5AFBVV95cUxQZGhVZ3lVVUdySzYzRUl3NlhqTm0xeUtzNlZ5SmhCamZ4NWF6ODhoYVNHRlh6OW0tZXMwNXVrWXNKd0ptd0hjTjZZaU9QRFZqc3piMXh0Sy1JQy1OSVpNWkRfVERrRzFBN2JkdTJzRkdQNmk0RFpSUS1VX1dOMHY3dkdpSGV3XzBWamlBNThYSUZsV0tjR1lHNHFlRmlPaWN1X3hUQzZ4ejVfcl9HRVo2WnkxN3B6MGVFblhJdUQ4czNwdlE5bkF4Y2",
+        "imageUrl": "https://api.kemenpar.go.id/storage/app/uploads/public/6ad/fe0/656/thumb_16869_1200_630_0_0_crop.jpeg",
         "galleryImages": [],
-        "isOriginalImage": false,
+        "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
-      },
-      {
-        "id": "29d70541fa9d3d2d",
-        "sourceName": "Google News (Musik Indonesia) [Tempo.co English]",
-        "category": "musik",
-        "lang": "id",
-        "title": "2026 AMI Awards: Complete List of Winners",
-        "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9tTk5SSm0zMVNJc2NaT1hUM0dGNDdKdHE0RDdJZEZuMDMxUDlsVVVGOHJLb3pOSVIyeFIwbWtiUEpxQ0NNT3U5dVljdFhQZVdUbUNJVF9TMGpMZGhMY0xoMXE2RFFrZGppQ3UxSkNyX0dwS3lvalhnbF85Z0JhZw?oc=5",
-        "pubDate": "Thu, 05 Nov 2026 08:38:48 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE9tTk5SSm0zMVNJc2NaT1hUM0dGNDdKdHE0RDdJZEZuMDMxUDlsVVVGOHJLb3pOSVIyeFIwbWtiUEpxQ0NNT3U5dVljdFhQZVdUbUNJVF9TMGpMZGhMY0xoMXE2RFFrZGppQ3UxSkNyX0dwS3lvalhnbF85Z0JhZw?oc=5\" target=\"_blank\">2026 AMI Awards: Complete List of Winners</a>&nbsp;&nbsp;<font color=\"#6f6f6f",
-        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
-        "galleryImages": [],
-        "isOriginalImage": false,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
-      },
-      {
-        "id": "327b23d1a9c90189",
-        "sourceName": "Google News (Musik Indonesia) [Bloomberg Technoz]",
-        "category": "musik",
-        "lang": "id",
-        "title": "Aksi Musisi Salam Tiga Jari di Acara AMI Awards",
-        "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNUksyRENsR3dFWVVGQk96bnFnQ0FqQWVKUjRBREZwMXNDMUtJaGo5OFVzZVAtVTZXX0Z0bllsNWc0UEFNNlVmNzY1VEdWUF9xWUJxMG04SE5FSlFFQmduclh6UEhxZWl5ckJVTFg1elE4cnlyTkx0S0JYSzJSZ0M5X1h2X1RqUGpiRkZjUVRXSnpBc2Q1QWktWlBzeHlxWklL?oc=5",
-        "pubDate": "Thu, 05 Nov 2026 04:35:05 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxNUksyRENsR3dFWVVGQk96bnFnQ0FqQWVKUjRBREZwMXNDMUtJaGo5OFVzZVAtVTZXX0Z0bllsNWc0UEFNNlVmNzY1VEdWUF9xWUJxMG04SE5FSlFFQmduclh6UEhxZWl5ckJVTFg1elE4cnlyTkx0S0JYSzJSZ0M5X1h2X1RqUGpiRkZjUVRXSnpBc2Q1QWktWlBzeHlxWklL?oc=5\" target=\"_blank\">Aksi Musisi Salam Tiga Jari di ",
-        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
-        "galleryImages": [],
-        "isOriginalImage": false,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
+        },
+        "originalArticleUrl": "https://www.kemenpar.go.id/pelatihan-parekraf/siaran-pers-konser-ye-sedot-25-ribu-penonton-asing-indonesia-kian-diperhitungkan-di-panggung-musik-dunia"
       }
     ]
   }

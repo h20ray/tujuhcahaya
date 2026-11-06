@@ -49,7 +49,16 @@ const { t } = use7cTranslation(locale);
 const prefix = locale === "en" ? "/en" : "";
 const isPost = collection === "posts";
 
-const tags: TermLike[] = entry.data.terms?.tag ?? [];
+const rawTags = (entry.data as any)?.tags;
+const mappedTags: TermLike[] = Array.isArray(rawTags)
+	? rawTags.map((t: string) => ({
+		label: t,
+		slug: t.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-")
+	}))
+	: [];
+const tags: TermLike[] = (entry.data.terms?.tag && entry.data.terms.tag.length > 0)
+	? entry.data.terms.tag
+	: mappedTags;
 const categories: TermLike[] = entry.data.terms?.category ?? [];
 const readingTimeMin = calc7cReadingTime(entry.data.content);
 const formattedDate = format7cDate(entry.data.publishedAt, locale);
@@ -204,8 +213,8 @@ const articleJsonLd = isPost ? build7cArticleJsonLd({
 					</div>
 				</div>
 
-				<figure class="article-featured-image" {...(entry.data.featured_image ? entry.edit?.featured_image : {})}>
-					{entry.data.featured_image ? (
+				{entry.data.featured_image ? (
+					<figure class="article-featured-image" {...(entry.edit?.featured_image || {})}>
 						<Image
 							image={entry.data.featured_image}
 							width={1024}
@@ -213,21 +222,27 @@ const articleJsonLd = isPost ? build7cArticleJsonLd({
 							priority
 							class="c7-article-featured-hero"
 						/>
-					) : (
-						<img
-							src={heroImage.url}
-							alt={heroImage.alt}
-							width="1024"
-							height="576"
-							loading="eager"
-							decoding="async"
-							class="c7-featured-fallback-img"
-						/>
-					)}
-					{entry.data.featured_image?.alt && (
-						<figcaption>{entry.data.featured_image.alt}</figcaption>
-					)}
-				</figure>
+						{entry.data.featured_image?.alt && (
+							<figcaption>{entry.data.featured_image.alt}</figcaption>
+						)}
+					</figure>
+				) : (
+					<div class={`c7-code-hero-card c7-hero-${categories[0]?.slug || 'berita'}`}>
+						<div class="c7-code-hero-glass">
+							<div class="c7-code-hero-badge">
+								<span class="c7-badge-dot">●</span> TUJUHCAHAYA {(categories[0]?.label || 'BERITA').toUpperCase()}
+							</div>
+							<h2 class="c7-code-hero-title">{entry.data.title}</h2>
+							{entry.data.excerpt && (
+								<p class="c7-code-hero-excerpt">{entry.data.excerpt}</p>
+							)}
+							<div class="c7-code-hero-footer">
+								<span class="c7-brand-mark">● Tujuhcahaya</span>
+								<span class="c7-brand-tagline">Warta Independen Game, Teknologi &amp; Kultur Pop Digital</span>
+							</div>
+						</div>
+					</div>
+				)}
 
 				<div class="article-body c7-prose prose" {...entry.edit?.content}>
 					<C7PortableText value={entry.data.content} />

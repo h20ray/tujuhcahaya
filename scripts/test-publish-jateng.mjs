@@ -2,7 +2,7 @@ import { autoPublishPost } from "./auto-publish.mjs";
 import { validate7cEditorial } from "../src/lib/7c-editorial-guard.ts";
 
 export const testJatengArticle = {
-	title: "99 Persen PAUD Jateng Diurus Warga: Ketika Negara Lepas Tangan tapi Menepuk Dada",
+	title: "Ketika 99 Persen PAUD Jateng Dikelola Warga dan Negara Cuma Menepuk Dada",
 	category: "musik",
 	byline: "0100MUNS3DJOA35D985DFFDBA0", // Margaretha Nina
 	tags: ["Jawa Tengah", "Pendidikan", "Sosial", "PAUD", "Kritik", "Anggaran Daerah"],
@@ -11,7 +11,7 @@ export const testJatengArticle = {
 	excerpt: "Dari 27.700 satuan PAUD di Jawa Tengah, yang berstatus negeri cuma 0,7 persen. Pemerintah membanggakannya sebagai 'gotong royong', padahal ini potret lepas tangan paling telanjang di depan emak-emak.",
 	content: `Setiap kali pejabat pemerintah memuji "tingginya semangat gotong royong masyarakat", biasanya ada dua kemungkinan: kalau bukan karena lagi kerja bakti bersih-bersih selokan kampung, ya negara sedang sukses melimpahkan kewajibannya ke pundak rakyat tanpa perlu keluar banyak modal.
 
-Angka yang dipaparkan Kepala Dinas Pendidikan Jawa Tengah tempo hari di [portal resmi mereka](https://jatengprov.go.id/publik/993-persen-paud-jateng-dikelola-masyarakat-kader-pkk-hingga-pengurus-rw-turut-mengajar/) adalah buktinya: dari 27.700 satuan Pendidikan Anak Usia Dini (PAUD) di Jawa Tengah, yang berstatus negeri cuma 214 biji alias 0,7 persen saja. Sisanya—sebanyak 99,3 persen—sepenuhnya hidup dari swadaya murni masyarakat.
+Angka yang dipaparkan Kepala Dinas Pendidikan Jawa Tengah tempo hari dalam rilis [kebijakan pendidikan Jawa Tengah](/tag/jawa-tengah) adalah buktinya: dari 27.700 satuan Pendidikan Anak Usia Dini (PAUD) di Jawa Tengah, yang berstatus negeri cuma 214 biji alias 0,7 persen saja. Sisanya—sebanyak 99,3 persen—sepenuhnya hidup dari swadaya murni masyarakat.
 
 Dalam kacamata birokrasi, angka timpang ini dipamerkan sebagai prestasi partisipasi publik yang mengharukan. Tapi kalau kita bedah memakai kacamata akal sehat, ini potret cuci tangan yang telanjang. Hak pendidikan dasar anak yang mestinya dijamin penuh oleh APBD justru dialihkan menjadi kerja perawatan cuma-cuma (*unpaid care work*) yang digendong oleh kader PKK, ibu-ibu majelis taklim, dan pengurus RW.
 

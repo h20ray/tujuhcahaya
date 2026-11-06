@@ -301,6 +301,54 @@ export function resolveAuthorByline(category) {
 }
 
 /**
+ * Sync taxonomy entries into taxonomies and content_taxonomies
+ */
+export function syncPostTaxonomies(db, entryId, category, tags = [], locale = "id", now = new Date().toISOString()) {
+	try {
+		// 1. Sync category taxonomy
+		if (category) {
+			const catSlug = generateSlug(category);
+			const catId = `cat_${catSlug}`;
+			db.prepare(`
+				INSERT OR IGNORE INTO taxonomies (id, name, slug, label, parent_id, data, locale, translation_group, sort_order)
+				VALUES (?, 'category', ?, ?, NULL, '{}', ?, ?, 0)
+			`).run(catId, catSlug, category, locale, catId);
+
+			const existingCat = db.prepare("SELECT id FROM taxonomies WHERE name = 'category' AND slug = ? AND locale = ?").get(catSlug, locale);
+			const finalCatId = existingCat ? existingCat.id : catId;
+
+			db.prepare(`
+				INSERT OR IGNORE INTO content_taxonomies (collection, entry_id, taxonomy_id, status, scheduled_at, deleted_at, locale, published_at, created_at)
+				VALUES ('posts', ?, ?, 'published', NULL, NULL, ?, ?, ?)
+			`).run(entryId, finalCatId, locale, now, now);
+		}
+
+		// 2. Sync tag taxonomies
+		for (const tag of tags) {
+			const tagLabel = tag.trim();
+			if (!tagLabel) continue;
+			const tagSlug = generateSlug(tagLabel);
+			const tagId = `tag_${tagSlug}`;
+
+			db.prepare(`
+				INSERT OR IGNORE INTO taxonomies (id, name, slug, label, parent_id, data, locale, translation_group, sort_order)
+				VALUES (?, 'tag', ?, ?, NULL, '{}', ?, ?, 0)
+			`).run(tagId, tagSlug, tagLabel, locale, tagId);
+
+			const existingTag = db.prepare("SELECT id FROM taxonomies WHERE name = 'tag' AND slug = ? AND locale = ?").get(tagSlug, locale);
+			const finalTagId = existingTag ? existingTag.id : tagId;
+
+			db.prepare(`
+				INSERT OR IGNORE INTO content_taxonomies (collection, entry_id, taxonomy_id, status, scheduled_at, deleted_at, locale, published_at, created_at)
+				VALUES ('posts', ?, ?, 'published', NULL, NULL, ?, ?, ?)
+			`).run(entryId, finalTagId, locale, now, now);
+		}
+	} catch (err) {
+		console.warn("[Taxonomy Sync Warning]:", err.message);
+	}
+}
+
+/**
  * Main Auto-Publish execution function
  */
 export async function autoPublishPost(payload, options = {}) {
@@ -338,8 +386,8 @@ export async function autoPublishPost(payload, options = {}) {
 	const audit = validate7cEditorial(title, content, excerpt, cleanTags);
 	const wordCount = content.trim().split(/\s+/).filter(Boolean).length;
 
-	// Check if qualified for published status
-	const isQualified = audit.valid && audit.score >= 80 && wordCount >= 100 && !forceDraft;
+	// Check if qualified for published status (minimum 350 words for in-depth editorial)
+	const isQualified = audit.valid && audit.score >= 80 && wordCount >= 350 && !forceDraft;
 	const status = isQualified ? "published" : "draft";
 
 	const slug = generateSlug(title);
@@ -452,6 +500,9 @@ export async function autoPublishPost(payload, options = {}) {
 				JSON.stringify(portableTextContent),
 				cleanExcerpt,
 			);
+
+			// Synchronize category & tag taxonomies into EmDash relational tables
+			syncPostTaxonomies(db, targetId, category, cleanTags, "id", now);
 
 			dbSaved = true;
 		} finally {

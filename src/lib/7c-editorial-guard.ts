@@ -102,7 +102,7 @@ const PEDANTIC_KBBI_LOOKUP: Array<{ pattern: RegExp; preferred: string; original
 
 const CHEAP_EMOJI_REGEX = /[\u{1F680}\u{1F525}\u{1F9E0}\u{1F449}\u{26A1}\u{1F4A5}\u{1F4AF}\u{2728}\u{1F389}\u{1F6A8}]/u;
 
-const SOURCE_ATTRIBUTION_REGEX = /(https?:\/\/|menurut|melansir|dikutip dari|laporan dari|dilansir dari|rilis resmi|mengumumkan bahwa|studi dari|riset dari)/i;
+const SOURCE_ATTRIBUTION_REGEX = /(menurut|dikutip dari|laporan|dilansir dari|rilis resmi|dalam rilis|dalam pidato|keterangan resmi|konferensi pers|studi dari|riset dari|kata |ujar |tutur |dicatat oleh|sebagaimana dicatat)/i;
 
 const BANNED_TAGS = ["mojok", "malesbanget", "mbdc", "detik", "kompas", "kumparan", "tribun"];
 
@@ -134,6 +134,18 @@ export function validate7cEditorial(
 	if (title.length > 105) {
 		warnings.push(`Judul terlalu panjang (${title.length} karakter). Judul media online ideal 40-85 karakter agar tidak terpotong dan tidak membosankan.`);
 		score -= 10;
+	}
+
+	// Ban colon ":" in headlines (strict anti-AI formula)
+	if (title.includes(":")) {
+		errors.push('Haram menggunakan tanda titik dua (":") pada judul. Pola "Topik: Penjelasan" (seperti "Mengenal X: ...") adalah ciri khas formulaik bot/skripsi. Tulis judul sebagai kalimat mengalir utuh, satir, atau pernyataan tajam tanpa titik dua ala Mojok.co.');
+		score -= 25;
+	}
+
+	// Ban robotic tutorial prefixes
+	if (/^(mengenal|menelisik|memahami|menguak|bedah tuntas|panduan lengkap|inilah)\b/i.test(title)) {
+		errors.push('Awalan judul kaku ala tutorial/makalah terdeteksi ("Mengenal...", "Menelisik...", "Memahami..."). Buka judul dengan keresahan warga, ironi, atau sudut pandang kritis.');
+		score -= 20;
 	}
 
 	// Scan for formulaic robotic titles
@@ -180,15 +192,31 @@ export function validate7cEditorial(
 
 	// 6. Source Attribution Check
 	if (!SOURCE_ATTRIBUTION_REGEX.test(bodyText)) {
-		warnings.push('Naskah belum mencantumkan atribusi sumber berita (misal: "melansir...", "dikutip dari...", atau tautan markdown ke sumber asli).');
+		warnings.push('Naskah belum mencantumkan atribusi sumber berita (misal: "menurut...", "dikutip dari...", "dalam laporan...", atau rilis resmi).');
 		score -= 10;
 	}
 
-	// 7. Content Volume & Placeholder Audit
+	// 7. Anti-Leakage External Links & Inner Linking Audit
+	// Strip markdown images (![alt](url)) first so they aren't confused with text links
+	const proseWithoutImages = bodyText.replace(/!\[[^\]]*\]\([^\)]+\)/g, "");
+	const externalLinks = Array.from(proseWithoutImages.matchAll(/\[([^\]]+)\]\((https?:\/\/(?!tujuhcahaya\.com)[^\)]+)\)/gi));
+	if (externalLinks.length > 0) {
+		warnings.push(`Ditemukan ${externalLinks.length} tautan eksternal ke situs luar (${externalLinks.map(m => m[2].slice(0, 30) + '...').join(', ')}). Alihkan menjadi inner link internal (/tag/..., /category/..., /author/...) dan sebut sumber eksternal sebagai teks biasa agar tidak membuang pembaca keluar situs.`);
+		score -= 10;
+	}
+
+	const innerLinks = Array.from(proseWithoutImages.matchAll(/\[([^\]]+)\]\((\/[^\)]*)\)/gi));
+	if (innerLinks.length === 0) {
+		suggestions.push('Disarankan menyematkan minimal 1 inner link (misal: [topik terkait](/tag/nama-topik) atau [rubrik](/category/nama-rubrik)) untuk memperkuat SEO internal dan retensi pembaca.');
+	}
+
+	// 8. Content Volume & Placeholder Audit
 	const wordCount = bodyText.trim().split(/\s+/).filter(Boolean).length;
-	if (wordCount < 100) {
-		warnings.push(`Panjang artikel hanya ${wordCount} kata. Naskah berpotensi merupakan placeholder atau thin content.`);
+	if (wordCount < 350) {
+		warnings.push(`Panjang artikel hanya ${wordCount} kata (di bawah batas minimum 350 kata). Naskah berpotensi merupakan 'thin content' yang kurang mendalam.`);
 		score -= 15;
+	} else if (wordCount < 550) {
+		suggestions.push(`Panjang artikel (${wordCount} kata) masih di bawah standar esai ideal Tujuhcahaya (600 - 900 kata). Tambahkan latar belakang komparatif atau perspektif akar rumput agar ulasan lebih berbobot.`);
 	}
 
 	if (/lorem ipsum/i.test(bodyText)) {

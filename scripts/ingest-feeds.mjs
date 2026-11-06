@@ -98,6 +98,25 @@ function extractImageUrl(rawXml) {
 	return null;
 }
 
+export function resolveGoogleNewsImage(url) {
+	if (!url || !url.includes("news.google.com")) return null;
+	try {
+		const scriptPath = path.resolve(process.cwd(), "scripts", "resolve-gnews.py");
+		const cmd = `uv run --with googlenewsdecoder python "${scriptPath}" "${url}"`;
+		const rawOut = execSync(cmd, { encoding: "utf-8", timeout: 8000, stdio: ["ignore", "pipe", "ignore"] });
+		const parsed = JSON.parse(rawOut.trim());
+		if (parsed.success && parsed.imageUrl) {
+			return {
+				imageUrl: parsed.imageUrl,
+				decodedUrl: parsed.decodedUrl
+			};
+		}
+		return null;
+	} catch {
+		return null;
+	}
+}
+
 export function scrapeJatengGalleryImages(url) {
 	if (!url || !url.includes("jatengprov.go.id")) return [];
 	try {
@@ -248,7 +267,7 @@ function parseFeedXml(xml, source) {
 	return items;
 }
 
-export async function fetchFeed(source, timeoutMs = 8000) {
+export async function fetchFeed(source, timeoutMs = 15000) {
 	try {
 		const controller = new AbortController();
 		const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -324,6 +343,18 @@ export async function ingestAllFeeds(options = {}) {
 				sourceCounts[it.sourceName]++;
 			}
 			if (balanced.length >= 10) break;
+		}
+
+		// Resolve original images & URLs for candidates originating from Google News
+		for (const cand of balanced) {
+			if (cand.link.includes("news.google.com") && !cand.isOriginalImage) {
+				const res = resolveGoogleNewsImage(cand.link);
+				if (res && res.imageUrl) {
+					cand.imageUrl = res.imageUrl;
+					cand.originalArticleUrl = res.decodedUrl;
+					cand.isOriginalImage = true;
+				}
+			}
 		}
 
 		categorizedCandidates[cat] = balanced;

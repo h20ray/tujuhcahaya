@@ -295,6 +295,7 @@ def publish_payload_to_remote(payload):
             "status": status,
             "now": now,
             "taxId": tax_id,
+            "tags": payload.get('tags', []),
             "rawImageUrl": raw_image_url,
             "imageAlt": image_alt,
             "content": json.dumps(portable_text),
@@ -319,7 +320,7 @@ if os.path.exists(env_file):
                 k, v = line.strip().split('=', 1)
                 env_vars[k.strip()] = v.strip().strip('"').strip("'")
 
-ENDPOINT = os.environ.get('S3_ENDPOINT') or env_vars.get('S3_ENDPOINT', 'https://3a81de3772c2c3e88ecf74ec261f552f.r2.cloudflarestorage.com')
+ENDPOINT = os.environ.get('S3_ENDPOINT') or env_vars['S3_ENDPOINT']
 BUCKET = os.environ.get('S3_BUCKET') or env_vars.get('S3_BUCKET', 'xlocal')
 KEY_ID = os.environ.get('S3_ACCESS_KEY_ID') or env_vars.get('S3_ACCESS_KEY_ID')
 SECRET = os.environ.get('S3_SECRET_ACCESS_KEY') or env_vars.get('S3_SECRET_ACCESS_KEY')
@@ -333,122 +334,32 @@ webp_tmp = f"/tmp/{slug}.webp"
 
 s3 = boto3.client('s3', endpoint_url=ENDPOINT, aws_access_key_id=KEY_ID, aws_secret_access_key=SECRET, region_name='auto')
 
-# Try downloading and converting raw_url
+# Try downloading and converting raw_url with robust browser headers (bypasses WAFs)
 if raw_url and raw_url.startswith('http'):
     try:
-        req = urllib.request.Request(raw_url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8',
+            'Referer': raw_url
+        }
+        req = urllib.request.Request(raw_url, headers=headers)
+        with urllib.request.urlopen(req, timeout=12) as resp:
             content = resp.read()
-            with open(raw_tmp, 'wb') as rf:
-                rf.write(content)
+            # Only save if valid image payload (> 500 bytes and not HTML error page)
+            if len(content) > 500 and not content.startswith(b'<!DOCTYPE') and not content.startswith(b'<html'):
+                with open(raw_tmp, 'wb') as rf:
+                    rf.write(content)
 
-        # Convert to WebP 1200x675 via Sharp Node
-        os.system(f"cd /var/www/vhosts/tujuhcahaya.com/emdash && node -e \\"require('sharp')('{raw_tmp}').resize(1200, 675, {{fit: 'cover'}}).webp({{quality: 85}}).toFile('{webp_tmp}')\\"")
+                # Convert to WebP 1200x675 via Sharp Node
+                os.system(f"cd /var/www/vhosts/tujuhcahaya.com/emdash && node -e \\"require('sharp')('{raw_tmp}').resize(1200, 675, {{fit: 'cover'}}).webp({{quality: 85}}).toFile('{webp_tmp}')\\"")
     except Exception as e:
-        print(f"[R2 Warning] Could not fetch/convert {raw_url}: {e}")
+        print(f"[R2 Download Warning] Could not fetch/convert {raw_url}: {e}")
 
-# Fallback: if WebP not created or too small, generate MD3X branded dark editorial card via Sharp
-if not os.path.exists(webp_tmp) or os.path.getsize(webp_tmp) < 1000:
-    try:
-        import html
-        raw_title = p.get('title', 'Tujuhcahaya Warta')
-        raw_excerpt = p.get('excerpt', 'Liputan independen game, teknologi dan kultur digital terkini.')
-        cat_slug = "__CATEGORY_SLUG__".lower()
-        cat_upper = cat_slug.upper()
+# IMPORTANT: NEVER generate SVG card to WebP or upload fake card images to R2!
+# Fallback is handled purely as code in frontend (HTML/CSS) to prevent R2 storage bloat.
 
-        # Word-wrap title into max 3 lines (around 32-34 chars per line)
-        words = raw_title.split()
-        lines = []
-        curr = []
-        curr_len = 0
-        for w in words:
-            if curr_len + len(w) + (1 if curr else 0) <= 34:
-                curr.append(w)
-                curr_len += len(w) + (1 if curr else 0)
-            else:
-                if curr:
-                    lines.append(" ".join(curr))
-                curr = [w]
-                curr_len = len(w)
-        if curr:
-            lines.append(" ".join(curr))
-        lines = lines[:3]
-
-        # Category colors
-        if "game" in cat_slug:
-            glow_color = "#e60012"
-            pill_border = "#e60012"
-            pill_text = "#ff4d4d"
-        elif "musik" in cat_slug:
-            glow_color = "#10b981"
-            pill_border = "#10b981"
-            pill_text = "#34d399"
-        else:
-            glow_color = "#3b82f6"
-            pill_border = "#3b82f6"
-            pill_text = "#60a5fa"
-
-        y_start = 245 if len(lines) <= 2 else 215
-        line_height = 54
-        title_svg = ""
-        for i, l in enumerate(lines):
-            title_svg += f'<text x="110" y="{y_start + i * line_height}" font-family="DejaVu Sans, Arial, sans-serif" font-size="42" font-weight="bold" fill="#f8fafc">{html.escape(l)}</text>\\n'
-
-        # Subtitle (single line, max 70 chars)
-        sub_y = y_start + len(lines) * line_height + 40
-        sub_text = (raw_excerpt[:70] + "...") if len(raw_excerpt) > 70 else raw_excerpt
-        sub_svg = f'<text x="110" y="{sub_y}" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="500" fill="#94a3b8">{html.escape(sub_text)}</text>'
-
-        svg_code = f'''<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0b0f19"/>
-      <stop offset="40%" stop-color="#141927"/>
-      <stop offset="100%" stop-color="#050810"/>
-    </linearGradient>
-    <radialGradient id="glow-primary" cx="88%" cy="12%" r="48%">
-      <stop offset="0%" stop-color="{glow_color}" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glow-ambient" cx="12%" cy="88%" r="42%">
-      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.12"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-
-  <rect width="100%" height="100%" fill="url(#bg)"/>
-  <rect width="100%" height="100%" fill="url(#glow-primary)"/>
-  <rect width="100%" height="100%" fill="url(#glow-ambient)"/>
-
-  <!-- Frosted card container -->
-  <rect x="70" y="70" width="1060" height="535" rx="28" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1.5"/>
-
-  <!-- Category Pill -->
-  <rect x="110" y="115" width="230" height="38" rx="19" fill="{pill_border}" fill-opacity="0.15" stroke="{pill_border}" stroke-opacity="0.4" stroke-width="1"/>
-  <text x="130" y="140" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="700" fill="{pill_text}" letter-spacing="2">&#9679; TUJUHCAHAYA {cat_upper}</text>
-
-  <!-- Title lines -->
-  {title_svg}
-
-  <!-- Subtitle -->
-  {sub_svg}
-
-  <!-- Divider line -->
-  <line x1="110" y1="465" x2="1090" y2="465" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
-
-  <!-- Footer -->
-  <text x="110" y="525" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="600" fill="#f43f5e">&#9679; Tujuhcahaya</text>
-  <text x="270" y="525" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#64748b">&#8226; Warta Independen Game, Teknologi &amp; Kultur Pop Digital</text>
-</svg>'''
-        svg_tmp = f"/tmp/{slug}_card.svg"
-        with open(svg_tmp, 'w', encoding='utf-8') as sf:
-            sf.write(svg_code)
-        os.system(f"cd /var/www/vhosts/tujuhcahaya.com/emdash && node -e \\"require('sharp')('{svg_tmp}').resize(1200, 675).webp({{quality: 92}}).toFile('{webp_tmp}')\\"")
-        os.system(f"rm -f {svg_tmp}")
-    except Exception as e:
-        print(f"[Card Fallback Warning]: {e}")
-
-# Upload WebP to Cloudflare R2
+# Upload WebP to Cloudflare R2 ONLY IF authentic image was converted
 if os.path.exists(webp_tmp) and os.path.getsize(webp_tmp) > 1000:
     with open(webp_tmp, 'rb') as wf:
         webp_bytes = wf.read()
@@ -476,6 +387,7 @@ rev_data = json.dumps({
     "featured_image": featured_image_obj,
     "byline": p['byline'],
     "category": "__CATEGORY_SLUG__",
+    "tags": p.get('tags', []),
 })
 
 db = sqlite3.connect('/var/www/vhosts/tujuhcahaya.com/emdash/data.db')
@@ -525,6 +437,31 @@ cur.execute('''
         'posts', ?, ?, NULL, NULL, NULL, 'id', ?, ?
     )
 ''', (p['entryId'], p['taxId'], p['now'], p['now']))
+
+# 4b. Tags taxonomy links
+for tag in p.get('tags', []):
+    t_label = tag.strip()
+    if not t_label:
+        continue
+    import re
+    t_slug = re.sub(r'[^a-z0-9\\s-]', '', t_label.lower().strip())
+    t_slug = re.sub(r'\\s+', '-', t_slug)
+    t_id = f"tag_{t_slug}"
+    cur.execute('''
+        INSERT OR IGNORE INTO taxonomies (id, name, slug, label, parent_id, data, locale, translation_group, sort_order)
+        VALUES (?, 'tag', ?, ?, NULL, '{}', 'id', ?, 0)
+    ''', (t_id, t_slug, t_label, t_id))
+    cur.execute("SELECT id FROM taxonomies WHERE name = 'tag' AND slug = ? AND locale = 'id'", (t_slug,))
+    t_row = cur.fetchone()
+    actual_t_id = t_row[0] if t_row else t_id
+    cur.execute('''
+        INSERT OR IGNORE INTO content_taxonomies (
+            collection, entry_id, taxonomy_id, status, scheduled_at, deleted_at,
+            locale, published_at, created_at
+        ) VALUES (
+            'posts', ?, ?, 'published', NULL, NULL, 'id', ?, ?
+        )
+    ''', (p['entryId'], actual_t_id, p['now'], p['now']))
 
 # 5. Content byline link
 byline_rel_id = "01" + p['revisionId'][2:]

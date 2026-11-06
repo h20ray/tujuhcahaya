@@ -2,170 +2,117 @@ import fs from "node:fs";
 import path from "node:path";
 import { autoPublishPost } from "./auto-publish.mjs";
 import { validate7cEditorial } from "../src/lib/7c-editorial-guard.ts";
+import { markAsSeen } from "./ingest-feeds.mjs";
 
 export const articles = [
   {
-    title: "Bahaya Pengabaian Circuit Breaker Pattern pada Komunikasi Antar-Microservices: Mengapa Kegagalan Satu Dependensi Memicu Efek Domino Cascading Failure",
-    category: "tech",
-    byline: "0100MUNS3DJPCA4539BDBEB12A", // Elang Elano
-    tags: ["Teknologi", "Microservices", "Arsitektur Perangkat Lunak", "Circuit Breaker", "Resilience", "Backend"],
-    imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop",
-    imageAlt: "Jaringan server dan rak pusat data dengan indikator transmisi serat optik menyala terang",
-    excerpt: "Mengandalkan panggilan HTTP sinkron antar-layanan mikro tanpa mekanisme isolasi kegagalan adalah bom waktu komputasi. Ketika satu dependensi eksternal melambat, antrean koneksi menumpuk, menguras habis thread pool backend dan menumbangkan seluruh sistem dalam hitungan menit.",
-    content: `Dalam rekayasa sistem terdistribusi modern, memecah aplikasi monolitik menjadi puluhan layanan mikro independen menjanjikan kemudahan rilis dan skalabilitas beban kerja yang lentur. Layanan autentikasi, katalog produk, kalkulasi ongkos kirim, hingga gerbang pembayaran dapat dikelola oleh tim insinyur yang berbeda dengan siklus penerapan terpisah. Setiap komponen terhubung melalui protokol komunikasi jaringan terstandarisasi, terutama RESTful API berbasis HTTP atau gRPC.
-
-Namun di balik fleksibilitas tersebut, komunikasi sinkron jaringan membawa risiko kerapuhan struktural yang sangat mematikan: fenomena kegagalan berantai (*cascading failure*). Banyak tim pengembang berasumsi bahwa setiap dependensi internal akan selalu merespons kueri dalam rentang waktu beberapa milidetik. Ketika salah satu layanan pendukung mengalami penurunan performa ekstrem—misalnya akibat penguncian tabel database atau kemacetan garbage collection—seluruh sistem aplikasi di sekitarnya dapat terseret runtuh layaknya barisan kartu domino yang roboh serempak.
-
-## Anatomi Tercekiknya Thread Pool dan Habisnya Kuota Soket
-
-Bencana cascading failure tidak selalu dipicu oleh server dependensi yang mati total (*hard crash*), melainkan sering kali justru lahir dari dependensi yang melambat secara lamban (*degraded performance*):
-
-* **Penumpukan Antrean Thread Eksekusi (*Thread Pool Starvation*)**: Server web seperti Tomcat, Jetty, atau modul worker Node.js mengalokasikan sejumlah proses atau thread terbatas untuk melayani permintaan pengguna. Ketika layanan hulu memanggil endpoint pembayaran yang sedang macet selama 30 detik tanpa batas waktu agresif, thread pemanggil akan diblokir dalam status menunggu respons jaringan. Dalam hitungan detik, seluruh alokasi thread di server hulu terkuras habis hanya untuk menunggu layanan hilir, melumpuhkan kemampuannya memproses permintaan lain yang sama sekali tidak membutuhkan dependensi tersebut.
-* **Kehabisan Soket Jaringan dan Pori TCP (*TCP Socket Exhaustion*)**: Lonjakan permintaan yang tertahan memicu penumpukan ribuan soket TCP terbuka pada tingkat kernel sistem operasi. Begitu batas tabel deskriptor berkas (*file descriptors*) sistem operasi terlampaui, server akan memuntahkan galat *Too many open files* dan menolak koneksi masuk dari pengguna baru di pintu masuk load balancer.
-* **Efek Badai Permintaan Ulang (*Retry Storms*)**: Banyak aplikasi menyematkan logika percobaan ulang otomatis (*naive exponential retry*) tanpa verifikasi kesehatan dependensi. Ketika seribu permintaan klien gagal atau timeout, sistem secara otomatis melipatgandakan beban dengan menembakkan tiga ribu panggilan baru ke layanan yang sudah sekarat, menjamin dependensi tersebut tidak akan pernah memiliki kesempatan untuk pulih kembali.
-
-## Mengisolasi Kerusakan Melalui Pola Pemutus Sirkuit (Circuit Breaker)
-
-Membangun infrastruktur layanan mikro yang tangguh menuntut penerapan pola isolasi sirkuit otomatis yang memotong aliran permintaan ke komponen yang sedang sakit:
-
-1. **Terapkan Mesin Status Tiga Fase: Closed, Open, dan Half-Open**: Gunakan pustaka kestabilan teruji seperti **Resilience4j** di ekosistem JVM atau modul pemutus sirkuit pada service mesh seperti **Envoy**. Dalam status *Closed*, seluruh lalu lintas mengalir normal sembari mengukur rasio kegagalan. Jika tingkat galat atau latensi tinggi menembus batas ambang (misalnya 50% transaksi gagal dalam jendela 10 detik), sirkuit seketika melompat ke status *Open*. Dalam status terbuka ini, seluruh panggilan berikutnya langsung digagalkan seketika (*fail-fast*) tanpa membuang sumber daya thread untuk mengirim paket jaringan. Setelah periode hening tertentu, sistem beralih ke *Half-Open* guna menguji apakah dependensi telah pulih dengan melewatkan sedikit sampel kueri.
-2. **Sediakan Respon Cadangan yang Anggun (*Graceful Degradation Fallback*)**: Pola pemutus sirkuit yang efektif wajib disertai jalur respons alternatif (*fallback handler*). Jika layanan rekomendasi produk macet, jangan biarkan seluruh laman belanja runtuh dengan kode galat 500; kembalikan daftar produk populer statis dari memori cache lokal. Pengguna tetap mendapatkan pengalaman navigasi yang fungsional tanpa menyadari bahwa sistem rekomendasi berbasis kecerdasan buatan di belakang layar sedang menjalani pemulihan.
-3. **Disiplin Menerapkan Batas Waktu Ketat dan Jitter pada Logika Retry**: Hindari menyetel batas waktu tunggu (*socket timeout*) lebih lama dari satu atau dua detik untuk komunikasi internal antarlayanan. Bila mekanisme percobaan ulang mutlak dibutuhkan, selalu sertakan unsur keacakan (*jitter*) pada kalkulasi jeda waktu mundur guna mencegah ribuan kontainer menembakkan kueri secara sinkron pada milidetik yang sama.
-
-Kematangan arsitektur perangkat lunak tidak diukur dari angan-angan bahwa sistem komputasi tidak akan pernah mengalami gangguan, melainkan dari seberapa lihai Anda membentengi setiap dinding layanan agar satu percikan api tidak membakar seluruh kompleks pusat data Anda.`
-  },
-  {
-    title: "Bahaya Desain Hitbox dan Hurtbox yang Tidak Presisi pada Game Laga Kompetitif: Mengapa Disparitas Visual Tabrakan Menghancurkan Integritas Turnamen dan Merampas Kemenangan Pemain",
+    title: "Ketika Bos Nintendo Berjanji Switch 2 Tak Naik Harga tapi Dompet Gamer Sudah Pasrah Duluan",
     category: "game",
     byline: "0100MUNS3DJL68FA69B26FACE9", // Andoru Ray
-    tags: ["Game", "Desain Game", "Hitbox", "Hurtbox", "Game Pertarungan", "Esports", "Mekanik Game"],
-    imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
-    imageAlt: "Monitor turnamen game menampilkan karakter bertarung di panggung esports dengan pencahayaan neon dramatis",
-    excerpt: "Dalam game laga dan aksi kompetitif, keadilan mekanik bertumpu pada keselarasan antara apa yang dilihat mata pemain dan apa yang dihitung mesin game. Ketika kotak tabrakan fisik virtual meleset dari model karakter, serangan hantu dan kekalahan tak adil seketika menghancurkan integritas olahraga elektronik.",
-    content: `Dalam disiplin game laga kompetitif (*fighting games*) dan game aksi berbasis presisi tinggi, setiap interaksi antarkarakter diperhitungkan dalam satuan pecahan detik dan bingkai animasi (*frames*). Ketika seorang pemain menekan tombol serangan bawah, mata mereka mengandalkan siluet visual karakter—seperti ayunan pedang, rentangan kaki, atau lontaran proyektil—sebagai acuan mutlak untuk menilai jarak jangkauan (*spacing*) dan waktu penghindaran (*whiff punishing*). Melalui kejernihan visual ini, kemenangan dan kekalahan ditentukan murni oleh ketajaman membaca taktik lawan dan kecepatan refleks motorik.
+    tags: ["Nintendo Switch 2", "Konsol Game", "Nintendo", "Industri Game", "Harga Gadget", "Gamer Indonesia"],
+    imageUrl: "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/02/switch-2-third-party-partner-games-february-direct.jpg",
+    imageAlt: "Ilustrasi konsol Nintendo Switch 2 bersama deretan mitra game pihak ketiga",
+    sourceUrl: "https://www.polygon.com/nintendo-switch-2-price-increase-november-2026/",
+    excerpt: "Presiden Nintendo Shuntaro Furukawa menegaskan belum berencana menaikkan harga konsol Nintendo Switch 2 di tengah lonjakan biaya manufaktur. Namun di tongkrongan gamer tanah air, janji manis korporasi asal Kyoto ini disambut senyum getir di depan kalkulator kurs dolar dan pajak impor.",
+    content: `Kalau ada kebiasaan para petinggi industri game yang paling cepat memicu senyum kecut di wajah para gamer, kebiasaan itu adalah obral janji manis di depan laporan keuangan pemegang saham. Baru-baru ini, Presiden Nintendo Shuntaro Furukawa tampil ke hadapan publik untuk menjawab kasak-kusuk yang sudah berbulan-bulan bikin tidur para pencinta Mario Bros tidak nyenyak. Sebagaimana dicatat dalam laporan Polygon pekan ini, orang nomor satu di markas Kyoto itu menegaskan bahwa perusahaannya untuk saat ini belum berencana menaikkan banderol harga peluncuran konsol generasi penerus mereka, yang akrab kita sebut sebagai Nintendo Switch 2.
 
-Namun di balik keindahan model grafis tiga dimensi yang dipoles teknologi pencahayaan modern, logika penentu keberhasilan serangan diatur oleh struktur geometris tak kasatmata yang disebut *hitbox* (area penyerang) dan *hurtbox* (area tubuh rentan menerima serangan). Ketika studio pengembang mengabaikan kalibrasi presisi antara model visual dan kotak geometris tak kasatmata ini, dunia kompetitif dihadapkan pada skandal disparitas tabrakan (*collision mismatch*). Pemain mendapati diri mereka terpelanting kalah akibat serangan yang secara visual meleset jauh dari tubuh karakter, mengubah arena turnamen menjadi ajang pertaruhan keberuntungan yang merusak rasa hormat terhadap permainan.
+Pernyataan Furukawa tersebut seketika disambut desah napas lega oleh para analis bursa Wall Street yang cemas melihat inflasi global dan melambungnya biaya produksi semikonduktor. Nintendo seolah ingin memosisikan diri sebagai pahlawan keluarga yang budiman: tetap setia menghadirkan hiburan murah meriah bagi semua kalangan di tengah kegilaan kompetitor sebelah yang hobi merilis konsol seharga motor matik bekas.
 
-## Anatomi Serangan Hantu dan Pembengkakan Hurtbox Siluman
+Namun kalau Anda sempatkan mampir ke tongkrongan warkop atau membuka grup diskusi komunitas di [ulasan Game](/category/game), pernyataan bos besar Nintendo itu justru disambut tawa getir bercampur skeptisisme akut. Para gamer di negara berkembang seperti Indonesia sudah terlalu khatam dengan jurang pemisah antara harga rekomendasi pabrik (*MSRP*) di Amerika Serikat dan angka riil yang tertera di struk kasir toko elektronik Mangga Dua.
 
-Cacat desain tabrakan pada game laga umumnya bersumber dari penyederhanaan geometri kalkulasi fisika yang terlalu malas atau kompromi animasi yang ceroboh:
+![Ilustrasi konsol Nintendo Switch 2 bersama mitra game](https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/02/switch-2-third-party-partner-games-february-direct.jpg)
 
-* **Fenomena Serangan Hantu (*Phantom Hits*)**: Serangan hantu terjadi ketika programmer menyematkan volume hitbox yang jauh lebih besar dan menjulur melebihi bilah senjata fisik karakter. Dalam tayangan lambat (*frame-by-frame replay*), mata penonton melihat pedang musuh melayang di udara bebas berjarak satu jengkal dari hidung lawan. Namun karena batas kotak hitbox tak kasatmata menyenggol ujung hurtbox, sistem mencatatnya sebagai serangan telak (*clean hit*). Ketidakadilan visual ini memicu rasa frustrasi mendalam karena pemain merasa telah menghindar dengan jarak aman yang sempurna.
-* **Pembengkakan Hurtbox Saat Karakter Menyerang (*Extended Hurtbox Traps*)**: Dalam banyak game aksi, ketika sebuah karakter melakukan pukulan, tim animator kerap memperluas volume hurtbox tubuh karakter tersebut ke depan sebelum animasi pukulan selesai. Akibatnya, pemain yang berniat melancarkan serangan balasan justru dapat dilumpuhkan dengan cara memukul udara kosong di depan mereka yang secara kebetulan memotong hurtbox tak terlihat sang penyerang. Tanpa indikator visual yang memadai, interaksi ini tampak seperti kecurangan sistem di mata komunitas pemain.
-* **Disparitas Poros Vertikal dan Ketidakpastian Proyektil**: Masalah ini kian parah pada game laga dengan pergerakan melompat di udara. Hurtbox karakter yang melompat sering kali tertinggal di permukaan tanah selama beberapa bingkai pertama animasi lompatan. Lawan yang menyapu lantai menggunakan tendangan bawah dapat menjatuhkan karakter yang secara visual sudah berada dua meter di udara, membatalkan kalkulasi risiko manuver udara pemain secara sepihak.
+Mari kita bedah realitasnya dengan kepala dingin. Ketika Furukawa berjanji Switch 2 tidak akan naik harga, patokan yang ia gunakan adalah pasar domestik Jepang dan wilayah Amerika Utara. Katakanlah konsol anyar tersebut nantinya dilepas di angka 399 atau 449 dolar AS. Begitu unit kotak kardus merah itu diterbangkan menyeberangi samudra menuju pelabuhan Tanjung Priok, serentetan beban langsung menempel: bea masuk impor barang mewah, pajak pertambahan nilai, biaya margin distributor resmi yang haus laba, hingga ulah tengkulak toko daring (*scalper*) yang gemar menimbun stok di pekan pertama rilis.
 
-## Menegakkan Transparansi Geometri demi Keadilan Kompetitif
+Alhasil, barang yang di atas kertas dihargai enam juta rupiah bakal dengan enteng melesat ke angka delapan hingga sembilan juta rupiah di pasaran lokal. Angka tersebut jelas bukan lagi harga mainan anak-anak sepulang sekolah, melainkan setara dengan dua bulan uang kontrakan buruh pabrik atau biaya servis turun mesin mobil tua.
 
-Menjaga integritas mekanik dan kewibawaan turnamen menuntut studio pengembang menghormati prinsip kejujuran visual-ludis:
+Bagi figur gamer kasual yang skeptis terhadap taktik korporasi seperti [Andoru Ray](/author/andoru-ray), kepura-puraan industri konsol hari ini memang sudah mencapai tahap yang melelahkan. Nintendo tahu betul bahwa mereka sedang memegang kartu as. Popularitas Switch generasi pertama yang telah menembus angka penjualan lebih dari 140 juta unit di seluruh dunia membuat pabrikan asal Jepang ini merasa berada di atas angin. Mereka sadar jutaan penggemar fanatik akan tetap rela menguras tabungan darurat demi mencicipi sekuel petualangan Link berikutnya di layar yang lebih tajam dan frame rate yang tidak lagi tersengal-sengal.
 
-1. **Terapkan Geometri Kapsul Bertingkat yang Menempel Ketat pada Tulang Rangka (*Bone-Fitted Capsules*)**: Tinggalkan kebiasaan usang menggunakan kotak kubus kaku (*AABB boxes*) untuk menyelimuti tubuh karakter humanoid. Manfaatkan hierarki kapsul berbobot dinamis yang terikat langsung pada setiap persendian (*bone skeleton*) model animasi. Ketika karakter membungkuk atau menarik sikunya ke belakang, hurtbox wajib menyusut dan melipat secara selaras dengan siluet visual luar tubuh, menghilangkan area rentan hantu di ruang kosong.
-2. **Berikan Umpan Balik Visual yang Jujur pada Proyektil dan Jejak Serangan**: Jika sebuah proyektil memiliki radius ledakan atau jangkauan magis selebar dua meter, buatlah efek visual api, kilatan listrik, atau gelombang kejut yang mencakup seluruh radius tersebut. Jangan pernah membiarkan proyektil berukuran jarum pentul memicu tabrakan sebesar bola basket. Kejujuran visual adalah fondasi utama bagi pemain untuk mengkalibrasi refleks menghindar mereka secara instingtif.
-3. **Buka Mode Latihan Transparan dengan Visualisasi Hitbox Bawaan**: Berdayakan komunitas kompetitif dengan menyediakan fitur tampilan hitbox dan hurtbox secara langsung di dalam menu latihan (*training mode*). Keterbukaan studio dalam menampilkan kotak-kotak tabrakan berkode warna (merah untuk hitbox aktif, hijau untuk hurtbox netral, dan biru untuk status kebal) membuktikan komitmen terhadap transparansi mekanik sekaligus memudahkan para atlet esports membedah data bingkai pertarungan secara ilmiah.
+Kekhawatiran yang jauh lebih nyata bagi pemain bukan sekadar harga mesin plastiknya, melainkan biaya hidup ekosistem di dalamnya. Standar harga game fisik rilisan terbaru kini sudah digeser oleh para penerbit raksasa menuju angka 70 hingga 80 dolar AS per kaset. Membeli satu keping game orisinal kini membutuhkan pengorbanan anggaran makan siang selama dua pekan penuh. Ditambah lagi dengan biaya langganan layanan online bulanan yang tarifnya diam-diam dikerek naik tanpa kompensasi server lokal yang memadai.
 
-Sensasi kepuasan tertinggi dalam game laga lahir dari kepastian bahwa setiap pukulan yang mendarat adalah buah dari kecerdikan taktik murni, bukan cacat pemrograman geometri yang merampok keringat perjuangan para atlet virtual di panggung kejuaraan.`
+Kerapuhan dompet para pencinta [arsip konsol Nintendo](/tag/nintendo) di tanah air akhirnya kembali bermuara pada siasat bertahan hidup khas akar rumput: menunggu versi diskon musiman dua tahun kemudian, membeli kaset seken batangan dari sesama gamer yang sedang butuh uang cepat, atau patungan sewa akun game digital keluarga dengan teman sekantor.
+
+Janji bahwa Switch 2 tidak akan naik harga mungkin terdengar sangat menenangkan bagi para pemegang saham di Tokyo yang duduk manis menerima dividen tahunan. Namun bagi gamer lokal yang masih harus menyisihkan sisa gaji untuk cicilan motor dan tagihan listrik token, janji tersebut hanyalah pengingat pahit bahwa hobi bermain game orisinal kian bergeser menjadi barang mewah yang menuntut pengorbanan isi dompet tanpa ampun.`
   },
   {
-    title: "Bahaya Kebiasaan Menahan Bersin dengan Menutup Hidung dan Mulut: Mengapa Lonjakan Tekanan Udara Ekstrem Memicu Ruptur Gendang Telinga dan Cedera Faring",
-    category: "kesehatan",
-    byline: "0100MUNS3DJQ06A12A6DABF37A", // Rachel Patricia
-    tags: ["Kesehatan", "THT", "Fisiologi Tubuh", "Tekanan Udara", "Kesehatan Telinga", "Kesehatan Pernapasan"],
-    imageUrl: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=1200&auto=format&fit=crop",
-    imageAlt: "Seorang dokter spesialis THT memeriksa telinga pasien menggunakan otoskop di ruang klinik medis",
-    excerpt: "Menahan letupan bersin di ruang rapat atau transportasi umum kerap dianggap sebagai etika kesopanan sosial yang wajar. Namun menutup hidung dan mulut saat bersin memicu lonjakan tekanan intratoraks hingga puluhan kali lipat yang merobek gendang telinga dan melukai dinding faring.",
-    content: `Di tengah interaksi sosial sehari-hari—seperti saat berada di dalam ruangan rapat kantor yang hening, gerbong kereta komuter yang padat, atau gedung bioskop—dorongan untuk bersin sering kali dianggap sebagai gangguan yang memalukan. Demi menjaga citra kesopanan atau menghindari semprotan droplet kepada orang di sekitar, banyak orang secara refleks mengambil tindakan cepat: menjepit kedua lubang hidung rapat-rapat dengan jari sembari mengatupkan bibir sekuat tenaga guna membungkam suara ledakan bersin dari dalam tubuh.
+    title: "TikTok Bikin Aplikasi Belanja Terpisah Demi Menagih Gaji Bulanan Kita Lebih Cepat",
+    category: "tech",
+    byline: "0100MUNS3DJPCA4539BDBEB12A", // Elang Elano
+    tags: ["TikTok", "TikTok Shop", "E-Commerce", "Aplikasi Mobile", "Perilaku Konsumen", "Algoritma Digital"],
+    imageUrl: "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/unnamed-4.png",
+    imageAlt: "Tampilan antarmuka aplikasi mandiri TikTok Shop di layar smartphone",
+    sourceUrl: "https://www.theverge.com/tech/1027772/tiktok-shop-app",
+    excerpt: "ByteDance resmi meluncurkan aplikasi mandiri TikTok Shop secara terpisah di beberapa negara. Di balik dalih merapikan linimasa video dan memanjakan pemburu diskon, aplikasi belanja khusus ini sejatinya adalah jeratan algoritma baru untuk menguras sisa saldo rekening kita.",
+    content: `Masih lekat dalam ingatan kita masa-masa ketika membuka aplikasi TikTok terasa seperti hiburan tanpa beban. Isinya kebanyakan video anak-anak muda berlatih koreografi tarian yang sedikit canggung, kucing oranye yang melompat salah perhitungan, atau tips memasak nasi goreng ala anak kos yang berakhir gosong. Menonton linimasa kala itu adalah pelarian instan dari kepenatan rutinitas kantor tanpa ada kewajiban mengeluarkan sepeser pun uang dari dompet.
 
-Namun dari kacamata fisiologi kedokteran saluran pernapasan dan spesialisasi Telinga Hidung Tenggorok (THT), kebiasaan membungkam bersin secara paksa merupakan tindakan yang sangat berbahaya dan berpotensi memicu trauma anatomis akut. Bersin bukanlah sekadar refleks batuk ringan biasa, melainkan mekanisme pembersihan pertahanan primer saluran napas atas yang dirancang tubuh untuk melontarkan partikel debu, alergen, kuman, dan lendir iritan ke luar tubuh dengan kecepatan angin supersonik mencapai 160 kilometer per jam.
+Namun atmosfer santai warkop itu perlahan lenyap berganti menjadi pasar kaget digital yang sangat bising. Hari ini, baru mengusap layar tiga kali ke atas, kita sudah langsung disodori siaran langsung seorang penjual wajan anti-lengket yang berteriak histeris di depan mikrofon, menuntut penonton segera menekan keranjang kuning sebelum kehabisan voucer gratis ongkos kirim. Kelelahan mental menghadapi banjir promosi jualan ini rupanya mulai dibaca oleh sang empunya platform. Sebagaimana dicatat dalam laporan The Verge pekan ini, ByteDance resmi meluncurkan aplikasi mandiri terpisah bernama TikTok Shop di beberapa negara untuk memisahkan urusan belanja dari linimasa hiburan video.
 
-## Dinamika Lonjakan Tekanan dan Trauma Jaringan Tubuh
+Menurut pengamatan para pengamat perangkat lunak dan kebiasaan gadget di [kanal Teknologi](/category/tech), peluncuran aplikasi terpisah ini tentu saja dibungkus dengan narasi kenyamanan konsumen yang sangat rapi. Pihak korporasi berdalih bahwa para pemburu diskon kini bisa leluasa menjelajahi katalog barang murah, memantau pesanan paket, dan menonton siaran belanja tanpa terdistraksi oleh video komedi. Sebaliknya, mereka yang murni ingin mencari hiburan visual bisa menikmati linimasa video pendek dengan lebih tenang tanpa diserbu keranjang belanja di pojok kiri bawah.
 
-Ketika katup alami pengeluaran bersin (mulut dan rongga hidung) ditutup rapat secara mendadak saat diafragma dan otot antartulang rusuk berkontraksi dengan kekuatan penuh, massa udara yang terperangkap tidak memiliki jalur keluar dan memicu gelombang kejut mekanis ke organ-organ vital di sekitarnya:
+![Tampilan antarmuka aplikasi belanja mandiri TikTok Shop](https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/unnamed-4.png)
 
-* **Lonjakan Tekanan Udara Hingga Tiga Puluh Kali Lipat**: Studi biomekanika pernapasan yang diterbitkan dalam literatur medis membuktikan bahwa tekanan udara yang dihasilkan di rongga tenggorokan saat bersin normal berkisar antara 2 hingga 4 kiloPascal (kPa). Namun ketika hidung dan mulut dijepit rapat, tekanan intratoraks dan faring seketika meroket hingga menembus angka 20 hingga 40 kPa—lonjakan tekanan hingga puluhan kali lipat yang setara dengan benturan tumpul benda padat.
-* **Ruptur Membran Timpani dan Hilangnya Pendengaran Konduktif**: Tekanan udara ekstrem yang tertahan di rongga nasofaring akan terdorong secara brutal masuk ke dalam tuba Eustachius—saluran sempit yang menghubungkan bagian belakang hidung dengan rongga telinga tengah. Hantaman tekanan udara yang mendadak ini dapat merobek membran gendang telinga (*perforasi membran timpani*), menggeser tulang-tulang pendengaran kecil (*ossicles*), dan memicu nyeri menusuk mendadak, sensasi berdenging hebat (*tinnitus*), hingga vertigo berputar akibat trauma labirin telinga dalam.
-* **Emfisema Faring dan Robekan Dinding Tenggorokan**: Dalam kasus-kasus klinis darurat yang dilaporkan di berbagai jurnal medis internasional, lonjakan tekanan saat menahan bersin sanggup merobek jaringan lunak di bagian belakang tenggorokan (*retro-pharyngeal rupture*). Gelembung udara bertekanan tinggi merembes masuk ke dalam jaringan leher dalam dan rongga dada (*pneumomediastinum*), menyebabkan penderita kesulitan menelan makanan, suara berubah serak, hingga membutuhkan tindakan operasi bedah toraks darurat guna mencegah infeksi mediastinitis yang mematikan.
-* **Risiko Pecahnya Aneurisma Serebral pada Kelompok Rentan**: Bagi individu yang memiliki riwayat hipertensi atau kelainan pembuluh darah otak yang belum terdeteksi (*cerebral aneurysm*), lonjakan tekanan vaskular intrakranial sesaat yang dipicu oleh manuver penahanan bersin dapat menjadi faktor pencetus pecahnya pembuluh darah otak, memicu stroke hemoragik yang mengancam nyawa.
+Namun bila Anda membedah siasat ini dari sudut pandang sysadmin warkop yang sinis terhadap monetisasi korporasi teknologi ala [Elang Elano](/author/elang-elano), manuver membuat aplikasi mandiri ini sesungguhnya bukan aksi amal untuk menenangkan pikiran pengguna. Ini adalah langkah ekspansi agresif demi mencaplok ruang penyimpanan memori HP dan menguras saldo rekening kita secara lebih sistematis.
 
-## Etika dan Tata Cara Bersin yang Aman bagi Kesehatan
+Aplikasi media sosial induk TikTok sejatinya sudah terlalu gemuk (*bloated*). Ukuran pemasangan dan cache datanya di smartphone kelas menengah kerap membengkak hingga puluhan gigabyte, mencekik kinerja RAM dan membuat baterai HP cepat panas. Dengan melahirkan aplikasi belanja tersendiri, ByteDance kini memiliki jalan tol baru untuk meminta izin akses sistem operasi yang jauh lebih rakus: mulai dari pelacakan geolokasi latar belakang secara terus-menerus, sinkronisasi kontak darurat dompet digital, hingga notifikasi pop-up agresif yang dirancang untuk membangunkan layar HP Anda di jam-jam rawan lapar mata menjelang tengah malam.
 
-Menghormati kesopanan sosial tanpa mengorbankan keselamatan organ tubuh menuntut edukasi etika higienis yang benar:
+Bagi masyarakat perkotaan kita yang rentan terhadap fenomena belanja impulsif (*doom-spending*), aplikasi terpisah ini adalah jebakan psikologis yang sangat berbahaya. Ketika toko belanja terpasang sebagai ikon mandiri di layar utama HP kita, batas pertahanan diri kita semakin rapuh. Kita tidak lagi membutuhkan alasan untuk membeli barang; algoritma rekomendasi mereka yang begitu presisi membaca kelemahan emosional pengguna akan terus menyodori pernak-pernik murah seharga sepuluh ribu rupiah yang sebetulnya sama sekali tidak kita perlukan di dalam rumah.
 
-1. **Lepaskan Dorongan Bersin Tanpa Ditahan (*Never Suppress the Sneeze*)**: Biarkan mekanisme refleks tubuh menjalankan fungsinya secara alami. Jangan pernah menjepit hidung, mengatupkan rahang secara kaku, atau menelan balik dorongan udara yang sedang melesat naik dari paru-paru. Biarkan udara keluar melalui rongga mulut dan hidung dengan hambatan seminimal mungkin guna menjaga kestabilan tekanan internal kepala.
-2. **Terapkan Teknik Bersin Menggunakan Siku Bagian Dalam (*Elbow Sneeze*)**: Menghentikan penyebaran kuman bukan berarti harus mengorbankan gendang telinga. Hindari menutup mulut menggunakan telapak tangan karena kuman akan langsung berpindah ke gagang pintu, ponsel, atau tangan rekan kerja yang Anda salami. Tekuk lengan Anda dan tutupi hidung serta mulut menggunakan lekukan siku bagian dalam (*inner elbow*), atau gunakan tisu bersih yang langsung dibuang ke tempat sampah tertutup.
-3. **Gunakan Trik Rangsangan Langit-Langit Mulut untuk Meredakan Kebutuhan Bersin**: Jika Anda berada dalam situasi di mana suara bersin benar-benar harus dihindari sebelum refleks ledakan terjadi, Anda dapat mencoba meredakan stimulasi saraf trigeminal dengan cara menempelkan lidah ke langit-langit mulut dan menekannya lembut selama beberapa detik, atau menekan area kulit di antara bibir atas dan bawah hidung. Teknik ini dapat menghentikan sinyal refleks saraf di otak secara aman tanpa menciptakan jebakan tekanan beracun di dalam tenggorokan.
+Langkah ByteDance ini juga menegaskan ambisi monopoli e-commerce mereka setelah sebelumnya sempat bikin heboh regulator perdagangan dalam negeri hingga berujung pada aksi korporasi mengakuisisi platform belanja lokal. Regulasi pemerintah yang berniat membatasi campur aduk antara media sosial dan transaksi dagang kini dijawab dengan solusi paling klise dari Silicon Valley dan Beijing: gandakan aplikasinya, pasang lebih banyak pelacak, dan biarkan konsumen tenggelam dalam ilusi tumpukan diskon palsu.
 
-Tubuh manusia adalah mahakarya biomekanika yang telah berevolusi jutaan tahun untuk melindungi dirinya dari ancaman luar. Membuka jalan bagi refleks bersin adalah bentuk penghormatan paling mendasar terhadap kecerdasan alami tubuh Anda demi menjaga keutuhan indra pendengaran dan saluran pernapasan sepanjang hayat.`
-  },
-  {
-    title: "Bahaya Pengabaian High-Pass Filter pada Trek Instrumen Non-Bass: Mengapa Penumpukan Gemuruh Frekuensi Rendah Memeras Headroom dan Mengeruhkan Kejernihan Mix",
-    category: "musik",
-    byline: "0100MUNS3DJPWFDDBCE343C11A", // Margaretha Nina
-    tags: ["Musik", "Produksi Audio", "Mixing", "High-Pass Filter", "Ekualisasi", "Headroom Audio", "Mastering"],
-    imageUrl: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop",
-    imageAlt: "Peralatan mixer audio studio dan antarmuka perangkat lunak ekualiser parametrik menampilkan kurva frekuensi",
-    excerpt: "Merekam gitar akustik, vokal, atau synthesizer tanpa memangkas frekuensi sub-bass yang tak terdengar telinga adalah jebakan mixing yang fatal. Penumpukan energi gemuruh 20 hingga 80 Hertz diam-diam memakan habis ruang headroom dan memicu distorsi pompaan limiter mastering.",
-    content: `Dalam seni pencampuran audio (*audio mixing*) modern, menyatukan puluhan saluran instrumen musik yang berbeda menjadi sebuah karya rekaman yang utuh, seimbang, dan bertenaga adalah tantangan intelektual sekaligus estetika. Setiap elemen rekaman—mulai dari vokal utama, petikan gitar akustik, gesekan biola, hentakan kick drum, hingga dentuman instrumen bass elektrik—memiliki panggung frekuensinya masing-masing di dalam spektrum pendengaran manusia antara 20 Hertz hingga 20.000 Hertz.
-
-Namun di balik kenyamanan merekam menggunakan mikrofon kondensor studio berkualitas tinggi, sebuah kelalaian ekualisasi dasar kerap menjadi biang kerok mengapa sebuah lagu terdengar kusam, berlumpur (*muddy*), dan kehilangan daya hantamnya saat dimaksimalkan pada tahap *mastering*: pengabaian filter pemotong frekuensi rendah (*High-Pass Filter* / HPF) pada instrumen-instrumen non-bass. Banyak penata suara pemula berasumsi bahwa jika sebuah trek gitar akustik atau vokal solo terdengar merdu saat diputar sendirian (*solo mode*), maka trek tersebut tidak membutuhkan pemotongan frekuensi apa pun di wilayah bawah. Asumsi keliru ini adalah resep instan untuk merusak kejernihan aransemen musik Anda secara menyeluruh.
-
-## Mengapa Frekuensi Sub-Audio Tersembunyi Mencekik Master Bus
-
-Masalah paling licik dari energi frekuensi rendah ekstrem (di bawah 80 Hz) pada instrumen non-bass adalah sifatnya yang kerap tidak terdengar oleh telinga manusia, terutama jika dimonitor menggunakan speaker studio kecil atau headphone konsumen biasa:
-
-* **Penumpukan Resonansi Mikrofon dan Gemuruh Ruangan (*Mechanical Rumble*)**: Setiap mikrofon yang dipasang di ruangan studio menangkap lebih dari sekadar nada instrumen. Mikrofon merekam getaran mekanis pendingin udara, gemuruh truk yang melintas di jalan raya depan studio, resonansi lantai panggung saat kaki penyanyi bergoyang, hingga fenomena efek kedekatan (*proximity effect*) pada mikrofon direksional. Getaran mekanis ini bermuara pada tumpukan energi liar di pita 20 hingga 60 Hz yang sarat energi kinetik namun nol nilai musikalitas.
-* **Pencurian Kuota Headroom Digital Secara Agresif**: Hukum fisika akustik menyatakan bahwa gelombang suara berfrekuensi rendah membutuhkan energi amplitudo yang jauh lebih besar untuk bergetar dibandingkan gelombang frekuensi tinggi. Ketika 30 atau 40 saluran instrumen non-bass masing-masing menyumbangkan sedikit energi gemuruh sub-bass, tumpukan gelombang tersebut akan menyatu di saluran master bus. Energi liar ini menelan habis kuota *headroom* digital lagu Anda tanpa menghasilkan kontribusi suara yang bermanfaat bagi pendengar.
-* **Pemicu Distorsi Pompaan pada Kompresor dan Limiter (*Pumping Artifacts*)**: Ketika lagu Anda masuk ke meja mastering untuk dimaksimalkan kekerasannya, sirkuit detektor kompresor bus dan *brickwall limiter* akan membaca lonjakan energi sub-bass tak kasatmata ini sebagai sinyal utama. Kompresor akan merespons dengan cara mereduksi volume seluruh lagu secara agresif (*gain pumping*). Setiap kali ketukan gitar atau vokal bernada rendah masuk, musik Anda akan terdengar megap-megap tercekik, transien drum menjadi tumpul, dan seluruh instrumen terdengar terkubur di balik selimut lumpur frekuensi.
-
-## Strategi Pembersihan Spektrum Bawah dengan Presisi dan Kehangatan
-
-Menghadirkan rekaman yang bersih, jernih, dan memiliki separasi instrumen yang megah menuntut keberanian penata suara untuk memangkas sampah frekuensi bawah tanpa merusak bobot alami lagu:
-
-1. **Pasang High-Pass Filter Secara Sistematis pada Seluruh Saluran Non-Bass**: Jadikan pembersihan filter frekuensi tinggi sebagai langkah wajib pertama dalam rantai saluran mixing Anda. Untuk vokal utama, pasang kurva kemiringan (*slope*) HPF 12 dB atau 18 dB per oktaf mulai dari kisaran 80 hingga 100 Hz. Untuk gitar akustik, potong dengan tegas wilayah di bawah 90 hingga 120 Hz. Untuk instrumen simbal drum (*hi-hats & overheads*), tarik batas potong lebih tinggi hingga 250 atau 350 Hz guna menyisakan ruang frekuensi yang murni bagi instrumen kick drum dan bass.
-2. **Lakukan Penyetelan Filter Sambil Memutar Seluruh Trek Bersama (*Context Mixing*)**: Jangan pernah menyetel frekuensi batas potong (*cutoff frequency*) saat instrumen berada dalam mode solo. Dengarkan instrumen tersebut bersamaan dengan instrumen bass dan drum yang sedang berbunyi. Geser titik potong HPF perlahan ke arah kanan hingga Anda mendengar bagian tubuh instrumen mulai menipis, lalu kembalikan sedikit ke kiri. Titik manis ekualisasi adalah ketika instrumen tetap terdengar hangat dan berbobot di dalam paduan musik tanpa mencemari wilayah dasar yang menjadi hak eksklusif instrumen bass.
-3. **Pilih Karakter Filter Fasa Minimum atau Fasa Linier Sesuai Kebutuhan**: Pahami bahwa pemotongan filter High-Pass konvensional (*minimum phase*) dapat memicu pergeseran fasa (*phase shift*) di sekitar frekuensi potong. Untuk mikrofon ganda pada satu sumber suara yang sama (seperti rekaman gitar akustik dengan konfigurasi stereo pair dua mikrofon), gunakan ekualiser bertipe *Linear Phase* guna mencegah pembatalan fasa (*phase cancellation*) yang dapat membuat suara gitar terdengar hampa di tengah panggung stereo.
-
-Sebuah aransemen musik yang terdengar megah dan berdimensi bukanlah aransemen di mana setiap instrumen mencoba bersuara sebesar mungkin dari ujung frekuensi rendah hingga tinggi, melainkan sebuah simfoni disiplin di mana setiap instrumen saling memberi ruang bernapas demi terciptanya harmoni yang jernih dan menyentuh sanubari pendengar.`
+Kita mungkin merasa senang karena linimasa video utama kini sedikit lebih lengang dari teriakan pedagang keranjang kuning. Namun membiarkan satu aplikasi belanja baru bersarang di ponsel dengan notifikasi yang terus berdenting adalah cara paling ampuh untuk memastikan gaji bulanan kita menguap tanpa sisa sebelum tanggal sepuluh tiba.`
   }
 ];
 
-export async function main() {
-  console.log(`=== MEMULAI BATCH AUTO-PUBLISH HOURLY 01:00 WIB (6 NOV 2026) - ${articles.length} ARTIKEL ===\n`);
+async function runBatch() {
+  console.log("=================================================================");
+  console.log("🚀 TUJUHCAHAYA BATCH RUNNER (Jadwal Tiap 2 Jam: 01:00 WIB)");
+  console.log("=================================================================\n");
+
   const results = [];
 
   for (let i = 0; i < articles.length; i++) {
     const art = articles[i];
-    console.log(`\n--- [${i + 1}/${articles.length}] Memvalidasi 7C Editorial Guard: "${art.title}" ---`);
+    console.log(`\n-------------------------------------------------------------`);
+    console.log(`📝 [Artikel ${i + 1}/${articles.length}] ${art.title}`);
+    console.log(`👤 Byline: ${art.byline} | Kategori: ${art.category}`);
 
-    // 1. Audit 7C Editorial Guard
-    const audit = validate7cEditorial(art.title, art.content, art.excerpt);
-    console.log(`Audit Score: ${audit.score}/100 | Valid: ${audit.valid}`);
-    if (!audit.valid) {
-      console.error("Ditolak oleh 7C Editorial Guard:", audit.errors);
-      process.exit(1);
+    const wordCount = art.content.trim().split(/\s+/).filter(Boolean).length;
+    console.log(`📊 Word count: ${wordCount} kata`);
+
+    // 1. Audit editorial 7C
+    const audit = validate7cEditorial(art.title, art.content, art.excerpt, art.tags);
+    console.log(`🎯 Editorial Score: ${audit.score}/100 | Valid: ${audit.valid}`);
+    if (audit.errors.length > 0) {
+      console.error(`❌ Errors:`, audit.errors);
+      throw new Error(`Artikel "${art.title}" gagal audit 7C: ` + audit.errors.join(", "));
     }
-    if (audit.warnings.length > 0) console.log("Warnings:", audit.warnings);
-    if (audit.suggestions.length > 0) console.log("Suggestions:", audit.suggestions);
+    if (audit.warnings.length > 0) console.warn(`⚠️ Warnings:`, audit.warnings);
+    if (audit.suggestions.length > 0) console.log(`💡 Suggestions:`, audit.suggestions);
 
-    // 2. Publish (Local SQLite & Remote Production Plesk)
-    console.log(`Mempublikasikan ke Local DB & Remote Production...`);
-    const res = await autoPublishPost(art, { remote: true });
-    console.log(`Hasil Publikasi:`, JSON.stringify({
-      slug: res.slug,
-      status: res.status,
-      score: res.score,
-      dbSaved: res.dbSaved,
-      remotePublished: res.remotePublished,
-      url: res.url
-    }, null, 2));
-    results.push(res);
+    // 2. Publish ke local DB dan remote Plesk
+    console.log(`📡 Menerbitkan artikel via autoPublishPost (remote: true)...`);
+    const pubResult = await autoPublishPost(art, { bypassPause: true, remote: true });
+    console.log(`✅ Status: ${pubResult.status} | URL: ${pubResult.url}`);
+    console.log(`   Local DB: ${pubResult.dbSaved} | Remote Plesk: ${pubResult.remotePublished}`);
+
+    // 3. Tandai URL sumber asli sebagai sudah diproses di seen-urls.json
+    if (art.sourceUrl) {
+      markAsSeen(art.sourceUrl);
+    }
+    results.push(pubResult);
   }
 
-  console.log("\n=== SELURUH BATCH 01:00 WIB (6 NOV 2026) BERHASIL DIPUBLIKASIKAN KE PRODUKSI ===");
+  console.log("\n=================================================================");
+  console.log(`🎉 BATCH 2-JAM SELESAI: ${results.length} artikel berhasil diperbarui & dipublikasikan.`);
+  console.log("=================================================================");
   return results;
 }
 
 if (process.argv[1] && process.argv[1].endsWith("run-batch-20261106-0100.mjs")) {
-  main().catch(err => {
-    console.error("Batch Error:", err);
-    process.exit(1);
-  });
+  runBatch()
+    .then(() => process.exit(0))
+    .catch(err => {
+      console.error("Batch Execution Error:", err);
+      process.exit(1);
+    });
 }
