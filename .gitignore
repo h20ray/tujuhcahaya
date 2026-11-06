@@ -50,3 +50,6 @@ scripts/verify_*.py
 scripts/fetch_*.py
 scripts/test_*.py
 *.webp
+
+# local scratch
+scratch/
