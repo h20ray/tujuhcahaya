@@ -1,18 +1,18 @@
 {
-  "updatedAt": "2026-11-08T23:59:17.638Z",
+  "updatedAt": "2026-11-09T23:57:45.101Z",
   "totalCandidates": 25,
   "categories": {
     "tech": [
       {
-        "id": "8683ae260bf48763",
+        "id": "f2396ea0daf55b66",
         "sourceName": "Antara Tekno",
         "category": "tech",
         "lang": "id",
-        "title": "Laptop tidak bisa terhubung ke Wi-Fi, apa penyebabnya?",
-        "link": "https://www.antaranews.com/berita/5832947/laptop-tidak-bisa-terhubung-ke-wi-fi-apa-penyebabnya",
-        "pubDate": "Thu, 05 Nov 2026 07:45:14 +0700",
-        "snippet": "Laptop yang tiba-tiba tidak bisa terhubung ke jaringan Wi-Fi tentu dapat mengganggu aktivitas, terutama ketika ...",
-        "imageUrl": "https://img.antaranews.com/cache/800x533/2023/08/11/wifia.jpg",
+        "title": "Baterai HP cepat habis padahal jarang dipakai, apa penyebabnya?",
+        "link": "https://www.antaranews.com/berita/5840543/baterai-hp-cepat-habis-padahal-jarang-dipakai-apa-penyebabnya",
+        "pubDate": "Mon, 09 Nov 2026 08:38:00 +0700",
+        "snippet": "Baterai ponsel yang cepat habis meskipun jarang digunakan menjadi salah satu masalah yang cukup sering dialami ...",
+        "imageUrl": "https://img.antaranews.com/cache/800x533/2015/07/20150709antarafoto-fasilitas-charger-090715-adb.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -55,46 +55,14 @@
         }
       },
       {
-        "id": "a6c5d0754483fca7",
+        "id": "d916d20f0c2ff987",
         "sourceName": "The Verge",
         "category": "tech",
         "lang": "en",
-        "title": "Here’s the full text of Jensen Huang’s memo to Nvidia",
-        "link": "https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia",
-        "pubDate": "2026-11-08T17:54:50-05:00",
-        "snippet": "On Sunday, Nvidia announced it was launching an investigation into CEO Jensen Huang's relationship with Alice Huang, an AI executive and agent of the Chinese government. In addition to the Board of Directors announcing the investigation, Huang sent a memo to Nvidia employees acknowledging the affair. You can read the f",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/gettyimages-2285784039.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
-        "id": "c4ddcf9755852ec3",
-        "sourceName": "The Verge",
-        "category": "tech",
-        "lang": "en",
-        "title": "Soul Glo’s Diaspora Problems is a hardcore record like no other",
-        "link": "https://www.theverge.com/entertainment/1029579/soul-glo-diaspora-problems-hardcore-punk-review",
-        "pubDate": "2026-11-08T17:37:22-05:00",
-        "snippet": "Soul Glo has a new record called NA I'M GON GRAB ALLAT coming out in January, and I, for one, can not wait. While two singles have dropped, it's not enough to truly tide me over, so I've been revisiting Songs to Yeet at the Sun and my favorite album of 2022 - Diaspora Problems. [&#8230;]",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/a3168552135_10.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
-        "id": "24c4747f4e2de2a6",
-        "sourceName": "The Verge",
-        "category": "tech",
-        "lang": "en",
-        "title": "Nvidia is investigating Jensen Huang’s relationship with a Chinese spy",
-        "link": "https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy",
-        "pubDate": "2026-11-08T15:55:35-05:00",
-        "snippet": "Nvidia has announced that it is opening an investigation into CEO Jensen Huang and his relationship with Megaspeed executive Alice Huang, who was reportedly recruited by China's Ministry of State Security to spy on the company. A statement posted by the board of directors reads: The NVIDIA Board is initiating an indepe",
+        "title": "What could China get from Jensen Huang?",
+        "link": "https://www.theverge.com/ai-artificial-intelligence/1030328/what-could-china-get-from-jensen-huang",
+        "pubDate": "2026-11-09T18:51:58-05:00",
+        "snippet": "It's difficult to overstate Nvidia's power in today's AI landscape. The company's chips are the bedrock upon which advanced AI technology in the US is being built, and demand has consistently outpaced supply for years. Nvidia has also been an influential investor in a wide range of up-and-coming AI companies in recent ",
         "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STKP210_JENSEN_HUANG_A.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "isOriginalImage": true,
         "author": {
@@ -103,15 +71,47 @@
         }
       },
       {
-        "id": "29afba60b3c6d70d",
+        "id": "f19a891631a3a897",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "Here’s what Trump said he knew about Jensen Huang",
+        "link": "https://www.theverge.com/tech/1030446/trump-jensen-huang-press-conference",
+        "pubDate": "2026-11-09T18:50:00-05:00",
+        "snippet": "President Trump held a White House press briefing earlier today and responded to several questions about his knowledge of Nvidia CEO Jensen Huang's affair with an alleged Chinese spy. Huang said this weekend that he had been \"&#8203;&#8203;unfaithful\" to his wife, and the company has opened an investigation into Huang.",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/gettyimages-2297774940.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "48e6dc76dc7f693e",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "Everything we know so far about the Nvidia spy scandal targeting CEO Jensen Huang",
+        "link": "https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang",
+        "pubDate": "2026-11-09T18:46:30-05:00",
+        "snippet": "The leather-jacketed CEO of Nvidia, Jensen Huang, has acknowledged an affair with Megaspeed exec Alice Huang, spurring an investigation by his company and intense discussions worldwide. Recent reporting noted that since last year, US intelligence reports had identified Alice Huang (no relation) as not only the exec for",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STKP210_JENSEN_HUANG_A.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "81ff7bf1386fe89d",
         "sourceName": "Ars Technica",
         "category": "tech",
         "lang": "en",
-        "title": "Physicists listened to electrical noise to crack a superconductor mystery",
-        "link": "https://arstechnica.com/science/2026/11/physicists-listened-to-electrical-noise-to-crack-a-superconductor-mystery/",
-        "pubDate": "Sun, 08 Nov 2026 12:15:31 +0000",
-        "snippet": "Tuning in to electronic noise can tell us whether electrons have paired up or not.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/GettyImages-90737843-884x648.jpg",
+        "title": "DCU shake-up: James Gunn and Peter Safran out post-merger",
+        "link": "https://arstechnica.com/culture/2026/11/dcu-shake-up-james-gunn-and-peter-safran-out-post-merger/",
+        "pubDate": "Mon, 09 Nov 2026 21:55:35 +0000",
+        "snippet": "Producer and former Kevin Feige protege Jeremy Latcham will replace Gunn and Safran.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/09/lanterns3-1152x648.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -120,15 +120,15 @@
         }
       },
       {
-        "id": "e8e67e31d9102d45",
+        "id": "a7960be07bd300e2",
         "sourceName": "Ars Technica",
         "category": "tech",
         "lang": "en",
-        "title": "The Bantu expansion changed Africa. Scientists are still tracing how.",
-        "link": "https://arstechnica.com/science/2026/11/the-migration-that-transformed-africas-languages-genes-and-cultures/",
-        "pubDate": "Sat, 07 Nov 2026 12:15:55 +0000",
-        "snippet": "Genes and archaeology are revealing how Bantu speakers spread across much of Africa.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/great-zimbabwe-1152x648.jpg",
+        "title": "Man who lost $308,000 on sports bets sues Kalshi for offering illegal gambling",
+        "link": "https://arstechnica.com/tech-policy/2026/11/man-who-lost-308000-on-sports-bets-sues-kalshi-for-offering-illegal-gambling/",
+        "pubDate": "Mon, 09 Nov 2026 21:13:39 +0000",
+        "snippet": "Lawsuit demands Kalshi return losses because online betting is illegal in Washington.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/kalshi-baseball-1152x648-1794257974.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -137,15 +137,15 @@
         }
       },
       {
-        "id": "6977852e8db9657f",
+        "id": "55fb9d832f2c3260",
         "sourceName": "Ars Technica",
         "category": "tech",
         "lang": "en",
-        "title": "Doctors pull knife from man's eye that went through his brain—and he's fine now",
-        "link": "https://arstechnica.com/health/2026/11/man-unexpectedly-recovers-from-a-knife-wound-through-his-eye-and-brain/",
-        "pubDate": "Fri, 06 Nov 2026 23:09:45 +0000",
-        "snippet": "It's the exact path, not the apparent severity that matters most, doctors say.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/bmjcr-2026-November-19-11-F2.large_-1152x648-1794006532.jpg",
+        "title": "A Sam Altman parody offers an amusing lesson in memory management",
+        "link": "https://arstechnica.com/gadgets/2026/11/a-sam-altman-parody-offers-an-amusing-lesson-in-memory-management/",
+        "pubDate": "Mon, 09 Nov 2026 20:49:09 +0000",
+        "snippet": "We verified the RAM numbers are real without sending any emails to OpenAI.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-1723107474-1024x648.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -156,15 +156,15 @@
     ],
     "game": [
       {
-        "id": "e5c1a3959eb8c85e",
+        "id": "7b1bd1899088f856",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "Jackbox Games isn't interested in AI development: 'All that is done by people, and we have no intention of changing that'",
-        "link": "https://www.pcgamer.com/gaming-industry/game-development/jackbox-games-isnt-interested-in-ai-development-all-that-is-done-by-people-and-we-have-no-intention-of-changing-that/",
-        "pubDate": "Sun, 08 Nov 2026 22:06:56 +0000",
-        "snippet": "CEO Mike Bilder doesn't see AI as having much to offer Jackbox.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/ZimasKeFtUuoHSCqpCekQo-1920-80.png",
+        "title": "A month after Paramount acquired Warner Bros. Discovery, its merged game division is laying people off",
+        "link": "https://www.pcgamer.com/gaming-industry/a-month-after-paramount-acquired-warner-bros-discovery-its-merged-game-division-is-laying-people-off/",
+        "pubDate": "Mon, 09 Nov 2026 22:33:41 +0000",
+        "snippet": "Skydance Games has \"made the difficult decision to scale down some of our projects.\"",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/wKbv8zjAaUe8ogbgTPav7N-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -173,15 +173,15 @@
         }
       },
       {
-        "id": "26762d2981285030",
+        "id": "f9c420dc2945ed7e",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "Nvidia CEO Jensen Huang admits to affair with alleged Chinese spy as company board launches investigation",
-        "link": "https://www.pcgamer.com/gaming-industry/nvidia-ceo-jensen-huang-admits-to-affair-with-alleged-chinese-spy-as-company-board-launches-investigation/",
-        "pubDate": "Sun, 08 Nov 2026 21:38:31 +0000",
-        "snippet": "Good lord what is happening in there.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/VE3dBZCG8wUwPxHWNzqwD9-1920-80.jpg",
+        "title": "Take-Two expects to make as much as $3.5 billion during the GTA 6 launch period",
+        "link": "https://www.pcgamer.com/games/grand-theft-auto/take-two-expects-to-make-as-much-as-usd3-5-billion-during-the-gta-6-launch-period/",
+        "pubDate": "Mon, 09 Nov 2026 22:06:34 +0000",
+        "snippet": "Pre-orders for GTA 6 are still \"unprecedented,\" says the publisher.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/9SieU3JpSSPX34eMduXqsW-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -190,15 +190,15 @@
         }
       },
       {
-        "id": "5670c5e280ed022f",
+        "id": "e4139fb4fe9986a5",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "My apologies Deadlock, I wasn't familiar with your (musical) game",
-        "link": "https://www.pcgamer.com/games/moba/my-apologies-deadlock-i-wasnt-familiar-with-your-musical-game/",
-        "pubDate": "Sun, 08 Nov 2026 18:00:00 +0000",
-        "snippet": "Yeah, yeah, I'm the Hidden King.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/pbYEWFvkgVi8QrjcR2QAea-1920-80.jpg",
+        "title": "Warhammer 40K: Rogue Trader follow-up Dark Heresy will launch at the end of January",
+        "link": "https://www.pcgamer.com/games/rpg/warhammer-40k-rogue-trader-follow-up-dark-heresy-will-launch-at-the-end-of-january/",
+        "pubDate": "Mon, 09 Nov 2026 17:06:59 +0000",
+        "snippet": "Gettin' heretical with it.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/bN44RWjVnGBrsfiBwprcpM-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -207,15 +207,15 @@
         }
       },
       {
-        "id": "d3995c0d65371f7b",
+        "id": "4db49df99e2cd101",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "25 Years Later, ‘Buffy the Vampire Slayer’s Best Quote Is Still the Most Inspiring Line in TV History",
-        "link": "https://www.polygon.com/buffy-the-vampire-slayer-best-buffy-quote/",
-        "pubDate": "Sun, 08 Nov 2026 21:00:17 GMT",
-        "snippet": "Buffy’s sacrifice for Dawn in the season 5 finale gave us one of the show’s best quotes and an ending that could have closed the series for good.",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/buffy.jpg",
+        "title": "Zelda: Ocarina of Time Remake Gives Its Best Boy the Happy Ending He Deserved Decades Ago",
+        "link": "https://www.polygon.com/zelda-ocarina-of-time-remake-richard-lives/",
+        "pubDate": "Mon, 09 Nov 2026 23:00:17 GMT",
+        "snippet": "The Legend of Zelda: Ocarina of Time remake on Switch 2 makes a small, but welcome change to the fate of Richard the dog",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/ocarina-of-time-richard-lives.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -224,15 +224,15 @@
         }
       },
       {
-        "id": "11015a0237b158ba",
+        "id": "bb1fe8a0d4dff79c",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "All vault locations in the Fortnite Chapter 7 mini season",
-        "link": "https://www.polygon.com/fortnite-chapter-7-vault-locations-c7ms/",
-        "pubDate": "Sun, 08 Nov 2026 18:39:47 GMT",
-        "snippet": "Vaults are full of valuable loot in Fortnite Chapter 7's mini season. Here's where to find them all and how to open them.",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/covered-vault_oot.jpg",
+        "title": "Game Awards 2026: All Game of the Year Front-Runners and Predictions",
+        "link": "https://www.polygon.com/game-of-the-year-goty-game-awards-2026-frontrunners/",
+        "pubDate": "Mon, 09 Nov 2026 21:51:34 GMT",
+        "snippet": "We rank the contenders for GOTY 2026 at TGAs, including Resident Evil Requiem and Zelda: Ocarina of Time",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/ns2_thelegendofzeldaocarinaoftime_scrn_02-1.png",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -241,15 +241,15 @@
         }
       },
       {
-        "id": "f66808685aafdd3e",
+        "id": "810739ff2fd65294",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "All map fragment locations in the Fortnite Chapter 7 mini season",
-        "link": "https://www.polygon.com/fortnite-chapter-7-mini-season-c7ms-map-fragment-locations/",
-        "pubDate": "Sun, 08 Nov 2026 17:33:11 GMT",
-        "snippet": "Here's where to find all the currently available map fragments in Fortnite's Chapter 7 mini season.",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/jlee_261101_1001_fn_mapfragment0.jpg",
+        "title": "How to get the Biggoron Sword in Ocarina of Time",
+        "link": "https://www.polygon.com/zelda-ocarina-of-time-remake-oot-biggorons-sword-how-to-get/",
+        "pubDate": "Mon, 09 Nov 2026 21:50:25 GMT",
+        "snippet": "The Biggoron Sword is the reward for the \"From a Pocket Egg Comes...\" quest in Ocarina of Time. Here's how to complete the quest and get the sword.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/biggoron-sword_oot.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -259,6 +259,40 @@
       }
     ],
     "musik": [
+      {
+        "id": "1cea328a2cdf31b7",
+        "sourceName": "Antara Hiburan",
+        "category": "musik",
+        "lang": "id",
+        "title": "7 film bioskop terbaru November 2026 yang tayang di bioskop",
+        "link": "https://www.antaranews.com/berita/5840563/7-film-bioskop-terbaru-november-2026-yang-tayang-di-bioskop",
+        "pubDate": "Mon, 09 Nov 2026 08:50:46 +0700",
+        "snippet": "Bulan November menjadi waktu yang tepat untuk menikmati film-film terbaru di bioskop. Berbagai film dengan genre dan ...",
+        "imageUrl": "https://img.antaranews.com/cache/800x533/2026/11/05/IMG_20261103_191528.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "69e4637abe8d747e",
+        "sourceName": "Antara Hiburan",
+        "category": "musik",
+        "lang": "id",
+        "title": "Shin Min Ah bintangi “The Remarried Empress”, ini sinopsisnya",
+        "link": "https://www.antaranews.com/berita/5840555/shin-min-ah-bintangi-the-remarried-empress-ini-sinopsisnya",
+        "pubDate": "Mon, 09 Nov 2026 08:48:37 +0700",
+        "snippet": "Drama Korea &ldquo;The Remarried Empress&rdquo; diadaptasi dari novel populer dengan judul yang sama. Berlatar ...",
+        "imageUrl": "https://img.antaranews.com/cache/800x533/2023/06/26/IMG_4033.jpeg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
       {
         "id": "4a84773d2c05028a",
         "sourceName": "Antara Hiburan",
@@ -277,48 +311,14 @@
         }
       },
       {
-        "id": "9eeb078075430d2d",
-        "sourceName": "Antara Hiburan",
+        "id": "a0bdd020f826ac27",
+        "sourceName": "Google News (Musik Indonesia) [Kementerian Ekonomi Kreatif/Badan Ekonomi Kreatif Republik Indonesia]",
         "category": "musik",
         "lang": "id",
-        "title": "8 fakta unik Halloween yang jarang diketahui banyak orang",
-        "link": "https://www.antaranews.com/berita/5839331/8-fakta-unik-halloween-yang-jarang-diketahui-banyak-orang",
-        "pubDate": "Sun, 08 Nov 2026 09:11:21 +0700",
-        "snippet": "Halloween yang diperingati setiap 31 Oktober identik dengan kostum menyeramkan, labu berukir, rumah berhantu, dan ...",
-        "imageUrl": "https://img.antaranews.com/cache/800x533/2025/10/27/IMG_8957.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
-      },
-      {
-        "id": "e6f26877fca19469",
-        "sourceName": "Antara Hiburan",
-        "category": "musik",
-        "lang": "id",
-        "title": "Ragam tradisi Halloween berbagai negara, tak melulu soal kostum seram",
-        "link": "https://www.antaranews.com/berita/5839323/ragam-tradisi-halloween-berbagai-negara-tak-melulu-soal-kostum-seram",
-        "pubDate": "Sun, 08 Nov 2026 09:09:48 +0700",
-        "snippet": "Halloween yang diperingati setiap 31 Oktober identik dengan kostum menyeramkan, labu berukir, dekorasi horor, dan ...",
-        "imageUrl": "https://img.antaranews.com/cache/800x533/2026/10/24/lomba-busana-halloween-di-jakarta-2892387.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
-      },
-      {
-        "id": "ebedd7d07b0fe9be",
-        "sourceName": "Google News (Musik Indonesia) [TVRI News]",
-        "category": "musik",
-        "lang": "id",
-        "title": "Menbud Dorong Musik Tradisi Adaptif Terhadap Perkembangan Zaman Modern",
-        "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQRmNYUm5GTmtaVEZpRkM5Yl9RYTVhdlBHQ3V0QXBnUjNWSUF3UGR1RlFZcFI2Y3F2QmYwVzVQT0xYYmkxWEQtRTJUeDdDalNScjdNTFJmZHpZSmJOaHlpOUllTGxuYVBsZTFnN1dLQ3FGb0xNTlgwSTBvVVFTXzYtdlhENmFfRmFlcnpFSlRhc01qSzZYZF81cmpxcWw1aXppRHBFaUdtOXo3T3h3N1pBYVBtQ3FOQQ?oc=5",
-        "pubDate": "Sun, 08 Nov 2026 14:48:00 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxQRmNYUm5GTmtaVEZpRkM5Yl9RYTVhdlBHQ3V0QXBnUjNWSUF3UGR1RlFZcFI2Y3F2QmYwVzVQT0xYYmkxWEQtRTJUeDdDalNScjdNTFJmZHpZSmJOaHlpOUllTGxuYVBsZTFnN1dLQ3FGb0xNTlgwSTBvVVFTXzYtdlhENmFfRmFlcnpFSlRhc01qSzZYZF81cmpxcWw1aXppRHBFaUdtOXo3T3h3N1pBYVBtQ3FOQQ?oc=5\" target=\"_blank\">M",
+        "title": "Dari Jakarta ke NYC, .notyourwife Bawa Warna Baru Musik Indie Indonesia di Pentas Internasional",
+        "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxORjhFX21GRHUxdmJ4QjRfQl8ySi1US3ZEYW5vSUVBb3VWTFktVnExN2JGU3B5OUxVT2xJT3luQUpuN0hNMDNrN3M2Ymw1LXRQNURiSmkyU1R6dXdRZDlWOC1tZ2ZrRmtFdDZocTU0UThjTnhCUXYyNTN0OVppb1o2b0J3Zll3dmk3b2V2UWsyWm5vaWlPdG5WRndpMXFlbmg1VzZ2MFdQcw?oc=5",
+        "pubDate": "Mon, 09 Nov 2026 15:19:01 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxORjhFX21GRHUxdmJ4QjRfQl8ySi1US3ZEYW5vSUVBb3VWTFktVnExN2JGU3B5OUxVT2xJT3luQUpuN0hNMDNrN3M2Ymw1LXRQNURiSmkyU1R6dXdRZDlWOC1tZ2ZrRmtFdDZocTU0UThjTnhCUXYyNTN0OVppb1o2b0J3Zll3dmk3b2V2UWsyWm5vaWlPdG5WRndpMXFlbmg1VzZ2MFdQcw?oc=5\" target=\"_blank\">Dari Jakarta ke NYC, ",
         "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
         "galleryImages": [],
         "isOriginalImage": false,
@@ -328,33 +328,69 @@
         }
       },
       {
-        "id": "3d782da1c639f97e",
+        "id": "0dc6dcc005183572",
+        "sourceName": "Google News (Musik Indonesia) [ANTARA News]",
+        "category": "musik",
+        "lang": "id",
+        "title": "FMTI Kuningan jadi langkah perkuat ekosistem musik tradisi Indonesia",
+        "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNY04tN1Z6MzNndk1TTGItREt1VzdkNnFnN3JpbWVsenNqN1hTaTN0U1JzVTJoY2RZa3dnRFhRczFrMF9fSXdKSU96aVZUVlM3bzdLT1dhUkkybkZ5SjdyRnUxa3lTRHcxeldibVQyMG9RTVBIYXNnLUZySDctWFNtTjNDSEFXWU9qYk1rNEtDdE9BVXRUNHdRLTRWVXotc0FONExpRlpXSTQ0RFJDRTR30gGyAUFVX3lxTFBDZjhCNVNqTFlIZHlCNUdoUGJvZjU2N3FZMTZsVGpGaDdKeXQ2NDQxMmlVYUR4R2JTam1qVzRjUkhEVDZodDZlMFpzOHZPV1paNS1kYzRUWXpvd3lZOUEwNmVKOU9nR3h1WDNia1VobGZyRVJaaXNldjFXYThsbE5uQi1EUFVwT2FRclFMdmw4MWpDOFhvRzl3dEtKRS1kY09IbklzeHFGVlZ0VVdXVlBEWXc?oc=5",
+        "pubDate": "Mon, 09 Nov 2026 03:38:10 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxNY04tN1Z6MzNndk1TTGItREt1VzdkNnFnN3JpbWVsenNqN1hTaTN0U1JzVTJoY2RZa3dnRFhRczFrMF9fSXdKSU96aVZUVlM3bzdLT1dhUkkybkZ5SjdyRnUxa3lTRHcxeldibVQyMG9RTVBIYXNnLUZySDctWFNtTjNDSEFXWU9qYk1rNEtDdE9BVXRUNHdRLTRWVXotc0FONExpRlpXSTQ0RFJDRTR30gGyAUFVX3lxTFBDZjhCNVNqTFlIZHlCNU",
+        "imageUrl": "https://cdn.antaranews.com/cache/1200x800/2026/11/09/WhatsApp-Image-2026-11-08-at-19.52.10.jpeg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://www.antaranews.com/berita/5840691/fmti-kuningan-jadi-langkah-perkuat-ekosistem-musik-tradisi-indonesia"
+      },
+      {
+        "id": "748c74aab197528d",
+        "sourceName": "Google News (Musik Indonesia) [GenPI.co]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Idgitaf Sebut Sedia Aku Sebelum Hujan Relevan dengan Kondisi Indonesia, Lagu Lahir dari Keresahan - GenPI.co",
+        "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNemg0YzBleG40RUIzQnhoWXdIa3A0VzhKOWdnRUJGbXJqaGFGaUZNUEM5ZW9Va3RfbkFSSlZRM0ZIOTA1MzY5YjNSYmFlM191TUl0a3BGRk5HUTJkRzJIUmg2MlVlMGl5QS1zTzVqY3NFUkJuckhhYy03c1F1YmUxM1FrQVVuXzVMRnVvNTFSTzRqRmZOQkVCd0tSTUVlZVZPazA2dVI5Vy13YUtyNzRRMlpVMlJrd1VZX3hZMVhmbVlvN3JVSENpWEpDVjFWTURSZ1hxWndn0gHbAUFVX3lxTE1POG0zbkc3cHVWTk1WaTIydE1FQ1dFZWFHYVZkSEE2amhSTWN5bDZOam5jZ2R0eUl1VXZQazZBODlhRzJ5bEt6WW42Z1JnRTE0UHo2NHU1NE5RQnFBSHlrMVR5NlpFbXZBRncyUkFPUC1GazZSSnl4NTA5MVVIQzktSDlUU0FycmJQNUx4VkFhUXVfdm82MUNINTlDb1JnWVdhRnVud0xxbFVJTlFPemFyMUpESGk4ZTlvcVIwSjJVRXpvZFY3c1ZIQ2FTYUdJeVRjcENCenpvUW5Qcw?oc=5",
+        "pubDate": "Mon, 09 Nov 2026 21:00:42 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMi1gFBVV95cUxNemg0YzBleG40RUIzQnhoWXdIa3A0VzhKOWdnRUJGbXJqaGFGaUZNUEM5ZW9Va3RfbkFSSlZRM0ZIOTA1MzY5YjNSYmFlM191TUl0a3BGRk5HUTJkRzJIUmg2MlVlMGl5QS1zTzVqY3NFUkJuckhhYy03c1F1YmUxM1FrQVVuXzVMRnVvNTFSTzRqRmZOQkVCd0tSTUVlZVZPazA2dVI5Vy13YUtyNzRRMlpVMlJrd1VZX3hZMVhmbVlvN3JVSENpWE",
+        "imageUrl": "https://images.genpi.co/uploads/arsip/normal/2026/11/09/penyanyi-cantik-idgitaf-menilai-lagunya-yang-berju-ixvr.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://www.genpi.co/film-dan-musik/292546/idgitaf-sebut-sedia-aku-sebelum-hujan-relevan-dengan-kondisi-indonesia-lagu-lahir-dari-keresahan"
+      },
+      {
+        "id": "c80494a62e76a6f6",
         "sourceName": "Google News (Musik Indonesia) [RRI.co.id]",
         "category": "musik",
         "lang": "id",
-        "title": "Hoaks Tautan Lowongan Kerja Yamaha Musik Indonesia",
-        "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPZy1uX1hldmE2YmZPSXhEQlRPeTJzOWhITGUyeWtaaGVHVk9WMjI2b25aYi00dW0yS010Sl9YZ1hSQlp2Vm54Y3d1UWVXYUYzWU9OZTUzT3NiUWJabnA1d3Q2Y1BKT2FrVlVsWFdmb2pUOHpTNjZFaTE0TE5YckVmYmhkUlJmZDdsTUNDMGdIZUdkUHZCMklmMw?oc=5",
-        "pubDate": "Sun, 08 Nov 2026 14:48:00 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxPZy1uX1hldmE2YmZPSXhEQlRPeTJzOWhITGUyeWtaaGVHVk9WMjI2b25aYi00dW0yS010Sl9YZ1hSQlp2Vm54Y3d1UWVXYUYzWU9OZTUzT3NiUWJabnA1d3Q2Y1BKT2FrVlVsWFdmb2pUOHpTNjZFaTE0TE5YckVmYmhkUlJmZDdsTUNDMGdIZUdkUHZCMklmMw?oc=5\" target=\"_blank\">Hoaks Tautan Lowongan Kerja Yamaha Musik ",
-        "imageUrl": "https://rri-portal-app-assets.obs.ap-southeast-4.myhuaweicloud.com/upload/berita-cek-fakta/image/manado/thumbs/xl_1794063431036411_1857ca703e_berita-cek-fakta_manado.webp",
+        "title": "Iga Massardi Gabung Frekuensi antara Music, Rilis Ambivalensi",
+        "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOY2FTUDZ6NUdOaDdRcmZ3NGtkcGxFa1h5MDVJeDd4ZWZPeE1NRXdTS3ZhOFVXSUZvWGJRZXh4dG53Y2V1N29TNnhZcTV3U21ad0pkQU5iSWd3bDB1WjFvNzNWcFdQRHBjbWZDRTRORjBibWlHZTRwYk5JNk02b2N4cTk5Z3NOMVRySF9neG01d0x5bGdVMF9SQzVlc1VpbUZWT05qLQ?oc=5",
+        "pubDate": "Mon, 09 Nov 2026 13:17:00 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxOY2FTUDZ6NUdOaDdRcmZ3NGtkcGxFa1h5MDVJeDd4ZWZPeE1NRXdTS3ZhOFVXSUZvWGJRZXh4dG53Y2V1N29TNnhZcTV3U21ad0pkQU5iSWd3bDB1WjFvNzNWcFdQRHBjbWZDRTRORjBibWlHZTRwYk5JNk02b2N4cTk5Z3NOMVRySF9neG01d0x5bGdVMF9SQzVlc1VpbUZWT05qLQ?oc=5\" target=\"_blank\">Iga Massardi Gabung Freku",
+        "imageUrl": "https://rri-portal-app-assets.obs.ap-southeast-4.myhuaweicloud.com/upload/berita/image/cirebon/thumbs/xl_1794230019195195_36c137fde9_berita_cirebon.webp",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://rri.co.id/manado/cek-fakta/2178108/hoaks-tautan-lowongan-kerja-yamaha-musik-indonesia"
+        "originalArticleUrl": "https://rri.co.id/cirebon/hiburan/2883255/iga-massardi-gabung-frekuensi-antara-music-rilis-ambivalensi"
       },
       {
-        "id": "079909b8850744b2",
-        "sourceName": "Google News (Musik Indonesia) [quasa.io]",
+        "id": "41b73fd61ccc94ad",
+        "sourceName": "Google News (Musik Indonesia) [KapanLagi.com]",
         "category": "musik",
         "lang": "id",
-        "title": "Membuat lagu Indonesia di Suno dan cek hak komersial",
-        "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNR3RmMmNia2ZYZTRvOXBGaE0wSWdwemNVN2dvYVJlVjE5bEJKTXVlWUREUDVTcXlyS3FUSGF0RXBUb28tOGFVUzdtWnJBalAxNHFVUy1KR2I0Zk9BTDN2RHpRYlNPVHNadjEzdXVSeDVTeGpXVmlPV24xano3RG1uWEJyQkhFaEtpblN1TmRSWnpieEJwR3c?oc=5",
-        "pubDate": "Sun, 08 Nov 2026 08:31:06 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxNR3RmMmNia2ZYZTRvOXBGaE0wSWdwemNVN2dvYVJlVjE5bEJKTXVlWUREUDVTcXlyS3FUSGF0RXBUb28tOGFVUzdtWnJBalAxNHFVUy1KR2I0Zk9BTDN2RHpRYlNPVHNadjEzdXVSeDVTeGpXVmlPV24xano3RG1uWEJyQkhFaEtpblN1TmRSWnpieEJwR3c?oc=5\" target=\"_blank\">Membuat lagu Indonesia di Suno dan cek hak k",
-        "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
+        "title": "Annisa Dalimunthe Jadi Satu-satunya Penyanyi Cilik di Festival Musik Remember Fest 2026",
+        "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQSWZsUWZTMWhRY19ScEthR3ZDSkRCajlwcHhsUXkzLTZ4RVdqUm5rS2t1VHhDQ1MxMUtkeGNEMllfejBtZFEzN0I1NFZxYXpUN1ZHMnZBYkR2M3JNcmNieU9mOXhxV1B0V1l1S1F6VFNvaGgwWnF6UEJTMmMyQTBkejhpNkRrNUctc0JTcjEwUTFwOU9qUUVTMVI2SVZGWG5IZ2NjZnFISF9ZVlRKN1hCLTVkTXFPVkM5NnlqZ0dFTjFNZHE5b1VISmRfNTFaNHPSAdQBQVVfeXFMT2RTOUFrUnNjUHF5bTdteU5UUXpHOG1rdkRLR3hLRW1XWXN4TnN3X1lYaENJSXlIMVVrc1RncGZnU3RPODIyY2VTWGQ2WTNYQUxMbXNnYTNKWXBMU3dqYmxabHRiSjFjdWFFTUpoN3hwckJyLWZGYzNTS3BwY01QdVdtVlhYWnFiODI5VF9uVFBUeDlBeDY4YkFHXzVZSUZaRmxRLVJyb3IyX1dVb21faXduTngyZmc4eUV6VklBUUhHVG9tMEI2ZXJJS0I5OXI2dlV0MF8?oc=5",
+        "pubDate": "Mon, 09 Nov 2026 12:57:51 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMizwFBVV95cUxQSWZsUWZTMWhRY19ScEthR3ZDSkRCajlwcHhsUXkzLTZ4RVdqUm5rS2t1VHhDQ1MxMUtkeGNEMllfejBtZFEzN0I1NFZxYXpUN1ZHMnZBYkR2M3JNcmNieU9mOXhxV1B0V1l1S1F6VFNvaGgwWnF6UEJTMmMyQTBkejhpNkRrNUctc0JTcjEwUTFwOU9qUUVTMVI2SVZGWG5IZ2NjZnFISF9ZVlRKN1hCLTVkTXFPVkM5NnlqZ0dFTjFNZHE5b1VISm",
+        "imageUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop",
         "galleryImages": [],
         "isOriginalImage": false,
         "author": {
@@ -363,76 +399,40 @@
         }
       },
       {
-        "id": "e93749a8fa0d5929",
-        "sourceName": "Google News (Musik Indonesia) [ANALISNEWS]",
+        "id": "a4e32022d666f8cf",
+        "sourceName": "Google News (Musik Indonesia) [OWRITE]",
         "category": "musik",
         "lang": "id",
-        "title": "Gugun Blues Shelter Rilis EP ‘Ruang Rasa’, Hadirkan Enam Lagu Blues Berbahasa Indonesia",
-        "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNVGcta1ZzZ3VZVGJ3Vnk1b1BjMHk1TEVoZmpWaVNSQ3RXekJQLXB6ZWhaeDdocF9ZLU9uRlRmNVVSaGMyaGY4ZkFNU2RQSFVHM0EwUGdESnBPT2VjNXV2SDhicVBwdTdUN1lfeC1DNGJmbUFWT09ST1ZRdlpWdDJVc2hzcXhidVJ5eUxMbVhhOWhKRnY4d0tJTzFpcnZlcVMyUENkelNYcHM1ZnNkWFNrWXJpZWRUWU5fc1pIRThYR3VnX1NoSXlYYXlSaw?oc=5",
-        "pubDate": "Sun, 08 Nov 2026 10:53:32 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxNVGcta1ZzZ3VZVGJ3Vnk1b1BjMHk1TEVoZmpWaVNSQ3RXekJQLXB6ZWhaeDdocF9ZLU9uRlRmNVVSaGMyaGY4ZkFNU2RQSFVHM0EwUGdESnBPT2VjNXV2SDhicVBwdTdUN1lfeC1DNGJmbUFWT09ST1ZRdlpWdDJVc2hzcXhidVJ5eUxMbVhhOWhKRnY4d0tJTzFpcnZlcVMyUENkelNYcHM1ZnNkWFNrWXJpZWRUWU5fc1pIRThYR3VnX1NoSXlYYX",
-        "imageUrl": "https://analisnews.co.id/wp-content/uploads/2026/11/IMG-20261108-WA0021.jpg",
+        "title": "Muak dengan Kondisi Negeri, Methosa Gaungkan Perlawanan Lewat Lagu 'Gemuruh Revolusi'",
+        "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQek9TTGtnaTMxQW9nYlNCc2ZBdnZkZW1Ra2dpUXkwOUE5bVRhc2VJQy1hLUU2c2NWNjllR2dTbEFzV0pVbV9maHdUcmtZblZuRVd4RmhjRF93dUtDT2luLVBETENPM1hPVmVnNTVEdjc1MmVKeHVXckZidnlWS1hHczc2TEwwclhpcS1vX0VlV2lCeC1pNWZCa1VYWmNOUFUxeThxdDFfWWRZUjRMSW5oWEx0QlRSUEFFMHVod1F3?oc=5",
+        "pubDate": "Mon, 09 Nov 2026 11:12:50 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxQek9TTGtnaTMxQW9nYlNCc2ZBdnZkZW1Ra2dpUXkwOUE5bVRhc2VJQy1hLUU2c2NWNjllR2dTbEFzV0pVbV9maHdUcmtZblZuRVd4RmhjRF93dUtDT2luLVBETENPM1hPVmVnNTVEdjc1MmVKeHVXckZidnlWS1hHczc2TEwwclhpcS1vX0VlV2lCeC1pNWZCa1VYWmNOUFUxeThxdDFfWWRZUjRMSW5oWEx0QlRSUEFFMHVod1F3?oc=5\" target=",
+        "imageUrl": "https://cms.owrite.id/wp-content/uploads/2026/11/utama-img-7067-mw94p2cw-1024x780.webp",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://analisnews.co.id/index.php/2026/11/08/gugun-blues-shelter-rilis-ep-ruang-rasa-hadirkan-enam-lagu-blues-berbahasa-indonesia/"
+        "originalArticleUrl": "https://www.owrite.id/hype/2026/11/09/muak-dengan-kondisi-negeri-methosa-gaungkan-perlawanan-lewat-lagu-gemuruh-revolusi/"
       },
       {
-        "id": "bb77261fb9f5b874",
-        "sourceName": "Google News (Musik Indonesia) [Event Guide]",
+        "id": "9187184975aa0eca",
+        "sourceName": "Google News (Musik Indonesia) [Medcom.id]",
         "category": "musik",
         "lang": "id",
-        "title": "“Sahabat Terbaik” Antarkan Etenia Croft Raih Penghargaan Artis Solo Anak-Anak Terbaik AMI Awards 2026",
-        "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOSEgwbHZnaUNxMkFiWm1QYkszM3A2czFSZEV0eXprbjVhX0hTRFdwakNBVVFadXI1Vnk4Ql9pRnFWcjZYNjZlcTk1Vi1GSEd5ZWtkZy1RbWxYa0lKQmFCbmZpSktPUl9acHFwdU9Hd0NfaHF5UkY4eURqMTN2V1JJZzdsbDdZdlhkakNSMGFJZ0FaODhua1p0WUt1Nk5RdDgzcF91SE1xNm5qdkJ4RUxpbTh2d2lZV2RjVGFtVzlscGJXRm5yRHg1MXpRLWRMQQ?oc=5",
-        "pubDate": "Sun, 08 Nov 2026 04:09:04 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxOSEgwbHZnaUNxMkFiWm1QYkszM3A2czFSZEV0eXprbjVhX0hTRFdwakNBVVFadXI1Vnk4Ql9pRnFWcjZYNjZlcTk1Vi1GSEd5ZWtkZy1RbWxYa0lKQmFCbmZpSktPUl9acHFwdU9Hd0NfaHF5UkY4eURqMTN2V1JJZzdsbDdZdlhkakNSMGFJZ0FaODhua1p0WUt1Nk5RdDgzcF91SE1xNm5qdkJ4RUxpbTh2d2lZV2RjVGFtVzlscGJXRm5yRHg1MX",
-        "imageUrl": "https://eventguide.id/wp-content/uploads/2026/11/ami3.jpg",
+        "title": "Momen Bersejarah Penyanyi Cilik Annisa Dalimunthe Tampil di Remember Fest",
+        "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOMnBfNWpTSE05Y1kyVHEwN0Z0MlNWQ1dIX05BcE5EMDZiaFl0aGtUaDhkWThVNG9QdHZMdWUxMXZNeS1nUnVNUGxzTk1qdzVaRGZ5QUJjR3NXdjNKd21RcFduR0xhX1h0aVpBV3g3d3NoUFluZWxCeHRlM2lYRnk0VlVoRXplT18wWHVsa2o3N1BTZ3VHVE90eGtJbXp4TndHclFnZ2dnNnFFeVZOMjNOZldFaERzWU44Z2c?oc=5",
+        "pubDate": "Mon, 09 Nov 2026 13:53:53 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxOMnBfNWpTSE05Y1kyVHEwN0Z0MlNWQ1dIX05BcE5EMDZiaFl0aGtUaDhkWThVNG9QdHZMdWUxMXZNeS1nUnVNUGxzTk1qdzVaRGZ5QUJjR3NXdjNKd21RcFduR0xhX1h0aVpBV3g3d3NoUFluZWxCeHRlM2lYRnk0VlVoRXplT18wWHVsa2o3N1BTZ3VHVE90eGtJbXp4TndHclFnZ2dnNnFFeVZOMjNOZldFaERzWU44Z2c?oc=5\" target=\"_bla",
+        "imageUrl": "https://cdn.medcom.id/dynamic/content/2026/11/09/1853695/3yK2aNiGZA.jpg?w=1024",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://eventguide.id/2026/11/08/sahabat-terbaik-antarkan-etenia-croft-raih-penghargaan-artis-solo-anak-anak-terbaik-ami-awards-2026/"
-      },
-      {
-        "id": "5cdd841cbfddb1e6",
-        "sourceName": "Google News (Musik Indonesia) [detikcom]",
-        "category": "musik",
-        "lang": "id",
-        "title": "Pemenang AMI Awards 2026, Panggung Luar Biasa Nassar",
-        "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNVWRXSkFkQzByQ1lEVzl1Vy0teV9zbnF1ZnFFd1NtU1RqRkV6RjJHRUE3b3BHMGEyd0lxV3VxOW5zOWVVb3RUX2pFLThFM1RLRmRhNjBhN244ZmloNTdkWnJwTHBnUmJncWE4Vmt2UVRmUU40ZEl5OENMTmtaNzZkMThXZTBWTEVXM255aEVTclFNOHBYdDVxM1RJbUfSAaIBQVVfeXFMUHpjb1VlTjJTdkgzRFA0TGtrSTVwNTM4MnhCTGJ2bWtCZjg5cW1hY2xIZWVWdUZzYVNqQUFlbHhhQWtvYVJKWF9HTkNZdVgyWEJVYS13N3V3a3ExLTY3VWFFWkVaQm51WEtfQXkzNXBwSmNnMWFsenZfMjR1ZDdFVVByenRIVEdsZzdGMm1sTU1aclptcGF5XzdhXzl6ZGZhdEJn?oc=5",
-        "pubDate": "Sun, 08 Nov 2026 15:03:57 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxNVWRXSkFkQzByQ1lEVzl1Vy0teV9zbnF1ZnFFd1NtU1RqRkV6RjJHRUE3b3BHMGEyd0lxV3VxOW5zOWVVb3RUX2pFLThFM1RLRmRhNjBhN244ZmloNTdkWnJwTHBnUmJncWE4Vmt2UVRmUU40ZEl5OENMTmtaNzZkMThXZTBWTEVXM255aEVTclFNOHBYdDVxM1RJbUfSAaIBQVVfeXFMUHpjb1VlTjJTdkgzRFA0TGtrSTVwNTM4MnhCTGJ2bWtCZj",
-        "imageUrl": "https://awsimages.detik.net.id/api/wm/2026/11/07/nassar-1794027403957_169.jpeg?wid=54&w=1200&v=1&t=jpeg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://www.detik.com/pop/trending/d-8744034/pemenang-ami-awards-2026-panggung-luar-biasa-nassar"
-      },
-      {
-        "id": "007f4027a6168b57",
-        "sourceName": "Google News (Musik Indonesia) [Kompas Muda]",
-        "category": "musik",
-        "lang": "id",
-        "title": "Adrian Khalif dan Fattah Syach Siap Ramaikan Final DBL Jakarta 2026 di Indonesia Arena",
-        "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNX2lwcm5BTmRDNnhrcEN4TGR3QVVLSUZQcDM3VUlEYmlJRFcwN2MxUWxscUlid2JEckllbUR1dUVjbTNUS2k5dDFDVFNsMTktLVJ3enMtNlIwVFFrUS0xdGxuaGh5UEp4WXVqc1NXaHBXS201S2FLYzZNN0lfc1RudkFJaWt1dG1TU281eVQxTGpuX0VXOUFoNE5mVW9nN1ViZjFvSjVwaFlObWpRRmVpTWs5WnZBbnByR1Z1SVQzZ3RKTWxH?oc=5",
-        "pubDate": "Sat, 07 Nov 2026 18:36:16 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxNX2lwcm5BTmRDNnhrcEN4TGR3QVVLSUZQcDM3VUlEYmlJRFcwN2MxUWxscUlid2JEckllbUR1dUVjbTNUS2k5dDFDVFNsMTktLVJ3enMtNlIwVFFrUS0xdGxuaGh5UEp4WXVqc1NXaHBXS201S2FLYzZNN0lfc1RudkFJaWt1dG1TU281eVQxTGpuX0VXOUFoNE5mVW9nN1ViZjFvSjVwaFlObWpRRmVpTWs5WnZBbnByR1Z1SVQzZ3RKTWxH?oc=5\"",
-        "imageUrl": "https://muda.kompas.id/wp-content/uploads/2026/11/GUEST-STAR-FINAL-DBL-JAKARTA-2026-1.png",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://muda.kompas.id/baca/2026/11/07/adrian-khalif-dan-fattah-syach-siap-ramaikan-final-dbl-jakarta-2026-di-indonesia-arena/"
+        "originalArticleUrl": "https://www.medcom.id/hiburan/musik/yNLZVZ1k-momen-bersejarah-penyanyi-cilik-annisa-dalimunthe-tampil-di-remember-fest"
       }
     ]
   }
