@@ -270,15 +270,19 @@ ${urls.join("\n")}
 export function generate7cGoogleNewsSitemap(siteUrl: string = "https://www.tujuhcahaya.com"): string {
 	const db = getDb();
 	const base = siteUrl.replace(/\/$/, "");
+	// Google News Sitemap specification limits entries to articles published within the last 48 hours
+	const cutoffIso = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
 
 	try {
 		const posts = db.prepare(`
 			SELECT title, slug, published_at
 			FROM ec_posts
-			WHERE status = 'published' AND published_at IS NOT NULL
+			WHERE status = 'published'
+			  AND published_at IS NOT NULL
+			  AND published_at >= ?
 			ORDER BY published_at DESC
-			LIMIT 100;
-		`).all() as Array<{
+			LIMIT 1000;
+		`).all(cutoffIso) as Array<{
 			title: string;
 			slug: string;
 			published_at: string;

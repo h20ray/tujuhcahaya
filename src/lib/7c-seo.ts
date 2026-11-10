@@ -138,13 +138,15 @@ export function resolve7cCanonicalUrl(path: string, customCanonical?: string | n
 	if (customCanonical && /^https?:\/\//i.test(customCanonical)) {
 		try {
 			const parsed = new URL(customCanonical);
-			return `${C7_CANONICAL_ORIGIN}${parsed.pathname === "/" ? "" : parsed.pathname.replace(/\/$/, "")}`;
+			const cleanPathname = parsed.pathname === "/" ? "/" : parsed.pathname.replace(/\/$/, "");
+			return `${C7_CANONICAL_ORIGIN}${cleanPathname}`;
 		} catch {
 			return customCanonical;
 		}
 	}
 
-	const cleanPath = path.replace(/[?#].*$/, "").replace(/\/$/, "") || "";
+	const stripped = path.replace(/[?#].*$/, "");
+	const cleanPath = stripped === "/" || stripped === "" ? "/" : stripped.replace(/\/$/, "");
 	return `${C7_CANONICAL_ORIGIN}${cleanPath}`;
 }
 
@@ -279,7 +281,7 @@ export function build7cHomeJsonLd(locale: string = "id") {
 			"@context": "https://schema.org",
 			"@type": "WebSite",
 			"@id": `${C7_CANONICAL_ORIGIN}/#website`,
-			"url": C7_CANONICAL_ORIGIN,
+			"url": `${C7_CANONICAL_ORIGIN}/`,
 			"name": "Tujuhcahaya",
 			"alternateName": ["Tujuhcahaya Media", "7C", "Tujuhcahaya.com"],
 			"description": siteDescription,
@@ -287,14 +289,6 @@ export function build7cHomeJsonLd(locale: string = "id") {
 				"@id": `${C7_CANONICAL_ORIGIN}/#organization`,
 			},
 			"inLanguage": ["id-ID", "en-US"],
-			"potentialAction": {
-				"@type": "SearchAction",
-				"target": {
-					"@type": "EntryPoint",
-					"urlTemplate": `${C7_CANONICAL_ORIGIN}/arsip?q={search_term_string}`,
-				},
-				"query-input": "required name=search_term_string",
-			},
 		},
 		{
 			"@context": "https://schema.org",

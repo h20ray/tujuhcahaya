@@ -1,7 +1,15 @@
 ---
 import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from "emdash";
-import { EmDashHead, EmDashBodyStart, EmDashBodyEnd } from "emdash/ui";
-import { createPublicPageContext } from "emdash/page";
+import { EmDashBodyStart, EmDashBodyEnd } from "emdash/ui";
+import {
+	createPublicPageContext,
+	generateBaseSeoContributions,
+	generateSiteSeoContributions,
+	getPageRuntime,
+	renderFragments,
+	renderPageMetadata,
+	resolvePageMetadata,
+} from "emdash/page";
 import C7ResizableNavbar from "../components/navigation/C7ResizableNavbar.astro";
 import C7CommandPalette from "../components/navigation/C7CommandPalette.astro";
 import C7Footer from "../components/navigation/C7Footer.astro";
@@ -18,13 +26,30 @@ interface Props {
 	description?: string | null;
 	image?: string | null;
 	canonical?: string | null;
+	robots?: string | null;
+	noindex?: boolean;
+	articleMeta?: {
+		publishedTime?: string | null;
+		modifiedTime?: string | null;
+		author?: string | null;
+	};
 	/** Pass content reference for plugin page contributions on content pages */
 	content?: { collection: string; id: string; slug?: string | null };
 	isHome?: boolean;
 }
 
-const { title, pageTitle, description, image, canonical, content, isHome: propIsHome } =
-	Astro.props;
+const {
+	title,
+	pageTitle,
+	description,
+	image,
+	canonical,
+	robots,
+	noindex = false,
+	articleMeta,
+	content,
+	isHome: propIsHome,
+} = Astro.props;
 const [settingsResult, menuResult] = await Promise.all([
 	getSiteSettingsWithCacheHint(),
 	getMenuWithCacheHint("primary"),
@@ -39,6 +64,8 @@ const { siteTitle, siteTagline } = resolveStarterSiteIdentity(
 );
 const titleIncludesSiteName =
 	title === siteTitle ||
+	title.startsWith(`${siteTitle} — `) ||
+	title.startsWith(`${siteTitle} | `) ||
 	title.endsWith(` | ${siteTitle}`) ||
 	title.endsWith(` — ${siteTitle}`);
 const fullTitle = titleIncludesSiteName ? title : `${title} — ${siteTitle}`;
@@ -46,14 +73,18 @@ const pageDescription = description ?? siteTagline;
 const menu = menuResult.data;
 
 import { get7cLocaleFromUrl, use7cTranslation } from "../i18n/utils";
-import { get7cHreflangLinks, resolve7cCanonicalUrl, C7_CANONICAL_ORIGIN, build7cHomeJsonLd } from "../lib/7c-seo";
+import { get7cHreflangLinks, resolve7cCanonicalUrl, C7_CANONICAL_ORIGIN, build7cHomeJsonLd, safeJsonLd } from "../lib/7c-seo";
 
 const currentPath = Astro.url.pathname;
+const cleanCurrentPath = currentPath === "/" || currentPath === "" ? "/" : currentPath.replace(/\/$/, "");
 const locale = get7cLocaleFromUrl(Astro.url);
 const { t } = use7cTranslation(locale);
-const isHome = propIsHome ?? (currentPath === "/" || currentPath === "" || currentPath === "/en" || currentPath === "/en/");
-const resolvedCanonical = resolve7cCanonicalUrl(currentPath, canonical);
-const hreflangLinks = !content ? get7cHreflangLinks(currentPath, C7_CANONICAL_ORIGIN) : [];
+const isHome = propIsHome ?? (cleanCurrentPath === "/" || cleanCurrentPath === "/en");
+const resolvedCanonical = noindex ? null : resolve7cCanonicalUrl(cleanCurrentPath, canonical);
+const resolvedRobots = noindex
+	? "noindex, nofollow"
+	: (robots || "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+const hreflangLinks = !content && !noindex ? get7cHreflangLinks(cleanCurrentPath, C7_CANONICAL_ORIGIN) : [];
 
 const currentDateStr = new Date().toLocaleDateString(locale === "en" ? "en-US" : "id-ID", {
 	weekday: "long",
@@ -63,7 +94,8 @@ const currentDateStr = new Date().toLocaleDateString(locale === "en" ? "en-US" :
 });
 
 const pageCtx = createPublicPageContext({
-	Astro,
+	url: `${C7_CANONICAL_ORIGIN}${cleanCurrentPath}`,
+	locale,
 	kind: content ? "content" : "custom",
 	pageType: content?.collection === "posts" ? "article" : "website",
 	title: fullTitle,
@@ -71,9 +103,41 @@ const pageCtx = createPublicPageContext({
 	description: pageDescription,
 	canonical: resolvedCanonical,
 	image,
+	articleMeta,
+	seo: {
+		robots: resolvedRobots,
+	},
 	content,
 	siteName: siteTitle,
+	siteUrl: C7_CANONICAL_ORIGIN,
 });
+
+const defaultOgImage =
+	settingsResult.data?.seo?.defaultOgImage?.url ||
+	`${C7_CANONICAL_ORIGIN}/images/default-featured-image.png`;
+const runtime = getPageRuntime(Astro.locals as unknown as Record<string, unknown>);
+let headMetadataHtml = "";
+let headFragmentsHtml = "";
+
+if (runtime) {
+	const [pluginContributions, fragments] = await Promise.all([
+		runtime.collectPageMetadata(pageCtx),
+		runtime.collectPageFragments(pageCtx),
+	]);
+	const siteContributions = generateSiteSeoContributions(settingsResult.data?.seo);
+	const baseContributions = generateBaseSeoContributions(pageCtx, defaultOgImage);
+	const resolvedMetadata = resolvePageMetadata([
+		...pluginContributions,
+		...siteContributions,
+		...baseContributions,
+	]);
+	headMetadataHtml = renderPageMetadata(resolvedMetadata, { includeJsonLd: false });
+	headFragmentsHtml = renderFragments(fragments, "head");
+} else {
+	const baseContributions = generateBaseSeoContributions(pageCtx, defaultOgImage);
+	const resolvedMetadata = resolvePageMetadata(baseContributions);
+	headMetadataHtml = renderPageMetadata(resolvedMetadata, { includeJsonLd: false });
+}
 ---
 
 <!doctype html>
@@ -86,13 +150,26 @@ const pageCtx = createPublicPageContext({
 		<!-- 7C Bespoke Engine Signature -->
 		<meta name="generator" content="7C Digital Engine (Astro + EmDash)" />
 		<meta name="author" content="Tujuhcahaya" />
-		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-
-		<!-- Canonical Tag -->
-		<link rel="canonical" href={resolvedCanonical} />
 
 		<!-- RSS 2.0 Feed Discovery -->
 		<link rel="alternate" type="application/rss+xml" title="Tujuhcahaya RSS Feed" href={`${C7_CANONICAL_ORIGIN}/rss.xml`} />
+
+		<!-- Google Analytics 4 (GA4) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTKL73NL9S"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-RTKL73NL9S', { send_page_view: false });
+
+			document.addEventListener('astro:page-load', function () {
+				gtag('event', 'page_view', {
+					page_title: document.title,
+					page_location: window.location.href,
+					page_path: window.location.pathname + window.location.search,
+				});
+			});
+		</script>
 
 		<!-- Google Search Console Verification Hook -->
 		{import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION && (
@@ -114,14 +191,15 @@ const pageCtx = createPublicPageContext({
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 		<!-- Multilingual Hreflang Alternates for Static / Taxonomy Routes -->
-		{!content && hreflangLinks.map((item) => (
+		{!content && !noindex && hreflangLinks.map((item) => (
 			<link rel={item.rel} hreflang={item.hreflang} href={item.href} />
 		))}
 
-		<EmDashHead page={pageCtx} />
+		<Fragment set:html={headMetadataHtml} />
+		<Fragment set:html={headFragmentsHtml} />
 
 		{isHome && (
-			<script type="application/ld+json" set:html={JSON.stringify(build7cHomeJsonLd(locale))} />
+			<script type="application/ld+json" set:html={safeJsonLd(build7cHomeJsonLd(locale))} />
 		)}
 		<ClientRouter />
 

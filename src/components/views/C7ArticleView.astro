@@ -35,6 +35,7 @@ interface Props {
 		pageTitle?: string | null;
 		description?: string | null;
 		canonical?: string | null;
+		robots?: string | null;
 	};
 	image?: string | null;
 }
@@ -98,7 +99,13 @@ const articleJsonLd = isPost ? build7cArticleJsonLd({
 	pageTitle={seo.pageTitle}
 	description={seo.description}
 	canonical={seo.canonical}
+	robots={seo.robots}
 	image={ogImage}
+	articleMeta={isPost ? {
+		publishedTime: entry.data.publishedAt ? new Date(entry.data.publishedAt).toISOString() : null,
+		modifiedTime: (entry.data.updatedAt || entry.data.publishedAt) ? new Date(entry.data.updatedAt || entry.data.publishedAt).toISOString() : null,
+		author: authorName,
+	} : undefined}
 	content={{ collection, id: entry.data.id, slug }}
 >
 	<!-- Structured Data: Breadcrumbs & NewsArticle -->

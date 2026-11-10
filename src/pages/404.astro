@@ -17,7 +17,7 @@ const archiveUrl = get7cLocalizedPath("/posts", locale);
 Astro.response.status = 404;
 ---
 
-<Base title={`${t.errors.title_404} (404)`}>
+<Base title={`${t.errors.title_404} (404)`} noindex={true}>
 	<div style="text-align: center; padding: 5rem 1rem; max-width: 600px; margin: 0 auto;">
 		<span style="font-size: 5rem; font-weight: 700; color: var(--7c-sys-primary); line-height: 1; display: block; margin-bottom: 1rem;">
 			404
