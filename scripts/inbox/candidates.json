@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T09:58:16.441Z",
+  "updatedAt": "2026-11-10T11:58:34.487Z",
   "totalCandidates": 25,
   "categories": {
     "tech": [
@@ -55,6 +55,38 @@
         }
       },
       {
+        "id": "8460efe8221f1217",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "Seagate’s FireCuda Forge moves your data between a hard drive and SSD for better performance",
+        "link": "https://www.theverge.com/tech/1029665/seagate-firecuda-forge-hybrid-ssd-hard-drive-storage-alkemi-technology",
+        "pubDate": "2026-11-09T14:11:53-05:00",
+        "snippet": "Seagate announced a new external storage solution, called the FireCuda Forge, that combines the speed benefits of an SSD with the affordability of a higher-capacity hard drive. The Forge is the first drive that's powered by the company's new Alkemi intelligent storage platform, which learns how your data is used and re",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/seagate1.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "f6279578c2031ea4",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "Real Motors’ Project Ares is a cyberpunk fantasy made real",
+        "link": "https://www.theverge.com/transportation/1029837/real-motors-project-ares-electric-motorcycle-first-ride",
+        "pubDate": "2026-11-09T17:14:18-05:00",
+        "snippet": "Electrification has done wonderful things for motorcycle design. By getting rid of the engine and the fuel tank that supports it, designers have the freedom to do whatever they want, and the results have been occasionally brilliant. I'm a big fan of the vaguely retrofuturistic stylings of the Maeving RM2 and the quirky",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/2026-Real-Motors-Project-Ares-009.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
         "id": "5a616de111412960",
         "sourceName": "The Verge",
         "category": "tech",
@@ -64,38 +96,6 @@
         "pubDate": "2026-11-09T19:28:49-05:00",
         "snippet": "During Paramount Skydance's latest earnings call, CEO David Ellison said \"it's hard to imagine\" AI won't have a bigger impact on the film industry than CGI. In response to a question about the company's outlook for AI, Ellison said: \"I think when you zoom out and look at production, AI really has the potential to [&#82",
         "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/gettyimages-2274329497.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
-        "id": "d916d20f0c2ff987",
-        "sourceName": "The Verge",
-        "category": "tech",
-        "lang": "en",
-        "title": "What could China get from Jensen Huang?",
-        "link": "https://www.theverge.com/ai-artificial-intelligence/1030328/what-could-china-get-from-jensen-huang",
-        "pubDate": "2026-11-09T19:07:10-05:00",
-        "snippet": "It's difficult to overstate Nvidia's power in today's AI landscape. The company's chips are the bedrock upon which advanced AI technology in the US is being built, and demand has consistently outpaced supply for years. Nvidia has also been an influential investor in a wide range of up-and-coming AI companies in recent ",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STKP210_JENSEN_HUANG_A.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
-        "id": "f19a891631a3a897",
-        "sourceName": "The Verge",
-        "category": "tech",
-        "lang": "en",
-        "title": "Here’s what Trump said he knew about Jensen Huang",
-        "link": "https://www.theverge.com/tech/1030446/trump-jensen-huang-press-conference",
-        "pubDate": "2026-11-09T19:02:17-05:00",
-        "snippet": "President Trump held a White House press briefing earlier today and responded to several questions about his knowledge of Nvidia CEO Jensen Huang's affair with an alleged Chinese spy. Huang said this weekend that he had been \"&#8203;&#8203;unfaithful\" to his wife, and the company has opened an investigation into Huang.",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/gettyimages-2297774940.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "isOriginalImage": true,
         "author": {
           "name": "Elang Elano",
@@ -120,23 +120,6 @@
         }
       },
       {
-        "id": "a7960be07bd300e2",
-        "sourceName": "Ars Technica",
-        "category": "tech",
-        "lang": "en",
-        "title": "Man who lost $308,000 on sports bets sues Kalshi for offering illegal gambling",
-        "link": "https://arstechnica.com/tech-policy/2026/11/man-who-lost-308000-on-sports-bets-sues-kalshi-for-offering-illegal-gambling/",
-        "pubDate": "Mon, 09 Nov 2026 21:13:39 +0000",
-        "snippet": "Lawsuit demands Kalshi return losses because online betting is illegal in Washington.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/kalshi-baseball-1152x648-1794257974.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
         "id": "55fb9d832f2c3260",
         "sourceName": "Ars Technica",
         "category": "tech",
@@ -152,19 +135,36 @@
           "name": "Elang Elano",
           "byline": "0100MUNS3DJPCA4539BDBEB12A"
         }
+      },
+      {
+        "id": "192335266dc05c83",
+        "sourceName": "Ars Technica",
+        "category": "tech",
+        "lang": "en",
+        "title": "Vulnerability that lets hackers SSH into Linux devices is under active exploitation",
+        "link": "https://arstechnica.com/security/2026/11/vulnerability-that-lets-hackers-ssh-into-linux-devices-is-under-active-exploitation/",
+        "pubDate": "Mon, 09 Nov 2026 19:41:34 +0000",
+        "snippet": "\"*sshole\" poses a serious threat to Internet security.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2023/07/exploit-vulnerability-security.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
       }
     ],
     "game": [
       {
-        "id": "e4139fb4fe9986a5",
+        "id": "e8b4a6dbdd64ff74",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "Warhammer 40K: Rogue Trader follow-up Dark Heresy will launch at the end of January",
-        "link": "https://www.pcgamer.com/games/rpg/warhammer-40k-rogue-trader-follow-up-dark-heresy-will-launch-at-the-end-of-january/",
-        "pubDate": "Mon, 09 Nov 2026 17:06:59 +0000",
-        "snippet": "Gettin' heretical with it.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/bN44RWjVnGBrsfiBwprcpM-1920-80.jpg",
+        "title": "Phasmophobia raises over $200,000 for charity in the annual Ghost Hunts for Hearts collaboration with the American Heart Association",
+        "link": "https://www.pcgamer.com/games/horror/phasmophobia-raises-over-usd200-000-for-charity-in-the-annual-ghost-hunts-for-hearts-collaboration-with-the-american-heart-association/",
+        "pubDate": "Tue, 10 Nov 2026 11:17:09 +0000",
+        "snippet": "Players have managed to double the charitable donations reached last year.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/Du7wdZLvxPiyAwoZqvRpqN-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -173,15 +173,15 @@
         }
       },
       {
-        "id": "a7a04bceabe0d593",
+        "id": "c22f62e3e88f1fe7",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "Jensen Huang’s affair with alleged Chinese spy highlights how the GPU company’s dealings are now everyone’s business",
-        "link": "https://www.pcgamer.com/hardware/graphics-cards/jensen-huangs-affair-with-alleged-chinese-spy-highlights-how-the-gpu-companys-dealings-are-now-everyones-business/",
-        "pubDate": "Mon, 09 Nov 2026 16:56:37 +0000",
-        "snippet": "He used to sell gaming GPUs, now he's in the middle of a geopolitical quagmire.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/AJ9jxxAbTzLa4x6JjA8j6k-1920-80.png",
+        "title": "Warhammer Survivors review: More than just Vampire Survivors with Space Marines",
+        "link": "https://www.pcgamer.com/games/roguelike/warhammer-survivors-review/",
+        "pubDate": "Tue, 10 Nov 2026 11:02:26 +0000",
+        "snippet": "It's more than Vampire Survivors with Space Marines, but it is Vampire Survivors with Space Marines.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/pUAtdsuf3rVrGneiJe6qXc-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -190,15 +190,15 @@
         }
       },
       {
-        "id": "a096cc8364c8ca06",
+        "id": "f4deab423b4d868b",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "The Golden Joystick Awards return this Wednesday—here's how to watch them",
-        "link": "https://www.pcgamer.com/gaming-industry/events-conferences/the-golden-joystick-awards-return-this-wednesday-heres-how-to-watch-them/",
-        "pubDate": "Mon, 09 Nov 2026 15:47:21 +0000",
-        "snippet": "A golden joystick would be pretty heavy, I bet.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/8cwHruc7CjmQWEBmKthDWX-1920-80.jpg",
+        "title": "I have converted GTA 5 to its final form: A GTA 6 countdown app",
+        "link": "https://www.pcgamer.com/games/grand-theft-auto/i-have-converted-gta-5-to-its-final-form-a-gta-6-countdown-app/",
+        "pubDate": "Tue, 10 Nov 2026 10:52:35 +0000",
+        "snippet": "We should all be so lucky.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/Uhxf4WLX2y9A75bEUnq5h7-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -207,15 +207,32 @@
         }
       },
       {
-        "id": "4e2dd407e3a3cc7b",
+        "id": "3f4305c32902cc63",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "Nintendo Adds eShop Gifting to Switch Consoles",
-        "link": "https://www.polygon.com/nintendo-switch-2-digital-games-eshop-gifts/",
-        "pubDate": "Tue, 10 Nov 2026 09:52:40 GMT",
-        "snippet": "Nintendo Switch update introduces the ability to gift digital software purchased on the eShop.",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2025/12/mario-christmas.jpg",
+        "title": "A Sci-Fi Novel Just Won the Booker Prize for the First Time",
+        "link": "https://www.polygon.com/booker-prize-2026-the-end-of-everything-harrison-sci-fi/",
+        "pubDate": "Tue, 10 Nov 2026 10:37:10 GMT",
+        "snippet": "M. John Harrison is the first science fiction author to win the Booker Prize, receiving the award for his novel The End of Everything",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/bp-2022_trophy-02.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
+      {
+        "id": "1d52b6c1a8c08d8c",
+        "sourceName": "Polygon",
+        "category": "game",
+        "lang": "en",
+        "title": "Warhammer Survivors Isn’t Good Enough to Be a Vampire Survivors Replacement",
+        "link": "https://www.polygon.com/warhammer-survivors-impressions/",
+        "pubDate": "Tue, 10 Nov 2026 10:00:18 GMT",
+        "snippet": "Warhammer Survivors isn’t quite good enough to be a Vampire Survivors replacement, but it’s the next best thing",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2025/11/warhammer-survivors-screenshot-brother-luca-s-might.png",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -233,23 +250,6 @@
         "pubDate": "Tue, 10 Nov 2026 09:00:17 GMT",
         "snippet": "Director Takashi Yamazaki made his new Godzilla movie in direct response to Christopher Nolan's film",
         "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/mcdinte_ec196.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Andoru Ray",
-          "byline": "0100MUNS3DJL68FA69B26FACE9"
-        }
-      },
-      {
-        "id": "68d567e23d3af2ef",
-        "sourceName": "Polygon",
-        "category": "game",
-        "lang": "en",
-        "title": "10 Funniest 'Far Side' Comics About Dinosaurs That Prove Gary Larson Is a Mad Genius",
-        "link": "https://www.polygon.com/best-far-side-comics-dinosaurs/",
-        "pubDate": "Tue, 10 Nov 2026 08:20:17 GMT",
-        "snippet": "The Far Side ran from 1980 until 1995 and Larson created over 4,000 strips during that time. Dozens of them featured dinosaurs.",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/screen-shot-2026-09-01-at-9-35-25-am.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -329,14 +329,14 @@
         "originalArticleUrl": "https://pasardana.id/news/2026/11/10/kementerian-ekraf-dorong-notyourwife-bawa-musik-indie-indonesia-ke-panggung-nyc"
       },
       {
-        "id": "8ac6a808e7cb128b",
+        "id": "8d6f4efdc228c88f",
         "sourceName": "Google News (Musik Indonesia) [ANTARA News Gorontalo]",
         "category": "musik",
         "lang": "id",
         "title": "Musisi sebut musik bisa jadi sarana untuk membangun kesadaran",
-        "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQZjhJVDd1T3Fpd3NzWFUwbW9aZF9OTlloT2tyY2pFaGdqRjBUZGVyQ1NieU9tTnAwX3pGQjI1SERVcTAzZXQ1SWpkcDh5LXBVbFNrMVpEc09ZNTNZNHlzX3R4NjNtQ09ZMzdDOHdCTUgxeklWUnJBWEJvbC00R2ZsM2hZd2R5enBZdFhNeVEzbWFMdmppWk5qR2ZUSDZyUDVvQXNDMFd3LTJDWnQt0gGyAUFVX3lxTE5zQkRJMGtvWGdIdTZ3U196UHoyR2NuM2pDVGEycllVblJPUWgzR3BfUzM2dGlmaDBPa29BUkF0UTByNzVxUk1nSXYzbV9ZRDVrUmZVRmhZY0ROaWFITHBCa2szejZ0eVRweG9WQ3JNMUZSNUdycUtjUElSYlNxUUdvY1RyNUNoZG15elJjRFV6UnI3cnV6MnFTX2RmaVpXdXZOS2Q3SUw2QWFKVkdHRE04Y2c?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOc0JESTBrb1hnSHU2d1NfelB6MkdjbjNqQ1RhMnJZVW5ST1FoM0dwX1MzNnRpZmgwT2tvQVJBdFEwcjc1cVJNZ0l2M21fWUQ1a1JmVUZoWWNETmlhSExwQmtrM3o2dHlUcHhvVkNyTTFGUjVHcnFLY1BJUmJTcVFHb2NUcjVDaGRteXpSY0RVelJyN3J1ejJxU19kZmlaV3V2TktkN0lMNkFhSlZHR0RNOGNn0gGyAUFVX3lxTE5zQkRJMGtvWGdIdTZ3U196UHoyR2NuM2pDVGEycllVblJPUWgzR3BfUzM2dGlmaDBPa29BUkF0UTByNzVxUk1nSXYzbV9ZRDVrUmZVRmhZY0ROaWFITHBCa2szejZ0eVRweG9WQ3JNMUZSNUdycUtjUElSYlNxUUdvY1RyNUNoZG15elJjRFV6UnI3cnV6MnFTX2RmaVpXdXZOS2Q3SUw2QWFKVkdHRE04Y2c?oc=5",
         "pubDate": "Tue, 10 Nov 2026 09:29:32 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQZjhJVDd1T3Fpd3NzWFUwbW9aZF9OTlloT2tyY2pFaGdqRjBUZGVyQ1NieU9tTnAwX3pGQjI1SERVcTAzZXQ1SWpkcDh5LXBVbFNrMVpEc09ZNTNZNHlzX3R4NjNtQ09ZMzdDOHdCTUgxeklWUnJBWEJvbC00R2ZsM2hZd2R5enBZdFhNeVEzbWFMdmppWk5qR2ZUSDZyUDVvQXNDMFd3LTJDWnQt0gGyAUFVX3lxTE5zQkRJMGtvWGdIdTZ3U196UH",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxOc0JESTBrb1hnSHU2d1NfelB6MkdjbjNqQ1RhMnJZVW5ST1FoM0dwX1MzNnRpZmgwT2tvQVJBdFEwcjc1cVJNZ0l2M21fWUQ1a1JmVUZoWWNETmlhSExwQmtrM3o2dHlUcHhvVkNyTTFGUjVHcnFLY1BJUmJTcVFHb2NUcjVDaGRteXpSY0RVelJyN3J1ejJxU19kZmlaV3V2TktkN0lMNkFhSlZHR0RNOGNn0gGyAUFVX3lxTE5zQkRJMGtvWGdIdT",
         "imageUrl": "https://img.antaranews.com/cache/1200x800/2026/11/10/tempImageNzsZBm.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
@@ -344,25 +344,61 @@
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://gorontalo.antaranews.com/berita/435111/musisi-sebut-musik-bisa-jadi-sarana-untuk-membangun-kesadaran"
+        "originalArticleUrl": "https://gorontalo.antaranews.com/amp/berita/435111/musisi-sebut-musik-bisa-jadi-sarana-untuk-membangun-kesadaran"
       },
       {
-        "id": "ee5145d62f59f552",
+        "id": "579fadaa1a898874",
         "sourceName": "Google News (Musik Indonesia) [Kompas.com]",
         "category": "musik",
         "lang": "id",
-        "title": "GSrek Indonesia Rayakan 11 Tahun, Gelar Festival Otomotif dan Musik",
-        "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNbVJhckhSMUlYMmRCdnh1Tk1JRk9lZUtVVnEwRmdfSEpNc0U4TkZ2VXBqT05zekhyejBVc2FNRk1rMVhLYkpXSE53LW4xRWtqLU14ZGNHQkNCVVEtbEEzWU5IbUNXcUVyaEJyM210ZVM3eWlVY1JVODQ0Y0RoamN5b0tPdVJ2cE1MRDBwYWlDR0FLbDdJdk5ONVVIaDhEN2lQUlpEVTI1UHVkeUF6STlSMnJUWDhHVHQtdmZKYUg2bWd2Y2EzajZnTGFQU1BzM2YxVFRIa185NW4?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 01:52:00 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMi2AFBVV95cUxNbVJhckhSMUlYMmRCdnh1Tk1JRk9lZUtVVnEwRmdfSEpNc0U4TkZ2VXBqT05zekhyejBVc2FNRk1rMVhLYkpXSE53LW4xRWtqLU14ZGNHQkNCVVEtbEEzWU5IbUNXcUVyaEJyM210ZVM3eWlVY1JVODQ0Y0RoamN5b0tPdVJ2cE1MRDBwYWlDR0FLbDdJdk5ONVVIaDhEN2lQUlpEVTI1UHVkeUF6STlSMnJUWDhHVHQtdmZKYUg2bWd2Y2EzajZnTG",
-        "imageUrl": "https://asset.kompas.com/crops/26MkXlTVIpA3-1V18TcYOa4Hb34=/163x0:1783x1080/1200x675/filters:watermark(data/photo/2026/01/30/697c81750a668.png,0,-0,1)/data/photo/2026/11/10/6af2768eb0800.jpg",
+        "title": "GSrek Indonesia Rayakan 11 Tahun, Gelar Festival Otomotif dan Musik Halaman 2",
+        "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPZ0otd2NjTDZ1M0VzYndVc01SRmhvWjdnOG1MMnFDUFotOVZVNkNwaDQtdVhCS1VkVno2aG1mc0JFWG9ya25Ed3dLTW5tSlV5aFRwRjNXNXZVS01UTEZ1OW9sVm53S0piV2ZlSFYtek1rY0VORTZ2Y2h3aVlJY2pMd2NwRU11NHlxUlF0WjQtWkNfV0dRSl9rcm0zcUdCN1RCaXE5R25IeEUyS09rWG9Nc2pJWGkxV2dGUThXSjA0Qm1UZGVMSEtB?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 09:35:15 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxPZ0otd2NjTDZ1M0VzYndVc01SRmhvWjdnOG1MMnFDUFotOVZVNkNwaDQtdVhCS1VkVno2aG1mc0JFWG9ya25Ed3dLTW5tSlV5aFRwRjNXNXZVS01UTEZ1OW9sVm53S0piV2ZlSFYtek1rY0VORTZ2Y2h3aVlJY2pMd2NwRU11NHlxUlF0WjQtWkNfV0dRSl9rcm0zcUdCN1RCaXE5R25IeEUyS09rWG9Nc2pJWGkxV2dGUThXSjA0Qm1UZGVMSEtB?o",
+        "imageUrl": "https://asset.kompas.com/crops/uPoIeCE7v_60AcrgNVD7hNZtiFM=/451x0:5515x3376/750x500/data/photo/2026/05/12/6a02dfe17fdca.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://otomotif.kompas.com/read/2026/11/10/085200815/gsrek-indonesia-rayakan-11-tahun-gelar-festival-otomotif-dan-musik?source=personalisasi"
+        "originalArticleUrl": "https://otomotif.kompas.com/image/2026/11/10/085200815/gsrek-indonesia-rayakan-11-tahun-gelar-festival-otomotif-dan-musik?page=2"
+      },
+      {
+        "id": "1092c18d98db4819",
+        "sourceName": "Google News (Musik Indonesia) [JPNN.com]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Perluas Karier Bermusik, Atta Rumnan Duet dengan Rossa di Sabah",
+        "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOZmdOX2E2WXJCZ0FLeV9KNE8zdU1lR1ZyVUFIeXhIWnUwZlhRbEJPR3B0TnpaVlNIMTNvczNUbGFsRXk1cXlRSkcyRENsZFA0OW4zTVNzTnlldVM5SGtFX3h3LTl1Z3JydUlLbUNUYXJpNkRhV2gzU3RkeDV5VTFuUGpNRmdTRzdxSHhLNi1SajFDZw?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 10:47:12 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxOZmdOX2E2WXJCZ0FLeV9KNE8zdU1lR1ZyVUFIeXhIWnUwZlhRbEJPR3B0TnpaVlNIMTNvczNUbGFsRXk1cXlRSkcyRENsZFA0OW4zTVNzTnlldVM5SGtFX3h3LTl1Z3JydUlLbUNUYXJpNkRhV2gzU3RkeDV5VTFuUGpNRmdTRzdxSHhLNi1SajFDZw?oc=5\" target=\"_blank\">Perluas Karier Bermusik, Atta Rumnan Duet dengan ",
+        "imageUrl": "https://cloud.jpnn.com/photo/arsip/normal/2026/11/10/duet-rossa-dan-atta-rumnan-foto-dok-pribadi-ovd0z-sva1.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://www.jpnn.com/news/perluas-karier-bermusik-atta-rumnan-duet-dengan-rossa-di-sabah"
+      },
+      {
+        "id": "33a2bd0fdf07b903",
+        "sourceName": "Google News (Musik Indonesia) [Medcom.id]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Mario G. Klau dan Lyodra Kembali Berkolaborasi Lewat Lagu \"Gemini\"",
+        "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNYVowaHJUVzJGN0xwb2tNbzRpcmNKQWpXLWVCWTNMTWRGZHB3d2ZfOUNYeTlGVU1nUktWR3g1SW1wdlZNM1JoNXFjbjhkTnZYOVFTNlppdS1HeWdvWHFCTXRCVnVkeGU1aWd3YVdINFdDYzVMMV9VeDNvaWJncUhHNUt6VEV5alFNQkFrQ2psTkg1ZXJLWXBzVEk4XzBKd19DTGJPRDRucXVkZ1Rw?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 09:21:00 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxNYVowaHJUVzJGN0xwb2tNbzRpcmNKQWpXLWVCWTNMTWRGZHB3d2ZfOUNYeTlGVU1nUktWR3g1SW1wdlZNM1JoNXFjbjhkTnZYOVFTNlppdS1HeWdvWHFCTXRCVnVkeGU1aWd3YVdINFdDYzVMMV9VeDNvaWJncUhHNUt6VEV5alFNQkFrQ2psTkg1ZXJLWXBzVEk4XzBKd19DTGJPRDRucXVkZ1Rw?oc=5\" target=\"_blank\">Mario G. Klau d",
+        "imageUrl": "https://cdn.medcom.id/dynamic/content/2026/11/10/1853785/YWHA64ec8y.jpeg?w=1024",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://www.medcom.id/hiburan/musik/0kpq6ZqK-mario-g-klau-dan-lyodra-kembali-berkolaborasi-lewat-lagu-gemini"
       },
       {
         "id": "42ad4ffc5a9aaffd",
@@ -399,42 +435,6 @@
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
         "originalArticleUrl": "https://rri.co.id/jakarta/hiburan/2885321/afgan-raih-piala-ami-awards-2026-lewat-kategori-rb"
-      },
-      {
-        "id": "3e85e010814ca743",
-        "sourceName": "Google News (Musik Indonesia) [KejarFakta.co]",
-        "category": "musik",
-        "lang": "id",
-        "title": "Ditantang Bassist, Vokalis Billkiss Akhirnya Nulis Lagu Lewat Single \"Tjukup Kamoe\"",
-        "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQZk5XV1ludFFvNWJWSkVXWlhkLU81eWlLRS1ZdkNZb1hkMElLalR5clRSc1N1cXRKcThTbk1uMnFKb2JZZlZ2VFN5bFNTTWY5TURxWkQtZ2NPUHJMWkVjRXBpOWNSRVFUdXp1LVBXX0FkejN0MW9BSlhiX3JoaGFyWkJQczZTNndzS2x0M2RSRll1X1pNM3BUSjR4b2pKelRMSlZPaXZtQ2pnT1VJellPdWNIRFYxVWs5NkdB?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 06:40:00 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxQZk5XV1ludFFvNWJWSkVXWlhkLU81eWlLRS1ZdkNZb1hkMElLalR5clRSc1N1cXRKcThTbk1uMnFKb2JZZlZ2VFN5bFNTTWY5TURxWkQtZ2NPUHJMWkVjRXBpOWNSRVFUdXp1LVBXX0FkejN0MW9BSlhiX3JoaGFyWkJQczZTNndzS2x0M2RSRll1X1pNM3BUSjR4b2pKelRMSlZPaXZtQ2pnT1VJellPdWNIRFYxVWs5NkdB?oc=5\" target=\"_bl",
-        "imageUrl": "https://jabar.kejarfakta.co/./i/posts/2026/5c99407d14ba9ab8a5ba198def4d233b_thumb.jpeg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://jabar.kejarfakta.co/news/68548/ditantang-bassist-vokalis-billkiss-akhirnya-nulis-lagu-lewat-single-tjukup-kamoe"
-      },
-      {
-        "id": "0dd3b14b189aa9dd",
-        "sourceName": "Google News (Musik Indonesia) [Limapagi]",
-        "category": "musik",
-        "lang": "id",
-        "title": "GSrek Indonesia Gelar Festival Otomotif dan Musik 2026",
-        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5RekZROWZKeTlrUm1VeWhXM3Ita0ZNV3ZUMXVadEJEYXk3aTViRE9wVTZiSXhJamRMUHloQnJMVFlyb0hBR0duemVfZmdsd2M1d3NtTUxrLU5xXzAzZGFrZldyS3Q?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 02:02:25 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5RekZROWZKeTlrUm1VeWhXM3Ita0ZNV3ZUMXVadEJEYXk3aTViRE9wVTZiSXhJamRMUHloQnJMVFlyb0hBR0duemVfZmdsd2M1d3NtTUxrLU5xXzAzZGFrZldyS3Q?oc=5\" target=\"_blank\">GSrek Indonesia Gelar Festival Otomotif dan Musik 2026</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Limapagi</font>",
-        "imageUrl": "https://cdn.limapagi.id/media/images/2026/11/NYFgApK9bS.jpeg?location=1&width=1200&height=674&quality=80&watermark=1",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://www.limapagi.id/gesrek-festival-otomotif-musik"
       }
     ]
   }
