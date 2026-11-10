@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T11:58:34.487Z",
+  "updatedAt": "2026-11-10T19:58:08.849Z",
   "totalCandidates": 25,
   "categories": {
     "tech": [
@@ -55,15 +55,15 @@
         }
       },
       {
-        "id": "8460efe8221f1217",
+        "id": "ba442883dc09ea49",
         "sourceName": "The Verge",
         "category": "tech",
         "lang": "en",
-        "title": "Seagate’s FireCuda Forge moves your data between a hard drive and SSD for better performance",
-        "link": "https://www.theverge.com/tech/1029665/seagate-firecuda-forge-hybrid-ssd-hard-drive-storage-alkemi-technology",
-        "pubDate": "2026-11-09T14:11:53-05:00",
-        "snippet": "Seagate announced a new external storage solution, called the FireCuda Forge, that combines the speed benefits of an SSD with the affordability of a higher-capacity hard drive. The Forge is the first drive that's powered by the company's new Alkemi intelligent storage platform, which learns how your data is used and re",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/seagate1.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "title": "The PlayStation Plus PC app is shutting down next month",
+        "link": "https://www.theverge.com/games/1031144/sony-playstation-plus-windows-pc-app-shutting-down",
+        "pubDate": "2026-11-10T14:40:52-05:00",
+        "snippet": "Sony is retiring the PlayStation Plus app for PC on December 10th. Sony says it will notify users directly about the shutdown. The app allowed PlayStation Plus Premium subscribers to stream certain games on PC, but according to Sony, there aren't many people using that perk: \"With a very small number of eligible PlaySt",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23426446/playstation_plus_logo_blog.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "isOriginalImage": true,
         "author": {
           "name": "Elang Elano",
@@ -71,15 +71,15 @@
         }
       },
       {
-        "id": "f6279578c2031ea4",
+        "id": "6c15fe785002c4b6",
         "sourceName": "The Verge",
         "category": "tech",
         "lang": "en",
-        "title": "Real Motors’ Project Ares is a cyberpunk fantasy made real",
-        "link": "https://www.theverge.com/transportation/1029837/real-motors-project-ares-electric-motorcycle-first-ride",
-        "pubDate": "2026-11-09T17:14:18-05:00",
-        "snippet": "Electrification has done wonderful things for motorcycle design. By getting rid of the engine and the fuel tank that supports it, designers have the freedom to do whatever they want, and the results have been occasionally brilliant. I'm a big fan of the vaguely retrofuturistic stylings of the Maeving RM2 and the quirky",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/2026-Real-Motors-Project-Ares-009.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "title": "Starlink Mini 2 adds a swappable battery",
+        "link": "https://www.theverge.com/tech/1031028/spacex-starlink-mini-2-satellite-internet-terminal-hot-swap-battery",
+        "pubDate": "2026-11-10T14:19:55-05:00",
+        "snippet": "SpaceX announced a new version of its all-in-one satellite internet terminal that integrates a dish, Wi-Fi router, and now a battery into a single device about the size of a laptop. According to some users on X who shared screenshots of invitations to order Starlink Mini 2, the dish is priced at $999, which includes [&",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/starlinkmini2.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "isOriginalImage": true,
         "author": {
           "name": "Elang Elano",
@@ -87,15 +87,15 @@
         }
       },
       {
-        "id": "5a616de111412960",
+        "id": "13a445521080305c",
         "sourceName": "The Verge",
         "category": "tech",
         "lang": "en",
-        "title": "David Ellison says AI could be the ‘biggest creative unlock in modern history’",
-        "link": "https://www.theverge.com/entertainment/1030510/paramount-skydance-david-ellison-ai",
-        "pubDate": "2026-11-09T19:28:49-05:00",
-        "snippet": "During Paramount Skydance's latest earnings call, CEO David Ellison said \"it's hard to imagine\" AI won't have a bigger impact on the film industry than CGI. In response to a question about the company's outlook for AI, Ellison said: \"I think when you zoom out and look at production, AI really has the potential to [&#82",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/gettyimages-2274329497.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "title": "The US is winning the AI race. Jensen Huang could have blown it",
+        "link": "https://www.theverge.com/ai-artificial-intelligence/1031063/jensen-huang-ai-race-us-china-spy",
+        "pubDate": "2026-11-10T14:31:58-05:00",
+        "snippet": "As espionage targets go, Jensen Huang is perhaps one of the least surprising on Earth. The Nvidia CEO runs one of the world's most valuable companies, controls the in-demand technology fueling the AI boom, and is cozy with presidents, CEOs, and all manner of important people. He also wears a cool leather jacket. Which ",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/gettyimages-2285784039.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "isOriginalImage": true,
         "author": {
           "name": "Elang Elano",
@@ -103,15 +103,15 @@
         }
       },
       {
-        "id": "81ff7bf1386fe89d",
+        "id": "ee347883ec33a80c",
         "sourceName": "Ars Technica",
         "category": "tech",
         "lang": "en",
-        "title": "DCU shake-up: James Gunn and Peter Safran out post-merger",
-        "link": "https://arstechnica.com/culture/2026/11/dcu-shake-up-james-gunn-and-peter-safran-out-post-merger/",
-        "pubDate": "Mon, 09 Nov 2026 21:55:35 +0000",
-        "snippet": "Producer and former Kevin Feige protege Jeremy Latcham will replace Gunn and Safran.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/09/lanterns3-1152x648.jpg",
+        "title": "Steam Deck performance gets a reality check with Valve's new FPS data",
+        "link": "https://arstechnica.com/gaming/2026/11/steam-deck-performance-gets-a-reality-check-with-valves-new-fps-data/",
+        "pubDate": "Tue, 10 Nov 2026 17:26:44 +0000",
+        "snippet": "Benchmark tools for generic gaming rigs could be coming soon.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2023/11/IMG_8144-scaled-1152x648-1794329069.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -120,15 +120,15 @@
         }
       },
       {
-        "id": "55fb9d832f2c3260",
+        "id": "e423c600121fcf6d",
         "sourceName": "Ars Technica",
         "category": "tech",
         "lang": "en",
-        "title": "A Sam Altman parody offers an amusing lesson in memory management",
-        "link": "https://arstechnica.com/gadgets/2026/11/a-sam-altman-parody-offers-an-amusing-lesson-in-memory-management/",
-        "pubDate": "Mon, 09 Nov 2026 20:49:09 +0000",
-        "snippet": "We verified the RAM numbers are real without sending any emails to OpenAI.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-1723107474-1024x648.jpg",
+        "title": "High oil prices have led to a dip in global carbon emissions",
+        "link": "https://arstechnica.com/science/2026/11/carbon-emissions-are-down-this-year-but-that-probably-wont-last/",
+        "pubDate": "Tue, 10 Nov 2026 16:29:27 +0000",
+        "snippet": "Bucking recent trends, fossil fuel emissions look to be down 0.4 percent.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/GettyImages-2297120164-1152x648.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -137,15 +137,15 @@
         }
       },
       {
-        "id": "192335266dc05c83",
+        "id": "b5a8c724d50f341d",
         "sourceName": "Ars Technica",
         "category": "tech",
         "lang": "en",
-        "title": "Vulnerability that lets hackers SSH into Linux devices is under active exploitation",
-        "link": "https://arstechnica.com/security/2026/11/vulnerability-that-lets-hackers-ssh-into-linux-devices-is-under-active-exploitation/",
-        "pubDate": "Mon, 09 Nov 2026 19:41:34 +0000",
-        "snippet": "\"*sshole\" poses a serious threat to Internet security.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2023/07/exploit-vulnerability-security.jpg",
+        "title": "One space station company sues another for copying its work",
+        "link": "https://arstechnica.com/space/2026/11/one-space-station-company-sues-another-for-copying-its-work/",
+        "pubDate": "Tue, 10 Nov 2026 16:17:51 +0000",
+        "snippet": "\"NASA advised that Vast’s submission in some locations substituted 'the PAM Provider' for Axiom\"",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/KSC-20230521-PH-CSH01_0001large-1152x648.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -156,15 +156,15 @@
     ],
     "game": [
       {
-        "id": "e8b4a6dbdd64ff74",
+        "id": "efa2d650086724a5",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "Phasmophobia raises over $200,000 for charity in the annual Ghost Hunts for Hearts collaboration with the American Heart Association",
-        "link": "https://www.pcgamer.com/games/horror/phasmophobia-raises-over-usd200-000-for-charity-in-the-annual-ghost-hunts-for-hearts-collaboration-with-the-american-heart-association/",
-        "pubDate": "Tue, 10 Nov 2026 11:17:09 +0000",
-        "snippet": "Players have managed to double the charitable donations reached last year.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/Du7wdZLvxPiyAwoZqvRpqN-1920-80.jpg",
+        "title": "PlayStation Plus PC app is being shut down in December because less than 0.4% of eligible subscribers are using it",
+        "link": "https://www.pcgamer.com/gaming-industry/playstation-plus-pc-app-is-being-shut-down-in-december-because-less-than-0-4-percent-of-eligible-subscribers-are-using-it/",
+        "pubDate": "Tue, 10 Nov 2026 18:57:18 +0000",
+        "snippet": "Yes, this fits with Sony's broader pullback from PC, but the real reason the app is \"retiring\" is a simple lack of interest.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/wkTrHGFcrPxmNFFGDeyYtH-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -173,32 +173,15 @@
         }
       },
       {
-        "id": "c22f62e3e88f1fe7",
+        "id": "c0041b3c75eddfb3",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "Warhammer Survivors review: More than just Vampire Survivors with Space Marines",
-        "link": "https://www.pcgamer.com/games/roguelike/warhammer-survivors-review/",
-        "pubDate": "Tue, 10 Nov 2026 11:02:26 +0000",
-        "snippet": "It's more than Vampire Survivors with Space Marines, but it is Vampire Survivors with Space Marines.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/pUAtdsuf3rVrGneiJe6qXc-1920-80.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Andoru Ray",
-          "byline": "0100MUNS3DJL68FA69B26FACE9"
-        }
-      },
-      {
-        "id": "f4deab423b4d868b",
-        "sourceName": "PC Gamer",
-        "category": "game",
-        "lang": "en",
-        "title": "I have converted GTA 5 to its final form: A GTA 6 countdown app",
-        "link": "https://www.pcgamer.com/games/grand-theft-auto/i-have-converted-gta-5-to-its-final-form-a-gta-6-countdown-app/",
-        "pubDate": "Tue, 10 Nov 2026 10:52:35 +0000",
+        "title": "I installed a GTA 5 mod that makes it rain human beings, and no I don't know why either",
+        "link": "https://www.pcgamer.com/games/grand-theft-auto/i-installed-a-gta-5-mod-that-makes-it-rain-human-beings-and-no-i-dont-know-why-either/",
+        "pubDate": "Tue, 10 Nov 2026 18:00:00 +0000",
         "snippet": "We should all be so lucky.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/Uhxf4WLX2y9A75bEUnq5h7-1920-80.jpg",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/9BVTXEXPh2BBPMKmRjBnrU-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -207,15 +190,15 @@
         }
       },
       {
-        "id": "3f4305c32902cc63",
-        "sourceName": "Polygon",
+        "id": "e51bba635f3b0216",
+        "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "A Sci-Fi Novel Just Won the Booker Prize for the First Time",
-        "link": "https://www.polygon.com/booker-prize-2026-the-end-of-everything-harrison-sci-fi/",
-        "pubDate": "Tue, 10 Nov 2026 10:37:10 GMT",
-        "snippet": "M. John Harrison is the first science fiction author to win the Booker Prize, receiving the award for his novel The End of Everything",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/bp-2022_trophy-02.jpg",
+        "title": "Note to self: If playing Call of Duty in an airport, don't say words like 'bomb' lest you want to evacuate an entire plane",
+        "link": "https://www.pcgamer.com/games/call-of-duty/note-to-self-if-playing-call-of-duty-in-an-airport-dont-say-words-like-bomb-lest-you-want-to-evacuate-an-entire-plane/",
+        "pubDate": "Tue, 10 Nov 2026 17:15:33 +0000",
+        "snippet": "Oopsie daisy.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/5EWnGC9pvFVHwRsPbdM4uV-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -224,15 +207,15 @@
         }
       },
       {
-        "id": "1d52b6c1a8c08d8c",
+        "id": "81d2275a42079a2e",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "Warhammer Survivors Isn’t Good Enough to Be a Vampire Survivors Replacement",
-        "link": "https://www.polygon.com/warhammer-survivors-impressions/",
-        "pubDate": "Tue, 10 Nov 2026 10:00:18 GMT",
-        "snippet": "Warhammer Survivors isn’t quite good enough to be a Vampire Survivors replacement, but it’s the next best thing",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2025/11/warhammer-survivors-screenshot-brother-luca-s-might.png",
+        "title": "Big Walk AI Controversy Is a GOTY Awards Twist Sparking a Bigger Debate",
+        "link": "https://www.polygon.com/big-walks-ai-controversy-goty-2026/",
+        "pubDate": "Tue, 10 Nov 2026 19:25:34 GMT",
+        "snippet": "Big Walk faces a hurdle ahead of GOTY season, as IGF jury members draw a hardline stance against voting for games that have any AI use whatsoever.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/06/big-walk.png",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -241,15 +224,32 @@
         }
       },
       {
-        "id": "8dea33e3a03b5cf3",
+        "id": "60b8448253813f5a",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "'Godzilla Minus Zero' Exposes the Biggest Problem with Christopher Nolan's World War II Epic",
-        "link": "https://www.polygon.com/godzilla-minus-zero-christopher-nolan-oppenheimer-nuclear-war/",
-        "pubDate": "Tue, 10 Nov 2026 09:00:17 GMT",
-        "snippet": "Director Takashi Yamazaki made his new Godzilla movie in direct response to Christopher Nolan's film",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/mcdinte_ec196.jpg",
+        "title": "Nobody Said The Legend of Zelda: Ocarina of Time Was This Funny",
+        "link": "https://www.polygon.com/zelda-ocarina-time-remake-funny-moments/",
+        "pubDate": "Tue, 10 Nov 2026 19:19:58 GMT",
+        "snippet": "It may be impossible to play Zelda: Ocarina of Time totally free of spoilers in 2026, but the jokes are 100% fresh.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/zeldaootremake_guide_princessruto_lead.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
+      {
+        "id": "3dd05486cb21b5f1",
+        "sourceName": "Polygon",
+        "category": "game",
+        "lang": "en",
+        "title": "2027's Most Stylish Action Game Looks Spectacular in First Official Gameplay",
+        "link": "https://www.polygon.com/tsarevna-official-gameplay-trailer-dancer-slasher-game/",
+        "pubDate": "Tue, 10 Nov 2026 19:07:20 GMT",
+        "snippet": "Tsarevna is an upcoming hack-and-slash action game that uses motion capture from a real ballerina for its dance-inspired melee combat.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/tsarevna-screenshot.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -347,6 +347,42 @@
         "originalArticleUrl": "https://gorontalo.antaranews.com/amp/berita/435111/musisi-sebut-musik-bisa-jadi-sarana-untuk-membangun-kesadaran"
       },
       {
+        "id": "6dc474bceb37a1c1",
+        "sourceName": "Google News (Musik Indonesia) [GoodStats]",
+        "category": "musik",
+        "lang": "id",
+        "title": "10 Venue yang Paling Sering Menggelar Konser dan Festival Musik di Indonesia",
+        "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOdzE0NldtLXluS1JRUUVpd01RTjFqQmNQcUczQ0EzbmdyT2wwOGN1SGpSSUJNQ0tfa1dVdjdQQzRsM0JyTHhRQjBoSkc2c29xWVVTVHZJRWhlRHpUamZ5NnNGSGdSRUZpWXFPRnVySnhTUVJVZTVLZ2gyMUhqZW5LanBxckNxWUozNEdiX2VHQVNuRlYyREQzNEQ5WS0xSExvN0Q2VmN3d3BCUE51OHBxMV9BWk53dw?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 16:07:30 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxOdzE0NldtLXluS1JRUUVpd01RTjFqQmNQcUczQ0EzbmdyT2wwOGN1SGpSSUJNQ0tfa1dVdjdQQzRsM0JyTHhRQjBoSkc2c29xWVVTVHZJRWhlRHpUamZ5NnNGSGdSRUZpWXFPRnVySnhTUVJVZTVLZ2gyMUhqZW5LanBxckNxWUozNEdiX2VHQVNuRlYyREQzNEQ5WS0xSExvN0Q2VmN3d3BCUE51OHBxMV9BWk53dw?oc=5\" target=\"_blank\">1",
+        "imageUrl": "https://cdn.goodnewsfromindonesia.id/nyc/goodstats/uploads/infographics/original/2026/11/10/10-venue-yang-paling-sering-menggelar-konser-dan-festival-musik-di-indonesia-PzmXxh9X5J.jpg?tr=w-1200,h-1200,fo-center",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://goodstats.id/infographic/10-venue-yang-paling-sering-menggelar-konser-dan-festival-musik-di-indonesia-nm5dC"
+      },
+      {
+        "id": "d80eadeaf7cf33ad",
+        "sourceName": "Google News (Musik Indonesia) [KapanLagi.com]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Methosa Rilis 'Gemuruh Revolusi', Tuangkan Kekecewaan terhadap Kondisi Indonesia Lewat Musik",
+        "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPcEk5VjR0cUJZaFpTaElhei1iTVA3LTNzTkNnT0lWNnM4MHlfWTNWOXR5bmh4YS1FVGpaM1d0b1VDcGVoaEprR2tPUnA3QjczbFIza0RrLTZUcUQxaVE0QmxPMEFfS212Z05VVHNSdlQ4M1RIcVl3OHdpTmQ4azItNnhKOXo2SmxOVzZ3SkJHWnJCY2RGZEpxR3ItQnRzZEkwQ090TkVwS3dtMTV1ZUNyeWFCZVQ3VkZSQ1VIeDFNZU1ObkQ1RFFZTzFtVFVkUVYyQWxLM1ZzRzQ2d9IB3wFBVV95cUxPWF9HNk9BU2s4UXF4YjJuUGkwVHlsM1VEN3FuM3NIekYtM0lXbnNJNTN1WkdCcXgyLVdYRmg5Ti14YTNUeEdIVldaQXVpYnIwYWpPODlIWVpxRGpITVRGaUdwTzNFSDFMTzRta2ZXaF9VZS04QXoxeE1CX2VGLXRSR3VQQ01ZUEpPMmtjVFlIeER5Rmc0cm5jQ25YS1ZwazUtdllyb28wUGZLVGtkajZFalFraWVRa2NpekI0MXBGY1lEODROcXgtXzkzeUJnaDVWcy1Eb0IxRE9PcHVCMEFJ?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 09:19:55 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxPcEk5VjR0cUJZaFpTaElhei1iTVA3LTNzTkNnT0lWNnM4MHlfWTNWOXR5bmh4YS1FVGpaM1d0b1VDcGVoaEprR2tPUnA3QjczbFIza0RrLTZUcUQxaVE0QmxPMEFfS212Z05VVHNSdlQ4M1RIcVl3OHdpTmQ4azItNnhKOXo2SmxOVzZ3SkJHWnJCY2RGZEpxR3ItQnRzZEkwQ090TkVwS3dtMTV1ZUNyeWFCZVQ3VkZSQ1VIeDFNZU1ObkQ1RFFZTz",
+        "imageUrl": "https://cdns.klimg.com/resized/1280x720/p/headline/methosa-rilis-039gemuruh-revolusi039-tu-97a9de.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://musik.kapanlagi.com/berita/methosa-rilis-039gemuruh-revolusi039-tuangkan-kekecewaan-terhadap-kondisi-indonesia-lewat-musik-97a9de.html"
+      },
+      {
         "id": "579fadaa1a898874",
         "sourceName": "Google News (Musik Indonesia) [Kompas.com]",
         "category": "musik",
@@ -365,6 +401,24 @@
         "originalArticleUrl": "https://otomotif.kompas.com/image/2026/11/10/085200815/gsrek-indonesia-rayakan-11-tahun-gelar-festival-otomotif-dan-musik?page=2"
       },
       {
+        "id": "adca6b67edc199bf",
+        "sourceName": "Google News (Musik Indonesia) [detikcom]",
+        "category": "musik",
+        "lang": "id",
+        "title": "5 Musisi Indonesia yang Lagi On Fire Banget di 2026",
+        "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxOdXN0R3lYdXBVbF91cHNOamFPQnNMVVd4VWlHcXJLQVQyazU0LS11cGthdndNUmdsZjMzVzFkbWo2YktySGpvU1dmRkFfdjlWYkRqODlkSGZwMjZHRG44UTZ0ZTB1V1R0enMxUmdJVXdVTm9uNFk1VzFwZzloOXFHVE1ad3cwQkhWTHFTbmhpRXJ4b2tLYm5SMDZjQlJBQdIBngFBVV95cUxOdXN0R3lYdXBVbF91cHNOamFPQnNMVVd4VWlHcXJLQVQyazU0LS11cGthdndNUmdsZjMzVzFkbWo2YktySGpvU1dmRkFfdjlWYkRqODlkSGZwMjZHRG44UTZ0ZTB1V1R0enMxUmdJVXdVTm9uNFk1VzFwZzloOXFHVE1ad3cwQkhWTHFTbmhpRXJ4b2tLYm5SMDZjQlJBQQ?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 14:00:37 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxOdXN0R3lYdXBVbF91cHNOamFPQnNMVVd4VWlHcXJLQVQyazU0LS11cGthdndNUmdsZjMzVzFkbWo2YktySGpvU1dmRkFfdjlWYkRqODlkSGZwMjZHRG44UTZ0ZTB1V1R0enMxUmdJVXdVTm9uNFk1VzFwZzloOXFHVE1ad3cwQkhWTHFTbmhpRXJ4b2tLYm5SMDZjQlJBQdIBngFBVV95cUxOdXN0R3lYdXBVbF91cHNOamFPQnNMVVd4VWlHcXJLQV",
+        "imageUrl": "https://awsimages.detik.net.id/api/wm/2024/11/29/perunggu_169.jpeg?wid=54&w=1200&v=1&t=jpeg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://www.detik.com/pop/music/d-8746735/5-musisi-indonesia-yang-lagi-on-fire-banget-di-2026/amp"
+      },
+      {
         "id": "1092c18d98db4819",
         "sourceName": "Google News (Musik Indonesia) [JPNN.com]",
         "category": "musik",
@@ -381,60 +435,6 @@
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
         "originalArticleUrl": "https://www.jpnn.com/news/perluas-karier-bermusik-atta-rumnan-duet-dengan-rossa-di-sabah"
-      },
-      {
-        "id": "33a2bd0fdf07b903",
-        "sourceName": "Google News (Musik Indonesia) [Medcom.id]",
-        "category": "musik",
-        "lang": "id",
-        "title": "Mario G. Klau dan Lyodra Kembali Berkolaborasi Lewat Lagu \"Gemini\"",
-        "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNYVowaHJUVzJGN0xwb2tNbzRpcmNKQWpXLWVCWTNMTWRGZHB3d2ZfOUNYeTlGVU1nUktWR3g1SW1wdlZNM1JoNXFjbjhkTnZYOVFTNlppdS1HeWdvWHFCTXRCVnVkeGU1aWd3YVdINFdDYzVMMV9VeDNvaWJncUhHNUt6VEV5alFNQkFrQ2psTkg1ZXJLWXBzVEk4XzBKd19DTGJPRDRucXVkZ1Rw?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 09:21:00 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxNYVowaHJUVzJGN0xwb2tNbzRpcmNKQWpXLWVCWTNMTWRGZHB3d2ZfOUNYeTlGVU1nUktWR3g1SW1wdlZNM1JoNXFjbjhkTnZYOVFTNlppdS1HeWdvWHFCTXRCVnVkeGU1aWd3YVdINFdDYzVMMV9VeDNvaWJncUhHNUt6VEV5alFNQkFrQ2psTkg1ZXJLWXBzVEk4XzBKd19DTGJPRDRucXVkZ1Rw?oc=5\" target=\"_blank\">Mario G. Klau d",
-        "imageUrl": "https://cdn.medcom.id/dynamic/content/2026/11/10/1853785/YWHA64ec8y.jpeg?w=1024",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://www.medcom.id/hiburan/musik/0kpq6ZqK-mario-g-klau-dan-lyodra-kembali-berkolaborasi-lewat-lagu-gemini"
-      },
-      {
-        "id": "42ad4ffc5a9aaffd",
-        "sourceName": "Google News (Musik Indonesia) [geotimes]",
-        "category": "musik",
-        "lang": "id",
-        "title": "AI Belajar dari Musik Tradisional",
-        "link": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1sYWV1QjJLUVFnM2ptcUVpZTVUS1RkV2RrZzduVkh2X1NSdWgyRmh5ZWdhUnlqSnpISkEtNzdubEV2OGc?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 01:59:36 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1sYWV1QjJLUVFnM2ptcUVpZTVUS1RkV2RrZzduVkh2X1NSdWgyRmh5ZWdhUnlqSnpISkEtNzdubEV2OGc?oc=5\" target=\"_blank\">AI Belajar dari Musik Tradisional</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">geotimes</font>",
-        "imageUrl": "https://geotimes.id/wp-content/uploads/2026/10/alat-musik-tradisional.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://geotimes.id/?p=745005"
-      },
-      {
-        "id": "dfdef6c018d888e5",
-        "sourceName": "Google News (Musik Indonesia) [RRI.co.id]",
-        "category": "musik",
-        "lang": "id",
-        "title": "Afgan Raih Piala AMI Awards 2026 lewat Kategori R&B",
-        "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQndUQUlGWG0yRFlJWEt6T1I3WVNhTEFHeXVuMW5OSXVTNFkxeTNTN0ZqaDFrZDZ2OXNTRjRDSTRNdjVUUWYycHhFRWNuOVE3LWdQZ3hYNTBXZkgtWkNxVVMwd0NKZERmcTIwTTQ5WFczeDFRd0hfZEVSejJfZ3Y2TjlYeHBRTkkwSVItS1FoNWxZa1VVSFpN?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 08:35:00 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxQQndUQUlGWG0yRFlJWEt6T1I3WVNhTEFHeXVuMW5OSXVTNFkxeTNTN0ZqaDFrZDZ2OXNTRjRDSTRNdjVUUWYycHhFRWNuOVE3LWdQZ3hYNTBXZkgtWkNxVVMwd0NKZERmcTIwTTQ5WFczeDFRd0hfZEVSejJfZ3Y2TjlYeHBRTkkwSVItS1FoNWxZa1VVSFpN?oc=5\" target=\"_blank\">Afgan Raih Piala AMI Awards 2026 lewat Kate",
-        "imageUrl": "https://rri-portal-app-assets.obs.ap-southeast-4.myhuaweicloud.com/upload/berita/image/jakarta/thumbs/xl_1794297338672205_09adb9f0de_berita_jakarta.webp",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://rri.co.id/jakarta/hiburan/2885321/afgan-raih-piala-ami-awards-2026-lewat-kategori-rb"
       }
     ]
   }
