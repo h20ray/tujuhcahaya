@@ -1,25 +1,8 @@
 {
-  "updatedAt": "2026-11-09T23:57:45.101Z",
+  "updatedAt": "2026-11-10T09:58:16.441Z",
   "totalCandidates": 25,
   "categories": {
     "tech": [
-      {
-        "id": "f2396ea0daf55b66",
-        "sourceName": "Antara Tekno",
-        "category": "tech",
-        "lang": "id",
-        "title": "Baterai HP cepat habis padahal jarang dipakai, apa penyebabnya?",
-        "link": "https://www.antaranews.com/berita/5840543/baterai-hp-cepat-habis-padahal-jarang-dipakai-apa-penyebabnya",
-        "pubDate": "Mon, 09 Nov 2026 08:38:00 +0700",
-        "snippet": "Baterai ponsel yang cepat habis meskipun jarang digunakan menjadi salah satu masalah yang cukup sering dialami ...",
-        "imageUrl": "https://img.antaranews.com/cache/800x533/2015/07/20150709antarafoto-fasilitas-charger-090715-adb.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
       {
         "id": "fd746e41d06437d4",
         "sourceName": "Antara Tekno",
@@ -55,13 +38,46 @@
         }
       },
       {
+        "id": "88cf9d5474b5642a",
+        "sourceName": "Antara Tekno",
+        "category": "tech",
+        "lang": "id",
+        "title": "Cara menambah anggota keluarga di KK secara online",
+        "link": "https://www.antaranews.com/berita/5810055/cara-menambah-anggota-keluarga-di-kk-secara-online",
+        "pubDate": "Sun, 25 Oct 2026 06:00:23 +0700",
+        "snippet": "Penambahan anggota keluarga dalam Kartu Keluarga (KK) kini dapat diajukan secara online melalui layanan administrasi ...",
+        "imageUrl": "https://img.antaranews.com/cache/800x533/2021/08/28/23.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "5a616de111412960",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "David Ellison says AI could be the ‘biggest creative unlock in modern history’",
+        "link": "https://www.theverge.com/entertainment/1030510/paramount-skydance-david-ellison-ai",
+        "pubDate": "2026-11-09T19:28:49-05:00",
+        "snippet": "During Paramount Skydance's latest earnings call, CEO David Ellison said \"it's hard to imagine\" AI won't have a bigger impact on the film industry than CGI. In response to a question about the company's outlook for AI, Ellison said: \"I think when you zoom out and look at production, AI really has the potential to [&#82",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/gettyimages-2274329497.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
         "id": "d916d20f0c2ff987",
         "sourceName": "The Verge",
         "category": "tech",
         "lang": "en",
         "title": "What could China get from Jensen Huang?",
         "link": "https://www.theverge.com/ai-artificial-intelligence/1030328/what-could-china-get-from-jensen-huang",
-        "pubDate": "2026-11-09T18:51:58-05:00",
+        "pubDate": "2026-11-09T19:07:10-05:00",
         "snippet": "It's difficult to overstate Nvidia's power in today's AI landscape. The company's chips are the bedrock upon which advanced AI technology in the US is being built, and demand has consistently outpaced supply for years. Nvidia has also been an influential investor in a wide range of up-and-coming AI companies in recent ",
         "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STKP210_JENSEN_HUANG_A.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "isOriginalImage": true,
@@ -77,25 +93,9 @@
         "lang": "en",
         "title": "Here’s what Trump said he knew about Jensen Huang",
         "link": "https://www.theverge.com/tech/1030446/trump-jensen-huang-press-conference",
-        "pubDate": "2026-11-09T18:50:00-05:00",
+        "pubDate": "2026-11-09T19:02:17-05:00",
         "snippet": "President Trump held a White House press briefing earlier today and responded to several questions about his knowledge of Nvidia CEO Jensen Huang's affair with an alleged Chinese spy. Huang said this weekend that he had been \"&#8203;&#8203;unfaithful\" to his wife, and the company has opened an investigation into Huang.",
         "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/gettyimages-2297774940.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
-        "id": "48e6dc76dc7f693e",
-        "sourceName": "The Verge",
-        "category": "tech",
-        "lang": "en",
-        "title": "Everything we know so far about the Nvidia spy scandal targeting CEO Jensen Huang",
-        "link": "https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang",
-        "pubDate": "2026-11-09T18:46:30-05:00",
-        "snippet": "The leather-jacketed CEO of Nvidia, Jensen Huang, has acknowledged an affair with Megaspeed exec Alice Huang, spurring an investigation by his company and intense discussions worldwide. Recent reporting noted that since last year, US intelligence reports had identified Alice Huang (no relation) as not only the exec for",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/STKP210_JENSEN_HUANG_A.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "isOriginalImage": true,
         "author": {
           "name": "Elang Elano",
@@ -156,40 +156,6 @@
     ],
     "game": [
       {
-        "id": "7b1bd1899088f856",
-        "sourceName": "PC Gamer",
-        "category": "game",
-        "lang": "en",
-        "title": "A month after Paramount acquired Warner Bros. Discovery, its merged game division is laying people off",
-        "link": "https://www.pcgamer.com/gaming-industry/a-month-after-paramount-acquired-warner-bros-discovery-its-merged-game-division-is-laying-people-off/",
-        "pubDate": "Mon, 09 Nov 2026 22:33:41 +0000",
-        "snippet": "Skydance Games has \"made the difficult decision to scale down some of our projects.\"",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/wKbv8zjAaUe8ogbgTPav7N-1920-80.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Andoru Ray",
-          "byline": "0100MUNS3DJL68FA69B26FACE9"
-        }
-      },
-      {
-        "id": "f9c420dc2945ed7e",
-        "sourceName": "PC Gamer",
-        "category": "game",
-        "lang": "en",
-        "title": "Take-Two expects to make as much as $3.5 billion during the GTA 6 launch period",
-        "link": "https://www.pcgamer.com/games/grand-theft-auto/take-two-expects-to-make-as-much-as-usd3-5-billion-during-the-gta-6-launch-period/",
-        "pubDate": "Mon, 09 Nov 2026 22:06:34 +0000",
-        "snippet": "Pre-orders for GTA 6 are still \"unprecedented,\" says the publisher.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/9SieU3JpSSPX34eMduXqsW-1920-80.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Andoru Ray",
-          "byline": "0100MUNS3DJL68FA69B26FACE9"
-        }
-      },
-      {
         "id": "e4139fb4fe9986a5",
         "sourceName": "PC Gamer",
         "category": "game",
@@ -207,15 +173,15 @@
         }
       },
       {
-        "id": "4db49df99e2cd101",
-        "sourceName": "Polygon",
+        "id": "a7a04bceabe0d593",
+        "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "Zelda: Ocarina of Time Remake Gives Its Best Boy the Happy Ending He Deserved Decades Ago",
-        "link": "https://www.polygon.com/zelda-ocarina-of-time-remake-richard-lives/",
-        "pubDate": "Mon, 09 Nov 2026 23:00:17 GMT",
-        "snippet": "The Legend of Zelda: Ocarina of Time remake on Switch 2 makes a small, but welcome change to the fate of Richard the dog",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/ocarina-of-time-richard-lives.jpg",
+        "title": "Jensen Huang’s affair with alleged Chinese spy highlights how the GPU company’s dealings are now everyone’s business",
+        "link": "https://www.pcgamer.com/hardware/graphics-cards/jensen-huangs-affair-with-alleged-chinese-spy-highlights-how-the-gpu-companys-dealings-are-now-everyones-business/",
+        "pubDate": "Mon, 09 Nov 2026 16:56:37 +0000",
+        "snippet": "He used to sell gaming GPUs, now he's in the middle of a geopolitical quagmire.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/AJ9jxxAbTzLa4x6JjA8j6k-1920-80.png",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -224,15 +190,15 @@
         }
       },
       {
-        "id": "bb1fe8a0d4dff79c",
-        "sourceName": "Polygon",
+        "id": "a096cc8364c8ca06",
+        "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "Game Awards 2026: All Game of the Year Front-Runners and Predictions",
-        "link": "https://www.polygon.com/game-of-the-year-goty-game-awards-2026-frontrunners/",
-        "pubDate": "Mon, 09 Nov 2026 21:51:34 GMT",
-        "snippet": "We rank the contenders for GOTY 2026 at TGAs, including Resident Evil Requiem and Zelda: Ocarina of Time",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/ns2_thelegendofzeldaocarinaoftime_scrn_02-1.png",
+        "title": "The Golden Joystick Awards return this Wednesday—here's how to watch them",
+        "link": "https://www.pcgamer.com/gaming-industry/events-conferences/the-golden-joystick-awards-return-this-wednesday-heres-how-to-watch-them/",
+        "pubDate": "Mon, 09 Nov 2026 15:47:21 +0000",
+        "snippet": "A golden joystick would be pretty heavy, I bet.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/8cwHruc7CjmQWEBmKthDWX-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -241,15 +207,49 @@
         }
       },
       {
-        "id": "810739ff2fd65294",
+        "id": "4e2dd407e3a3cc7b",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "How to get the Biggoron Sword in Ocarina of Time",
-        "link": "https://www.polygon.com/zelda-ocarina-of-time-remake-oot-biggorons-sword-how-to-get/",
-        "pubDate": "Mon, 09 Nov 2026 21:50:25 GMT",
-        "snippet": "The Biggoron Sword is the reward for the \"From a Pocket Egg Comes...\" quest in Ocarina of Time. Here's how to complete the quest and get the sword.",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/biggoron-sword_oot.jpg",
+        "title": "Nintendo Adds eShop Gifting to Switch Consoles",
+        "link": "https://www.polygon.com/nintendo-switch-2-digital-games-eshop-gifts/",
+        "pubDate": "Tue, 10 Nov 2026 09:52:40 GMT",
+        "snippet": "Nintendo Switch update introduces the ability to gift digital software purchased on the eShop.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2025/12/mario-christmas.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
+      {
+        "id": "8dea33e3a03b5cf3",
+        "sourceName": "Polygon",
+        "category": "game",
+        "lang": "en",
+        "title": "'Godzilla Minus Zero' Exposes the Biggest Problem with Christopher Nolan's World War II Epic",
+        "link": "https://www.polygon.com/godzilla-minus-zero-christopher-nolan-oppenheimer-nuclear-war/",
+        "pubDate": "Tue, 10 Nov 2026 09:00:17 GMT",
+        "snippet": "Director Takashi Yamazaki made his new Godzilla movie in direct response to Christopher Nolan's film",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/mcdinte_ec196.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
+      {
+        "id": "68d567e23d3af2ef",
+        "sourceName": "Polygon",
+        "category": "game",
+        "lang": "en",
+        "title": "10 Funniest 'Far Side' Comics About Dinosaurs That Prove Gary Larson Is a Mad Genius",
+        "link": "https://www.polygon.com/best-far-side-comics-dinosaurs/",
+        "pubDate": "Tue, 10 Nov 2026 08:20:17 GMT",
+        "snippet": "The Far Side ran from 1980 until 1995 and Larson created over 4,000 strips during that time. Dozens of them featured dinosaurs.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/screen-shot-2026-09-01-at-9-35-25-am.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -311,128 +311,130 @@
         }
       },
       {
-        "id": "a0bdd020f826ac27",
-        "sourceName": "Google News (Musik Indonesia) [Kementerian Ekonomi Kreatif/Badan Ekonomi Kreatif Republik Indonesia]",
+        "id": "847511bc34e8bd55",
+        "sourceName": "Google News (Musik Indonesia) [Pasardana]",
         "category": "musik",
         "lang": "id",
-        "title": "Dari Jakarta ke NYC, .notyourwife Bawa Warna Baru Musik Indie Indonesia di Pentas Internasional",
-        "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxORjhFX21GRHUxdmJ4QjRfQl8ySi1US3ZEYW5vSUVBb3VWTFktVnExN2JGU3B5OUxVT2xJT3luQUpuN0hNMDNrN3M2Ymw1LXRQNURiSmkyU1R6dXdRZDlWOC1tZ2ZrRmtFdDZocTU0UThjTnhCUXYyNTN0OVppb1o2b0J3Zll3dmk3b2V2UWsyWm5vaWlPdG5WRndpMXFlbmg1VzZ2MFdQcw?oc=5",
-        "pubDate": "Mon, 09 Nov 2026 15:19:01 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxORjhFX21GRHUxdmJ4QjRfQl8ySi1US3ZEYW5vSUVBb3VWTFktVnExN2JGU3B5OUxVT2xJT3luQUpuN0hNMDNrN3M2Ymw1LXRQNURiSmkyU1R6dXdRZDlWOC1tZ2ZrRmtFdDZocTU0UThjTnhCUXYyNTN0OVppb1o2b0J3Zll3dmk3b2V2UWsyWm5vaWlPdG5WRndpMXFlbmg1VzZ2MFdQcw?oc=5\" target=\"_blank\">Dari Jakarta ke NYC, ",
-        "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
-        "galleryImages": [],
-        "isOriginalImage": false,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
-      },
-      {
-        "id": "0dc6dcc005183572",
-        "sourceName": "Google News (Musik Indonesia) [ANTARA News]",
-        "category": "musik",
-        "lang": "id",
-        "title": "FMTI Kuningan jadi langkah perkuat ekosistem musik tradisi Indonesia",
-        "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNY04tN1Z6MzNndk1TTGItREt1VzdkNnFnN3JpbWVsenNqN1hTaTN0U1JzVTJoY2RZa3dnRFhRczFrMF9fSXdKSU96aVZUVlM3bzdLT1dhUkkybkZ5SjdyRnUxa3lTRHcxeldibVQyMG9RTVBIYXNnLUZySDctWFNtTjNDSEFXWU9qYk1rNEtDdE9BVXRUNHdRLTRWVXotc0FONExpRlpXSTQ0RFJDRTR30gGyAUFVX3lxTFBDZjhCNVNqTFlIZHlCNUdoUGJvZjU2N3FZMTZsVGpGaDdKeXQ2NDQxMmlVYUR4R2JTam1qVzRjUkhEVDZodDZlMFpzOHZPV1paNS1kYzRUWXpvd3lZOUEwNmVKOU9nR3h1WDNia1VobGZyRVJaaXNldjFXYThsbE5uQi1EUFVwT2FRclFMdmw4MWpDOFhvRzl3dEtKRS1kY09IbklzeHFGVlZ0VVdXVlBEWXc?oc=5",
-        "pubDate": "Mon, 09 Nov 2026 03:38:10 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxNY04tN1Z6MzNndk1TTGItREt1VzdkNnFnN3JpbWVsenNqN1hTaTN0U1JzVTJoY2RZa3dnRFhRczFrMF9fSXdKSU96aVZUVlM3bzdLT1dhUkkybkZ5SjdyRnUxa3lTRHcxeldibVQyMG9RTVBIYXNnLUZySDctWFNtTjNDSEFXWU9qYk1rNEtDdE9BVXRUNHdRLTRWVXotc0FONExpRlpXSTQ0RFJDRTR30gGyAUFVX3lxTFBDZjhCNVNqTFlIZHlCNU",
-        "imageUrl": "https://cdn.antaranews.com/cache/1200x800/2026/11/09/WhatsApp-Image-2026-11-08-at-19.52.10.jpeg",
+        "title": "Kementerian Ekraf Dorong .notyourwife Bawa Musik Indie Indonesia ke Panggung NYC",
+        "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQbEx4UXRleGdmdTBKMWxLWndoM0MwTS1OUDQ1SklyVV9nRUd6WEJWQ2J3b3ludk9Qejl3a3A0Q05VNzFDckxsNklFQkk2bkROODkyTUpXQjlZQXdaT2R1dVltbXBwNDFuRk9kOVdOek8yaTduYm1LbkdrSlV3S28xQnVEN2tTNXVpY0xSeklpRm52N1QwOXo1WGtDNm9rOEdfUnBqY0NFaXp4QS04TzJCbnhydlNvUGM?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 03:08:00 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxQbEx4UXRleGdmdTBKMWxLWndoM0MwTS1OUDQ1SklyVV9nRUd6WEJWQ2J3b3ludk9Qejl3a3A0Q05VNzFDckxsNklFQkk2bkROODkyTUpXQjlZQXdaT2R1dVltbXBwNDFuRk9kOVdOek8yaTduYm1LbkdrSlV3S28xQnVEN2tTNXVpY0xSeklpRm52N1QwOXo1WGtDNm9rOEdfUnBqY0NFaXp4QS04TzJCbnhydlNvUGM?oc=5\" target=\"_blank\">",
+        "imageUrl": "https://strapi.pasardana.id/uploads/IMG_20261110_WA_0001_121bb21086.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://www.antaranews.com/berita/5840691/fmti-kuningan-jadi-langkah-perkuat-ekosistem-musik-tradisi-indonesia"
+        "originalArticleUrl": "https://pasardana.id/news/2026/11/10/kementerian-ekraf-dorong-notyourwife-bawa-musik-indie-indonesia-ke-panggung-nyc"
       },
       {
-        "id": "748c74aab197528d",
-        "sourceName": "Google News (Musik Indonesia) [GenPI.co]",
+        "id": "8ac6a808e7cb128b",
+        "sourceName": "Google News (Musik Indonesia) [ANTARA News Gorontalo]",
         "category": "musik",
         "lang": "id",
-        "title": "Idgitaf Sebut Sedia Aku Sebelum Hujan Relevan dengan Kondisi Indonesia, Lagu Lahir dari Keresahan - GenPI.co",
-        "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNemg0YzBleG40RUIzQnhoWXdIa3A0VzhKOWdnRUJGbXJqaGFGaUZNUEM5ZW9Va3RfbkFSSlZRM0ZIOTA1MzY5YjNSYmFlM191TUl0a3BGRk5HUTJkRzJIUmg2MlVlMGl5QS1zTzVqY3NFUkJuckhhYy03c1F1YmUxM1FrQVVuXzVMRnVvNTFSTzRqRmZOQkVCd0tSTUVlZVZPazA2dVI5Vy13YUtyNzRRMlpVMlJrd1VZX3hZMVhmbVlvN3JVSENpWEpDVjFWTURSZ1hxWndn0gHbAUFVX3lxTE1POG0zbkc3cHVWTk1WaTIydE1FQ1dFZWFHYVZkSEE2amhSTWN5bDZOam5jZ2R0eUl1VXZQazZBODlhRzJ5bEt6WW42Z1JnRTE0UHo2NHU1NE5RQnFBSHlrMVR5NlpFbXZBRncyUkFPUC1GazZSSnl4NTA5MVVIQzktSDlUU0FycmJQNUx4VkFhUXVfdm82MUNINTlDb1JnWVdhRnVud0xxbFVJTlFPemFyMUpESGk4ZTlvcVIwSjJVRXpvZFY3c1ZIQ2FTYUdJeVRjcENCenpvUW5Qcw?oc=5",
-        "pubDate": "Mon, 09 Nov 2026 21:00:42 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMi1gFBVV95cUxNemg0YzBleG40RUIzQnhoWXdIa3A0VzhKOWdnRUJGbXJqaGFGaUZNUEM5ZW9Va3RfbkFSSlZRM0ZIOTA1MzY5YjNSYmFlM191TUl0a3BGRk5HUTJkRzJIUmg2MlVlMGl5QS1zTzVqY3NFUkJuckhhYy03c1F1YmUxM1FrQVVuXzVMRnVvNTFSTzRqRmZOQkVCd0tSTUVlZVZPazA2dVI5Vy13YUtyNzRRMlpVMlJrd1VZX3hZMVhmbVlvN3JVSENpWE",
-        "imageUrl": "https://images.genpi.co/uploads/arsip/normal/2026/11/09/penyanyi-cantik-idgitaf-menilai-lagunya-yang-berju-ixvr.jpg",
+        "title": "Musisi sebut musik bisa jadi sarana untuk membangun kesadaran",
+        "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQZjhJVDd1T3Fpd3NzWFUwbW9aZF9OTlloT2tyY2pFaGdqRjBUZGVyQ1NieU9tTnAwX3pGQjI1SERVcTAzZXQ1SWpkcDh5LXBVbFNrMVpEc09ZNTNZNHlzX3R4NjNtQ09ZMzdDOHdCTUgxeklWUnJBWEJvbC00R2ZsM2hZd2R5enBZdFhNeVEzbWFMdmppWk5qR2ZUSDZyUDVvQXNDMFd3LTJDWnQt0gGyAUFVX3lxTE5zQkRJMGtvWGdIdTZ3U196UHoyR2NuM2pDVGEycllVblJPUWgzR3BfUzM2dGlmaDBPa29BUkF0UTByNzVxUk1nSXYzbV9ZRDVrUmZVRmhZY0ROaWFITHBCa2szejZ0eVRweG9WQ3JNMUZSNUdycUtjUElSYlNxUUdvY1RyNUNoZG15elJjRFV6UnI3cnV6MnFTX2RmaVpXdXZOS2Q3SUw2QWFKVkdHRE04Y2c?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 09:29:32 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQZjhJVDd1T3Fpd3NzWFUwbW9aZF9OTlloT2tyY2pFaGdqRjBUZGVyQ1NieU9tTnAwX3pGQjI1SERVcTAzZXQ1SWpkcDh5LXBVbFNrMVpEc09ZNTNZNHlzX3R4NjNtQ09ZMzdDOHdCTUgxeklWUnJBWEJvbC00R2ZsM2hZd2R5enBZdFhNeVEzbWFMdmppWk5qR2ZUSDZyUDVvQXNDMFd3LTJDWnQt0gGyAUFVX3lxTE5zQkRJMGtvWGdIdTZ3U196UH",
+        "imageUrl": "https://img.antaranews.com/cache/1200x800/2026/11/10/tempImageNzsZBm.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://www.genpi.co/film-dan-musik/292546/idgitaf-sebut-sedia-aku-sebelum-hujan-relevan-dengan-kondisi-indonesia-lagu-lahir-dari-keresahan"
+        "originalArticleUrl": "https://gorontalo.antaranews.com/berita/435111/musisi-sebut-musik-bisa-jadi-sarana-untuk-membangun-kesadaran"
       },
       {
-        "id": "c80494a62e76a6f6",
+        "id": "ee5145d62f59f552",
+        "sourceName": "Google News (Musik Indonesia) [Kompas.com]",
+        "category": "musik",
+        "lang": "id",
+        "title": "GSrek Indonesia Rayakan 11 Tahun, Gelar Festival Otomotif dan Musik",
+        "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNbVJhckhSMUlYMmRCdnh1Tk1JRk9lZUtVVnEwRmdfSEpNc0U4TkZ2VXBqT05zekhyejBVc2FNRk1rMVhLYkpXSE53LW4xRWtqLU14ZGNHQkNCVVEtbEEzWU5IbUNXcUVyaEJyM210ZVM3eWlVY1JVODQ0Y0RoamN5b0tPdVJ2cE1MRDBwYWlDR0FLbDdJdk5ONVVIaDhEN2lQUlpEVTI1UHVkeUF6STlSMnJUWDhHVHQtdmZKYUg2bWd2Y2EzajZnTGFQU1BzM2YxVFRIa185NW4?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 01:52:00 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMi2AFBVV95cUxNbVJhckhSMUlYMmRCdnh1Tk1JRk9lZUtVVnEwRmdfSEpNc0U4TkZ2VXBqT05zekhyejBVc2FNRk1rMVhLYkpXSE53LW4xRWtqLU14ZGNHQkNCVVEtbEEzWU5IbUNXcUVyaEJyM210ZVM3eWlVY1JVODQ0Y0RoamN5b0tPdVJ2cE1MRDBwYWlDR0FLbDdJdk5ONVVIaDhEN2lQUlpEVTI1UHVkeUF6STlSMnJUWDhHVHQtdmZKYUg2bWd2Y2EzajZnTG",
+        "imageUrl": "https://asset.kompas.com/crops/26MkXlTVIpA3-1V18TcYOa4Hb34=/163x0:1783x1080/1200x675/filters:watermark(data/photo/2026/01/30/697c81750a668.png,0,-0,1)/data/photo/2026/11/10/6af2768eb0800.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://otomotif.kompas.com/read/2026/11/10/085200815/gsrek-indonesia-rayakan-11-tahun-gelar-festival-otomotif-dan-musik?source=personalisasi"
+      },
+      {
+        "id": "42ad4ffc5a9aaffd",
+        "sourceName": "Google News (Musik Indonesia) [geotimes]",
+        "category": "musik",
+        "lang": "id",
+        "title": "AI Belajar dari Musik Tradisional",
+        "link": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1sYWV1QjJLUVFnM2ptcUVpZTVUS1RkV2RrZzduVkh2X1NSdWgyRmh5ZWdhUnlqSnpISkEtNzdubEV2OGc?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 01:59:36 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1sYWV1QjJLUVFnM2ptcUVpZTVUS1RkV2RrZzduVkh2X1NSdWgyRmh5ZWdhUnlqSnpISkEtNzdubEV2OGc?oc=5\" target=\"_blank\">AI Belajar dari Musik Tradisional</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">geotimes</font>",
+        "imageUrl": "https://geotimes.id/wp-content/uploads/2026/10/alat-musik-tradisional.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://geotimes.id/?p=745005"
+      },
+      {
+        "id": "dfdef6c018d888e5",
         "sourceName": "Google News (Musik Indonesia) [RRI.co.id]",
         "category": "musik",
         "lang": "id",
-        "title": "Iga Massardi Gabung Frekuensi antara Music, Rilis Ambivalensi",
-        "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOY2FTUDZ6NUdOaDdRcmZ3NGtkcGxFa1h5MDVJeDd4ZWZPeE1NRXdTS3ZhOFVXSUZvWGJRZXh4dG53Y2V1N29TNnhZcTV3U21ad0pkQU5iSWd3bDB1WjFvNzNWcFdQRHBjbWZDRTRORjBibWlHZTRwYk5JNk02b2N4cTk5Z3NOMVRySF9neG01d0x5bGdVMF9SQzVlc1VpbUZWT05qLQ?oc=5",
-        "pubDate": "Mon, 09 Nov 2026 13:17:00 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxOY2FTUDZ6NUdOaDdRcmZ3NGtkcGxFa1h5MDVJeDd4ZWZPeE1NRXdTS3ZhOFVXSUZvWGJRZXh4dG53Y2V1N29TNnhZcTV3U21ad0pkQU5iSWd3bDB1WjFvNzNWcFdQRHBjbWZDRTRORjBibWlHZTRwYk5JNk02b2N4cTk5Z3NOMVRySF9neG01d0x5bGdVMF9SQzVlc1VpbUZWT05qLQ?oc=5\" target=\"_blank\">Iga Massardi Gabung Freku",
-        "imageUrl": "https://rri-portal-app-assets.obs.ap-southeast-4.myhuaweicloud.com/upload/berita/image/cirebon/thumbs/xl_1794230019195195_36c137fde9_berita_cirebon.webp",
+        "title": "Afgan Raih Piala AMI Awards 2026 lewat Kategori R&B",
+        "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQndUQUlGWG0yRFlJWEt6T1I3WVNhTEFHeXVuMW5OSXVTNFkxeTNTN0ZqaDFrZDZ2OXNTRjRDSTRNdjVUUWYycHhFRWNuOVE3LWdQZ3hYNTBXZkgtWkNxVVMwd0NKZERmcTIwTTQ5WFczeDFRd0hfZEVSejJfZ3Y2TjlYeHBRTkkwSVItS1FoNWxZa1VVSFpN?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 08:35:00 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxQQndUQUlGWG0yRFlJWEt6T1I3WVNhTEFHeXVuMW5OSXVTNFkxeTNTN0ZqaDFrZDZ2OXNTRjRDSTRNdjVUUWYycHhFRWNuOVE3LWdQZ3hYNTBXZkgtWkNxVVMwd0NKZERmcTIwTTQ5WFczeDFRd0hfZEVSejJfZ3Y2TjlYeHBRTkkwSVItS1FoNWxZa1VVSFpN?oc=5\" target=\"_blank\">Afgan Raih Piala AMI Awards 2026 lewat Kate",
+        "imageUrl": "https://rri-portal-app-assets.obs.ap-southeast-4.myhuaweicloud.com/upload/berita/image/jakarta/thumbs/xl_1794297338672205_09adb9f0de_berita_jakarta.webp",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://rri.co.id/cirebon/hiburan/2883255/iga-massardi-gabung-frekuensi-antara-music-rilis-ambivalensi"
+        "originalArticleUrl": "https://rri.co.id/jakarta/hiburan/2885321/afgan-raih-piala-ami-awards-2026-lewat-kategori-rb"
       },
       {
-        "id": "41b73fd61ccc94ad",
-        "sourceName": "Google News (Musik Indonesia) [KapanLagi.com]",
+        "id": "3e85e010814ca743",
+        "sourceName": "Google News (Musik Indonesia) [KejarFakta.co]",
         "category": "musik",
         "lang": "id",
-        "title": "Annisa Dalimunthe Jadi Satu-satunya Penyanyi Cilik di Festival Musik Remember Fest 2026",
-        "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQSWZsUWZTMWhRY19ScEthR3ZDSkRCajlwcHhsUXkzLTZ4RVdqUm5rS2t1VHhDQ1MxMUtkeGNEMllfejBtZFEzN0I1NFZxYXpUN1ZHMnZBYkR2M3JNcmNieU9mOXhxV1B0V1l1S1F6VFNvaGgwWnF6UEJTMmMyQTBkejhpNkRrNUctc0JTcjEwUTFwOU9qUUVTMVI2SVZGWG5IZ2NjZnFISF9ZVlRKN1hCLTVkTXFPVkM5NnlqZ0dFTjFNZHE5b1VISmRfNTFaNHPSAdQBQVVfeXFMT2RTOUFrUnNjUHF5bTdteU5UUXpHOG1rdkRLR3hLRW1XWXN4TnN3X1lYaENJSXlIMVVrc1RncGZnU3RPODIyY2VTWGQ2WTNYQUxMbXNnYTNKWXBMU3dqYmxabHRiSjFjdWFFTUpoN3hwckJyLWZGYzNTS3BwY01QdVdtVlhYWnFiODI5VF9uVFBUeDlBeDY4YkFHXzVZSUZaRmxRLVJyb3IyX1dVb21faXduTngyZmc4eUV6VklBUUhHVG9tMEI2ZXJJS0I5OXI2dlV0MF8?oc=5",
-        "pubDate": "Mon, 09 Nov 2026 12:57:51 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMizwFBVV95cUxQSWZsUWZTMWhRY19ScEthR3ZDSkRCajlwcHhsUXkzLTZ4RVdqUm5rS2t1VHhDQ1MxMUtkeGNEMllfejBtZFEzN0I1NFZxYXpUN1ZHMnZBYkR2M3JNcmNieU9mOXhxV1B0V1l1S1F6VFNvaGgwWnF6UEJTMmMyQTBkejhpNkRrNUctc0JTcjEwUTFwOU9qUUVTMVI2SVZGWG5IZ2NjZnFISF9ZVlRKN1hCLTVkTXFPVkM5NnlqZ0dFTjFNZHE5b1VISm",
-        "imageUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop",
-        "galleryImages": [],
-        "isOriginalImage": false,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
-      },
-      {
-        "id": "a4e32022d666f8cf",
-        "sourceName": "Google News (Musik Indonesia) [OWRITE]",
-        "category": "musik",
-        "lang": "id",
-        "title": "Muak dengan Kondisi Negeri, Methosa Gaungkan Perlawanan Lewat Lagu 'Gemuruh Revolusi'",
-        "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQek9TTGtnaTMxQW9nYlNCc2ZBdnZkZW1Ra2dpUXkwOUE5bVRhc2VJQy1hLUU2c2NWNjllR2dTbEFzV0pVbV9maHdUcmtZblZuRVd4RmhjRF93dUtDT2luLVBETENPM1hPVmVnNTVEdjc1MmVKeHVXckZidnlWS1hHczc2TEwwclhpcS1vX0VlV2lCeC1pNWZCa1VYWmNOUFUxeThxdDFfWWRZUjRMSW5oWEx0QlRSUEFFMHVod1F3?oc=5",
-        "pubDate": "Mon, 09 Nov 2026 11:12:50 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxQek9TTGtnaTMxQW9nYlNCc2ZBdnZkZW1Ra2dpUXkwOUE5bVRhc2VJQy1hLUU2c2NWNjllR2dTbEFzV0pVbV9maHdUcmtZblZuRVd4RmhjRF93dUtDT2luLVBETENPM1hPVmVnNTVEdjc1MmVKeHVXckZidnlWS1hHczc2TEwwclhpcS1vX0VlV2lCeC1pNWZCa1VYWmNOUFUxeThxdDFfWWRZUjRMSW5oWEx0QlRSUEFFMHVod1F3?oc=5\" target=",
-        "imageUrl": "https://cms.owrite.id/wp-content/uploads/2026/11/utama-img-7067-mw94p2cw-1024x780.webp",
+        "title": "Ditantang Bassist, Vokalis Billkiss Akhirnya Nulis Lagu Lewat Single \"Tjukup Kamoe\"",
+        "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQZk5XV1ludFFvNWJWSkVXWlhkLU81eWlLRS1ZdkNZb1hkMElLalR5clRSc1N1cXRKcThTbk1uMnFKb2JZZlZ2VFN5bFNTTWY5TURxWkQtZ2NPUHJMWkVjRXBpOWNSRVFUdXp1LVBXX0FkejN0MW9BSlhiX3JoaGFyWkJQczZTNndzS2x0M2RSRll1X1pNM3BUSjR4b2pKelRMSlZPaXZtQ2pnT1VJellPdWNIRFYxVWs5NkdB?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 06:40:00 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxQZk5XV1ludFFvNWJWSkVXWlhkLU81eWlLRS1ZdkNZb1hkMElLalR5clRSc1N1cXRKcThTbk1uMnFKb2JZZlZ2VFN5bFNTTWY5TURxWkQtZ2NPUHJMWkVjRXBpOWNSRVFUdXp1LVBXX0FkejN0MW9BSlhiX3JoaGFyWkJQczZTNndzS2x0M2RSRll1X1pNM3BUSjR4b2pKelRMSlZPaXZtQ2pnT1VJellPdWNIRFYxVWs5NkdB?oc=5\" target=\"_bl",
+        "imageUrl": "https://jabar.kejarfakta.co/./i/posts/2026/5c99407d14ba9ab8a5ba198def4d233b_thumb.jpeg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://www.owrite.id/hype/2026/11/09/muak-dengan-kondisi-negeri-methosa-gaungkan-perlawanan-lewat-lagu-gemuruh-revolusi/"
+        "originalArticleUrl": "https://jabar.kejarfakta.co/news/68548/ditantang-bassist-vokalis-billkiss-akhirnya-nulis-lagu-lewat-single-tjukup-kamoe"
       },
       {
-        "id": "9187184975aa0eca",
-        "sourceName": "Google News (Musik Indonesia) [Medcom.id]",
+        "id": "0dd3b14b189aa9dd",
+        "sourceName": "Google News (Musik Indonesia) [Limapagi]",
         "category": "musik",
         "lang": "id",
-        "title": "Momen Bersejarah Penyanyi Cilik Annisa Dalimunthe Tampil di Remember Fest",
-        "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOMnBfNWpTSE05Y1kyVHEwN0Z0MlNWQ1dIX05BcE5EMDZiaFl0aGtUaDhkWThVNG9QdHZMdWUxMXZNeS1nUnVNUGxzTk1qdzVaRGZ5QUJjR3NXdjNKd21RcFduR0xhX1h0aVpBV3g3d3NoUFluZWxCeHRlM2lYRnk0VlVoRXplT18wWHVsa2o3N1BTZ3VHVE90eGtJbXp4TndHclFnZ2dnNnFFeVZOMjNOZldFaERzWU44Z2c?oc=5",
-        "pubDate": "Mon, 09 Nov 2026 13:53:53 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxOMnBfNWpTSE05Y1kyVHEwN0Z0MlNWQ1dIX05BcE5EMDZiaFl0aGtUaDhkWThVNG9QdHZMdWUxMXZNeS1nUnVNUGxzTk1qdzVaRGZ5QUJjR3NXdjNKd21RcFduR0xhX1h0aVpBV3g3d3NoUFluZWxCeHRlM2lYRnk0VlVoRXplT18wWHVsa2o3N1BTZ3VHVE90eGtJbXp4TndHclFnZ2dnNnFFeVZOMjNOZldFaERzWU44Z2c?oc=5\" target=\"_bla",
-        "imageUrl": "https://cdn.medcom.id/dynamic/content/2026/11/09/1853695/3yK2aNiGZA.jpg?w=1024",
+        "title": "GSrek Indonesia Gelar Festival Otomotif dan Musik 2026",
+        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5RekZROWZKeTlrUm1VeWhXM3Ita0ZNV3ZUMXVadEJEYXk3aTViRE9wVTZiSXhJamRMUHloQnJMVFlyb0hBR0duemVfZmdsd2M1d3NtTUxrLU5xXzAzZGFrZldyS3Q?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 02:02:25 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5RekZROWZKeTlrUm1VeWhXM3Ita0ZNV3ZUMXVadEJEYXk3aTViRE9wVTZiSXhJamRMUHloQnJMVFlyb0hBR0duemVfZmdsd2M1d3NtTUxrLU5xXzAzZGFrZldyS3Q?oc=5\" target=\"_blank\">GSrek Indonesia Gelar Festival Otomotif dan Musik 2026</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Limapagi</font>",
+        "imageUrl": "https://cdn.limapagi.id/media/images/2026/11/NYFgApK9bS.jpeg?location=1&width=1200&height=674&quality=80&watermark=1",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://www.medcom.id/hiburan/musik/yNLZVZ1k-momen-bersejarah-penyanyi-cilik-annisa-dalimunthe-tampil-di-remember-fest"
+        "originalArticleUrl": "https://www.limapagi.id/gesrek-festival-otomotif-musik"
       }
     ]
   }
