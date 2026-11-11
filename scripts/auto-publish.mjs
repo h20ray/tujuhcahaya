@@ -13,6 +13,7 @@ import crypto from "node:crypto";
 import { execSync } from "node:child_process";
 import { marked } from "marked";
 import { validate7cEditorial } from "../src/lib/7c-editorial-guard.ts";
+import { submitToIndexNow } from "./indexnow.mjs";
 
 export function generateId() {
 	const timestamp = Date.now().toString(36).toUpperCase().padStart(10, "0");
@@ -522,6 +523,14 @@ export async function autoPublishPost(payload, options = {}) {
 		} catch (err) {
 			console.error("[Remote Sync Warning]:", err.message);
 		}
+	}
+
+	// Instantly ping IndexNow engine network (Bing, Yandex, Seznam) for immediate crawling
+	if (status === "published" && (dbSaved || remotePublished)) {
+		const publishedUrl = `https://www.tujuhcahaya.com/${slug}`;
+		submitToIndexNow([publishedUrl]).catch((err) => {
+			console.warn("[IndexNow Auto-Ping Warning]:", err.message);
+		});
 	}
 
 	return {
