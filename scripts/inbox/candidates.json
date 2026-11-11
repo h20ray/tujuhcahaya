@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T19:58:08.849Z",
+  "updatedAt": "2026-11-11T03:58:05.744Z",
   "totalCandidates": 25,
   "categories": {
     "tech": [
@@ -55,14 +55,46 @@
         }
       },
       {
+        "id": "771a41edb48dd0e8",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "The VR Disney Plus app on Meta Quest now has 3D movies",
+        "link": "https://www.theverge.com/tech/1031256/meta-quest-disney-plus-vr-3d-movies",
+        "pubDate": "2026-11-10T17:07:22-05:00",
+        "snippet": "Disney is bringing more than 60 3D movies to the Disney Plus app on Meta Quest. The movies will be available to Disney Plus subscribers as part of an updated Disney Plus app that's rolling out today. The 3D movies you can check out include The Avengers and Black Panther, Meta says. But the updated [&#8230;]",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/05.-EN-US_Meta-3D.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "2e2360580d91e604",
+        "sourceName": "The Verge",
+        "category": "tech",
+        "lang": "en",
+        "title": "Sony cancels live-service shooter Fairgames",
+        "link": "https://www.theverge.com/games/1031242/sony-playstation-fairgames-canceled",
+        "pubDate": "2026-11-10T16:06:12-05:00",
+        "snippet": "Sony has canceled Fairgames, a heist game announced in 2023, according to Bloomberg. Fairgames had once been part of Sony's big planned push for PlayStation live service games, but the company ended up canceling some planned live service titles, including in the God of War and The Last of Us franchises, and it shut dow",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/acastro_STK097_01.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
         "id": "ba442883dc09ea49",
         "sourceName": "The Verge",
         "category": "tech",
         "lang": "en",
         "title": "The PlayStation Plus PC app is shutting down next month",
         "link": "https://www.theverge.com/games/1031144/sony-playstation-plus-windows-pc-app-shutting-down",
-        "pubDate": "2026-11-10T14:40:52-05:00",
-        "snippet": "Sony is retiring the PlayStation Plus app for PC on December 10th. Sony says it will notify users directly about the shutdown. The app allowed PlayStation Plus Premium subscribers to stream certain games on PC, but according to Sony, there aren't many people using that perk: \"With a very small number of eligible PlaySt",
+        "pubDate": "2026-11-10T15:42:09-05:00",
+        "snippet": "Sony is retiring the PlayStation Plus app for PC on December 10th. Sony says it will notify users directly about the shutdown. The app allowed PlayStation Plus Premium subscribers to stream certain games on PC, but according to Sony, not many people are using that perk: With a very small number of eligible PlayStation ",
         "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23426446/playstation_plus_logo_blog.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "isOriginalImage": true,
         "author": {
@@ -71,47 +103,15 @@
         }
       },
       {
-        "id": "6c15fe785002c4b6",
-        "sourceName": "The Verge",
-        "category": "tech",
-        "lang": "en",
-        "title": "Starlink Mini 2 adds a swappable battery",
-        "link": "https://www.theverge.com/tech/1031028/spacex-starlink-mini-2-satellite-internet-terminal-hot-swap-battery",
-        "pubDate": "2026-11-10T14:19:55-05:00",
-        "snippet": "SpaceX announced a new version of its all-in-one satellite internet terminal that integrates a dish, Wi-Fi router, and now a battery into a single device about the size of a laptop. According to some users on X who shared screenshots of invitations to order Starlink Mini 2, the dish is priced at $999, which includes [&",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/starlinkmini2.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
-        "id": "13a445521080305c",
-        "sourceName": "The Verge",
-        "category": "tech",
-        "lang": "en",
-        "title": "The US is winning the AI race. Jensen Huang could have blown it",
-        "link": "https://www.theverge.com/ai-artificial-intelligence/1031063/jensen-huang-ai-race-us-china-spy",
-        "pubDate": "2026-11-10T14:31:58-05:00",
-        "snippet": "As espionage targets go, Jensen Huang is perhaps one of the least surprising on Earth. The Nvidia CEO runs one of the world's most valuable companies, controls the in-demand technology fueling the AI boom, and is cozy with presidents, CEOs, and all manner of important people. He also wears a cool leather jacket. Which ",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/gettyimages-2285784039.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
-      },
-      {
-        "id": "ee347883ec33a80c",
+        "id": "bda5dbd0e90087c9",
         "sourceName": "Ars Technica",
         "category": "tech",
         "lang": "en",
-        "title": "Steam Deck performance gets a reality check with Valve's new FPS data",
-        "link": "https://arstechnica.com/gaming/2026/11/steam-deck-performance-gets-a-reality-check-with-valves-new-fps-data/",
-        "pubDate": "Tue, 10 Nov 2026 17:26:44 +0000",
-        "snippet": "Benchmark tools for generic gaming rigs could be coming soon.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2023/11/IMG_8144-scaled-1152x648-1794329069.jpg",
+        "title": "Seagate's new hybrid drive raises some old questions",
+        "link": "https://arstechnica.com/gadgets/2026/11/seagate-resurrects-the-ssd-hdd-hybrid-drive/",
+        "pubDate": "Tue, 10 Nov 2026 23:30:56 +0000",
+        "snippet": "The FireCuda Forge revisits an old idea, with some familiar questions.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2015/09/harddrive3-1000x648.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -120,15 +120,15 @@
         }
       },
       {
-        "id": "e423c600121fcf6d",
+        "id": "516b83d1b61551ea",
         "sourceName": "Ars Technica",
         "category": "tech",
         "lang": "en",
-        "title": "High oil prices have led to a dip in global carbon emissions",
-        "link": "https://arstechnica.com/science/2026/11/carbon-emissions-are-down-this-year-but-that-probably-wont-last/",
-        "pubDate": "Tue, 10 Nov 2026 16:29:27 +0000",
-        "snippet": "Bucking recent trends, fossil fuel emissions look to be down 0.4 percent.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/GettyImages-2297120164-1152x648.jpg",
+        "title": "The US military seems to be getting nervous about the launch supply crunch",
+        "link": "https://arstechnica.com/space/2026/11/the-us-military-seems-to-be-getting-nervous-about-the-launch-supply-crunch/",
+        "pubDate": "Tue, 10 Nov 2026 23:02:39 +0000",
+        "snippet": "\"Launch is extremely constrained and that is exactly the situation we predicted.\"",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/1793382176191-1152x648.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -137,15 +137,15 @@
         }
       },
       {
-        "id": "b5a8c724d50f341d",
+        "id": "6904b35e4757872c",
         "sourceName": "Ars Technica",
         "category": "tech",
         "lang": "en",
-        "title": "One space station company sues another for copying its work",
-        "link": "https://arstechnica.com/space/2026/11/one-space-station-company-sues-another-for-copying-its-work/",
-        "pubDate": "Tue, 10 Nov 2026 16:17:51 +0000",
-        "snippet": "\"NASA advised that Vast’s submission in some locations substituted 'the PAM Provider' for Axiom\"",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/KSC-20230521-PH-CSH01_0001large-1152x648.jpg",
+        "title": "Ring cameras go mobile as Amazon debuts AI-powered security drone and robot",
+        "link": "https://arstechnica.com/ai/2026/11/ring-cameras-go-mobile-as-amazon-debuts-ai-powered-security-drone-and-robot/",
+        "pubDate": "Tue, 10 Nov 2026 22:35:01 +0000",
+        "snippet": "Amazon's roaming Ring Robotics devices will debut in late 2026 and early 2027.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/Ring-Drone-1152x648.jpeg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -156,15 +156,15 @@
     ],
     "game": [
       {
-        "id": "efa2d650086724a5",
+        "id": "37467339dca82d74",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "PlayStation Plus PC app is being shut down in December because less than 0.4% of eligible subscribers are using it",
-        "link": "https://www.pcgamer.com/gaming-industry/playstation-plus-pc-app-is-being-shut-down-in-december-because-less-than-0-4-percent-of-eligible-subscribers-are-using-it/",
-        "pubDate": "Tue, 10 Nov 2026 18:57:18 +0000",
-        "snippet": "Yes, this fits with Sony's broader pullback from PC, but the real reason the app is \"retiring\" is a simple lack of interest.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/wkTrHGFcrPxmNFFGDeyYtH-1920-80.jpg",
+        "title": "One Elder Scrolls fan is reviving and upgrading (with AI) a lost spin-off for the Nokia N-Gage and porting it to PC",
+        "link": "https://www.pcgamer.com/games/the-elder-scrolls/one-elder-scrolls-fan-is-reviving-and-upgrading-a-lost-spin-off-for-the-nokia-n-gage-and-porting-it-to-pc/",
+        "pubDate": "Wed, 11 Nov 2026 00:00:19 +0000",
+        "snippet": "Anyone remember Shadowkey?",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/nag2arKf76CYq2aNFJVzpd-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -173,15 +173,15 @@
         }
       },
       {
-        "id": "c0041b3c75eddfb3",
+        "id": "20c82c2cb3146eb1",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "I installed a GTA 5 mod that makes it rain human beings, and no I don't know why either",
-        "link": "https://www.pcgamer.com/games/grand-theft-auto/i-installed-a-gta-5-mod-that-makes-it-rain-human-beings-and-no-i-dont-know-why-either/",
-        "pubDate": "Tue, 10 Nov 2026 18:00:00 +0000",
-        "snippet": "We should all be so lucky.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/9BVTXEXPh2BBPMKmRjBnrU-1920-80.jpg",
+        "title": "Capcom quietly updates the Monster Hunter Wilds beta listing on Steam, indicating a possible expansion playtest",
+        "link": "https://www.pcgamer.com/games/action/capcom-quietly-updates-the-monster-hunter-wilds-beta-listing-on-steam-indicating-a-possible-expansion-playtest/",
+        "pubDate": "Tue, 10 Nov 2026 22:22:30 +0000",
+        "snippet": "We might get an early taste of Ascendance before long.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/SjXLPquNhBisCmqpHuepoj-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -190,15 +190,15 @@
         }
       },
       {
-        "id": "e51bba635f3b0216",
+        "id": "4a8213f86701acf5",
         "sourceName": "PC Gamer",
         "category": "game",
         "lang": "en",
-        "title": "Note to self: If playing Call of Duty in an airport, don't say words like 'bomb' lest you want to evacuate an entire plane",
-        "link": "https://www.pcgamer.com/games/call-of-duty/note-to-self-if-playing-call-of-duty-in-an-airport-dont-say-words-like-bomb-lest-you-want-to-evacuate-an-entire-plane/",
-        "pubDate": "Tue, 10 Nov 2026 17:15:33 +0000",
-        "snippet": "Oopsie daisy.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/5EWnGC9pvFVHwRsPbdM4uV-1920-80.jpg",
+        "title": "Bungie drops gameplay trailer for Marathon's 'co-op PvE roguelite' mode and swanky new social space",
+        "link": "https://www.pcgamer.com/games/fps/bungie-drops-gameplay-trailer-for-marathons-co-op-pve-roguelite-mode-and-swanky-new-social-space/",
+        "pubDate": "Tue, 10 Nov 2026 21:16:59 +0000",
+        "snippet": "The Symbiosis update, which will also kick off a beta for a new Team Deathmatch mode, will launch on December 8 with a free-play week.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/qsoUEKZJuZjDSsWKVnbSzh-1920-80.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -207,15 +207,15 @@
         }
       },
       {
-        "id": "81d2275a42079a2e",
+        "id": "de396a5c6370b9f1",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "Big Walk AI Controversy Is a GOTY Awards Twist Sparking a Bigger Debate",
-        "link": "https://www.polygon.com/big-walks-ai-controversy-goty-2026/",
-        "pubDate": "Tue, 10 Nov 2026 19:25:34 GMT",
-        "snippet": "Big Walk faces a hurdle ahead of GOTY season, as IGF jury members draw a hardline stance against voting for games that have any AI use whatsoever.",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/06/big-walk.png",
+        "title": "5 Years Later, 'VisionQuest' Officially Fixes 'WandaVision's Disappointing Ending",
+        "link": "https://www.polygon.com/visionquest-fixes-wandavision-ending/",
+        "pubDate": "Wed, 11 Nov 2026 03:30:17 GMT",
+        "snippet": "The finale of VisionQuest featured a sitcom-inspired sequence that would have saved WandaVision",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/chorus/uploads/chorus_asset/file/22314637/Screen_Shot_2021_02_19_at_5.42.39_AM__2_.png",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -224,15 +224,15 @@
         }
       },
       {
-        "id": "60b8448253813f5a",
+        "id": "762138f2f5c3bfb7",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "Nobody Said The Legend of Zelda: Ocarina of Time Was This Funny",
-        "link": "https://www.polygon.com/zelda-ocarina-time-remake-funny-moments/",
-        "pubDate": "Tue, 10 Nov 2026 19:19:58 GMT",
-        "snippet": "It may be impossible to play Zelda: Ocarina of Time totally free of spoilers in 2026, but the jokes are 100% fresh.",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/zeldaootremake_guide_princessruto_lead.jpg",
+        "title": "Christopher Nolan's The Odyssey Officially Sets Home Release Date",
+        "link": "https://www.polygon.com/the-odyssey-christopher-nolan-home-release-date/",
+        "pubDate": "Tue, 10 Nov 2026 22:52:17 GMT",
+        "snippet": "The Odyssey, Christopher Nolan's historical epic, is coming home to VOD and Blu-ray/DVD on Nov. 19.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/08/the-odyssey.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -241,15 +241,15 @@
         }
       },
       {
-        "id": "3dd05486cb21b5f1",
+        "id": "4d2d8bf047fc130f",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "2027's Most Stylish Action Game Looks Spectacular in First Official Gameplay",
-        "link": "https://www.polygon.com/tsarevna-official-gameplay-trailer-dancer-slasher-game/",
-        "pubDate": "Tue, 10 Nov 2026 19:07:20 GMT",
-        "snippet": "Tsarevna is an upcoming hack-and-slash action game that uses motion capture from a real ballerina for its dance-inspired melee combat.",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/tsarevna-screenshot.jpg",
+        "title": "10 Best Fire Emblem: Fortune's Weave Replacements",
+        "link": "https://www.polygon.com/fire-emblem-fortunes-weave-best-games-replacements/",
+        "pubDate": "Tue, 10 Nov 2026 22:18:49 GMT",
+        "snippet": "If Fire Emblem: Fortune's Weave has got you craving more tactical battles and plenty of allies to recruit, here are a few of our favorites",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/fire-emblem-fortunes-weave-dietrich.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -311,22 +311,93 @@
         }
       },
       {
-        "id": "847511bc34e8bd55",
-        "sourceName": "Google News (Musik Indonesia) [Pasardana]",
+        "id": "04cb0cde5a185c80",
+        "sourceName": "Google News (Musik Indonesia) [Media Center Kota Palangka Raya]",
         "category": "musik",
         "lang": "id",
-        "title": "Kementerian Ekraf Dorong .notyourwife Bawa Musik Indie Indonesia ke Panggung NYC",
-        "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQbEx4UXRleGdmdTBKMWxLWndoM0MwTS1OUDQ1SklyVV9nRUd6WEJWQ2J3b3ludk9Qejl3a3A0Q05VNzFDckxsNklFQkk2bkROODkyTUpXQjlZQXdaT2R1dVltbXBwNDFuRk9kOVdOek8yaTduYm1LbkdrSlV3S28xQnVEN2tTNXVpY0xSeklpRm52N1QwOXo1WGtDNm9rOEdfUnBqY0NFaXp4QS04TzJCbnhydlNvUGM?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 03:08:00 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxQbEx4UXRleGdmdTBKMWxLWndoM0MwTS1OUDQ1SklyVV9nRUd6WEJWQ2J3b3ludk9Qejl3a3A0Q05VNzFDckxsNklFQkk2bkROODkyTUpXQjlZQXdaT2R1dVltbXBwNDFuRk9kOVdOek8yaTduYm1LbkdrSlV3S28xQnVEN2tTNXVpY0xSeklpRm52N1QwOXo1WGtDNm9rOEdfUnBqY0NFaXp4QS04TzJCbnhydlNvUGM?oc=5\" target=\"_blank\">",
-        "imageUrl": "https://strapi.pasardana.id/uploads/IMG_20261110_WA_0001_121bb21086.jpg",
+        "title": "IRINGI LAGU INDONESIA RAYA",
+        "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1haHZkNXBEU0hIMHk4anN2bDk4QTlfN2JCamVGYnpqbnBOeVFGVUhIMTJsZTBqZmpiQ0lBLW5PaVVFcXhlaERZMVFZelhHZFJkY243bFVKR1pXUU8yQXdXQ3NVVWtUbUpEbXY0Z1F2Y1FUTGhzV0N6WA?oc=5",
+        "pubDate": "Wed, 11 Nov 2026 01:38:01 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMieEFVX3lxTE1haHZkNXBEU0hIMHk4anN2bDk4QTlfN2JCamVGYnpqbnBOeVFGVUhIMTJsZTBqZmpiQ0lBLW5PaVVFcXhlaERZMVFZelhHZFJkY243bFVKR1pXUU8yQXdXQ3NVVWtUbUpEbXY0Z1F2Y1FUTGhzV0N6WA?oc=5\" target=\"_blank\">IRINGI LAGU INDONESIA RAYA</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Media Center Kota Pal",
+        "imageUrl": "https://mediacenter.palangkaraya.go.id/wp-content/uploads/2026/11/DSC_7167marc.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
-        "originalArticleUrl": "https://pasardana.id/news/2026/11/10/kementerian-ekraf-dorong-notyourwife-bawa-musik-indie-indonesia-ke-panggung-nyc"
+        "originalArticleUrl": "https://mediacenter.palangkaraya.go.id/iringi-lagu-indonesia-raya-10/"
+      },
+      {
+        "id": "15dfee040ccd8bcd",
+        "sourceName": "Google News (Musik Indonesia) [RRI.co.id]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Dangdut Bertransformasi Menjadi Irama Baru Generasi Muda Indonesia",
+        "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQMGdkamp2R3FkS3N0ekp5RkRwSHBMYVBQTHZkRnZSRGlXZUVwX3RkRWNDSGI1WW1MSWltZlo0R1JlRGVEdV9QVV9RcGZBUTNmdDhGTk5uVUZsSGtvZ0ctWHAyUjR5QWo5ZF9aYUxyZFl3UEtjTGNta2t2VDZqYmN5cTVXOUFFaFBoRTViMW0wZzIxVFBKbXctVjU0Um1fM0ZiSW1rMTBWdm13bGs1ZVQ3V1Fn?oc=5",
+        "pubDate": "Wed, 11 Nov 2026 01:01:00 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxQMGdkamp2R3FkS3N0ekp5RkRwSHBMYVBQTHZkRnZSRGlXZUVwX3RkRWNDSGI1WW1MSWltZlo0R1JlRGVEdV9QVV9RcGZBUTNmdDhGTk5uVUZsSGtvZ0ctWHAyUjR5QWo5ZF9aYUxyZFl3UEtjTGNta2t2VDZqYmN5cTVXOUFFaFBoRTViMW0wZzIxVFBKbXctVjU0Um1fM0ZiSW1rMTBWdm13bGs1ZVQ3V1Fn?oc=5\" target=\"_blank\">Dangdut",
+        "imageUrl": "https://rri-portal-app-assets.obs.ap-southeast-4.myhuaweicloud.com/upload/berita/image/bukittinggi/thumbs/xl_1794297721151790_6d3e2f9dd3_berita_bukittinggi.webp",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://rri.co.id/bukittinggi/hiburan/2885363/dangdut-bertransformasi-menjadi-irama-baru-generasi-muda-indonesia"
+      },
+      {
+        "id": "e4c6e79410d2875f",
+        "sourceName": "Google News (Musik Indonesia) [Beautynesia]",
+        "category": "musik",
+        "lang": "id",
+        "title": "5 Daftar Girl Group Indonesia yang Kini Naik Daun",
+        "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOX0JubTBBUVd5MW5kd19pZXduV196TWVnclF3TlBDS3gwaTRySlRRMHhSS0NVcVB1SGN5Mi1Fa2RaOTl3MzUyQW56V00zR1VJcUM5NUhtTVFxZGZFcjFQYnp2dTZHSTFIVVNRRkFfcmRkdDhZVkJnVHBrOExMNG50bm5NTGROYWhIRVJUVlNnb29HQ2N10gGaAUFVX3lxTE9kNG1QWUpQRUozMmNpYzF0aURKUkcxTXUxNUhMVHhFTG4teUFvVXp6UnVJUHZRV0M3MnhUVVoxU0hVODV1VjlYZEhta3BVZEtyNTJUSENsM3F5d0RqVThsUGljUUc2ekxYVmRpbUxGMzVvT2l3bWg3Q0RFU0xUcXprM1ZhRjE1UlJJVnhiWlhHTWpiS0tLOUtlaXc?oc=5",
+        "pubDate": "Wed, 11 Nov 2026 03:30:10 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxOX0JubTBBUVd5MW5kd19pZXduV196TWVnclF3TlBDS3gwaTRySlRRMHhSS0NVcVB1SGN5Mi1Fa2RaOTl3MzUyQW56V00zR1VJcUM5NUhtTVFxZGZFcjFQYnp2dTZHSTFIVVNRRkFfcmRkdDhZVkJnVHBrOExMNG50bm5NTGROYWhIRVJUVlNnb29HQ2N10gGaAUFVX3lxTE9kNG1QWUpQRUozMmNpYzF0aURKUkcxTXUxNUhMVHhFTG4teUFvVXp6Un",
+        "imageUrl": "https://akcdn.detik.net.id/visual/2026/11/03/deretan-girl-group-yang-sedang-naik-daun-foto-instagramcomnonawav-1794193681985_169.png?w=650",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://www.beautynesia.id/life/5-daftar-girl-group-indonesia-yang-kini-naik-daun/b-326720"
+      },
+      {
+        "id": "a0bdd020f826ac27",
+        "sourceName": "Google News (Musik Indonesia) [Kementerian Ekonomi Kreatif/Badan Ekonomi Kreatif Republik Indonesia]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Dari Jakarta ke NYC, .notyourwife Bawa Warna Baru Musik Indie Indonesia di Pentas Internasional",
+        "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxORjhFX21GRHUxdmJ4QjRfQl8ySi1US3ZEYW5vSUVBb3VWTFktVnExN2JGU3B5OUxVT2xJT3luQUpuN0hNMDNrN3M2Ymw1LXRQNURiSmkyU1R6dXdRZDlWOC1tZ2ZrRmtFdDZocTU0UThjTnhCUXYyNTN0OVppb1o2b0J3Zll3dmk3b2V2UWsyWm5vaWlPdG5WRndpMXFlbmg1VzZ2MFdQcw?oc=5",
+        "pubDate": "Mon, 09 Nov 2026 15:19:01 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxORjhFX21GRHUxdmJ4QjRfQl8ySi1US3ZEYW5vSUVBb3VWTFktVnExN2JGU3B5OUxVT2xJT3luQUpuN0hNMDNrN3M2Ymw1LXRQNURiSmkyU1R6dXdRZDlWOC1tZ2ZrRmtFdDZocTU0UThjTnhCUXYyNTN0OVppb1o2b0J3Zll3dmk3b2V2UWsyWm5vaWlPdG5WRndpMXFlbmg1VzZ2MFdQcw?oc=5\" target=\"_blank\">Dari Jakarta ke NYC, ",
+        "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
+        "galleryImages": [],
+        "isOriginalImage": false,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        }
+      },
+      {
+        "id": "75dff6a1e2c75ac7",
+        "sourceName": "Google News (Musik Indonesia) [Espos.id]",
+        "category": "musik",
+        "lang": "id",
+        "title": "Timeless Project Live di Solo 13 November, Ada Dewa 19 feat. Ello hingga J-Rocks",
+        "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNbEN3dnBpeFZna3ZZMlMwZjBpVTFXRGRLNU1ISk80Q2NxbVE3MGdmQ3E2WEpqcjJzTmg5bWFTYXgwM2JEVFFjR2VVemMyS3NwVEFJWUVCbkFFbmxScGNiTXhCWENrWHMzMHFfWGI2QkU5THl5Tm1FUV9NdmU3QWlqU3dtNGlWODI2X0lrWHA3OV9nc085T251cnFOZHhpeEMwdndyU3B6aENJbUt6cjZ4MmNmWGVxUdIBtgFBVV95cUxNbEN3dnBpeFZna3ZZMlMwZjBpVTFXRGRLNU1ISk80Q2NxbVE3MGdmQ3E2WEpqcjJzTmg5bWFTYXgwM2JEVFFjR2VVemMyS3NwVEFJWUVCbkFFbmxScGNiTXhCWENrWHMzMHFfWGI2QkU5THl5Tm1FUV9NdmU3QWlqU3dtNGlWODI2X0lrWHA3OV9nc085T251cnFOZHhpeEMwdndyU3B6aENJbUt6cjZ4MmNmWGVxUQ?oc=5",
+        "pubDate": "Tue, 10 Nov 2026 23:00:00 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxNbEN3dnBpeFZna3ZZMlMwZjBpVTFXRGRLNU1ISk80Q2NxbVE3MGdmQ3E2WEpqcjJzTmg5bWFTYXgwM2JEVFFjR2VVemMyS3NwVEFJWUVCbkFFbmxScGNiTXhCWENrWHMzMHFfWGI2QkU5THl5Tm1FUV9NdmU3QWlqU3dtNGlWODI2X0lrWHA3OV9nc085T251cnFOZHhpeEMwdndyU3B6aENJbUt6cjZ4MmNmWGVxUdIBtgFBVV95cUxNbEN3dnBpeF",
+        "imageUrl": "https://imgcdn.espos.id/@espos/images/2026/11/20261110210039-img-0864.jpeg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Margaretha Nina",
+          "byline": "0100MUNS3DJOA35D985DFFDBA0"
+        },
+        "originalArticleUrl": "https://solopos.espos.id/timeless-project-live-di-solo-13-november-ada-dewa-19-feat-ello-hingga-j-rocks-2265763/amp"
       },
       {
         "id": "8d6f4efdc228c88f",
@@ -353,7 +424,7 @@
         "lang": "id",
         "title": "10 Venue yang Paling Sering Menggelar Konser dan Festival Musik di Indonesia",
         "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOdzE0NldtLXluS1JRUUVpd01RTjFqQmNQcUczQ0EzbmdyT2wwOGN1SGpSSUJNQ0tfa1dVdjdQQzRsM0JyTHhRQjBoSkc2c29xWVVTVHZJRWhlRHpUamZ5NnNGSGdSRUZpWXFPRnVySnhTUVJVZTVLZ2gyMUhqZW5LanBxckNxWUozNEdiX2VHQVNuRlYyREQzNEQ5WS0xSExvN0Q2VmN3d3BCUE51OHBxMV9BWk53dw?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 16:07:30 GMT",
+        "pubDate": "Tue, 10 Nov 2026 16:10:01 GMT",
         "snippet": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxOdzE0NldtLXluS1JRUUVpd01RTjFqQmNQcUczQ0EzbmdyT2wwOGN1SGpSSUJNQ0tfa1dVdjdQQzRsM0JyTHhRQjBoSkc2c29xWVVTVHZJRWhlRHpUamZ5NnNGSGdSRUZpWXFPRnVySnhTUVJVZTVLZ2gyMUhqZW5LanBxckNxWUozNEdiX2VHQVNuRlYyREQzNEQ5WS0xSExvN0Q2VmN3d3BCUE51OHBxMV9BWk53dw?oc=5\" target=\"_blank\">1",
         "imageUrl": "https://cdn.goodnewsfromindonesia.id/nyc/goodstats/uploads/infographics/original/2026/11/10/10-venue-yang-paling-sering-menggelar-konser-dan-festival-musik-di-indonesia-PzmXxh9X5J.jpg?tr=w-1200,h-1200,fo-center",
         "galleryImages": [],
@@ -363,78 +434,6 @@
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
         },
         "originalArticleUrl": "https://goodstats.id/infographic/10-venue-yang-paling-sering-menggelar-konser-dan-festival-musik-di-indonesia-nm5dC"
-      },
-      {
-        "id": "d80eadeaf7cf33ad",
-        "sourceName": "Google News (Musik Indonesia) [KapanLagi.com]",
-        "category": "musik",
-        "lang": "id",
-        "title": "Methosa Rilis 'Gemuruh Revolusi', Tuangkan Kekecewaan terhadap Kondisi Indonesia Lewat Musik",
-        "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPcEk5VjR0cUJZaFpTaElhei1iTVA3LTNzTkNnT0lWNnM4MHlfWTNWOXR5bmh4YS1FVGpaM1d0b1VDcGVoaEprR2tPUnA3QjczbFIza0RrLTZUcUQxaVE0QmxPMEFfS212Z05VVHNSdlQ4M1RIcVl3OHdpTmQ4azItNnhKOXo2SmxOVzZ3SkJHWnJCY2RGZEpxR3ItQnRzZEkwQ090TkVwS3dtMTV1ZUNyeWFCZVQ3VkZSQ1VIeDFNZU1ObkQ1RFFZTzFtVFVkUVYyQWxLM1ZzRzQ2d9IB3wFBVV95cUxPWF9HNk9BU2s4UXF4YjJuUGkwVHlsM1VEN3FuM3NIekYtM0lXbnNJNTN1WkdCcXgyLVdYRmg5Ti14YTNUeEdIVldaQXVpYnIwYWpPODlIWVpxRGpITVRGaUdwTzNFSDFMTzRta2ZXaF9VZS04QXoxeE1CX2VGLXRSR3VQQ01ZUEpPMmtjVFlIeER5Rmc0cm5jQ25YS1ZwazUtdllyb28wUGZLVGtkajZFalFraWVRa2NpekI0MXBGY1lEODROcXgtXzkzeUJnaDVWcy1Eb0IxRE9PcHVCMEFJ?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 09:19:55 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxPcEk5VjR0cUJZaFpTaElhei1iTVA3LTNzTkNnT0lWNnM4MHlfWTNWOXR5bmh4YS1FVGpaM1d0b1VDcGVoaEprR2tPUnA3QjczbFIza0RrLTZUcUQxaVE0QmxPMEFfS212Z05VVHNSdlQ4M1RIcVl3OHdpTmQ4azItNnhKOXo2SmxOVzZ3SkJHWnJCY2RGZEpxR3ItQnRzZEkwQ090TkVwS3dtMTV1ZUNyeWFCZVQ3VkZSQ1VIeDFNZU1ObkQ1RFFZTz",
-        "imageUrl": "https://cdns.klimg.com/resized/1280x720/p/headline/methosa-rilis-039gemuruh-revolusi039-tu-97a9de.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://musik.kapanlagi.com/berita/methosa-rilis-039gemuruh-revolusi039-tuangkan-kekecewaan-terhadap-kondisi-indonesia-lewat-musik-97a9de.html"
-      },
-      {
-        "id": "579fadaa1a898874",
-        "sourceName": "Google News (Musik Indonesia) [Kompas.com]",
-        "category": "musik",
-        "lang": "id",
-        "title": "GSrek Indonesia Rayakan 11 Tahun, Gelar Festival Otomotif dan Musik Halaman 2",
-        "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPZ0otd2NjTDZ1M0VzYndVc01SRmhvWjdnOG1MMnFDUFotOVZVNkNwaDQtdVhCS1VkVno2aG1mc0JFWG9ya25Ed3dLTW5tSlV5aFRwRjNXNXZVS01UTEZ1OW9sVm53S0piV2ZlSFYtek1rY0VORTZ2Y2h3aVlJY2pMd2NwRU11NHlxUlF0WjQtWkNfV0dRSl9rcm0zcUdCN1RCaXE5R25IeEUyS09rWG9Nc2pJWGkxV2dGUThXSjA0Qm1UZGVMSEtB?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 09:35:15 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxPZ0otd2NjTDZ1M0VzYndVc01SRmhvWjdnOG1MMnFDUFotOVZVNkNwaDQtdVhCS1VkVno2aG1mc0JFWG9ya25Ed3dLTW5tSlV5aFRwRjNXNXZVS01UTEZ1OW9sVm53S0piV2ZlSFYtek1rY0VORTZ2Y2h3aVlJY2pMd2NwRU11NHlxUlF0WjQtWkNfV0dRSl9rcm0zcUdCN1RCaXE5R25IeEUyS09rWG9Nc2pJWGkxV2dGUThXSjA0Qm1UZGVMSEtB?o",
-        "imageUrl": "https://asset.kompas.com/crops/uPoIeCE7v_60AcrgNVD7hNZtiFM=/451x0:5515x3376/750x500/data/photo/2026/05/12/6a02dfe17fdca.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://otomotif.kompas.com/image/2026/11/10/085200815/gsrek-indonesia-rayakan-11-tahun-gelar-festival-otomotif-dan-musik?page=2"
-      },
-      {
-        "id": "adca6b67edc199bf",
-        "sourceName": "Google News (Musik Indonesia) [detikcom]",
-        "category": "musik",
-        "lang": "id",
-        "title": "5 Musisi Indonesia yang Lagi On Fire Banget di 2026",
-        "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxOdXN0R3lYdXBVbF91cHNOamFPQnNMVVd4VWlHcXJLQVQyazU0LS11cGthdndNUmdsZjMzVzFkbWo2YktySGpvU1dmRkFfdjlWYkRqODlkSGZwMjZHRG44UTZ0ZTB1V1R0enMxUmdJVXdVTm9uNFk1VzFwZzloOXFHVE1ad3cwQkhWTHFTbmhpRXJ4b2tLYm5SMDZjQlJBQdIBngFBVV95cUxOdXN0R3lYdXBVbF91cHNOamFPQnNMVVd4VWlHcXJLQVQyazU0LS11cGthdndNUmdsZjMzVzFkbWo2YktySGpvU1dmRkFfdjlWYkRqODlkSGZwMjZHRG44UTZ0ZTB1V1R0enMxUmdJVXdVTm9uNFk1VzFwZzloOXFHVE1ad3cwQkhWTHFTbmhpRXJ4b2tLYm5SMDZjQlJBQQ?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 14:00:37 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxOdXN0R3lYdXBVbF91cHNOamFPQnNMVVd4VWlHcXJLQVQyazU0LS11cGthdndNUmdsZjMzVzFkbWo2YktySGpvU1dmRkFfdjlWYkRqODlkSGZwMjZHRG44UTZ0ZTB1V1R0enMxUmdJVXdVTm9uNFk1VzFwZzloOXFHVE1ad3cwQkhWTHFTbmhpRXJ4b2tLYm5SMDZjQlJBQdIBngFBVV95cUxOdXN0R3lYdXBVbF91cHNOamFPQnNMVVd4VWlHcXJLQV",
-        "imageUrl": "https://awsimages.detik.net.id/api/wm/2024/11/29/perunggu_169.jpeg?wid=54&w=1200&v=1&t=jpeg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://www.detik.com/pop/music/d-8746735/5-musisi-indonesia-yang-lagi-on-fire-banget-di-2026/amp"
-      },
-      {
-        "id": "1092c18d98db4819",
-        "sourceName": "Google News (Musik Indonesia) [JPNN.com]",
-        "category": "musik",
-        "lang": "id",
-        "title": "Perluas Karier Bermusik, Atta Rumnan Duet dengan Rossa di Sabah",
-        "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOZmdOX2E2WXJCZ0FLeV9KNE8zdU1lR1ZyVUFIeXhIWnUwZlhRbEJPR3B0TnpaVlNIMTNvczNUbGFsRXk1cXlRSkcyRENsZFA0OW4zTVNzTnlldVM5SGtFX3h3LTl1Z3JydUlLbUNUYXJpNkRhV2gzU3RkeDV5VTFuUGpNRmdTRzdxSHhLNi1SajFDZw?oc=5",
-        "pubDate": "Tue, 10 Nov 2026 10:47:12 GMT",
-        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxOZmdOX2E2WXJCZ0FLeV9KNE8zdU1lR1ZyVUFIeXhIWnUwZlhRbEJPR3B0TnpaVlNIMTNvczNUbGFsRXk1cXlRSkcyRENsZFA0OW4zTVNzTnlldVM5SGtFX3h3LTl1Z3JydUlLbUNUYXJpNkRhV2gzU3RkeDV5VTFuUGpNRmdTRzdxSHhLNi1SajFDZw?oc=5\" target=\"_blank\">Perluas Karier Bermusik, Atta Rumnan Duet dengan ",
-        "imageUrl": "https://cloud.jpnn.com/photo/arsip/normal/2026/11/10/duet-rossa-dan-atta-rumnan-foto-dok-pribadi-ovd0z-sva1.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Margaretha Nina",
-          "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        },
-        "originalArticleUrl": "https://www.jpnn.com/news/perluas-karier-bermusik-atta-rumnan-duet-dengan-rossa-di-sabah"
       }
     ]
   }
