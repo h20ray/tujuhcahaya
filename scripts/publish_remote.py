@@ -492,11 +492,30 @@ print("APPLY_SUCCESS")
     client.run(f"rm -f {remote_data_tmp} {remote_script_tmp}")
     
     if "APPLY_SUCCESS" in out:
+        post_url = f"https://www.tujuhcahaya.com/{slug}"
+        # Notify IndexNow engine network (Bing, Yandex, Naver, Seznam)
+        try:
+            import urllib.request
+            in_payload = json.dumps({
+                "host": "www.tujuhcahaya.com",
+                "key": "d856e24ba0a2df3d07ac8b11aae6ed1d",
+                "keyLocation": "https://www.tujuhcahaya.com/d856e24ba0a2df3d07ac8b11aae6ed1d.txt",
+                "urlList": [post_url]
+            }).encode('utf-8')
+            req = urllib.request.Request(
+                "https://api.indexnow.org/indexnow",
+                data=in_payload,
+                headers={"Content-Type": "application/json; charset=utf-8"}
+            )
+            urllib.request.urlopen(req, timeout=5)
+        except Exception:
+            pass
+
         return {
             "success": True,
             "slug": slug,
             "status": status,
-            "url": f"https://www.tujuhcahaya.com/{slug}",
+            "url": post_url,
             "byline": byline_id,
             "entryId": entry_id
         }

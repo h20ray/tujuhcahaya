@@ -82,6 +82,7 @@ export default defineConfig({
 	integrations: [
 		react(),
 		emdash({
+			siteUrl: process.env.SITE_URL ?? "https://www.tujuhcahaya.com",
 			database: sqlite({ url: "file:./data.db" }),
 			storage: storageDriver,
 			authProviders,

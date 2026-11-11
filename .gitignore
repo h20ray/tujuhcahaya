@@ -53,3 +53,9 @@ scripts/test_*.py
 
 # local scratch
 scratch/
+
+# Agent tools, cache & logs
+.serena/
+*.log
+logs/
+graphify-out/cache/

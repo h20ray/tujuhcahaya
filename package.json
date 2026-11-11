@@ -17,6 +17,8 @@
   "dependencies": {
     "@astrojs/node": "^11.1.5",
     "@astrojs/react": "^6.0.5",
+    "@aws-sdk/client-s3": "^3.1166.0",
+    "@aws-sdk/s3-request-presigner": "^3.1166.0",
     "@tujuhcahaya/live-chat": "file:../plugins/tujuhcahaya-live-chat",
     "@tujuhcahaya/radio-player": "file:../plugins/tujuhcahaya-radio-player",
     "astro": "^7.3.2",

@@ -66,6 +66,14 @@ const BANNED_HEADLINE_FORMULAS: Array<{ pattern: RegExp; message: string }> = [
 		pattern: /^Mengapa\b.+\bBisa Menjadi Bom Waktu\b/i,
 		message: 'Pola judul klise bombastis AI ("...Bom Waktu").',
 	},
+	{
+		pattern: /^(kenapa|mengapa|bagaimana|apakah)\b/i,
+		message: 'Awalan judul bernada tanya kaku/FAQ terdeteksi ("Kenapa...", "Mengapa...", "Bagaimana..."). Judul Tujuhcahaya bukan tanya-jawab bot atau artikel FAQ Google. Tulis sebagai pernyataan bernas, ironi warkop, atau observasi kritis.',
+	},
+	{
+		pattern: /^ketika\b/i,
+		message: 'Pola pembuka klise bot terdeteksi ("Ketika..."). DILARANG KERAS melulu membuka judul dengan kata "Ketika". Variasikan struktur kalimat: gunakan subjek langsung, ironi kontras (X tapi Y / X saat Y), aksi langsung, atau sentilan warkop tanpa kata "Ketika".',
+	},
 ];
 
 const PREACHY_AI_ENDINGS: Array<{ pattern: RegExp; message: string }> = [
@@ -142,6 +150,12 @@ export function validate7cEditorial(
 		score -= 25;
 	}
 
+	// Ban question mark in headlines (cheap FAQ / clickbait)
+	if (title.includes("?")) {
+		errors.push('Haram menggunakan tanda tanya ("?") pada judul. Tujuhcahaya bukan media FAQ atau clickbait tanya-jawab murahan. Tuliskan sudut pandang atau observasi langsung dalam judul.');
+		score -= 20;
+	}
+
 	// Ban robotic tutorial prefixes
 	if (/^(mengenal|menelisik|memahami|menguak|bedah tuntas|panduan lengkap|inilah)\b/i.test(title)) {
 		errors.push('Awalan judul kaku ala tutorial/makalah terdeteksi ("Mengenal...", "Menelisik...", "Memahami..."). Buka judul dengan keresahan warga, ironi, atau sudut pandang kritis.');
@@ -196,18 +210,45 @@ export function validate7cEditorial(
 		score -= 10;
 	}
 
-	// 7. Anti-Leakage External Links & Inner Linking Audit
+	// 7. Anti-Leakage External Links & Contextual Inner Linking Audit
 	// Strip markdown images (![alt](url)) first so they aren't confused with text links
 	const proseWithoutImages = bodyText.replace(/!\[[^\]]*\]\([^\)]+\)/g, "");
 	const externalLinks = Array.from(proseWithoutImages.matchAll(/\[([^\]]+)\]\((https?:\/\/(?!tujuhcahaya\.com)[^\)]+)\)/gi));
 	if (externalLinks.length > 0) {
-		warnings.push(`Ditemukan ${externalLinks.length} tautan eksternal ke situs luar (${externalLinks.map(m => m[2].slice(0, 30) + '...').join(', ')}). Alihkan menjadi inner link internal (/tag/..., /category/..., /author/...) dan sebut sumber eksternal sebagai teks biasa agar tidak membuang pembaca keluar situs.`);
+		warnings.push(`Ditemukan ${externalLinks.length} tautan eksternal ke situs luar (${externalLinks.map(m => m[2].slice(0, 30) + '...').join(', ')}). Alihkan menjadi inner link kontekstual ke postingan terkait (/[slug]) dan sebut sumber eksternal sebagai teks biasa.`);
 		score -= 10;
 	}
 
 	const innerLinks = Array.from(proseWithoutImages.matchAll(/\[([^\]]+)\]\((\/[^\)]*)\)/gi));
 	if (innerLinks.length === 0) {
-		suggestions.push('Disarankan menyematkan minimal 1 inner link (misal: [topik terkait](/tag/nama-topik) atau [rubrik](/category/nama-rubrik)) untuk memperkuat SEO internal dan retensi pembaca.');
+		suggestions.push('Disarankan menyematkan minimal 1 inner link kontekstual ke artikel terkait (misal: [isu serupa](/slug-artikel)) untuk memperkuat topic cluster SEO dan retensi pembaca.');
+	} else {
+		let hasPostLink = false;
+		for (const match of innerLinks) {
+			const anchor = (match[1] || '').trim();
+			const href = (match[2] || '').trim();
+
+			// Ban /author/ links inside article body prose
+			if (/^\/(?:en\/)?author\//i.test(href)) {
+				errors.push(`Haram menyematkan link ke profil /author/ ("${href}") di badan artikel. Byline penulis sudah otomatis tercantum di kartu metadata artikel. Inner link SEO wajib mengarah ke postingan artikel terkait (/[slug]) secara kontekstual.`);
+				score -= 20;
+			}
+
+			// Ban robotic anchor text
+			if (/^(?:arsip|rubrik|kanal|kategori|kolom|baca juga|klik di sini)\b/i.test(anchor)) {
+				errors.push(`Anchor text "${anchor}" tidak alami dan kaku. Dalam kaidah SEO, gunakan frasa kontekstual alami yang menjelaskan topik bahasan (misal: "[krisis studio game serupa](/slug)"), bukan label taksonomi bot.`);
+				score -= 15;
+			}
+
+			if (!/^\/(?:en\/)?(?:tag|category|author)\//i.test(href)) {
+				hasPostLink = true;
+			}
+		}
+
+		if (!hasPostLink && innerLinks.length > 0) {
+			warnings.push('Semua inner link yang disematkan mengarah ke taksonomi (/tag/ atau /category/). Utamakan post-to-post inner link (/[slug]) untuk membangun PageRank dan topic cluster antar-artikel.');
+			score -= 10;
+		}
 	}
 
 	// 8. Content Volume & Placeholder Audit
