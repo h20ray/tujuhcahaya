@@ -61,7 +61,7 @@ const pedomanIdBlocks = [
   ),
   block("8. Pengaduan dan Penyelesaian Sengketa", "h3"),
   block(
-    "Masyarakat atau pihak yang merasa dirugikan oleh pemberitaan dapat menyampaikan surat tanggapan, koreksi, atau pengaduan langsung melalui meja redaksi di email: redaksi@tujuhcahaya.com. Penilaian akhir atas sengketa pelaksanaan pedoman ini diselesaikan oleh Dewan Pers."
+    "Masyarakat atau pihak yang merasa dirugikan oleh pemberitaan dapat menyampaikan surat tanggapan, koreksi, atau pengaduan langsung melalui meja redaksi di email: andoru@tujuhcahaya.com. Penilaian akhir atas sengketa pelaksanaan pedoman ini diselesaikan oleh Dewan Pers."
   ),
 ];
 
@@ -96,7 +96,7 @@ const pedomanEnBlocks = [
   ),
   block("7. Dispute Resolution", "h3"),
   block(
-    "Complaints or requests for correction regarding any published coverage should be directed to the editorial desk at: editorial@tujuhcahaya.com. Final arbitrations are resolved through the Indonesian Press Council."
+    "Complaints or requests for correction regarding any published coverage should be directed to the editorial desk at: andoru@tujuhcahaya.com. Final arbitrations are resolved through the Indonesian Press Council."
   ),
 ];
 
@@ -144,7 +144,7 @@ const privacyIdBlocks = [
   ),
   block("6. Hubungi Kami", "h3"),
   block(
-    "Pertanyaan atau permohonan informasi terkait kebijakan privasi dapat disampaikan melalui email: redaksi@tujuhcahaya.com."
+    "Pertanyaan atau permohonan informasi terkait kebijakan privasi dapat disampaikan melalui email: andoru@tujuhcahaya.com."
   ),
   block("Kebijakan ini berlaku efektif sejak 28 September 2024 dan diperbarui secara berkala.", "normal", ["em"]),
 ];
@@ -174,7 +174,7 @@ const privacyEnBlocks = [
     "We employ standard encrypted transport protocols (HTTPS/TLS) to protect data transmissions between your browser and our servers."
   ),
   block("5. Contact", "h3"),
-  block("For privacy inquiries, please contact: editorial@tujuhcahaya.com."),
+  block("For privacy inquiries, please contact: andoru@tujuhcahaya.com."),
   block("This policy is effective as of September 28, 2024.", "normal", ["em"]),
 ];
 
@@ -324,8 +324,7 @@ const redaksiIdBlocks = [
   block(
     "Redaksi Tujuhcahaya menerapkan prinsip ruang redaksi digital terdesentralisasi (Digital Distributed Newsroom) berpusat di Indonesia."
   ),
-  block("• Meja Redaksi & Hak Jawab: redaksi@tujuhcahaya.com"),
-  block("• Kemitraan & Liputan: editorial@tujuhcahaya.com"),
+  block("• Kontak Tunggal & Meja Redaksi: andoru@tujuhcahaya.com"),
   block("• Pengiriman Naskah: Melalui formulir daring di tujuhcahaya.com/kirim-tulisan"),
   block("• Kanal Resmi: @tujuhcahayahub (Instagram, X, TikTok)"),
 ];
@@ -349,7 +348,7 @@ const redaksiEnBlocks = [
   block("• Wode — Systems Architecture"),
   block("• Andi Gilang — Platform Engineering"),
   block("Newsroom Inquiries", "h3"),
-  block("General Newsroom & Corrections: editorial@tujuhcahaya.com"),
+  block("General Newsroom & Corrections: andoru@tujuhcahaya.com"),
   block("Community Submissions: tujuhcahaya.com/en/submit"),
 ];
 
