@@ -31,6 +31,7 @@ interface Props {
 	nextCursor?: string;
 	categoryFilter?: string;
 	tagFilter?: string;
+	robots?: string;
 }
 
 const {
@@ -44,6 +45,7 @@ const {
 	nextCursor,
 	categoryFilter,
 	tagFilter,
+	robots,
 } = Astro.props;
 
 const { t } = use7cTranslation(locale);
@@ -71,7 +73,7 @@ const breadcrumbItems = [
 const breadcrumbsJsonLd = build7cBreadcrumbsJsonLd(breadcrumbItems);
 ---
 
-<Base title={pageTitle} description={pageDescription}>
+<Base title={pageTitle} description={pageDescription} robots={robots}>
 	<script type="application/ld+json" set:html={safeJsonLd(breadcrumbsJsonLd)} />
 
 	<div class="dispatch-archive-page">

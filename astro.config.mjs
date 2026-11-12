@@ -53,7 +53,6 @@ export default defineConfig({
 	redirects: {
 		"/wp-admin": "/_emdash/admin",
 		"/wp-admin/[...path]": "/_emdash/admin",
-		"/wp-login.php": "/_emdash/admin",
 	},
 	image: {
 		layout: "constrained",

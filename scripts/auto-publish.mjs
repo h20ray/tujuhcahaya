@@ -21,6 +21,14 @@ export function generateId() {
 	return `01${timestamp}${random}`.slice(0, 26);
 }
 
+export function truncateAtWord(text, max = 160) {
+	const t = String(text).replace(/\s+/g, " ").trim();
+	if (t.length <= max) return t;
+	const cut = t.slice(0, max);
+	const sp = cut.lastIndexOf(" ");
+	return (sp > max * 0.6 ? cut.slice(0, sp) : cut).replace(/[\s,;:.\-]+$/, "") + "…";
+}
+
 export function generateSlug(title, maxLen = 65) {
 	let slug = title
 		.toLowerCase()
@@ -413,7 +421,7 @@ export async function autoPublishPost(payload, options = {}) {
 
 	const portableTextContent = proseToPortableText(content);
 	const cleanExcerpt = excerpt && excerpt.trim()
-		? excerpt.trim().slice(0, 200)
+		? truncateAtWord(excerpt, 160)
 		: content.slice(0, 160).replace(/\n/g, " ").trim();
 
 	// 3. Save to outbox

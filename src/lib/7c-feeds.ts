@@ -128,10 +128,6 @@ export function generate7cPagesSitemap(siteUrl: string = "https://www.tujuhcahay
 			{ path: "/posts", priority: "0.9", changefreq: "hourly" },
 			{ path: "/live", priority: "0.9", changefreq: "hourly" },
 			{ path: "/kirim-tulisan", priority: "0.8", changefreq: "monthly" },
-			{ path: "/en", priority: "0.8", changefreq: "daily" },
-			{ path: "/en/posts", priority: "0.7", changefreq: "daily" },
-			{ path: "/en/live", priority: "0.8", changefreq: "hourly" },
-			{ path: "/en/submit", priority: "0.7", changefreq: "monthly" },
 		];
 
 		// Exclude internal/stale slugs, group by slug for unique URLs
@@ -155,12 +151,6 @@ export function generate7cPagesSitemap(siteUrl: string = "https://www.tujuhcahay
 			const lastmod = p.updated_at ? new Date(p.updated_at).toISOString() : nowIso;
 			urls.push(`  <url>
     <loc>${base}/${p.slug}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>`);
-			urls.push(`  <url>
-    <loc>${base}/en/${p.slug}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -189,10 +179,6 @@ export function generate7cTaxonomiesSitemap(siteUrl: string = "https://www.tujuh
 			SELECT slug FROM taxonomies WHERE name = 'category' AND locale = 'id' ORDER BY slug ASC;
 		`).all() as Array<{ slug: string }>;
 
-		const tags = db.prepare(`
-			SELECT slug FROM taxonomies WHERE name = 'tag' AND locale = 'id' ORDER BY slug ASC;
-		`).all() as Array<{ slug: string }>;
-
 		const urls: string[] = [];
 
 		for (const c of categories) {
@@ -201,15 +187,6 @@ export function generate7cTaxonomiesSitemap(siteUrl: string = "https://www.tujuh
     <lastmod>${nowIso}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
-  </url>`);
-		}
-
-		for (const t of tags) {
-			urls.push(`  <url>
-    <loc>${base}/tag/${t.slug}</loc>
-    <lastmod>${nowIso}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>`);
 		}
 

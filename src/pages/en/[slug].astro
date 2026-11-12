@@ -69,8 +69,9 @@ const { posts: relatedPosts } = isPost
 		title: seo.title,
 		pageTitle: seo.ogTitle,
 		description: seo.description,
-		canonical: seo.canonical,
-		robots: seo.robots,
+		// /en/{slug} has no real translation yet: point to the ID original, keep out of the index.
+		canonical: `${C7_CANONICAL_ORIGIN}/${slug}`,
+		robots: "noindex, follow",
 	}}
 	image={seo.ogImage}
 />
