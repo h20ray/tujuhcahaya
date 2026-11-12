@@ -6,6 +6,9 @@
  */
 
 import sqlite3 from "node:sqlite";
+import duplicateRedirects from "../data/duplicate-redirects.json";
+
+const DUPLICATE_SLUGS = new Set(Object.keys(duplicateRedirects));
 
 function escapeXml(unsafe: string | null | undefined): string {
 	if (!unsafe) return "";
@@ -219,7 +222,7 @@ export function generate7cPostsSitemap(
 			LIMIT ? OFFSET ?;
 		`).all(limit, offset) as Array<{ slug: string; published_at: string; updated_at: string | null }>;
 
-		const urls = posts.map((p) => {
+		const urls = posts.filter((p) => !DUPLICATE_SLUGS.has(p.slug)).map((p) => {
 			const lastmod = p.updated_at
 				? new Date(p.updated_at).toISOString()
 				: new Date(p.published_at).toISOString();

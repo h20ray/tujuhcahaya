@@ -1,4 +1,5 @@
 import { defineMiddleware } from "astro:middleware";
+import duplicateRedirects from "./data/duplicate-redirects.json";
 
 /**
  * 7C Security Headers Middleware
@@ -13,6 +14,15 @@ export const onRequest = defineMiddleware(async (context, next) => {
 			status: 410,
 			headers: { "Content-Type": "text/plain; charset=utf-8", "X-Robots-Tag": "noindex" },
 		});
+	}
+	// Near-duplicate posts: 301 straight to the canonical keeper (see src/data/duplicate-redirects.json).
+	const dupPath = context.url.pathname.replace(/^\/(en\/)?/, "").replace(/\/$/, "");
+	let keeper: string | undefined;
+	try {
+		keeper = (duplicateRedirects as Record<string, string>)[decodeURIComponent(dupPath)];
+	} catch {}
+	if (keeper) {
+		return new Response(null, { status: 301, headers: { Location: `/${keeper}` } });
 	}
 	const response = await next();
 
