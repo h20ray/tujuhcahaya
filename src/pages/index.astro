@@ -1,5 +1,5 @@
 ---
-import { getEmDashCollection, getSiteSettings, getTermsForEntries } from "emdash";
+import { getEmDashCollection, getEmDashEntry, getSiteSettings, getTermsForEntries } from "emdash";
 import Base from "../layouts/Base.astro";
 import C7IsometricStack from "../components/ui/C7IsometricStack.astro";
 import { resolveStarterSiteIdentity } from "../utils/site-identity";
@@ -39,6 +39,18 @@ const heroNewsList = posts.map((post) => {
 		preview: build7cDispatchPreview(post, firstCategory, "id"),
 	};
 });
+
+// Editorial picks: pages that already earn search impressions, linked from the homepage for crawl depth.
+const PICK_SLUGS = [
+	"ahren-stringer-mantan-the-amity-affliction-gugat-joel-birch-implikasi-hukum-di-indonesia",
+	"fieldy-basis-korn-akui-tak-berkomunikasi-dengan-rekan-band-sejak-2019",
+	"sejarah-dan-asal-usul-folder-appdata-di-windows",
+	"10-musisi-yang-jadi-sorotan-karena-skandal",
+	"fitbit-ai-pelatih-kesehatan-cerdas-tapi-ada-yang-hilang-ya",
+];
+const picks = (
+	await Promise.all(PICK_SLUGS.map((slug) => getEmDashEntry("posts", slug).then((r) => r.entry).catch(() => null)))
+).filter((e): e is NonNullable<typeof e> => !!e);
 ---
 
 <Base
@@ -176,5 +188,23 @@ const heroNewsList = posts.map((post) => {
 			<span class="metric-label">Perspektif Segar</span>
 		</div>
 	</section>
+	{picks.length > 0 && (
+		<section class="c7-picks" aria-label="Pilihan Redaksi">
+			<h2 class="c7-picks-title">Pilihan Redaksi</h2>
+			<ul class="c7-picks-list">
+				{picks.map((e) => (
+					<li><a href={`/${e.data.slug || e.id}`}>{e.data.title}</a></li>
+				))}
+			</ul>
+		</section>
+	)}
 	<script src="../scripts/7c-dispatch-smart-fill.ts"></script>
 </Base>
+
+<style>
+	.c7-picks { padding: 2rem 1.25rem; border-top: 1px solid var(--c7-hairline, rgba(128,128,128,.3)); }
+	.c7-picks-title { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 .75rem; }
+	.c7-picks-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+	.c7-picks-list a { color: inherit; text-decoration: none; }
+	.c7-picks-list a:hover { text-decoration: underline; }
+</style>
