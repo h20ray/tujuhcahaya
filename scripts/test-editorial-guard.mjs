@@ -73,4 +73,26 @@ if (faqResult.valid === false && faqResult.errors.length >= 2) {
 	process.exit(1);
 }
 
+// Test 5: SEO Heading Hierarchy & Wall-of-Text Paragraph Guard
+const wallParagraph = Array(95).fill("kata").join(" ");
+const seoWeakBody = `# Jangan Pakai H1 Di Body\n\n${wallParagraph}\n\n${wallParagraph}\n\n${wallParagraph}\n\n${wallParagraph}\n\nMenurut laporan resmi industri, [isu serupa](/artikel-terkait) memang perlu diperhatikan.`;
+const seoWeakResult = validate7cEditorial(authenticTitle, seoWeakBody, "Ringkasan terlalu pendek.", ["Hardware"]);
+console.log("\n[Test 5 - SEO H1-in-Body, Missing H2, Wall-of-Text & Min Chars]");
+console.log("Valid:", seoWeakResult.valid);
+console.log("Score:", seoWeakResult.score);
+console.log("Errors:", seoWeakResult.errors);
+console.log("Warnings:", seoWeakResult.warnings);
+if (
+	seoWeakResult.valid === false &&
+	seoWeakResult.errors.some((e) => e.includes('heading H1')) &&
+	seoWeakResult.warnings.some((w) => w.includes('subheading H2')) &&
+	seoWeakResult.warnings.some((w) => w.includes('paragraf terlalu panjang')) &&
+	seoWeakResult.warnings.some((w) => w.includes('2.500 karakter bersih'))
+) {
+	console.log("--> SEO Heading, Wall-of-Text, and Min-Char checks PASSED!");
+} else {
+	console.error("--> Failed SEO Heading / Wall-of-Text / Min-Char checks!");
+	process.exit(1);
+}
+
 console.log("\nAll editorial guard test cases PASSED!");

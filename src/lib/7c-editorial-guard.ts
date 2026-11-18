@@ -251,13 +251,74 @@ export function validate7cEditorial(
 		}
 	}
 
-	// 8. Content Volume & Placeholder Audit
-	const wordCount = bodyText.trim().split(/\s+/).filter(Boolean).length;
-	if (wordCount < 350) {
-		warnings.push(`Panjang artikel hanya ${wordCount} kata (di bawah batas minimum 350 kata). Naskah berpotensi merupakan 'thin content' yang kurang mendalam.`);
+	// 8. Content Volume, Character Minimum, Heading Hierarchy & Readability Audit
+	const cleanProse = bodyText
+		.replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
+		.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+		.replace(/^#{1,6}\s+/gm, "")
+		.replace(/\s+/g, " ")
+		.trim();
+	const charCount = cleanProse.length;
+	const wordCount = cleanProse ? cleanProse.split(/\s+/).length : 0;
+
+	if (wordCount < 400 || charCount < 2500) {
+		warnings.push(
+			`Volume artikel (${wordCount} kata, ${charCount} karakter bersih) masih di bawah batas minimum SEO (minimal 400 kata dan 2.500 karakter bersih) sehingga berisiko dianggap 'thin content'.`,
+		);
 		score -= 15;
 	} else if (wordCount < 550) {
-		suggestions.push(`Panjang artikel (${wordCount} kata) masih di bawah standar esai ideal Tujuhcahaya (600 - 900 kata). Tambahkan latar belakang komparatif atau perspektif akar rumput agar ulasan lebih berbobot.`);
+		suggestions.push(
+			`Panjang artikel (${wordCount} kata, ${charCount} karakter) masih di bawah standar esai ideal Tujuhcahaya (600 - 900 kata). Tambahkan latar belakang komparatif atau perspektif akar rumput agar ulasan lebih berbobot.`,
+		);
+	}
+
+	// Heading Hierarchy: H1 is rendered from entry title; body must use H2/H3 instead
+	if (/^#\s+\S/m.test(bodyText)) {
+		errors.push(
+			'Dilarang memakai heading H1 ("# Judul") di dalam isi artikel karena <h1> sudah otomatis dirender dari judul utama. Gunakan subheading H2 ("## ") atau H3 ("### ").',
+		);
+		score -= 20;
+	}
+
+	const subheadings = bodyText.match(/^#{2,3}\s+\S/gm) || [];
+	if (wordCount >= 350 && subheadings.length < 2) {
+		warnings.push(
+			`Artikel hanya memiliki ${subheadings.length} subheading (## / ###). Wajib sertakan minimal 2 subheading H2 ("## ") agar struktur SEO rapi dan mudah dipindai.`,
+		);
+		score -= 10;
+	}
+
+	// Readability: Flag wall-of-text paragraphs (> 85 words or > 600 chars)
+	const paragraphs = bodyText
+		.split(/\n\s*\n/)
+		.map((p) => p.trim())
+		.filter(
+			(p) =>
+				p.length > 0 &&
+				!/^(?:#{1,6}\s|!\[|[-*]\s|\d+\.\s|>|```)/.test(p),
+		);
+	const longParagraphs = paragraphs.filter((p) => {
+		const pClean = p
+			.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+			.replace(/\s+/g, " ")
+			.trim();
+		const pWords = pClean ? pClean.split(/\s+/).length : 0;
+		return pWords > 85 || pClean.length > 600;
+	});
+	if (longParagraphs.length > 0) {
+		warnings.push(
+			`Ditemukan ${longParagraphs.length} paragraf terlalu panjang (>85 kata / >600 karakter). Pecah menjadi paragraf pendek 2-4 kalimat (maksimal ~70 kata) agar tidak menjadi wall-of-text di layar HP.`,
+		);
+		score -= 10;
+	}
+
+	if (excerpt && excerpt.trim()) {
+		const exLen = excerpt.trim().length;
+		if (exLen < 90 || exLen > 165) {
+			suggestions.push(
+				`Panjang excerpt/meta description saat ini ${exLen} karakter. Idealnya 120-155 karakter agar optimal tampil di hasil pencarian Google.`,
+			);
+		}
 	}
 
 	if (/lorem ipsum/i.test(bodyText)) {

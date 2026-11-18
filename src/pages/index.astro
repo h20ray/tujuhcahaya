@@ -4,6 +4,7 @@ import Base from "../layouts/Base.astro";
 import C7IsometricStack from "../components/ui/C7IsometricStack.astro";
 import { resolveStarterSiteIdentity } from "../utils/site-identity";
 import { build7cDispatchPreview, resolve7cArticleSource } from "../lib/7c-dispatch";
+import { format7cDate } from "../lib/7c-cms";
 
 // Fetch recent 25 posts for the compact hero dispatch list (auto-fits via smart fill)
 const { entries: posts, cacheHint } = await getEmDashCollection("posts", {
@@ -51,6 +52,25 @@ const PICK_SLUGS = [
 const picks = (
 	await Promise.all(PICK_SLUGS.map((slug) => getEmDashEntry("posts", slug).then((r) => r.entry).catch(() => null)))
 ).filter((e): e is NonNullable<typeof e> => !!e);
+
+const pickCategoriesByEntry = picks.length > 0
+	? await getTermsForEntries("posts", picks.map((p) => p.data.id), "category")
+	: new Map();
+
+const editorialPicks = picks.map((e) => {
+	const cats = pickCategoriesByEntry.get(e.data.id) ?? [];
+	const cat = cats[0] ?? { label: "Berita", slug: "berita" };
+	const rawExcerpt = typeof e.data.excerpt === "string" ? e.data.excerpt.trim() : "";
+	const isoDate = e.data.publishedAt ? new Date(e.data.publishedAt).toISOString().slice(0, 10) : "";
+	return {
+		slug: e.data.slug || e.id,
+		title: e.data.title,
+		excerpt: rawExcerpt,
+		category: cat,
+		isoDate,
+		dateStr: format7cDate(e.data.publishedAt, "id"),
+	};
+});
 ---
 
 <Base
@@ -188,23 +208,178 @@ const picks = (
 			<span class="metric-label">Perspektif Segar</span>
 		</div>
 	</section>
-	{picks.length > 0 && (
+	{editorialPicks.length > 0 && (
 		<section class="c7-picks" aria-label="Pilihan Redaksi">
-			<h2 class="c7-picks-title">Pilihan Redaksi</h2>
-			<ul class="c7-picks-list">
-				{picks.map((e) => (
-					<li><a href={`/${e.data.slug || e.id}`}>{e.data.title}</a></li>
+			<div class="c7-picks-bar">
+				<h2 class="c7-picks-title">PILIHAN REDAKSI</h2>
+				<span class="c7-picks-subtitle">{editorialPicks.length} ARTIKEL TERPILIH</span>
+			</div>
+			<ol class="c7-picks-list">
+				{editorialPicks.map((item) => (
+					<li class="c7-picks-row">
+						<a href={`/${item.slug}`} class="c7-picks-link">
+							<div class="c7-picks-left">
+								{item.isoDate && (
+									<time datetime={item.isoDate} class="c7-picks-date">{item.isoDate}</time>
+								)}
+								<span class="c7-picks-cat">{item.category.label}</span>
+							</div>
+							<div class="c7-picks-right">
+								<h3 class="c7-picks-item-title">
+									<span class="c7-picks-item-title-text">{item.title}</span>
+									<svg class="c7-picks-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+										<path d="M5 12h14"></path>
+										<path d="m12 5 7 7-7 7"></path>
+									</svg>
+								</h3>
+								{item.excerpt && (
+									<p class="c7-picks-excerpt">{item.excerpt}</p>
+								)}
+							</div>
+						</a>
+					</li>
 				))}
-			</ul>
+			</ol>
 		</section>
 	)}
 	<script src="../scripts/7c-dispatch-smart-fill.ts"></script>
 </Base>
 
 <style>
-	.c7-picks { padding: 2rem 1.25rem; border-top: 1px solid var(--c7-hairline, rgba(128,128,128,.3)); }
-	.c7-picks-title { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 .75rem; }
-	.c7-picks-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
-	.c7-picks-list a { color: inherit; text-decoration: none; }
-	.c7-picks-list a:hover { text-decoration: underline; }
+	.c7-picks {
+		border-top: 1px solid var(--7c-sys-outline-variant);
+	}
+	.c7-picks-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.75rem 1.5rem;
+		border-bottom: 1px solid var(--7c-sys-outline-variant);
+	}
+	@media (min-width: 768px) {
+		.c7-picks-bar {
+			padding: 0.85rem 2.5rem;
+		}
+	}
+	.c7-picks-title {
+		font-family: var(--7c-font-mono, monospace);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--7c-sys-on-surface);
+		margin: 0;
+	}
+	.c7-picks-subtitle {
+		font-family: var(--7c-font-mono, monospace);
+		font-size: 0.6875rem;
+		font-weight: 500;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--7c-sys-on-surface-variant);
+		display: none;
+	}
+	@media (min-width: 640px) {
+		.c7-picks-subtitle {
+			display: block;
+		}
+	}
+	.c7-picks-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1px;
+		background-color: var(--7c-sys-outline-variant);
+	}
+	.c7-picks-row {
+		background-color: var(--7c-sys-surface-container-lowest);
+	}
+	.c7-picks-link {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 0.75rem;
+		padding: 1.5rem;
+		color: inherit;
+		text-decoration: none;
+		transition: background-color 0.16s ease;
+	}
+	@media (min-width: 768px) {
+		.c7-picks-link {
+			grid-template-columns: 10rem 1fr;
+			gap: 1rem;
+			padding: 2rem 2.5rem;
+		}
+	}
+	.c7-picks-link:hover {
+		background-color: var(--7c-sys-surface-container-low);
+	}
+	.c7-picks-left {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 0.75rem;
+	}
+	@media (min-width: 768px) {
+		.c7-picks-left {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.3rem;
+			padding-top: 0.3rem;
+		}
+	}
+	.c7-picks-date,
+	.c7-picks-cat {
+		font-family: var(--7c-font-mono, monospace);
+		font-size: 0.6875rem;
+		font-weight: 500;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--7c-sys-on-surface-variant);
+	}
+	.c7-picks-cat {
+		opacity: 0.7;
+	}
+	.c7-picks-right {
+		min-width: 0;
+	}
+	.c7-picks-item-title {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		margin: 0;
+		font-family: var(--7c-font-display, inherit);
+		font-size: 1.25rem;
+		font-weight: 500;
+		line-height: 1.3;
+		letter-spacing: -0.02em;
+		color: var(--7c-sys-on-surface);
+	}
+	@media (min-width: 768px) {
+		.c7-picks-item-title {
+			font-size: 1.4rem;
+		}
+	}
+	.c7-picks-item-title-text {
+		flex: 1;
+	}
+	.c7-picks-arrow {
+		flex-shrink: 0;
+		margin-top: 0.35rem;
+		color: var(--7c-sys-on-surface-variant);
+		transition: transform 0.18s ease, color 0.18s ease;
+	}
+	.c7-picks-link:hover .c7-picks-arrow {
+		transform: translateX(4px);
+		color: var(--7c-sys-on-surface);
+	}
+	.c7-picks-excerpt {
+		margin: 0.5rem 0 0;
+		max-width: 42rem;
+		font-size: 0.9375rem;
+		line-height: 1.625;
+		color: var(--7c-sys-on-surface-variant);
+	}
 </style>

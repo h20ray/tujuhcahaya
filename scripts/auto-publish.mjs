@@ -393,10 +393,17 @@ export async function autoPublishPost(payload, options = {}) {
 	// 1. Run 7C Editorial Quality Gate
 	const cleanTags = (Array.isArray(tags) ? tags : []).filter(t => !["mojok", "malesbanget", "mbdc", "detik", "kompas"].includes(t.toLowerCase().trim()));
 	const audit = validate7cEditorial(title, content, excerpt, cleanTags);
-	const wordCount = content.trim().split(/\s+/).filter(Boolean).length;
+	const cleanProse = content
+		.replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
+		.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+		.replace(/^#{1,6}\s+/gm, "")
+		.replace(/\s+/g, " ")
+		.trim();
+	const cleanCharCount = cleanProse.length;
+	const wordCount = cleanProse ? cleanProse.split(/\s+/).length : 0;
 
-	// Check if qualified for published status (minimum 350 words for in-depth editorial)
-	const isQualified = audit.valid && audit.score >= 80 && wordCount >= 350 && !forceDraft;
+	// Check if qualified for published status (minimum 400 words & 2,500 clean chars for Google SEO)
+	const isQualified = audit.valid && audit.score >= 80 && wordCount >= 400 && cleanCharCount >= 2500 && !forceDraft;
 	const status = isQualified ? "published" : "draft";
 
 	const slug = generateSlug(title);
@@ -441,6 +448,7 @@ export async function autoPublishPost(payload, options = {}) {
 		byline: authorBylineId,
 		featuredImage: featuredImageObj,
 		portableTextContent,
+		content,
 		audit,
 		createdAt: now,
 	}, null, 2));
