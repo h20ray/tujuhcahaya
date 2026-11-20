@@ -7,6 +7,7 @@
 
 import sqlite3 from "node:sqlite";
 import duplicateRedirects from "../data/duplicate-redirects.json";
+import { c7PortableToHtml } from "./7c-portable-html";
 
 const DUPLICATE_SLUGS = new Set(Object.keys(duplicateRedirects));
 
@@ -24,6 +25,20 @@ function getDb(): sqlite3.DatabaseSync {
 	return new sqlite3.DatabaseSync("data.db");
 }
 
+function rssImage(raw: string | null): { url: string; type: string } | null {
+	let url = "";
+	try {
+		const img = raw ? JSON.parse(raw) : null;
+		url = (typeof img === "string" ? img : img?.url || img?.src) || "";
+	} catch {
+		url = raw || "";
+	}
+	if (!/^https?:\/\//.test(url)) return null;
+	const ext = url.split("?")[0].split(".").pop()?.toLowerCase();
+	const type = ext === "png" ? "image/png" : ext === "webp" ? "image/webp" : ext === "gif" ? "image/gif" : "image/jpeg";
+	return { url, type };
+}
+
 /**
  * Generate standard RSS 2.0 feed for the latest 50 articles
  */
@@ -34,7 +49,11 @@ export function generate7cRssFeed(siteUrl: string = "https://www.tujuhcahaya.com
 	try {
 		const posts = db.prepare(`
 			SELECT p.title, p.slug, p.excerpt, p.published_at, p.updated_at,
-			       b.display_name as author_name
+			       p.featured_image, p.content,
+			       b.display_name as author_name,
+			       (SELECT GROUP_CONCAT(t.label, '|') FROM content_taxonomies ct
+			         JOIN taxonomies t ON t.id = ct.taxonomy_id AND t.name = 'category'
+			        WHERE ct.entry_id = p.id AND ct.collection = 'posts') AS categories
 			FROM ec_posts p
 			LEFT JOIN _emdash_bylines b ON p.primary_byline_id = b.translation_group AND b.locale = 'id'
 			WHERE p.status = 'published' AND p.published_at IS NOT NULL
@@ -47,6 +66,9 @@ export function generate7cRssFeed(siteUrl: string = "https://www.tujuhcahaya.com
 			published_at: string;
 			updated_at: string;
 			author_name: string | null;
+			featured_image: string | null;
+			content: string | null;
+			categories: string | null;
 		}>;
 
 		const lastBuildDate = posts[0]?.published_at
@@ -59,13 +81,23 @@ export function generate7cRssFeed(siteUrl: string = "https://www.tujuhcahaya.com
 				const pubDate = new Date(p.published_at).toUTCString();
 				const author = p.author_name || "Redaksi Tujuhcahaya";
 				const desc = escapeXml(p.excerpt || p.title);
+				const image = rssImage(p.featured_image);
+				const cats = (p.categories || "").split("|").filter(Boolean)
+					.map((c) => `\n      <category>${escapeXml(c)}</category>`).join("");
+				const enclosure = image
+					? `\n      <enclosure url="${escapeXml(image.url)}" length="0" type="${image.type}" />` +
+						`\n      <media:content url="${escapeXml(image.url)}" medium="image" />`
+					: "";
+				// Text inside is HTML-escaped, so "]]>" can never appear and close the CDATA early.
+				const body = c7PortableToHtml(p.content, base);
+				const encoded = body ? `\n      <content:encoded><![CDATA[${body}]]></content:encoded>` : "";
 				return `    <item>
       <title>${escapeXml(p.title)}</title>
       <link>${postUrl}</link>
       <guid isPermaLink="true">${postUrl}</guid>
       <pubDate>${pubDate}</pubDate>
       <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">${escapeXml(author)}</dc:creator>
-      <description>${desc}</description>
+      <description>${desc}</description>${cats}${enclosure}${encoded}
     </item>`;
 			})
 			.join("\n");
@@ -73,7 +105,9 @@ export function generate7cRssFeed(siteUrl: string = "https://www.tujuhcahaya.com
 		return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"
      xmlns:atom="http://www.w3.org/2005/Atom"
-     xmlns:dc="http://purl.org/dc/elements/1.1/">
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Tujuhcahaya — Media Independen Game, Teknologi &amp; Musik</title>
     <link>${base}</link>
