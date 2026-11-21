@@ -6,7 +6,30 @@ import duplicateRedirects from "./data/duplicate-redirects.json";
  * Protects SSR and API endpoints from clickjacking, MIME confusion, and insecure transport.
  */
 // Dead WordPress endpoints: tell crawlers they are gone for good.
-const GONE_PATHS = /^\/(?:wp-login\.php|wp-json(?:\/.*)?|wp-content\/themes\/.*|xmlrpc\.php)$/i;
+const GONE_PATHS = /^\/(?:wp-admin(?:\/.*)?|wp-login\.php|wp-json(?:\/.*)?|wp-content\/themes\/.*|xmlrpc\.php)$/i;
+
+function isPublicCacheableHtml(request: Request, url: URL, response: Response): boolean {
+	if (request.method !== "GET" && request.method !== "HEAD") return false;
+	if (response.status !== 200) return false;
+	const contentType = response.headers.get("content-type") || "";
+	if (!contentType.includes("text/html")) return false;
+	if (contentType.includes("text/event-stream")) return false;
+	const path = url.pathname;
+	if (
+		path.startsWith("/_emdash") ||
+		path.startsWith("/api/") ||
+		path.startsWith("/wp-admin")
+	) {
+		return false;
+	}
+	if (url.searchParams.has("preview") || url.searchParams.has("draft")) return false;
+	const cookie = request.headers.get("cookie") || "";
+	if (/(?:^|;\s*)(emdash[_-]?session|emdash_auth|better-auth\.session_token)=/i.test(cookie)) {
+		return false;
+	}
+	return true;
+}
+
 
 export const onRequest = defineMiddleware(async (context, next) => {
 	if (GONE_PATHS.test(context.url.pathname)) {
@@ -25,6 +48,15 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		return new Response(null, { status: 301, headers: { Location: `/${keeper}` } });
 	}
 	const response = await next();
+
+	// CDN-cache public HTML only. Browsers revalidate (max-age=0); new article
+	// URLs are a cache miss until first request. Never on admin, API, SSE, or previews.
+	if (isPublicCacheableHtml(context.request, context.url, response)) {
+		response.headers.set(
+			"Cache-Control",
+			"public, max-age=0, s-maxage=600, stale-while-revalidate=86400",
+		);
+	}
 
 	// Guard against clickjacking attacks
 	response.headers.set("X-Frame-Options", "SAMEORIGIN");
