@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-21T09:40:58.656Z",
+  "updatedAt": "2026-11-21T13:40:51.627Z",
   "totalCandidates": 25,
   "categories": {
     "tech": [
@@ -55,15 +55,15 @@
         }
       },
       {
-        "id": "82d061e5ee054595",
+        "id": "13a58afe0121e64f",
         "sourceName": "The Verge",
         "category": "tech",
         "lang": "en",
-        "title": "YouTube is reportedly preparing to settle social media addiction claims for $3 billion",
-        "link": "https://www.theverge.com/streaming/1039096/youtube-social-media-addiction-school-districts-settlement",
-        "pubDate": "2026-11-20T17:51:40-05:00",
-        "snippet": "YouTube is preparing to pay $3 billion to thousands of school districts to settle claims that its \"addictive design\" harmed kids, according to Bloomberg. Sources tell the publication that YouTube reached the agreement \"in principle,\" and that the deal would also include new safeguards for teens. The settlement would al",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/STKS526_SOCIAL_MEDIA_TRIAL_CVIRGINIA_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "title": "The Xiaomi 18 Pro proves two screens aren’t better than one",
+        "link": "https://www.theverge.com/tech/1038562/xiaomi-18-pro-max-review",
+        "pubDate": "2026-11-20T13:35:38-05:00",
+        "snippet": "Xiaomi introduced a second screen to its flagship phones with last year's 17 Pros, but didn't release them outside China. That means the new 18 Pro and Pro Max are the first chance I've had to find out if a screen on the back of a phone is any more useful now than it was [&#8230;]",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/xiaomi-18-pro-max-11.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "isOriginalImage": true,
         "author": {
           "name": "Elang Elano",
@@ -71,15 +71,15 @@
         }
       },
       {
-        "id": "6554f650873e4fa3",
+        "id": "8d35f8b18ec9aa8a",
         "sourceName": "The Verge",
         "category": "tech",
         "lang": "en",
-        "title": "Rockstar says GTA VI made $3.79 billion in its first day",
-        "link": "https://www.theverge.com/games/1036279/gta-vi-sales",
-        "pubDate": "2026-11-20T17:10:53-05:00",
-        "snippet": "GTA VI earned $3.79 billion in its first day of sales, which set \"a new record for entertainment across any medium,\" according to an announcement from Rockstar Games. The game also sold 32.5 million preorder copies. \"It is with immense gratitude that we enter a new chapter of Rockstar Games with the release of Grand [&",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/STKS540_GTA_VI_2_D.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "title": "The game of the year is finally here",
+        "link": "https://www.theverge.com/tech/1039433/gta-vi-alfred-6-clockwisetv-installer",
+        "pubDate": "2026-11-20T21:53:15-05:00",
+        "snippet": "Hi, friends! Welcome to Installer No. 153, your guide to the best and Verge-iest stuff in the world. (If you're new here, welcome, thank you for tearing yourself away from GTA to be here, and also you can read all the old editions at the Installer homepage.) This week, I've been reading about nuclear radiation [&#8230;",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/Installer-153.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
         "isOriginalImage": true,
         "author": {
           "name": "Elang Elano",
@@ -87,15 +87,32 @@
         }
       },
       {
-        "id": "14c96c99d21da386",
+        "id": "e114239168083f5b",
         "sourceName": "The Verge",
         "category": "tech",
         "lang": "en",
-        "title": "Eufy’s Omni C28 is 53 percent off ahead of Black Friday",
-        "link": "https://www.theverge.com/gadgets/1037933/eufy-omni-c28-robot-vacuum-deal-sale",
-        "pubDate": "2026-11-20T12:50:06-05:00",
-        "snippet": "Hosting Thanksgiving can be fun, but cleaning up afterwards? Not so much. Eufy&#8217;s Omni C28 robot vacuum / mop hybrid can help, and thanks to an early Black Friday deal, you can pick it up at a new low price of $379.99 ($420 off its original price) at Amazon, Best Buy, or directly from Eufy [&#8230;]",
-        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/8A0A6240.jpeg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "title": "Harbinger is building the unsexy EVs that keep the economy moving",
+        "link": "https://www.theverge.com/transportation/1038448/harbinger-ev-startup-240m-series-d-fedex-army-trucks",
+        "pubDate": "2026-11-20T14:34:11-05:00",
+        "snippet": "While legacy automakers tap the brakes on electric vehicles, one startup is hitting the accelerator. Earlier this month, electric truck maker Harbinger raised $240 million in a Series D round, capping a banner stretch that includes a $300 million order from FedEx and a new defense contract with the US military. Harbing",
+        "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/gang-shot-7.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+        "isOriginalImage": true,
+        "author": {
+          "name": "Elang Elano",
+          "byline": "0100MUNS3DJPCA4539BDBEB12A"
+        }
+      },
+      {
+        "id": "3b7d41643b593562",
+        "sourceName": "Ars Technica",
+        "category": "tech",
+        "lang": "en",
+        "title": "“Race realism” isn’t realistic—and it isn’t good science",
+        "link": "https://arstechnica.com/science/2026/11/race-realism-isnt-realistic-and-it-isnt-good-science/",
+        "pubDate": "Sat, 21 Nov 2026 12:01:13 +0000",
+        "snippet": "Modern genetics does not support claims of innate racial differences in intelligence.",
+        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/09/GettyImages-2201567552-1152x648.jpg",
+        "galleryImages": [],
         "isOriginalImage": true,
         "author": {
           "name": "Elang Elano",
@@ -135,26 +152,43 @@
           "name": "Elang Elano",
           "byline": "0100MUNS3DJPCA4539BDBEB12A"
         }
-      },
-      {
-        "id": "fab35115c8894b13",
-        "sourceName": "Ars Technica",
-        "category": "tech",
-        "lang": "en",
-        "title": "Google rolls out new search homepage with AI chat history and no search button",
-        "link": "https://arstechnica.com/ai/2026/11/googles-latest-search-page-redesign-drops-the-search-button-adds-ai-sidebar/",
-        "pubDate": "Fri, 20 Nov 2026 21:58:29 +0000",
-        "snippet": "Google search is making it even easier to access AI tools on the search page.",
-        "imageUrl": "https://cdn.arstechnica.net/wp-content/uploads/2026/06/google-sign-logo-1152x648.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Elang Elano",
-          "byline": "0100MUNS3DJPCA4539BDBEB12A"
-        }
       }
     ],
     "game": [
+      {
+        "id": "2bc8af32a9cf3959",
+        "sourceName": "PC Gamer",
+        "category": "game",
+        "lang": "en",
+        "title": "Deltarune chapter 6 is 'structurally complete' while development has begun on chapter 7, according to Toby Fox",
+        "link": "https://www.pcgamer.com/games/rpg/deltarune-chapter-6-is-structurally-complete-while-development-has-begun-on-chapter-7-according-to-toby-fox/",
+        "pubDate": "Sat, 21 Nov 2026 13:09:55 +0000",
+        "snippet": "\"All the maps, events and battles exist\" for the next slice of the RPG.",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/9mtBLYoPocDpbS5srRdg5-1920-80.png",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
+      {
+        "id": "798b4a0d55e1a0f9",
+        "sourceName": "PC Gamer",
+        "category": "game",
+        "lang": "en",
+        "title": "Expedition 33 lead writer says Grand Theft Auto 6 layoff concerns show that 'people creating the value do not receive a proportionate amount of that value'",
+        "link": "https://www.pcgamer.com/games/grand-theft-auto/expedition-33-lead-writer-says-grand-theft-auto-6-layoff-concerns-show-that-people-creating-the-value-do-not-receive-a-proportionate-amount-of-that-value/",
+        "pubDate": "Sat, 21 Nov 2026 11:51:01 +0000",
+        "snippet": "\"I sincerely hope the Rockstar team is successful in unionizing\".",
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/i5cCoWSMAAZPRHWSpGZxhM-1920-80.jpg",
+        "galleryImages": [],
+        "isOriginalImage": true,
+        "author": {
+          "name": "Andoru Ray",
+          "byline": "0100MUNS3DJL68FA69B26FACE9"
+        }
+      },
       {
         "id": "4d7ec7b981ec5184",
         "sourceName": "PC Gamer",
@@ -173,49 +207,15 @@
         }
       },
       {
-        "id": "267fe2448067ce57",
-        "sourceName": "PC Gamer",
-        "category": "game",
-        "lang": "en",
-        "title": "I didn't realize Etsy was selling bridges now",
-        "link": "https://www.pcgamer.com/software/ai/i-didnt-realize-etsy-was-selling-bridges-now/",
-        "pubDate": "Sat, 21 Nov 2026 00:00:36 +0000",
-        "snippet": "The company says its new generative AI training agreement will only be used for good. Why would anyone believe that?",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/xvJ9JBcaybjfFQt9N2mg33-1920-80.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Andoru Ray",
-          "byline": "0100MUNS3DJL68FA69B26FACE9"
-        }
-      },
-      {
-        "id": "d5a63331b700ae36",
-        "sourceName": "PC Gamer",
-        "category": "game",
-        "lang": "en",
-        "title": "Despite GTA 6's huge map, it only takes about 4 minutes to fly across it in a plane",
-        "link": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-how-long-to-fly-across-map/",
-        "pubDate": "Fri, 20 Nov 2026 22:34:25 +0000",
-        "snippet": "Someone had to do it.",
-        "imageUrl": "https://cdn.mos.cms.futurecdn.net/Lniqu8a87y9qE9LHy43r3F-1920-80.jpg",
-        "galleryImages": [],
-        "isOriginalImage": true,
-        "author": {
-          "name": "Andoru Ray",
-          "byline": "0100MUNS3DJL68FA69B26FACE9"
-        }
-      },
-      {
-        "id": "2401b106da065382",
+        "id": "3b76d5fd6411f13a",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "Gary Larson's 10 Greatest 'Far Side' Comics, Ranked",
-        "link": "https://www.polygon.com/best-far-side-comics-ever-ranked-gary-larson/",
-        "pubDate": "Sat, 21 Nov 2026 09:06:18 GMT",
-        "snippet": "Gary Larson's comic strip The Far Side was at its greatest when it was really, really funny. That's why is these are his 10 best comics",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/screen-shot-2026-09-10-at-11-12-25-am.jpg",
+        "title": "Nintendo’s Long History with GTA Seems to Have Met Its End",
+        "link": "https://www.polygon.com/switchboard-nintendo-switch-2-gta-6-rockstar/",
+        "pubDate": "Sat, 21 Nov 2026 13:00:17 GMT",
+        "snippet": "There's no sign of GTA 6 on Switch 2, or even GTA 5, yet Rockstar has brought L.A. Noire and Red Dead Redemption to Switch",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/gta-3-switch.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -224,15 +224,15 @@
         }
       },
       {
-        "id": "185e08fda7d1a88c",
+        "id": "e2c7f7137729033f",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "Goodbye 'Rings of Power,' Prime Video’s Legendary 48-Episode Fantasy Series Is Even Better",
-        "link": "https://www.polygon.com/the-legend-of-vox-machina-prime-video-rec/",
-        "pubDate": "Sat, 21 Nov 2026 09:00:17 GMT",
-        "snippet": "Prime Video's 'Rings of Power' is good, but for a wilder and more adult fantasy show, try 'The Legend of Vox Machina.’",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/10/critical-role.jpg",
+        "title": "Quentin Tarantino's Western Thriller Masterpiece Is Officially Free on Streaming",
+        "link": "https://www.polygon.com/hateful-eight-free-to-stream-tubi/",
+        "pubDate": "Sat, 21 Nov 2026 12:01:18 GMT",
+        "snippet": "Hateful Eight, Quentin Tarantino’s satisfying western thriller mystery is currently free to stream",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/08/quentin-tarantino.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -241,15 +241,15 @@
         }
       },
       {
-        "id": "4b620b0e22cbb608",
+        "id": "689caecc9ba00313",
         "sourceName": "Polygon",
         "category": "game",
         "lang": "en",
-        "title": "9 Calvin and Hobbes Comics from the 1990s that Prove Bill Watterson is a Genius",
-        "link": "https://www.polygon.com/9-perfect-calvin-and-hobbes-1990s-comics/",
-        "pubDate": "Sat, 21 Nov 2026 05:00:18 GMT",
-        "snippet": "Calvin and Hobbes creator Bill Watterson is a genius. Here are nine comics which prove it.",
-        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/10/calvin-and-hobbes-treasure-everywhere.jpg",
+        "title": "5 Years Later, 'Yellowjackets' Officially Solves One of Its Last Huge Mysteries",
+        "link": "https://www.polygon.com/yellowjackets-season-4-plane-crash-location/",
+        "pubDate": "Sat, 21 Nov 2026 11:00:18 GMT",
+        "snippet": "The location where the Yellowjackets crash-landed has been a hot topic of discussion for years. 'Yellowjackets' season 4 has the answers.",
+        "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/11/yellowjackets_s4_ds_0413_0673_rt.jpg",
         "galleryImages": [],
         "isOriginalImage": true,
         "author": {
@@ -315,7 +315,7 @@
         "sourceName": "Google News (Musik Indonesia) [Bloomberg Technoz]",
         "category": "musik",
         "lang": "id",
-        "title": "Deretan Konser Musik di Indonesia November-Desember 2026: MCR-BTS",
+        "title": "Deretan Konser Musik di Indonesia November-Desember 2026: MCR-BTS - Gaya Hidup",
         "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNa0w5WnExMnhuRXR4ZEd2WEVyZTcwRW9Ba2ZtblYxdXUxcjVUWWM0V1U2WVAxZXNyOVJENENXeDFQZ1hYUE53UGJOYXVLMnRjRE5BdDY2UkY0bHdsa2syMVZXTDlfM3gzWDZiQWVKRTE2Y2piM1Rza1lzUE1adElKOXVQdWEzVTJodV9EeXNTeV9FcWlRYXJ3R05tS3B0WWhTR0xOamtGSHJBUVVwTjIwcFNIdFA4UG8?oc=5",
         "pubDate": "Sat, 21 Nov 2026 05:00:00 GMT",
         "snippet": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxNa0w5WnExMnhuRXR4ZEd2WEVyZTcwRW9Ba2ZtblYxdXUxcjVUWWM0V1U2WVAxZXNyOVJENENXeDFQZ1hYUE53UGJOYXVLMnRjRE5BdDY2UkY0bHdsa2syMVZXTDlfM3gzWDZiQWVKRTE2Y2piM1Rza1lzUE1adElKOXVQdWEzVTJodV9EeXNTeV9FcWlRYXJ3R05tS3B0WWhTR0xOamtGSHJBUVVwTjIwcFNIdFA4UG8?oc=5\" target=\"_blank\">",
@@ -372,13 +372,14 @@
         "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOTlRyZmdSLXJaVTdQclNteWpIM180TlA2bWlvaXlKZDZ0U2tXbWFIME1tVVhfRDFrUnJZNTV0cFRJQUQ5aUh1R0xsbC02NVpVSVRvYjRmQWE5dkJHbEp4cTRYRjFGdG1JWGNTby1WT2lYQ2loNFhJYzZpS2YxanNPbFFET1dMcG5EVnNMV3VHdHZZZ19SUFh6WjRUUkI3VDk0UlVxODRR?oc=5",
         "pubDate": "Sat, 21 Nov 2026 08:38:20 GMT",
         "snippet": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxOTlRyZmdSLXJaVTdQclNteWpIM180TlA2bWlvaXlKZDZ0U2tXbWFIME1tVVhfRDFrUnJZNTV0cFRJQUQ5aUh1R0xsbC02NVpVSVRvYjRmQWE5dkJHbEp4cTRYRjFGdG1JWGNTby1WT2lYQ2loNFhJYzZpS2YxanNPbFFET1dMcG5EVnNMV3VHdHZZZ19SUFh6WjRUUkI3VDk0UlVxODRR?oc=5\" target=\"_blank\">Andra Ramadhan Kembali ",
-        "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
+        "imageUrl": "https://imagedelivery.net/H6_s_Eb_ylTWnSEV3HlmYQ/prd/1f620b1e-b605-4fc1-bb35-f76de303137e/public",
         "galleryImages": [],
-        "isOriginalImage": false,
+        "isOriginalImage": true,
         "author": {
           "name": "Margaretha Nina",
           "byline": "0100MUNS3DJOA35D985DFFDBA0"
-        }
+        },
+        "originalArticleUrl": "https://newshanter.com/andra-ramadhan-kembali-ke-yamaha-pacifica-dalam-perayaan-60-tahun-yamaha-guitar/"
       },
       {
         "id": "e8831d4d0d4db126",
