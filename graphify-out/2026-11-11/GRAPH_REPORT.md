@@ -1,12 +1,12 @@
 # Graph Report - tujuhcahaya  (2026-11-11)
 
 ## Corpus Check
-- 306 files · ~453,576 words
+- 307 files · ~455,311 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 21 file(s) not represented in the graph (top: .css 16, (none) 3, .example 1)
 
 ## Summary
-- 1485 nodes · 3717 edges · 160 communities (51 shown, 109 thin omitted)
+- 1488 nodes · 3730 edges · 161 communities (51 shown, 110 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 28 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
@@ -67,23 +67,23 @@
 - test-queries.mjs
 - middleware.ts
 - emdash-env.d.ts
-- run-batch-20261104-1900.mjs
+- C7AuthorView.astro
 - run-batch-20261106-0400.mjs
 - update-byline-bios.mjs
 - run-batch-20261104-2200.mjs
 - run-batch-20261105-0100.mjs
-- run-batch-20261104-2300.mjs
+- run-batch-20261105-0200.mjs
 - validate7cEditorial
 - run-batch-20261105-0430.mjs
-- run-batch-20261105-0830.mjs
+- run-batch-20261105-0300.mjs
 - run-batch-20261105-1900.mjs
 - run-batch-20261105-0900.mjs
 - run-batch-20261105-0800.mjs
-- run-batch-20261105-1130.mjs
+- run-batch-20261105-0630.mjs
 - google-news-url-decoder
 - run-batch-20261106-0700.mjs
 - run-batch-20261106-0100.mjs
-- emdash
+- run-batch-20261105-1500.mjs
 - run-batch-20261107-1500.mjs
 - run-batch-20261104-1600.mjs
 - run-batch-20261107-0300.mjs
@@ -102,16 +102,16 @@
 - run-batch-20261105-1230.mjs
 - run-batch-20261107-2300.mjs
 - run-batch-20261104-2100.mjs
-- run-batch-20261105-1600.mjs
+- run-batch-20261105-1700.mjs
 - run-batch-20261110-2300.mjs
-- run-batch-20261105-0730.mjs
+- run-batch-20261111-2100.mjs
 - run-batch-20261105-1030.mjs
 - run-batch-20261105-1330.mjs
 - run-batch-20261111-0500.mjs
 - run-batch-20261105-2000.mjs
 - run-batch-20261106-1000.mjs
 - run-batch-20261107-1300.mjs
-- run-batch-20261106-0800.mjs
+- run-batch-30m.mjs
 - run-batch-20261107-0500.mjs
 - project.yml
 - markAsSeen
@@ -138,7 +138,7 @@
 - run-batch-20261109-1500.mjs
 - run-batch-20261109-1700.mjs
 - run-batch-20261110-0700.mjs
-- run-batch-hourly-0000.mjs
+- run-batch-hourly-0500.mjs
 - run-batch-hourly-0700.mjs
 - run-batch-20261109-2100.mjs
 - run-batch-20261111-1100.mjs
@@ -154,7 +154,7 @@
 - run-batch-20261111-0900.mjs
 - run-batch-20261111-0700.mjs
 - run-batch-20261111-1900.mjs
-- run-batch-hourly-0400.mjs
+- run-batch-hourly-0600.mjs
 - run-batch-hourly-0800.mjs
 - run-batch-20261109-2300.mjs
 - run-batch-hourly-0900.mjs
@@ -168,13 +168,14 @@
 - test-live-publish.mjs
 - run-batch-20261111-1300.mjs
 - run-batch-20261111-1500.mjs
-- run-batch-hourly-1000.mjs
+- run-batch-hourly-1100.mjs
+- run-batch-hourly-1500.mjs
 - run-curation-batch.mjs
 
 ## God Nodes (most connected - your core abstractions)
-1. `autoPublishPost()` - 316 edges
-2. `validate7cEditorial()` - 316 edges
-3. `markAsSeen()` - 131 edges
+1. `autoPublishPost()` - 318 edges
+2. `validate7cEditorial()` - 318 edges
+3. `markAsSeen()` - 133 edges
 4. `use7cTranslation()` - 45 edges
 5. `emdash` - 31 edges
 6. `Locale` - 30 edges
@@ -185,7 +186,7 @@
 
 ## Surprising Connections (you probably didn't know these)
 - `runBatch()` --calls--> `validate7cEditorial()`  [EXTRACTED]
-  scripts/run-batch-20261111-1900.mjs → src/lib/7c-editorial-guard.ts
+  scripts/run-batch-20261111-2100.mjs → src/lib/7c-editorial-guard.ts
 - `main()` --calls--> `validate7cEditorial()`  [EXTRACTED]
   scripts/run-batch-20261105-1800.mjs → src/lib/7c-editorial-guard.ts
 - `runBatch()` --calls--> `validate7cEditorial()`  [EXTRACTED]
@@ -198,7 +199,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (160 total, 109 thin omitted)
+## Communities (161 total, 110 thin omitted)
 
 ### Community 0 - "validate-coverage-ledger.cjs"
 Cohesion: 0.06
@@ -206,15 +207,15 @@ Nodes (65): ATTEMPT_FIELDS, ATTEMPT_STATUSES, canonicalCoverageId(), collectUnit
 
 ### Community 1 - "C7CommandPaletteRenderer.ts"
 Cohesion: 0.06
-Nodes (48): C7CommandPaletteElement, buildDefaultActions(), C7CommandPalettePreviewController, actionIcon(), C7SearchRenderModel, escapeHtml(), historyFallbackIcon(), pageIcon() (+40 more)
+Nodes (47): C7CommandPaletteElement, buildDefaultActions(), C7CommandPalettePreviewController, actionIcon(), C7SearchRenderModel, escapeHtml(), historyFallbackIcon(), pageIcon() (+39 more)
 
 ### Community 2 - "validate-findings.cjs"
 Cohesion: 0.06
 Nodes (54): canonicalKey(), append(), encode(), codePointLength(), collect(), collectDataLimitErrors(), collectFindingSemanticErrors(), collectSchemaErrors() (+46 more)
 
 ### Community 3 - "dependencies"
-Cohesion: 0.13
-Nodes (15): dependencies, astro@^7.3.2, @astrojs/react@^6.0.5, @aws-sdk/client-s3@^3.1166.0, @aws-sdk/s3-request-presigner@^3.1166.0, emdash@^1.4.0, react@19.2.4, react-dom@19.2.4 (+7 more)
+Cohesion: 0.15
+Nodes (13): dependencies, astro@^7.3.2, @astrojs/node@^11.1.5, @astrojs/react@^6.0.5, @aws-sdk/client-s3@^3.1166.0, @aws-sdk/s3-request-presigner@^3.1166.0, emdash@^1.4.0, react-dom@19.2.4 (+5 more)
 
 ### Community 4 - "7c-feeds.ts"
 Cohesion: 0.12
@@ -229,12 +230,12 @@ Cohesion: 0.10
 Nodes (21): testCases, get7cLocaleFromUrl(), get7cSiteIdentity(), C7_CANONICAL_ORIGIN, CATEGORY_MAP, LegacyRedirectResult, resolve7cLegacyUrl(), archiveUrl (+13 more)
 
 ### Community 7 - "7c-seo.ts"
-Cohesion: 0.04
-Nodes (46): defaultFaqsEn, defaultFaqsId, FaqItem, jsonLd, Props, breadcrumbItems, breadcrumbsJsonLd, filterPillars (+38 more)
+Cohesion: 0.05
+Nodes (38): defaultFaqsEn, defaultFaqsId, FaqItem, jsonLd, Props, breadcrumbItems, breadcrumbsJsonLd, filterPillars (+30 more)
 
 ### Community 8 - "types.ts"
 Cohesion: 0.10
-Nodes (19): A11yDict, AuthorDict, C7TranslationSchema, EditorialDict, ErrorsDict, FooterDict, IsometricDict, IsometricSectionDict (+11 more)
+Nodes (20): A11yDict, AuthorDict, C7TranslationSchema, EditorialDict, ErrorsDict, FooterDict, IsometricDict, IsometricSectionDict (+12 more)
 
 ### Community 9 - "7c-dispatch-drawer.ts"
 Cohesion: 0.20
@@ -242,7 +243,7 @@ Nodes (24): CommonDict, DispatchDict, C7_READ_ARTICLES_STORAGE_KEY, closeDrawer(
 
 ### Community 10 - "i18n/utils.ts"
 Cohesion: 0.06
-Nodes (44): Props, { t }, Props, { t }, Props, { t }, pillars, Props (+36 more)
+Nodes (44): Props, { t }, Props, { t }, Props, { t }, Props, { t } (+36 more)
 
 ### Community 11 - "ref_node_path"
 Cohesion: 0.05
@@ -254,11 +255,11 @@ Nodes (16): categoryUrl, cleanSlug, dateFormatted, postUrl, Props, normalizedPil
 
 ### Community 13 - "astro.config.mjs"
 Cohesion: 0.19
-Nodes (9): __dirname, @astrojs/node@^11.1.5, @astrojs/node, c7EditorialGuard(), createPlugin(), currentFilePath, C7_NOTIFICATIONS_SETTINGS_SCHEMA, c7Notifications() (+1 more)
+Nodes (9): __dirname, @tujuhcahaya/live-chat@file:../plugins/tujuhcahaya-live-chat, @tujuhcahaya/live-chat, c7EditorialGuard(), createPlugin(), currentFilePath, C7_NOTIFICATIONS_SETTINGS_SCHEMA, c7Notifications() (+1 more)
 
 ### Community 14 - "devDependencies"
-Cohesion: 0.12
-Nodes (19): allowScripts, esbuild@0.28.2, devDependencies, @astrojs/check@^0.9.10, clsx@^2.1.1, lucide-react@^1.48.0, tailwind-merge@^3.7.0, tailwindcss@^4.3.3 (+11 more)
+Cohesion: 0.10
+Nodes (22): allowScripts, esbuild@0.28.2, devDependencies, @astrojs/check@^0.9.10, clsx@^2.1.1, lucide-react@^1.48.0, tailwind-merge@^3.7.0, tailwindcss@^4.3.3 (+14 more)
 
 ### Community 15 - "auto-publish.mjs"
 Cohesion: 0.06
@@ -278,7 +279,7 @@ Nodes (15): runTests(), C7NotificationResult, C7NotificationSettings, C7Submissi
 
 ### Community 19 - "emdash"
 Cohesion: 0.09
-Nodes (43): emdash, resolve7cAuthor(), format7cCompactDate(), get7cPostsByAuthor(), C7PostData, build7cDispatchPreview(), C7_READ_ARTICLES_STORAGE_KEY, C7ArticleSource (+35 more)
+Nodes (44): emdash, resolve7cAuthor(), format7cCompactDate(), C7PostData, C7RawByline, build7cDispatchPreview(), C7_READ_ARTICLES_STORAGE_KEY, C7ArticleSource (+36 more)
 
 ### Community 20 - "autoPublishPost"
 Cohesion: 0.27
@@ -321,12 +322,12 @@ Cohesion: 0.22
 Nodes (9): mysql2@^3.24.4, mysql2, generateId(), main(), generateId(), main(), stripHtml(), generateId() (+1 more)
 
 ### Community 31 - "C7LiveStudio.tsx"
-Cohesion: 0.20
-Nodes (14): react, @tujuhcahaya/radio-player, C7LiveHero(), C7LiveHeroProps, C7LiveInteractiveDeck(), C7LiveInteractiveDeckProps, formatRelativeTime(), InteractiveDeckTab (+6 more)
+Cohesion: 0.24
+Nodes (13): react@19.2.4, @tujuhcahaya/radio-player@file:../plugins/tujuhcahaya-radio-player, react, @tujuhcahaya/radio-player, C7LiveHero(), C7LiveHeroProps, C7LiveInteractiveDeck(), C7LiveInteractiveDeckProps (+5 more)
 
 ### Community 33 - "7c-cms.ts"
-Cohesion: 0.15
-Nodes (19): Props, { t }, C7_AUTHORS, C7_BYLINE_ID_MAP, calc7cReadingTime(), format7cDate(), C7_DEFAULT_FEATURED_IMAGE, resolve7cFeaturedImage() (+11 more)
+Cohesion: 0.18
+Nodes (17): C7_AUTHORS, C7_BYLINE_ID_MAP, calc7cReadingTime(), format7cDate(), C7_DEFAULT_FEATURED_IMAGE, resolve7cFeaturedImage(), get7cEntryBySlug(), get7cPostsByAuthor() (+9 more)
 
 ### Community 35 - "ref_node_sqlite"
 Cohesion: 0.18
@@ -376,6 +377,10 @@ Nodes (3): initDispatchSmartFill(), initHeroMobileTabs(), smartFillDispatch()
 Cohesion: 0.33
 Nodes (5): emdash, EmDashCollections, Page, Post, Submission
 
+### Community 52 - "C7AuthorView.astro"
+Cohesion: 0.15
+Nodes (12): allAuthorSlugs, authorBaseUrl, breadcrumbItems, breadcrumbsJsonLd, countText, FormattedAuthorPost, pageTitle, personJsonLd (+4 more)
+
 ### Community 54 - "update-byline-bios.mjs"
 Cohesion: 0.40
 Nodes (4): bios, db, rows, updateStmt
@@ -387,10 +392,6 @@ Nodes (7): articles, main(), articles, main(), articles, main(), validate7cEdito
 ### Community 65 - "google-news-url-decoder"
 Cohesion: 0.40
 Nodes (3): google-news-url-decoder@^1.2.2, google-news-url-decoder, decoder
-
-### Community 68 - "emdash"
-Cohesion: 0.67
-Nodes (3): emdash, label, seed
 
 ### Community 98 - "project.yml"
 Cohesion: 0.08
@@ -406,23 +407,23 @@ Nodes (4): articles, runBatch(), articles, runBatch()
 
 ## Knowledge Gaps
 - **1 isolated node(s):** `astro/tsconfigs/base`
-  These have ≤1 connection - possible missing edges. (Counts symbols only; 607 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **109 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges. (Counts symbols only; 608 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **110 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `emdash` connect `emdash` to `7c-cms.ts`, `dependencies`, `en/[slug].astro`, `7c-seo.ts`, `C7ArticleView.astro`, `astro.config.mjs`, `devDependencies`, `C7PortableText.astro`, `7c-submissions.ts`, `emdash-env.d.ts`, `sync-seed-db.mjs`, `C7ResizableNavbar.astro`?**
-  _High betweenness centrality (0.283) - this node is a cross-community bridge._
+  _High betweenness centrality (0.272) - this node is a cross-community bridge._
 - **What connects `astro/tsconfigs/base` to the rest of the system?**
   _1 weakly-connected nodes found - possible missing edges._
 - **Should `validate-coverage-ledger.cjs` be split into smaller, more focused modules?**
   _Cohesion score 0.06416275430359937 - nodes in this community are weakly interconnected._
-- **Why does `validate7cEditorial()` connect `validate7cEditorial` to `ref_node_fs`, `ref_node_path`, `astro.config.mjs`, `auto-publish.mjs`, `autoPublishPost`, `remediate-inner-links.mjs`, `publish-andoru-windows-27h2.mjs`, `7c-editorial-guard.ts`, `run-batch-20261105-1400.mjs`, `test-editorial-guard.mjs`, `run-batch-20261104-1900.mjs`, `run-batch-20261106-0400.mjs`, `run-batch-20261104-2200.mjs`, `run-batch-20261105-0100.mjs`, `run-batch-20261104-2300.mjs`, `run-batch-20261105-0430.mjs`, `run-batch-20261105-0830.mjs`, `run-batch-20261105-1900.mjs`, `run-batch-20261105-0900.mjs`, `run-batch-20261105-0800.mjs`, `run-batch-20261105-1130.mjs`, `run-batch-20261106-0700.mjs`, `run-batch-20261106-0100.mjs`, `run-batch-20261107-1500.mjs`, `run-batch-20261104-1600.mjs`, `run-batch-20261107-0300.mjs`, `run-batch-20261108-1900.mjs`, `run-batch-20261106-0900.mjs`, `run-batch-20261107-1700.mjs`, `run-batch-20261105-1200.mjs`, `run-batch-20261107-1100.mjs`, `run-batch-20261106-2300.mjs`, `run-batch-20261110-1500.mjs`, `run-batch-20261108-0100.mjs`, `run-batch-20261108-0700.mjs`, `run-batch-20261105-2200.mjs`, `run-batch-20261109-0100.mjs`, `run-batch-20261108-0900.mjs`, `run-batch-20261105-1230.mjs`, `run-batch-20261107-2300.mjs`, `run-batch-20261104-2100.mjs`, `run-batch-20261105-1600.mjs`, `run-batch-20261110-2300.mjs`, `run-batch-20261105-0730.mjs`, `run-batch-20261105-1030.mjs`, `run-batch-20261105-1330.mjs`, `run-batch-20261111-0500.mjs`, `run-batch-20261105-2000.mjs`, `run-batch-20261106-1000.mjs`, `run-batch-20261107-1300.mjs`, `run-batch-20261106-0800.mjs`, `run-batch-20261107-0500.mjs`, `markAsSeen`, `run-batch-20261105-1800.mjs`, `run-batch-20261108-0500.mjs`, `run-batch-20261107-0900.mjs`, `run-batch-20261105-1300.mjs`, `run-batch-20261110-0900.mjs`, `run-batch-20261111-1700.mjs`, `run-batch-20261109-0900.mjs`, `run-batch-20261108-0300.mjs`, `run-batch-20261106-0500.mjs`, `run-batch-20261110-1700.mjs`, `run-batch-20261110-2100.mjs`, `run-batch-20261110-1100.mjs`, `run-batch-20261108-1500.mjs`, `test-publish-paud-jateng.mjs`, `run-batch-20261106-1100.mjs`, `run-batch-20261111-0300.mjs`, `run-batch-20261111-0100.mjs`, `run-batch-20261108-2300.mjs`, `run-batch-20261107-0100.mjs`, `run-batch-20261109-1500.mjs`, `run-batch-20261109-1700.mjs`, `run-batch-20261110-0700.mjs`, `run-batch-hourly-0000.mjs`, `run-batch-hourly-0700.mjs`, `run-batch-20261109-2100.mjs`, `run-batch-20261111-1100.mjs`, `run-batch-20261108-2100.mjs`, `run-batch-20261109-0500.mjs`, `run-batch-20261107-1900.mjs`, `run-batch-20261107-2100.mjs`, `run-batch-20261108-1100.mjs`, `run-batch-20261110-1900.mjs`, `run-batch-20261108-1700.mjs`, `run-batch-20261110-0500.mjs`, `run-batch-20261109-1100.mjs`, `run-batch-20261111-0900.mjs`, `run-batch-20261111-0700.mjs`, `run-batch-20261111-1900.mjs`, `run-batch-hourly-0400.mjs`, `run-batch-hourly-0800.mjs`, `run-batch-20261109-2300.mjs`, `run-batch-hourly-0900.mjs`, `run-batch-hourly-1200.mjs`, `run-batch-20261107-0700.mjs`, `run-batch-hourly-1400.mjs`, `run-batch-2200.mjs`, `run-batch-hourly-1600.mjs`, `test-publish-jateng.mjs`, `test-live-publish.mjs`, `run-batch-20261111-1300.mjs`, `run-batch-20261111-1500.mjs`, `run-batch-hourly-1000.mjs`, `run-curation-batch.mjs`?**
-  _High betweenness centrality (0.166) - this node is a cross-community bridge._
+- **Why does `validate7cEditorial()` connect `validate7cEditorial` to `ref_node_fs`, `ref_node_path`, `astro.config.mjs`, `auto-publish.mjs`, `autoPublishPost`, `remediate-inner-links.mjs`, `publish-andoru-windows-27h2.mjs`, `7c-editorial-guard.ts`, `run-batch-20261105-1400.mjs`, `test-editorial-guard.mjs`, `run-batch-20261106-0400.mjs`, `run-batch-20261104-2200.mjs`, `run-batch-20261105-0100.mjs`, `run-batch-20261105-0200.mjs`, `run-batch-20261105-0430.mjs`, `run-batch-20261105-0300.mjs`, `run-batch-20261105-1900.mjs`, `run-batch-20261105-0900.mjs`, `run-batch-20261105-0800.mjs`, `run-batch-20261105-0630.mjs`, `run-batch-20261106-0700.mjs`, `run-batch-20261106-0100.mjs`, `run-batch-20261105-1500.mjs`, `run-batch-20261107-1500.mjs`, `run-batch-20261104-1600.mjs`, `run-batch-20261107-0300.mjs`, `run-batch-20261108-1900.mjs`, `run-batch-20261106-0900.mjs`, `run-batch-20261107-1700.mjs`, `run-batch-20261105-1200.mjs`, `run-batch-20261107-1100.mjs`, `run-batch-20261106-2300.mjs`, `run-batch-20261110-1500.mjs`, `run-batch-20261108-0100.mjs`, `run-batch-20261108-0700.mjs`, `run-batch-20261105-2200.mjs`, `run-batch-20261109-0100.mjs`, `run-batch-20261108-0900.mjs`, `run-batch-20261105-1230.mjs`, `run-batch-20261107-2300.mjs`, `run-batch-20261104-2100.mjs`, `run-batch-20261105-1700.mjs`, `run-batch-20261110-2300.mjs`, `run-batch-20261111-2100.mjs`, `run-batch-20261105-1030.mjs`, `run-batch-20261105-1330.mjs`, `run-batch-20261111-0500.mjs`, `run-batch-20261105-2000.mjs`, `run-batch-20261106-1000.mjs`, `run-batch-20261107-1300.mjs`, `run-batch-30m.mjs`, `run-batch-20261107-0500.mjs`, `markAsSeen`, `run-batch-20261105-1800.mjs`, `run-batch-20261108-0500.mjs`, `run-batch-20261107-0900.mjs`, `run-batch-20261105-1300.mjs`, `run-batch-20261110-0900.mjs`, `run-batch-20261111-1700.mjs`, `run-batch-20261109-0900.mjs`, `run-batch-20261108-0300.mjs`, `run-batch-20261106-0500.mjs`, `run-batch-20261110-1700.mjs`, `run-batch-20261110-2100.mjs`, `run-batch-20261110-1100.mjs`, `run-batch-20261108-1500.mjs`, `test-publish-paud-jateng.mjs`, `run-batch-20261106-1100.mjs`, `run-batch-20261111-0300.mjs`, `run-batch-20261111-0100.mjs`, `run-batch-20261108-2300.mjs`, `run-batch-20261107-0100.mjs`, `run-batch-20261109-1500.mjs`, `run-batch-20261109-1700.mjs`, `run-batch-20261110-0700.mjs`, `run-batch-hourly-0500.mjs`, `run-batch-hourly-0700.mjs`, `run-batch-20261109-2100.mjs`, `run-batch-20261111-1100.mjs`, `run-batch-20261108-2100.mjs`, `run-batch-20261109-0500.mjs`, `run-batch-20261107-1900.mjs`, `run-batch-20261107-2100.mjs`, `run-batch-20261108-1100.mjs`, `run-batch-20261110-1900.mjs`, `run-batch-20261108-1700.mjs`, `run-batch-20261110-0500.mjs`, `run-batch-20261109-1100.mjs`, `run-batch-20261111-0900.mjs`, `run-batch-20261111-0700.mjs`, `run-batch-20261111-1900.mjs`, `run-batch-hourly-0600.mjs`, `run-batch-hourly-0800.mjs`, `run-batch-20261109-2300.mjs`, `run-batch-hourly-0900.mjs`, `run-batch-hourly-1200.mjs`, `run-batch-20261107-0700.mjs`, `run-batch-hourly-1400.mjs`, `run-batch-2200.mjs`, `run-batch-hourly-1600.mjs`, `test-publish-jateng.mjs`, `test-live-publish.mjs`, `run-batch-20261111-1300.mjs`, `run-batch-20261111-1500.mjs`, `run-batch-hourly-1100.mjs`, `run-batch-hourly-1500.mjs`, `run-curation-batch.mjs`?**
+  _High betweenness centrality (0.154) - this node is a cross-community bridge._
 - **Should `C7CommandPaletteRenderer.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05593008739076155 - nodes in this community are weakly interconnected._
-- **Why does `@tujuhcahaya/radio-player` connect `C7LiveStudio.tsx` to `C7CommandPaletteRenderer.ts`, `dependencies`, `7c-seo.ts`, `astro.config.mjs`, `devDependencies`, `now-playing-sse.ts`?**
-  _High betweenness centrality (0.073) - this node is a cross-community bridge._
+  _Cohesion score 0.05669050051072523 - nodes in this community are weakly interconnected._
+- **Why does `@tujuhcahaya/radio-player` connect `C7LiveStudio.tsx` to `C7CommandPaletteRenderer.ts`, `7c-seo.ts`, `astro.config.mjs`, `devDependencies`, `now-playing-sse.ts`?**
+  _High betweenness centrality (0.077) - this node is a cross-community bridge._
 - **Should `validate-findings.cjs` be split into smaller, more focused modules?**
   _Cohesion score 0.06057692307692308 - nodes in this community are weakly interconnected._
