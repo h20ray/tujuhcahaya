@@ -80,4 +80,4 @@ seed/                    # Skema koleksi dan inisialisasi awal EmDash
 
 ## Lisensi
 
-Proprietary © Tujuhcahaya. Seluruh hak cipta dilindungi undang-undang.
+MIT. Lihat [LICENSE](LICENSE).
